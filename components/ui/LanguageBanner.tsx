@@ -4,7 +4,7 @@ import { useState, useSyncExternalStore } from "react";
 import { usePathname } from "next/navigation";
 import { LOCALE_STORAGE_KEY } from "@/lib/i18n/config";
 import { useLocale } from "@/lib/i18n/context";
-import { parseRoute, switchLocalePath } from "@/lib/i18n/routes";
+import { parseRoute, switchLocalePath, withBasePath } from "@/lib/i18n/routes";
 import { BANNER, SWITCHER } from "@/lib/i18n/switcher";
 
 const noopSubscribe = () => () => {};
@@ -55,7 +55,7 @@ export function LanguageBanner({ offerEnglish }: { offerEnglish: boolean }) {
       className="fixed inset-x-3 bottom-3 z-30 mx-auto flex max-w-md items-center gap-3 rounded-2xl border border-line bg-surface p-3 text-sm font-bold shadow-lg"
     >
       <span className="flex-1">{b.text}</span>
-      <a href={switchLocalePath(pathname, s.target)} className="btn !px-3 !py-1.5 text-sm" onClick={() => remember(s.target)}>
+      <a href={withBasePath(switchLocalePath(pathname, s.target))} className="btn !px-3 !py-1.5 text-sm" onClick={() => remember(s.target)}>
         {b.action}
       </a>
       <button

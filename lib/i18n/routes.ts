@@ -51,6 +51,12 @@ export function parseRoute(pathname: string): { locale: Locale; route: Route } |
 }
 
 /** Bulunulan sayfanın hedef dildeki karşılığı (dil seçici için). Tanınmayan sayfa → hedef dilin ana sayfası. */
+/**
+ * Düz <a> bağlantıları (next/link değil) Next'in basePath önekini kendiliğinden eklemez; GitHub Pages proje
+ * adresinde ("/algoritma-ogrenme") önek elle eklenir. Kendi alan adında önek boştur.
+ */
+export const withBasePath = (path: string): string => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;
+
 export function switchLocalePath(pathname: string, to: Locale): string {
   const parsed = parseRoute(pathname);
   return href(to, parsed ? parsed.route : { name: "home" });

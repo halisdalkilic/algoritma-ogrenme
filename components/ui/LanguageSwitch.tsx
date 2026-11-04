@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import { LOCALE_STORAGE_KEY } from "@/lib/i18n/config";
 import { useLocale } from "@/lib/i18n/context";
-import { switchLocalePath } from "@/lib/i18n/routes";
+import { switchLocalePath, withBasePath } from "@/lib/i18n/routes";
 import { SWITCHER } from "@/lib/i18n/switcher";
 
 const pill =
@@ -19,7 +19,7 @@ export function LanguageSwitch() {
   const s = SWITCHER[locale];
   return (
     <a
-      href={switchLocalePath(pathname, s.target)}
+      href={withBasePath(switchLocalePath(pathname, s.target))}
       hrefLang={s.targetLang}
       lang={s.targetLang}
       className={pill}

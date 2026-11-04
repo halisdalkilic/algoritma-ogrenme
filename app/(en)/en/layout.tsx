@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   },
   description: s.description,
   applicationName: s.siteName,
-  manifest: "/en.webmanifest",
+  manifest: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/en.webmanifest`,
   keywords: s.keywords,
   ...og({ title: s.defaultTitle, description: s.description, path: "/en" }, "en"),
   appleWebApp: {
