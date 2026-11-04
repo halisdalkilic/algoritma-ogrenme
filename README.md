@@ -1,98 +1,105 @@
 <div align="center">
 
-# Algoritma Öğrenme · Algorithm Learning
+# Algorithm Learning
 
-Duolingo tarzı mikro derslerle algoritma, akış şeması ve sözde kod öğreten, **Türkçe ve İngilizce** web uygulaması.
-A web app that teaches algorithms, flowcharts and pseudocode with short Duolingo-style lessons, in **Turkish and English**.
+**A web app that teaches algorithms, flowcharts and pseudocode through short, Duolingo-style lessons.**
 
-[**Canlı demo →**](https://halisdalkilic.github.io/algoritma-ogrenme/) · [**Live demo (English) →**](https://halisdalkilic.github.io/algoritma-ogrenme/en/)
+[🇹🇷 Türkçe](README.tr.md) · 🇬🇧 English
 
-![Next.js](https://img.shields.io/badge/Next.js-000?logo=nextdotjs&logoColor=white)
-![React](https://img.shields.io/badge/React-20232a?logo=react&logoColor=61dafb)
+[**Live demo →**](https://halisdalkilic.github.io/algoritma-ogrenme/en/) &nbsp;·&nbsp; [Türkçe sürüm →](https://halisdalkilic.github.io/algoritma-ogrenme/)
+
+![Next.js](https://img.shields.io/badge/Next.js_16-000?logo=nextdotjs&logoColor=white)
+![React](https://img.shields.io/badge/React_19-20232a?logo=react&logoColor=61dafb)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178c6?logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS_4-0f172a?logo=tailwindcss&logoColor=38bdf8)
 ![Zustand](https://img.shields.io/badge/Zustand-443e38)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-0f172a?logo=tailwindcss&logoColor=38bdf8)
-![Supabase](https://img.shields.io/badge/Supabase-isteğe_bağlı-3ecf8e?logo=supabase&logoColor=white)
-![Vitest](https://img.shields.io/badge/Vitest-433_test-6e9f18?logo=vitest&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-optional-3ecf8e?logo=supabase&logoColor=white)
+![Vitest](https://img.shields.io/badge/Vitest-433_tests-6e9f18?logo=vitest&logoColor=white)
 
-<img src="docs/ekran-goruntuleri/masaustu-01-harita.png" width="820" alt="Ana sayfa ve ders haritası">
+<img src="docs/ekran-goruntuleri/masaustu-01-harita.png" width="820" alt="Home page and lesson map">
 
 </div>
 
-## Ne yapıyor?
+## Overview
 
-Kullanıcı 7 "dünya" ve 47 ders boyunca ilerler, alıştırmaları çözer, XP ve rütbe kazanır. Yanlış yaptığı
-sorular aralıklı tekrarla (1 / 3 / 7 gün) geri gelir. Hesap gerekmez; ilerleme tarayıcıda saklanır.
-İstenirse isteğe bağlı bir hesapla telefon ve bilgisayar arasında eşitlenir.
+Learners progress through 7 "worlds" and 47 lessons; each lesson combines short concept explanations with exercises.
+Correct answers earn XP and ranks, and mistakes come back through spaced repetition (after 1 / 3 / 7 days). The app is
+available in **Turkish and English**. No account is needed: progress is stored in the browser. Optionally, learners can
+create an account with an email and a password to sync their progress between a phone and a computer.
 
-- **İki dil:** 47 dersin tamamı Türkçe (`/`) ve İngilizce (`/en`). İngilizce sözde kod, Türkçe olanın aynadaki
-  karşılığıdır (`IF` / `END`, `FOR` / `END_LOOP`); kod çalıştırıcı ikisini de çalıştırır. Eşlik testleri iki dilin
-  aynı yapıda kalmasını denetler.
-- **9 alıştırma tipi:** çoktan seçmeli, boşluk doldurma, sıralama, çıktı tahmini, iz tablosu, sözde kod
-  yazma, akış şeması okuma ve sürükle-bırak ile akış şeması kurma
-- **Hoşgörülü cevap kontrolü:** büyük/küçük harf, Türkçe karakter yerine ASCII (`dogru`, `EGER`) ve tırnak
-  farkı yanlış sayılmaz
-- **Sözde kod yorumlayıcısı:** tokenizer → parser (AST) → interpreter; kodu adım adım çalıştırıp
-  değişkenleri gösterir
-- **Kavram animasyonları:** sıralama ve arama adımları gerçek algoritmadan üretilir
-- **Motivasyon:** maskot "Algo", seri takvimi, günlük hedef, rütbeler, paylaşılabilir başarı kartı
-- **İsteğe bağlı hesap:** e-posta ve şifreyle giriş, cihazlar arası senkron; kayıtlar sunucuda doğrulanır,
-  sahte XP ve seri reddedilir ([kurulum](KURULUM.md))
-- **PWA ve erişilebilirlik:** çevrimdışı çalışır, açık/koyu tema, ekran okuyucu duyuruları, telefonda
-  dokunmatik sürükleme ve 44px dokunma hedefleri
+## Features
 
-## Ekran görüntüleri
+- **9 exercise types:** multiple choice, fill in the blank, ordering, output prediction, trace table, pseudocode
+  writing, flowchart reading, and drag-and-drop flowchart building
+- **Pseudocode interpreter:** tokenizer → parser (AST) → interpreter; runs code step by step and shows the variables
+- **Concept animations:** sorting and searching steps are generated from the real algorithm, not drawn by hand
+- **Forgiving answer checking:** letter case, ASCII in place of Turkish characters (`dogru`, `EGER`) and quote style
+  are not counted as mistakes
+- **Two languages:** all 47 lessons in Turkish (`/`) and English (`/en`). English pseudocode mirrors the Turkish one
+  (`IF` / `END`, `FOR` / `END_LOOP`); the code runner executes both
+- **Motivation:** mascot "Algo", streak calendar, daily goal, ranks, a shareable achievement card
+- **Optional account:** cross-device sync; saves are validated on the server and fake XP or streaks are rejected ([setup](KURULUM.md), in Turkish)
+- **PWA and accessibility:** works offline, light/dark theme, screen reader announcements, touch dragging, 44px touch targets
+
+## Screenshots
 
 <table>
   <tr>
-    <td align="center"><img src="docs/ekran-goruntuleri/02-akis-semasi.png" width="210" alt="Akış şeması kurma"><br><sub>Akış şeması kurma</sub></td>
-    <td align="center"><img src="docs/ekran-goruntuleri/03-kod-calistirici.png" width="210" alt="Adım adım kod çalıştırıcı"><br><sub>Kod çalıştırıcı</sub></td>
-    <td align="center"><img src="docs/ekran-goruntuleri/04-profil-acik-tema.png" width="210" alt="Profil, açık tema"><br><sub>Profil (açık tema)</sub></td>
-    <td align="center"><img src="docs/ekran-goruntuleri/01-harita.png" width="210" alt="Ders haritası, mobil"><br><sub>Mobil görünüm</sub></td>
+    <td align="center"><img src="docs/ekran-goruntuleri/02-akis-semasi.png" width="210" alt="Building a flowchart"><br><sub>Building a flowchart</sub></td>
+    <td align="center"><img src="docs/ekran-goruntuleri/03-kod-calistirici.png" width="210" alt="Code runner"><br><sub>Code runner</sub></td>
+    <td align="center"><img src="docs/ekran-goruntuleri/04-profil-acik-tema.png" width="210" alt="Profile, light theme"><br><sub>Profile (light theme)</sub></td>
+    <td align="center"><img src="docs/ekran-goruntuleri/01-harita.png" width="210" alt="Lesson map, mobile"><br><sub>Mobile view</sub></td>
   </tr>
 </table>
 
 <details>
-<summary>Masaüstü görünümler</summary>
+<summary>Desktop views</summary>
 <br>
 
-<img src="docs/ekran-goruntuleri/masaustu-02-akis-semasi.png" alt="Akış şeması kurma, masaüstü">
-<img src="docs/ekran-goruntuleri/masaustu-03-kod-calistirici.png" alt="Kod çalıştırıcı, masaüstü">
-<img src="docs/ekran-goruntuleri/masaustu-04-profil-acik-tema.png" alt="Profil, açık tema, masaüstü">
+<img src="docs/ekran-goruntuleri/masaustu-02-akis-semasi.png" alt="Building a flowchart, desktop">
+<img src="docs/ekran-goruntuleri/masaustu-03-kod-calistirici.png" alt="Code runner, desktop">
+<img src="docs/ekran-goruntuleri/masaustu-04-profil-acik-tema.png" alt="Profile, light theme, desktop">
 
 </details>
 
-## Teknik notlar
+## Tech overview
 
-- **Statik site:** Next.js `output: "export"` ile tamamen statik üretilir; sunucuda Node süreci yoktur.
-- **İçerik veri olarak:** dersler JSON'dur ve Zod şemasıyla doğrulanır; yeni ders eklemek kod yazmayı gerektirmez.
-- **Hesap güvenliği:** Supabase üzerinde satır düzeyi güvenlik (RLS) ve `save_progress()` doğrulama fonksiyonu;
-  tarayıcıya yalnızca herkese açık anahtar gömülür.
-- **Test:** 433 birim testi; içerik bütünlüğü, çeviri eşliği, sözde kod yorumlayıcısı ve birleştirme mantığını kapsar.
+| Layer | Technology |
+|---|---|
+| UI | Next.js 16 (App Router, static export), React 19, TypeScript |
+| Styling and motion | Tailwind CSS 4, Framer Motion, dnd-kit (drag and drop) |
+| State | Zustand; progress lives in `localStorage` and syncs to the cloud when an account is on |
+| Content | JSON lessons validated with Zod schemas; adding a lesson needs no code |
+| Account (optional) | Supabase Auth + Postgres, row-level security (RLS), a `save_progress()` validation function |
+| Testing | Vitest, 433 unit tests: content integrity, translation parity, the interpreter, merge logic |
+| Deployment | GitHub Actions → GitHub Pages |
 
-## Proje yapısı
+Only the public key is embedded in the browser; data safety is enforced by rules in the database.
+
+## Project structure
 
 ```
-app/            Sayfalar: (tr) harita, /ders/[id], /tekrar, /profil, /gizlilik · (en) /en/...
-components/     Alıştırmalar, akış şeması, kod çalıştırıcı, animasyonlar, maskot, hesap paneli
-content/        Dersler: worlds/ (Türkçe) ve en/ (İngilizce); JSON, Zod şemasıyla doğrulanır, eşlik testleri iki dili karşılaştırır
-lib/            Puanlama, aralıklı tekrar, rozet/rütbe, ilerleme store'u (Zustand), i18n, SEO, hesap ve senkron
-supabase/       Veritabanı şeması ve sunucu doğrulaması (isteğe bağlı hesap için)
-docs/i18n/      Çeviri sözlüğü ve üslup rehberi
+app/            Pages: (tr) map, /ders/[id], /tekrar, /profil, /gizlilik · (en) /en/...
+components/     Exercises, flowchart, code runner, animations, mascot, account panel
+content/        Lessons: worlds/ (Turkish) and en/ (English); parity tests compare the two
+lib/            Scoring, spaced repetition, badges/ranks, progress store, i18n, SEO, account and sync
+supabase/       Database schema and server-side validation (for the optional account)
+docs/i18n/      Translation glossary and style guide
 ```
 
-## Çalıştırma
+## Getting started
 
 ```bash
 npm install
-npm run dev        # http://localhost:3000  (İngilizce: /en)
-npm test           # birim testleri
-npm run lint:text  # yazım ve üslup denetimi (Türkçe + İngilizce)
-npm run build      # out/ klasörüne statik site
+npm run dev        # http://localhost:3000  (English: /en)
+npm test           # unit tests
+npm run lint:text  # spelling and style checks (Turkish + English)
+npm run build      # static site into out/
 ```
 
-`main` dalına yapılan her push, GitHub Actions ile test edilip GitHub Pages'te yayınlanır.
+The account feature is off by default; see [KURULUM.md](KURULUM.md) (in Turkish) to enable it.
+Every push to `main` is tested by GitHub Actions and published to GitHub Pages.
 
-## Lisans
+## License
 
-Tüm hakları saklıdır. Kaynak kod incelenebilir; izinsiz kullanılamaz, kopyalanamaz veya dağıtılamaz. Ayrıntılar: [LICENSE](LICENSE).
+All rights reserved. The source code may be viewed; it may not be used, copied or distributed without permission. See [LICENSE](LICENSE).
