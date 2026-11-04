@@ -1,0 +1,149 @@
+{
+  "id": "6.2",
+  "worldId": "6",
+  "title": "Seçmeli Sıralama (Selection Sort)",
+  "estimatedMinutes": 6,
+  "prerequisites": ["6.1"],
+  "objectives": [
+    "Seçmeli sıralamanın 'en küçüğü bul, öne yerleştir' mantığını kavrar",
+    "Kabarcık sıralama ile seçmeli sıralama arasındaki farkı ayırt eder"
+  ],
+  "hook": {
+    "text": "Ders 5.4'te bir dizideki en küçük elemanı bulmayı öğrenmiştin. Ya bunu tekrar tekrar yapıp, her seferinde bulduğunu öne koysan?"
+  },
+  "concept": [
+    {
+      "heading": "En küçüğü bul, öne koy",
+      "body": "Seçmeli sıralama, ders 5.4'teki \"en küçük bulma\" algoritmasını tekrar tekrar uygular: dizinin sıralanmamış kısmındaki en küçük elemanı bulur, onu sıralanmamış kısmın İLK elemanıyla takas eder. Bu, sıralı kısmı bir eleman büyütür.",
+      "visual": { "type": "animation", "component": "sort", "props": { "values": [5, 2, 4, 1, 3], "algo": "selection" } }
+    },
+    {
+      "heading": "Kabarcık ile fark",
+      "body": "Kabarcık sıralama sürekli KOMŞU takasları yapar (çok sayıda küçük takas). Seçmeli sıralama ise her geçişte SADECE BİR takas yapar (en küçüğü bulduktan sonra). İkisi de benzer sayıda karşılaştırma yapar ama seçmeli sıralama daha az takas içerir.",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "Kabarcık", "sub": "çok sayıda komşu takas" }, { "label": "Seçmeli", "sub": "her geçişte 1 takas", "tone": "good" }] } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "[5, 2, 4] dizisini seçmeli sıralama ile sırala.",
+      "pseudocode": [
+        "sayilar ← [5, 2, 4]",
+        "İÇİN i ← 0'DAN 1'E ADIM 1",
+        "  enKucukIndeks ← i",
+        "  İÇİN j ← i + 1'DEN 2'YE ADIM 1",
+        "    EĞER sayilar[j] < sayilar[enKucukIndeks]",
+        "      enKucukIndeks ← j",
+        "    BİTİR",
+        "  DÖNGÜ_BİTİR",
+        "  gecici ← sayilar[i]",
+        "  sayilar[i] ← sayilar[enKucukIndeks]",
+        "  sayilar[enKucukIndeks] ← gecici",
+        "DÖNGÜ_BİTİR",
+        "YAZ sayilar[0]",
+        "YAZ sayilar[1]",
+        "YAZ sayilar[2]"
+      ],
+      "runnerSource": "sayilar ← [5, 2, 4]\nİÇİN i ← 0'DAN 1'E ADIM 1\n  enKucukIndeks ← i\n  İÇİN j ← i + 1'DEN 2'YE ADIM 1\n    EĞER sayilar[j] < sayilar[enKucukIndeks]\n      enKucukIndeks ← j\n    BİTİR\n  DÖNGÜ_BİTİR\n  gecici ← sayilar[i]\n  sayilar[i] ← sayilar[enKucukIndeks]\n  sayilar[enKucukIndeks] ← gecici\nDÖNGÜ_BİTİR\nYAZ sayilar[0]\nYAZ sayilar[1]\nYAZ sayilar[2]",
+      "steps": [
+        { "line": 0, "explain": "Dizi: [5, 2, 4]." },
+        { "line": 2, "explain": "i=0: en küçüğü ararken enKucukIndeks=1 (değer 2) bulunur." },
+        { "line": 8, "explain": "sayilar[0] ile sayilar[1] takas edilir → [2, 5, 4]." },
+        { "line": 12, "explain": "i=1: sayilar[2]=4, sayilar[1]=5'ten küçük olduğu için takas edilir → [2, 4, 5].", "output": ["2", "4", "5"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "6.2-e1",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Seçmeli sıralamanın her geçişte yaptığı takas sayısı kaçtır?",
+      "options": ["0", "Tam olarak 1", "Elemanlara göre değişir (çok sayıda)", "Her zaman N"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Her geçiş sadece en küçüğü bulup TEK bir takas yapar.",
+        "incorrect": "Seçmeli sıralama her geçişte en küçüğü bulur ve sadece BİR takas yapar."
+      }
+    },
+    {
+      "id": "6.2-e2",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Seçmeli sıralama ile kabarcık sıralama arasındaki temel fark nedir?",
+      "options": [
+        "Seçmeli sıralama hiç karşılaştırma yapmaz",
+        "Kabarcık sürekli komşu takası yapar, seçmeli her geçişte sadece bir takas yapar",
+        "İkisi tamamen aynıdır",
+        "Seçmeli sıralama sadece metinlerde çalışır"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Takas sayısı bakımından farklılaşırlar.",
+        "incorrect": "Kabarcık çok sayıda komşu takası yapar; seçmeli her geçişte sadece bir (en küçüğü öne alan) takas yapar."
+      }
+    },
+    {
+      "id": "6.2-e3",
+      "type": "predict-output",
+      "difficulty": 3,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": [
+        "sayilar ← [3, 1, 2]",
+        "İÇİN i ← 0'DAN 1'E ADIM 1",
+        "  enKucukIndeks ← i",
+        "  İÇİN j ← i + 1'DEN 2'YE ADIM 1",
+        "    EĞER sayilar[j] < sayilar[enKucukIndeks]",
+        "      enKucukIndeks ← j",
+        "    BİTİR",
+        "  DÖNGÜ_BİTİR",
+        "  gecici ← sayilar[i]",
+        "  sayilar[i] ← sayilar[enKucukIndeks]",
+        "  sayilar[enKucukIndeks] ← gecici",
+        "DÖNGÜ_BİTİR",
+        "YAZ sayilar[0]",
+        "YAZ sayilar[1]",
+        "YAZ sayilar[2]"
+      ],
+      "correctOutput": ["1", "2", "3"],
+      "hint": "[3,1,2] → en küçük olan 1 öne alınır, sonra 2, sonra 3 kalır."
+    },
+    {
+      "id": "6.2-e4",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Seçmeli sıralamanın bir geçişindeki adımları doğru sıraya diz.",
+      "steps": [
+        "Sıralanmamış kısımdaki en küçük elemanı bul",
+        "En küçüğün indeksini kaydet",
+        "En küçüğü sıralanmamış kısmın ilk elemanıyla takas et"
+      ],
+      "correctOrder": [0, 1, 2]
+    },
+    {
+      "id": "6.2-e5",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "Seçmeli sıralama, her geçişte sıralanmamış kısımdaki en ___ elemanı bulup öne alır.",
+      "options": ["küçük", "büyük", "ortanca", "rastgele"],
+      "answer": "küçük"
+    },
+    {
+      "id": "6.2-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Seçmeli sıralamanın \"en küçüğü bulma\" adımı hangi dersteki algoritmayla aynıdır?",
+      "options": ["5.3 Dizide Arama", "5.4 En Büyük/En Küçük Bulma", "5.1 Dizi Kavramı", "4.9 Kontrol Noktası"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Seçmeli sıralama, 5.4'teki karşılaştırmalı tarama mantığını tekrar tekrar kullanır.",
+        "incorrect": "Bu, ders 5.4'te öğrendiğin en küçük/en büyük bulma algoritmasının tekrar tekrar uygulanmasıdır."
+      }
+    }
+  ],
+  "summary": [
+    "Seçmeli sıralama, sıralanmamış kısımdaki en küçüğü bulup öne alır — tekrar tekrar.",
+    "Her geçişte sadece BİR takas yapılır (kabarcık sıralamadan farkı).",
+    "\"En küçüğü bulma\" adımı, ders 5.4'teki algoritmanın aynısıdır."
+  ]
+}

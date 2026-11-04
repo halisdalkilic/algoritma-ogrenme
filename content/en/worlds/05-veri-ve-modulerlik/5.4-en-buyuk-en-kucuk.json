@@ -1,0 +1,149 @@
+{
+  "id": "5.4",
+  "worldId": "5",
+  "title": "Finding the Largest / Smallest",
+  "estimatedMinutes": 5,
+  "prerequisites": ["5.3"],
+  "objectives": [
+    "Find the largest (or smallest) value in an array with a scan that makes comparisons"
+  ],
+  "hook": {
+    "text": "You want to find the highest grade in a class. You do not even need to sort the array. A smart scan is enough."
+  },
+  "concept": [
+    {
+      "heading": "A scan with comparisons",
+      "body": "To find the largest value: first take the FIRST element of the array as the \"current largest\". Then compare the other elements with it one by one; if you find a larger element, update the \"current largest\". When the array ends, the value you are holding is the true largest.",
+      "visual": { "type": "animation", "component": "array", "props": { "values": [12, 7, 31, 9, 24], "mode": "max" } }
+    },
+    {
+      "heading": "Why start from the first element?",
+      "body": "Starting with \"largest ← 0\" is dangerous: what if ALL the numbers in the array are negative? Then 0 is never updated and gives a wrong result. That is why you always start from a REAL element of the array (the first element).",
+      "visual": { "type": "animation", "component": "array", "props": { "values": [-8, -3, -12, -5], "mode": "max" } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "Find the largest number in an array.",
+      "pseudocode": [
+        "numbers ← [12, 45, 7, 32]",
+        "largest ← numbers[0]",
+        "FOR i ← 1 TO 3 STEP 1",
+        "  IF numbers[i] > largest",
+        "    largest ← numbers[i]",
+        "  END",
+        "END_LOOP",
+        "WRITE largest"
+      ],
+      "runnerSource": "numbers ← [12, 45, 7, 32]\nlargest ← numbers[0]\nFOR i ← 1 TO 3 STEP 1\n  IF numbers[i] > largest\n    largest ← numbers[i]\n  END\nEND_LOOP\nWRITE largest",
+      "steps": [
+        { "line": 1, "explain": "largest starts with the first element (12)." },
+        { "line": 3, "explain": "i = 1: 45 > 12, so largest ← 45." },
+        { "line": 3, "explain": "i = 2: 7 > 45 is FALSE, so nothing changes. i = 3: 32 > 45 is FALSE, so nothing changes." },
+        { "line": 7, "explain": "Result: largest = 45.", "output": ["45"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "5.4-e1",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "What does this code write to the screen?",
+      "pseudocode": [
+        "numbers ← [8, 3, 19, 6]",
+        "smallest ← numbers[0]",
+        "FOR i ← 1 TO 3 STEP 1",
+        "  IF numbers[i] < smallest",
+        "    smallest ← numbers[i]",
+        "  END",
+        "END_LOOP",
+        "WRITE smallest"
+      ],
+      "correctOutput": ["3"],
+      "hint": "The smallest value among 8, 3, 19, 6 is 3."
+    },
+    {
+      "id": "5.4-e2",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Why is the largest variable started with \"numbers[0]\" instead of \"0\"?",
+      "options": [
+        "Writing 0 takes longer",
+        "If all the numbers in the array are negative, 0 is never updated and gives a wrong result",
+        "0 is not a number",
+        "There is no difference"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. Starting from a real element of the array also guarantees the right result when all numbers are negative.",
+        "incorrect": "If all the numbers are negative, starting from 0 leads to a wrong result that is never updated."
+      }
+    },
+    {
+      "id": "5.4-e3",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Put the steps of the algorithm that finds the largest element in the correct order.",
+      "steps": [
+        "largest ← the first element of the array",
+        "Walk through the array starting from the second element",
+        "Compare each element with largest",
+        "If it is larger, update largest"
+      ],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "5.4-e4",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "When searching for the largest element, why does the loop start from the SECOND element (index 1) of the array?",
+      "options": [
+        "The first element is already taken as the \"current largest\", so there is no need to check it again",
+        "The first element is always wrong",
+        "It is a random choice",
+        "The first element can never be the largest"
+      ],
+      "correctIndex": 0,
+      "feedback": {
+        "correct": "Correct. Since the first element is already the starting value, the remaining elements (from index 1) are scanned.",
+        "incorrect": "The first element is already the starting value of largest, so the loop starts from the second element."
+      }
+    },
+    {
+      "id": "5.4-e5",
+      "type": "trace-table",
+      "difficulty": 2,
+      "pseudocode": [
+        "numbers ← [4, 9, 2, 15]",
+        "largest ← numbers[0]",
+        "FOR i ← 1 TO 3 STEP 1",
+        "  IF numbers[i] > largest",
+        "    largest ← numbers[i]",
+        "  END",
+        "END_LOOP"
+      ],
+      "columns": ["i", "largest"],
+      "expectedRows": [
+        { "i": 1, "largest": 9 },
+        { "i": 2, "largest": 9 },
+        { "i": 3, "largest": 15 }
+      ],
+      "hint": "largest changes only when a larger element is found."
+    },
+    {
+      "id": "5.4-e6",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "When searching for the largest element, the ___ element of the array is used as the starting value.",
+      "options": ["first", "last", "middle", "random"],
+      "answer": "first"
+    }
+  ],
+  "summary": [
+    "Finding the largest/smallest: start from the first element of the array and move on by comparing with the others.",
+    "The starting value is a real element of the array (the first element), not 0.",
+    "The loop can start from the second element (index 1) because the first element is already the starting value."
+  ]
+}

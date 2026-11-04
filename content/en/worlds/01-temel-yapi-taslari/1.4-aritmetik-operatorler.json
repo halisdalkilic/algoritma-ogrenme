@@ -1,0 +1,105 @@
+{
+  "id": "1.4",
+  "worldId": "1",
+  "title": "Arithmetic Operators",
+  "estimatedMinutes": 5,
+  "prerequisites": ["1.3"],
+  "objectives": [
+    "Use the +, -, *, /, MOD, and DIV operators",
+    "Apply the rules of order of operations"
+  ],
+  "hook": {
+    "text": "You are sharing 17 apples equally among 5 people. How many apples does each person get, and how many are left over? You need two different operators for this."
+  },
+  "concept": [
+    {
+      "heading": "Six basic operators",
+      "body": "+ is addition, - is subtraction, * is multiplication, / is division (it gives a decimal result). DIV is integer division (17 DIV 5 = 3). MOD is the remainder (17 MOD 5 = 2). Sharing problems use DIV and MOD together.",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "+", "sub": "addition" }, { "label": "-", "sub": "subtraction" }, { "label": "*", "sub": "multiplication" }, { "label": "/", "sub": "division" }, { "label": "17 DIV 5 = 3", "sub": "integer division" }, { "label": "17 MOD 5 = 2", "sub": "remainder" }] } }
+    },
+    {
+      "heading": "Order of operations",
+      "body": "Multiplication and division (*, /, DIV, MOD) are done before addition and subtraction (+, -). In 2 + 3 * 4, 3 * 4 = 12 is calculated first, then 2 + 12 = 14. Parentheses always come first: (2 + 3) * 4 = 20.",
+      "visual": { "type": "animation", "component": "steps", "props": { "steps": ["2 + 3 * 4", "multiplication first: 3 * 4 = 12", "then addition: 2 + 12 = 14"] } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "Share 17 apples among 5 people: how many per person, and how many are left?",
+      "pseudocode": ["perPerson ← 17 DIV 5", "remainder ← 17 MOD 5", "WRITE perPerson", "WRITE remainder"],
+      "steps": [
+        { "line": 0, "explain": "17 DIV 5 = 3 (integer division, the decimal part is dropped).", "vars": { "perPerson": 3 } },
+        { "line": 1, "explain": "17 MOD 5 = 2 (what is left after dividing).", "vars": { "perPerson": 3, "remainder": 2 } },
+        { "line": 2, "explain": "3 is written to the screen.", "output": ["3"] },
+        { "line": 3, "explain": "2 is written to the screen.", "output": ["3", "2"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "1.4-e1",
+      "type": "predict-output",
+      "difficulty": 1,
+      "question": "What does this code write to the screen?",
+      "pseudocode": ["x ← 2 + 3 * 4", "WRITE x"],
+      "correctOutput": ["14"],
+      "hint": "Multiplication is done first, then addition."
+    },
+    {
+      "id": "1.4-e2",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "What does this code write to the screen?",
+      "pseudocode": ["x ← (2 + 3) * 4", "WRITE x"],
+      "correctOutput": ["20"],
+      "hint": "What is inside the parentheses is always calculated first."
+    },
+    {
+      "id": "1.4-e3",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "What is the result of 23 MOD 5?",
+      "options": ["4", "3", "5", "18"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. 23 = 5 * 4 + 3, so the remainder is 3.",
+        "incorrect": "When you divide 23 by 5, the quotient is 4 and the remainder is 3 (23 - 5 * 4 = 3)."
+      }
+    },
+    {
+      "id": "1.4-e4",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "What is the result of 23 DIV 5?",
+      "options": ["4.6", "4", "5", "3"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. DIV drops the decimal part and gives only the integer quotient.",
+        "incorrect": "DIV does not round the result, it drops the decimal part: 23 / 5 = 4.6, so the DIV result is 4."
+      }
+    },
+    {
+      "id": "1.4-e5",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "To find out whether a number is even or odd, we use the remainder of dividing it by 2, that is, the ___ operation.",
+      "options": ["MOD", "DIV", "multiplication", "subtraction"],
+      "answer": "MOD"
+    },
+    {
+      "id": "1.4-e6",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "What does this code write to the screen?",
+      "pseudocode": ["a ← 10", "b ← 3", "result ← a - b * 2", "WRITE result"],
+      "correctOutput": ["4"],
+      "hint": "Multiplication first: 3 * 2 = 6, then 10 - 6."
+    }
+  ],
+  "summary": [
+    "Six operators: +, -, *, /, DIV (integer division), MOD (remainder).",
+    "Order of operations: first * / DIV MOD, then + -, and parentheses always come first.",
+    "Sharing problems are solved by using DIV and MOD together."
+  ]
+}

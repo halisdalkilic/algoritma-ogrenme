@@ -1,0 +1,120 @@
+{
+  "id": "0.4",
+  "worldId": "0",
+  "title": "Why Step Order Matters",
+  "estimatedMinutes": 4,
+  "prerequisites": ["0.3"],
+  "objectives": [
+    "Show how step order changes the result",
+    "Find the mistake in an algorithm whose steps are in the wrong order"
+  ],
+  "hook": {
+    "text": "\"Put on your socks, put on your shoes\" versus \"put on your shoes, put on your socks\": the same steps in a different order. Is the result the same?"
+  },
+  "concept": [
+    {
+      "heading": "Order changes the meaning",
+      "body": "Even when an algorithm has the same steps, changing their order can change the result completely, or even make it impossible. \"Put on your shoe, then your sock\" is logically broken because the second step can no longer be carried out.",
+      "visual": { "type": "animation", "component": "steps", "props": { "steps": ["Put on the sock", "Put on the shoe"], "wrongOrder": ["Put on the shoe", "Put on the sock"] } }
+    },
+    {
+      "heading": "Dependent steps",
+      "body": "Some steps need the result of the one before them. Until \"boil the water\" is finished, the step \"pour the boiling water into the pot\" makes no sense. These are called dependent steps, and their order cannot be changed.",
+      "visual": { "type": "animation", "component": "steps", "props": { "steps": ["Boil the water", "Pour the boiling water into the pot", "Wait for it to steep"], "wrongOrder": ["Pour the boiling water into the pot", "Boil the water", "Wait for it to steep"] } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "An algorithm with the steps in the wrong order: 1) Deposit the money into the account 2) Go to the ATM 3) Insert the card. Why does it not work?",
+      "pseudocode": ["1. Deposit the money into the account", "2. Go to the ATM", "3. Insert the card"],
+      "steps": [
+        { "line": 0, "explain": "The first step asks you to deposit money without going to the ATM, so this step cannot be done yet." },
+        { "line": 1, "explain": "Going to the ATM was actually the step that had to come first." },
+        { "line": 2, "explain": "Inserting the card is needed BEFORE depositing money; the order is completely reversed." }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "0.4-e1",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "Why is the order \"put on the shoe, put on the sock\" wrong?",
+      "options": [
+        "It is not wrong, both work",
+        "The sock must be put on before the shoe",
+        "A shoe cannot be worn without a sock",
+        "Order does not matter"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. The sock must go on before the shoe; the step is dependent.",
+        "incorrect": "Trying to put the sock on after the shoe makes no physical sense."
+      }
+    },
+    {
+      "id": "0.4-e2",
+      "type": "order-steps",
+      "difficulty": 1,
+      "question": "Put the algorithm for withdrawing money from an ATM in the correct order.",
+      "steps": ["Go to the ATM", "Insert the card", "Enter the PIN", "Choose the amount", "Take the money"],
+      "correctOrder": [0, 1, 2, 3, 4]
+    },
+    {
+      "id": "0.4-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "What happens if the order of \"boil the water\" and \"put the tea bag in the cup\" is swapped?",
+      "options": [
+        "Nothing changes, the tea still steeps",
+        "The tea tries to steep in cold water, so the result is weak",
+        "The algorithm stops working",
+        "The water never boils"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. The result is not impossible, but it is different from what you expected, and worse.",
+        "incorrect": "When the order changes, the tea tries to steep in cold water instead of boiling water, and the result suffers."
+      }
+    },
+    {
+      "id": "0.4-e4",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "If a step needs the result of the step before it, these steps are called ___ steps.",
+      "options": ["dependent", "independent", "unnecessary", "random"],
+      "answer": "dependent"
+    },
+    {
+      "id": "0.4-e5",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Put the algorithm for sending an email in the correct order.",
+      "steps": ["Open the email app", "Type the recipient's address", "Write the message", "Press Send"],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "0.4-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "What is the problem with the order \"1) Preheat the oven 2) Put the dough in the oven 3) Prepare the dough\"?",
+      "options": [
+        "There is no problem",
+        "The dough cannot go in the oven before it is prepared, so 2 and 3 should swap",
+        "The oven should not be preheated",
+        "The dough should never go in the oven"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. The dough must be prepared before it goes into the oven.",
+        "incorrect": "For the dough to go into the oven, it must be prepared first, so steps 2 and 3 should swap."
+      }
+    }
+  ],
+  "summary": [
+    "The same steps in a different order can give completely different (or impossible) results.",
+    "If a step needs the result of the one before it, it is called a dependent step.",
+    "When you write an algorithm, ask of every step: \"does it depend on the one before it?\""
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "id": "4.9",
+  "worldId": "4",
+  "title": "Checkpoint: World 4",
+  "estimatedMinutes": 7,
+  "prerequisites": ["4.8"],
+  "objectives": [
+    "Apply everything learned in World 4 (FOR, WHILE, DO-WHILE, counters/accumulators, infinite loops, nested loops, trace tables) together"
+  ],
+  "hook": {
+    "text": "You have reached the end of World 4. Now it is time to test your loop skills with mixed questions."
+  },
+  "concept": [
+    {
+      "heading": "Checkpoint",
+      "body": "This lesson does not teach a new topic; it reinforces what you have learned. The questions below test all the loop types and their common mistakes in a mix.",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "FOR" }, { "label": "WHILE" }, { "label": "DO-WHILE" }, { "label": "Counter / accumulator" }, { "label": "Infinite loop" }, { "label": "Nested" }, { "label": "Trace table" }] } }
+    }
+  ],
+  "workedExamples": [],
+  "exercises": [
+    {
+      "id": "4.9-e1",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "What does this code write to the screen?",
+      "pseudocode": ["FOR i ← 5 TO 1 STEP -1", "  WRITE i", "END_LOOP"],
+      "correctOutput": ["5", "4", "3", "2", "1"],
+      "hint": "A negative step counts backward."
+    },
+    {
+      "id": "4.9-e2",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "Which loop is preferred if the number of rounds is not known in advance?",
+      "options": ["FOR", "WHILE", "Either one", "Neither"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. When the number of rounds is unknown, a WHILE (condition-based) loop is used.",
+        "incorrect": "WHILE is better suited to an unknown number of rounds."
+      }
+    },
+    {
+      "id": "4.9-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "What is the difference between DO-WHILE and WHILE?",
+      "options": [
+        "DO-WHILE checks the condition at the end, so the body runs at least once",
+        "There is no difference between them",
+        "WHILE never runs",
+        "DO-WHILE only works with numbers"
+      ],
+      "correctIndex": 0,
+      "feedback": {
+        "correct": "Correct. DO-WHILE is a post-test loop, so the body is guaranteed to run at least once.",
+        "incorrect": "The difference is the place of the check: DO-WHILE checks at the end, so the body runs at least once."
+      }
+    },
+    {
+      "id": "4.9-e4",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "What does this code write to the screen?",
+      "pseudocode": ["counter ← 0", "FOR i ← 1 TO 6 STEP 1", "  IF i MOD 3 = 0", "    counter ← counter + 1", "  END", "END_LOOP", "WRITE counter"],
+      "correctOutput": ["2"],
+      "hint": "The multiples of 3 from 1 to 6 are 3 and 6."
+    },
+    {
+      "id": "4.9-e5",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "What is the most common reason a WHILE loop runs forever?",
+      "options": [
+        "Using too many variables",
+        "Forgetting to update, inside the loop, the variable that affects the condition",
+        "A missing WRITE command",
+        "The loop being too short"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. If the update is forgotten, the condition never becomes FALSE.",
+        "incorrect": "The most common reason is that the variable that affects the condition is not updated inside the loop."
+      }
+    },
+    {
+      "id": "4.9-e6",
+      "type": "trace-table",
+      "difficulty": 2,
+      "pseudocode": ["product ← 1", "FOR i ← 1 TO 3 STEP 1", "  product ← product * i", "END_LOOP"],
+      "columns": ["i", "product"],
+      "expectedRows": [
+        { "i": 1, "product": 1 },
+        { "i": 2, "product": 2 },
+        { "i": 3, "product": 6 }
+      ],
+      "hint": "3! = 1 * 1 * 2 * 3 = 6."
+    },
+    {
+      "id": "4.9-e7",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "If the outer loop runs 4 times and the inner loop runs 2 times in each round, how many times does the inner body run in total?",
+      "options": ["4", "2", "6", "8"],
+      "correctIndex": 3,
+      "feedback": {
+        "correct": "Correct. 4 × 2 = 8.",
+        "incorrect": "The total number of repetitions is outer times inner: 4 × 2 = 8."
+      }
+    },
+    {
+      "id": "4.9-e8",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "The statement \"total ← total + x\" is an update of an ___.",
+      "options": ["accumulator", "counter", "constant", "decision"],
+      "answer": "accumulator"
+    },
+    {
+      "id": "4.9-e9",
+      "type": "pseudo-write",
+      "difficulty": 3,
+      "question": "Write an algorithm that adds up the even numbers from 1 to 10.",
+      "requiredKeywords": ["FOR", "END_LOOP", "IF", "END", "MOD"],
+      "sampleSolution": "total ← 0\nFOR i ← 1 TO 10 STEP 1\n  IF i MOD 2 = 0\n    total ← total + i\n  END\nEND_LOOP\nWRITE total"
+    }
+  ],
+  "summary": [
+    "World 4 complete: FOR, WHILE, DO-WHILE, counters/accumulators, infinite loops, nested loops, trace tables.",
+    "These skills will be used directly in World 5 when you work with arrays.",
+    "You will see the topics you struggled with again in your review queue."
+  ]
+}

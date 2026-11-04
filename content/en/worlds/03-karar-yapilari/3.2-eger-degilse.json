@@ -1,0 +1,144 @@
+{
+  "id": "3.2",
+  "worldId": "3",
+  "title": "IF / ELSE",
+  "estimatedMinutes": 6,
+  "prerequisites": ["3.1"],
+  "objectives": [
+    "Build a one-branch decision structure with the IF command",
+    "Build a two-branch decision structure with IF / ELSE"
+  ],
+  "hook": {
+    "text": "An algorithm needs to be able to say \"if it is raining, take an umbrella\". How do we write that?"
+  },
+  "concept": [
+    {
+      "heading": "One-branch IF",
+      "body": "The structure IF condition ... END runs the steps in between if the condition is TRUE. If it is FALSE, it does nothing and continues after END. The condition is a comparison or logical expression like the ones you learned in 3.1.",
+      "visual": { "type": "animation", "component": "flow", "props": { "kind": "single" } }
+    },
+    {
+      "heading": "Two-branch IF / ELSE",
+      "body": "Sometimes \"what happens otherwise\" matters too. In the structure IF condition ... ELSE ... END, the first block runs if the condition is TRUE and the block after ELSE runs if it is FALSE. The two never run at the same time.",
+      "visual": { "type": "animation", "component": "flow", "props": { "kind": "decision" } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "Based on the user's age, print \"Adult\" or \"Minor\".",
+      "pseudocode": [
+        "READ age",
+        "IF age ≥ 18",
+        "  WRITE \"Adult\"",
+        "ELSE",
+        "  WRITE \"Minor\"",
+        "END"
+      ],
+      "runnerSource": "READ age\nIF age ≥ 18\n  WRITE \"Adult\"\nELSE\n  WRITE \"Minor\"\nEND",
+      "runnerInputs": [20],
+      "steps": [
+        { "line": 0, "explain": "The user entered 20, so 20 is put into the age box.", "vars": { "age": 20 } },
+        { "line": 1, "explain": "The condition 20 ≥ 18 is TRUE, so the IF block runs and the ELSE block is skipped." },
+        { "line": 2, "explain": "\"Adult\" is written to the screen.", "output": ["Adult"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "3.2-e1",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "When grade ← 45, what is written to the screen if the code \"IF grade ≥ 50, WRITE Passed\" is run with no ELSE block?",
+      "options": [
+        "\"Passed\"",
+        "\"Failed\"",
+        "Nothing is written",
+        "An error occurs"
+      ],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Correct. If the condition is FALSE and there is no ELSE block, the program continues without writing anything.",
+        "incorrect": "When there is no ELSE block and the condition is FALSE, nothing is written to the screen."
+      }
+    },
+    {
+      "id": "3.2-e2",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "What does this code write to the screen?",
+      "pseudocode": [
+        "grade ← 45",
+        "IF grade ≥ 50",
+        "  WRITE \"Passed\"",
+        "ELSE",
+        "  WRITE \"Failed\"",
+        "END"
+      ],
+      "correctOutput": ["Failed"],
+      "hint": "45 ≥ 50 is FALSE, so the ELSE block runs."
+    },
+    {
+      "id": "3.2-e3",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Put the steps of the algorithm that checks whether a number is positive in the correct order.",
+      "steps": [
+        "READ number",
+        "IF number > 0",
+        "  WRITE \"Positive\"",
+        "ELSE",
+        "  WRITE \"Not positive\"",
+        "END"
+      ],
+      "correctOrder": [0, 1, 2, 3, 4, 5]
+    },
+    {
+      "id": "3.2-e4",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "In an IF ... ELSE ... END structure, can the IF block and the ELSE block run at the same time?",
+      "options": [
+        "Yes, always",
+        "No, only one of them runs",
+        "Both run only if the condition is TRUE",
+        "One is picked at random"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. Only one branch runs, depending on whether the condition is TRUE or FALSE.",
+        "incorrect": "The two branches exclude each other: if the condition is TRUE only the IF block runs, and if it is FALSE only the ELSE block runs."
+      }
+    },
+    {
+      "id": "3.2-e5",
+      "type": "flowchart-build",
+      "difficulty": 2,
+      "question": "Build the flowchart for an algorithm that reads a number and prints whether it is positive or not.",
+      "expectedNodes": [
+        { "id": "n1", "shape": "terminal", "label": "Start" },
+        { "id": "n2", "shape": "io", "label": "Read number" },
+        { "id": "n3", "shape": "decision", "label": "number > 0?" },
+        { "id": "n4", "shape": "terminal", "label": "End" }
+      ],
+      "expectedEdges": [
+        { "from": "n1", "to": "n2" },
+        { "from": "n2", "to": "n3" },
+        { "from": "n3", "to": "n4" }
+      ]
+    },
+    {
+      "id": "3.2-e6",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "If the IF condition is FALSE and there is no ELSE block, the program continues directly from the ___ command.",
+      "options": ["END", "READ", "WRITE", "CONST"],
+      "answer": "END"
+    }
+  ],
+  "summary": [
+    "IF condition ... END: the block runs if the condition is TRUE and is skipped if it is FALSE.",
+    "IF ... ELSE ... END: the two branches exclude each other, and only one of them runs.",
+    "The condition is always a comparison or a logical expression."
+  ]
+}

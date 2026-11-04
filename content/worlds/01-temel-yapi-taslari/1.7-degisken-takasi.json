@@ -1,0 +1,116 @@
+{
+  "id": "1.7",
+  "worldId": "1",
+  "title": "Değişken Takası (Swap)",
+  "estimatedMinutes": 5,
+  "prerequisites": ["1.6"],
+  "objectives": [
+    "İki değişkenin değerini geçici değişken kullanarak takas eder",
+    "Neden doğrudan a ← b, b ← a yazmanın hatalı olduğunu açıklar"
+  ],
+  "hook": {
+    "text": "Elinde su dolu bir bardak ve çay dolu bir bardak var. İçeriklerini takas etmek istiyorsun ama üçüncü bir boş bardağın yok. Mümkün mü?"
+  },
+  "concept": [
+    {
+      "heading": "Naif çözüm neden bozuk?",
+      "body": "a ← b yazarsan, a'nın ESKİ değeri kaybolur ve a artık b ile aynı olur. Sonra b ← a yazdığında, a zaten b'ye eşit olduğu için hiçbir şey değişmez. Sonuçta iki değişken de aynı değeri taşır — takas olmaz, bilgi kaybolur.",
+      "visual": { "type": "animation", "component": "vars", "props": { "boxes": [{ "name": "a", "values": [5, 7, 7] }, { "name": "b", "values": [7, 7, 7] }], "captions": ["başlangıç: a = 5, b = 7", "a ← b → a'daki 5 kayboldu!", "b ← a → ikisi de 7 ✗"], "ms": 1900 } }
+    },
+    {
+      "heading": "Geçici değişken çözümü",
+      "body": "Üçüncü bir \"geçici\" kutu kullanarak: önce a'nın değerini geçici'ye koy (kaydet), sonra a'ya b'nin değerini yaz, son olarak geçici'de sakladığın eski a değerini b'ye yaz. Bu, klasik sınav sorusudur ve bardak-su-çay örneğiyle aynı mantıktır: üçüncü boş bir bardak kullanmak.",
+      "visual": { "type": "animation", "component": "vars", "props": { "boxes": [{ "name": "a", "values": [5, 5, 7, 7] }, { "name": "b", "values": [7, 7, 7, 5] }, { "name": "gecici", "values": ["", 5, 5, 5], "tone": "good" }], "captions": ["başlangıç: a = 5, b = 7", "gecici ← a", "a ← b", "b ← gecici → takas tamam ✓"], "ms": 1900 } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "a ← 3, b ← 7 iken değerlerini takas et.",
+      "pseudocode": ["gecici ← a", "a ← b", "b ← gecici"],
+      "steps": [
+        { "line": 0, "explain": "a'nın değeri (3) kaybolmadan önce gecici'ye kaydedilir.", "vars": { "a": 3, "b": 7, "gecici": 3 } },
+        { "line": 1, "explain": "a artık b'nin değerini (7) alır.", "vars": { "a": 7, "b": 7, "gecici": 3 } },
+        { "line": 2, "explain": "b, gecici'de saklanan eski a değerini (3) alır.", "vars": { "a": 7, "b": 3, "gecici": 3 } }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "1.7-e1",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "a ← 3, b ← 7 iken sadece \"a ← b\" ve \"b ← a\" çalıştırılırsa (geçici değişken kullanılmadan) sonuç ne olur?",
+      "options": [
+        "a=7, b=3 (doğru takas)",
+        "a=7, b=7 (takas başarısız, bilgi kayboldu)",
+        "a=3, b=3",
+        "Hata oluşur"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. a←b ile a'nın eski değeri (3) kaybolur; b←a artık aynı değeri geri yazar.",
+        "incorrect": "a←b, a'nın eski değerini siler. b←a çalıştığında a zaten b'ye eşit olduğundan takas gerçekleşmez."
+      }
+    },
+    {
+      "id": "1.7-e2",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "a ve b değişkenlerini geçici değişken kullanarak takas eden adımları doğru sıraya diz.",
+      "steps": ["gecici ← a", "a ← b", "b ← gecici"],
+      "correctOrder": [0, 1, 2]
+    },
+    {
+      "id": "1.7-e3",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "a ← 10, b ← 20 iken bu kod çalıştıktan sonra a ve b'nin değerleri ekrana sırayla ne yazılır?",
+      "pseudocode": ["a ← 10", "b ← 20", "gecici ← a", "a ← b", "b ← gecici", "YAZ a", "YAZ b"],
+      "correctOutput": ["20", "10"],
+      "hint": "Takas doğru çalışırsa a ve b değerlerini değiştirmiş olur."
+    },
+    {
+      "id": "1.7-e4",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "Geçici değişkenin görevi nedir?",
+      "options": [
+        "Sonucu ekrana yazdırmak",
+        "Bir değeri, üzerine yazılmadan önce geçici olarak saklamak",
+        "İki değişkeni toplamak",
+        "Bir döngüyü saymak"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Geçici değişken, kaybolacak bir değeri güvenceye alır.",
+        "incorrect": "Geçici değişken, bir değer üzerine yazılmadan önce onu kaydetmek için kullanılır."
+      }
+    },
+    {
+      "id": "1.7-e5",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "İki değişkeni takas ederken önce a'nın değerini ___ değişkenine kaydederiz.",
+      "options": ["geçici", "sabit", "toplam", "sayaç"],
+      "answer": "geçici"
+    },
+    {
+      "id": "1.7-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Su ve çay dolu bardakları takas etmek için üçüncü boş bir bardak kullanmak, algoritmadaki hangi kavrama benzer?",
+      "options": ["Sabit", "Geçici değişken", "Döngü", "Mantıksal operatör"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Üçüncü bardak, bir değeri geçici olarak tutan geçici değişkene benzer.",
+        "incorrect": "Üçüncü boş bardak, kaybolacak bir değeri geçici olarak saklayan geçici değişkenin karşılığıdır."
+      }
+    }
+  ],
+  "summary": [
+    "a ← b, b ← a yazmak takas ETMEZ; a'nın eski değeri kaybolur.",
+    "Doğru takas: gecici ← a, a ← b, b ← gecici.",
+    "Geçici değişken, üzerine yazılmadan önce bir değeri güvenceye alır."
+  ]
+}

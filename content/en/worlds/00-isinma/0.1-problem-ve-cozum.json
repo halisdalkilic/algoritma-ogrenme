@@ -1,0 +1,109 @@
+{
+  "id": "0.1",
+  "worldId": "0",
+  "title": "What Is a Problem, What Is a Solution",
+  "estimatedMinutes": 4,
+  "prerequisites": [],
+  "objectives": [
+    "Break a problem down into input, process, and output",
+    "Tell the difference between a problem and a solution"
+  ],
+  "hook": {
+    "text": "A friend asks you, \"How do I make cookies with 3 cups of flour, 200 g of butter, and 2 eggs?\" Is that a problem or a solution?"
+  },
+  "concept": [
+    {
+      "heading": "Problem and solution",
+      "body": "A problem is a question that needs an answer: \"How do you make cookies?\" A solution is the step-by-step answer to that question: the recipe itself. An algorithm is always a solution, never the problem.",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "❓ Problem", "sub": "How do you make cookies?" }, { "label": "📋 Solution", "sub": "a step-by-step recipe", "tone": "good" }] } }
+    },
+    {
+      "heading": "Input, process, output",
+      "body": "You can split any problem into three parts: the ingredients you start with (input), what you do with them (process, or the algorithm), and what you end up with (output). In the cookie example, the input is flour, sugar, and eggs, the process is mixing and baking, and the output is the cookie itself.",
+      "visual": { "type": "animation", "component": "ipo", "props": { "items": ["Input", "Process", "Output"], "icons": ["🥚", "🥣", "🍪"] } }
+    }
+  ],
+  "workedExamples": [],
+  "exercises": [
+    {
+      "id": "0.1-e1",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "When you withdraw money from an ATM, which of these is the \"input\"?",
+      "options": ["The banknotes in your hand", "Your card and PIN", "The machine's beep", "The thank-you message on the screen"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. Your card and PIN are the input you give the system to start the process.",
+        "incorrect": "Input is the information you give the system to start the process: your card and PIN."
+      }
+    },
+    {
+      "id": "0.1-e2",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "In the same ATM example, what is the \"output\"?",
+      "options": ["Inserting the card", "Entering the PIN", "The banknotes in your hand", "The waiting time"],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Correct. Output is the result you get at the end of the process: the banknotes.",
+        "incorrect": "Output is the result you end up with when the process is done. Here, that is the banknotes."
+      }
+    },
+    {
+      "id": "0.1-e3",
+      "type": "order-steps",
+      "difficulty": 1,
+      "question": "Put the process that turns a problem into a solution in the correct order.",
+      "steps": ["Recognize the problem", "Identify the input", "Carry out the solution steps", "Get the output"],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "0.1-e4",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "A recipe is the ___ to a problem.",
+      "options": ["solution", "input", "question", "error"],
+      "answer": "solution"
+    },
+    {
+      "id": "0.1-e5",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "\"Why is the internet slow at home?\" is a problem statement. Which of these could be a solution to it?",
+      "options": [
+        "Asking why the internet is slow",
+        "Restart the modem, and if it is still slow, call your provider",
+        "Remembering when the slowness started",
+        "Wishing the internet were fast"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. This is a concrete solution made of steps you can actually carry out.",
+        "incorrect": "A solution must contain concrete steps you can carry out, not just repeat the question or wait."
+      }
+    },
+    {
+      "id": "0.1-e6",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "What is the benefit of splitting a problem into \"input / process / output\"?",
+      "options": [
+        "It makes the problem more complicated",
+        "It clarifies what we start with and what we are aiming for",
+        "It has no benefit",
+        "It only applies to computers"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. This split gives you a clear frame before you start working on the solution.",
+        "incorrect": "This split clarifies what we have (input) and what we want to reach (output)."
+      }
+    }
+  ],
+  "summary": [
+    "Problem: a question that needs an answer. Solution: the step-by-step answer to it.",
+    "Every problem can be split into input, process, and output.",
+    "An algorithm is always a solution, never the problem itself."
+  ]
+}

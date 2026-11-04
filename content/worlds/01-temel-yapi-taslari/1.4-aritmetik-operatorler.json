@@ -1,0 +1,105 @@
+{
+  "id": "1.4",
+  "worldId": "1",
+  "title": "Aritmetik Operatörler",
+  "estimatedMinutes": 5,
+  "prerequisites": ["1.3"],
+  "objectives": [
+    "+, -, *, /, mod, div operatörlerini kullanır",
+    "İşlem önceliği kurallarını uygular"
+  ],
+  "hook": {
+    "text": "17 elmayı 5 kişiye eşit paylaştırıyorsun. Herkese kaç elma düşer, kaç elma artar? Bunun için iki farklı operatöre ihtiyacın var."
+  },
+  "concept": [
+    {
+      "heading": "Altı temel operatör",
+      "body": "+ toplama, - çıkarma, * çarpma, / bölme (ondalıklı sonuç verir). div tam bölüm (17 div 5 = 3). mod kalan (17 mod 5 = 2). Paylaştırma problemlerinde div ve mod birlikte kullanılır.",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "+", "sub": "toplama" }, { "label": "-", "sub": "çıkarma" }, { "label": "*", "sub": "çarpma" }, { "label": "/", "sub": "bölme" }, { "label": "17 div 5 = 3", "sub": "tam bölüm" }, { "label": "17 mod 5 = 2", "sub": "kalan" }] } }
+    },
+    {
+      "heading": "İşlem önceliği",
+      "body": "Çarpma ve bölme (*, /, div, mod), toplama ve çıkarmadan (+, -) önce yapılır. 2 + 3 * 4 önce 3*4=12 hesaplanır, sonra 2+12=14 olur. Parantez her zaman önceliklidir: (2+3)*4 = 20.",
+      "visual": { "type": "animation", "component": "steps", "props": { "steps": ["2 + 3 * 4", "önce çarpma: 3 * 4 = 12", "sonra toplama: 2 + 12 = 14"] } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "17 elmayı 5 kişiye paylaştır: kişi başına ve kalan kaç elma?",
+      "pseudocode": ["kisiBasi ← 17 div 5", "kalan ← 17 mod 5", "YAZ kisiBasi", "YAZ kalan"],
+      "steps": [
+        { "line": 0, "explain": "17 div 5 = 3 (tam bölüm, ondalık atılır).", "vars": { "kisiBasi": 3 } },
+        { "line": 1, "explain": "17 mod 5 = 2 (bölümden kalan).", "vars": { "kisiBasi": 3, "kalan": 2 } },
+        { "line": 2, "explain": "Ekrana 3 yazılır.", "output": ["3"] },
+        { "line": 3, "explain": "Ekrana 2 yazılır.", "output": ["3", "2"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "1.4-e1",
+      "type": "predict-output",
+      "difficulty": 1,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": ["x ← 2 + 3 * 4", "YAZ x"],
+      "correctOutput": ["14"],
+      "hint": "Önce çarpma, sonra toplama yapılır."
+    },
+    {
+      "id": "1.4-e2",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": ["x ← (2 + 3) * 4", "YAZ x"],
+      "correctOutput": ["20"],
+      "hint": "Parantez içi her zaman önce hesaplanır."
+    },
+    {
+      "id": "1.4-e3",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "23 mod 5 işleminin sonucu nedir?",
+      "options": ["4", "3", "5", "18"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. 23 = 5*4 + 3, kalan 3'tür.",
+        "incorrect": "23'ü 5'e böldüğünde tam bölüm 4, kalan ise 3'tür (23 - 5*4 = 3)."
+      }
+    },
+    {
+      "id": "1.4-e4",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "23 div 5 işleminin sonucu nedir?",
+      "options": ["4.6", "4", "5", "3"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. div, ondalık kısmı atar ve sadece tam bölümü verir.",
+        "incorrect": "div, sonucu tam sayıya yuvarlamaz atar: 23/5 = 4.6 → div sonucu 4."
+      }
+    },
+    {
+      "id": "1.4-e5",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "Bir sayının çift mi tek mi olduğunu anlamak için o sayının 2'ye bölümünden kalanı, yani ___ işlemini kullanırız.",
+      "options": ["mod", "div", "çarpma", "çıkarma"],
+      "answer": "mod"
+    },
+    {
+      "id": "1.4-e6",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": ["a ← 10", "b ← 3", "sonuc ← a - b * 2", "YAZ sonuc"],
+      "correctOutput": ["4"],
+      "hint": "Önce çarpma: 3*2=6, sonra 10-6."
+    }
+  ],
+  "summary": [
+    "Altı operatör: +, -, *, /, div (tam bölüm), mod (kalan).",
+    "İşlem önceliği: önce * / div mod, sonra + -, parantez her zaman önce.",
+    "div ve mod birlikte kullanılarak paylaştırma problemleri çözülür."
+  ]
+}

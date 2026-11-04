@@ -1,0 +1,121 @@
+{
+  "id": "4.3",
+  "worldId": "4",
+  "title": "Koşullu Döngü (WHILE)",
+  "estimatedMinutes": 5,
+  "prerequisites": ["4.2"],
+  "objectives": [
+    "SÜRECE (WHILE) döngüsünün ne zaman kullanılacağını bilir",
+    "Ön koşullu bir döngünün çalışma mantığını kavrar"
+  ],
+  "hook": {
+    "text": "\"Kullanıcı doğru şifreyi girene kadar tekrar sor\" — burada kaç tur döneceğini ÖNCEDEN bilmiyorsun. Sayaçlı döngü (FOR) burada işe yaramaz."
+  },
+  "concept": [
+    {
+      "heading": "Ne zaman SÜRECE kullanılır?",
+      "body": "FOR (İÇİN) döngüsü, tur sayısını ÖNCEDEN bildiğinde kullanılır (\"1'den 10'a kadar\"). SÜRECE (WHILE) döngüsü ise tur sayısı belli olmadığında, sadece bir KOŞUL doğru olduğu sürece devam etmek istediğinde kullanılır.",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "İÇİN (FOR)", "sub": "tur sayısı belli" }, { "label": "SÜRECE (WHILE)", "sub": "koşul doğru olduğu sürece" }] } }
+    },
+    {
+      "heading": "Ön koşullu çalışma",
+      "body": "SÜRECE koşul ... DÖNGÜ_BİTİR yapısı, HER turdan önce koşulu kontrol eder. Koşul en baştan YANLIŞ ise, döngü gövdesi bir kere bile çalışmaz — bu \"ön koşullu\" olmasının anlamıdır.",
+      "visual": { "type": "animation", "component": "flow", "props": { "kind": "while" } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "1'den başlayıp 2'şer 2'şer artarak 10'u geçene kadar yazdır.",
+      "pseudocode": ["sayi ← 1", "SÜRECE sayi ≤ 10", "  YAZ sayi", "  sayi ← sayi + 2", "DÖNGÜ_BİTİR"],
+      "runnerSource": "sayi ← 1\nSÜRECE sayi ≤ 10\n  YAZ sayi\n  sayi ← sayi + 2\nDÖNGÜ_BİTİR",
+      "steps": [
+        { "line": 0, "explain": "sayi kutusuna 1 konur.", "vars": { "sayi": 1 } },
+        { "line": 1, "explain": "1 ≤ 10 DOĞRU, döngüye girilir." },
+        { "line": 2, "explain": "Ekrana 1 yazılır.", "output": ["1"] },
+        { "line": 3, "explain": "sayi, 3 olur.", "vars": { "sayi": 3 } }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "4.3-e1",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": ["i ← 0", "SÜRECE i < 4", "  YAZ i", "  i ← i + 1", "DÖNGÜ_BİTİR"],
+      "correctOutput": ["0", "1", "2", "3"],
+      "hint": "i, 0'dan başlar ve 4'ten küçük olduğu sürece devam eder."
+    },
+    {
+      "id": "4.3-e2",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "SÜRECE koşulu programın en başında YANLIŞ ise ne olur?",
+      "options": [
+        "Döngü sonsuza kadar çalışır",
+        "Döngü gövdesi bir kere bile çalışmaz",
+        "Döngü tam olarak bir kere çalışır",
+        "Hata oluşur"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Koşul en baştan YANLIŞ ise, ön koşullu döngü gövdesine hiç girilmez.",
+        "incorrect": "SÜRECE her turdan ÖNCE koşulu kontrol eder; baştan YANLIŞ ise gövde hiç çalışmaz."
+      }
+    },
+    {
+      "id": "4.3-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Kaç kez tekrar edeceği baştan bilinmeyen bir problem için hangi döngü daha uygundur?",
+      "options": ["İÇİN (FOR)", "SÜRECE (WHILE)", "İkisi de aynı derecede uygundur", "Hiçbiri"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Tur sayısı belli olmadığında SÜRECE (koşula dayalı) döngü kullanılır.",
+        "incorrect": "Tur sayısı bilinmediğinde, sadece bir koşula bağlı çalışan SÜRECE döngüsü kullanılır."
+      }
+    },
+    {
+      "id": "4.3-e4",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Kullanıcıdan doğru şifreyi girene kadar tekrar isteyen algoritmanın adımlarını doğru sıraya diz.",
+      "steps": ["OKU sifre", "SÜRECE sifre ≠ \"1234\"", "  YAZ \"Yanlış, tekrar dene\"", "  OKU sifre", "DÖNGÜ_BİTİR"],
+      "correctOrder": [0, 1, 2, 3, 4]
+    },
+    {
+      "id": "4.3-e5",
+      "type": "trace-table",
+      "difficulty": 2,
+      "pseudocode": [
+        "sayac ← 1",
+        "toplam ← 0",
+        "SÜRECE sayac ≤ 3",
+        "  toplam ← toplam + sayac",
+        "  sayac ← sayac + 1",
+        "DÖNGÜ_BİTİR"
+      ],
+      "columns": ["sayac", "toplam"],
+      "expectedRows": [
+        { "sayac": 2, "toplam": 1 },
+        { "sayac": 3, "toplam": 3 },
+        { "sayac": 4, "toplam": 6 }
+      ],
+      "hint": "Her turda önce toplam güncellenir, sonra sayac 1 artar."
+    },
+    {
+      "id": "4.3-e6",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "SÜRECE döngüsü, koşulu her turdan ___ kontrol eder.",
+      "options": ["önce", "sonra", "hiç", "rastgele"],
+      "answer": "önce"
+    }
+  ],
+  "summary": [
+    "İÇİN: tur sayısı bilindiğinde. SÜRECE: sadece bir koşula bağlı olduğunda.",
+    "SÜRECE, koşulu her turdan ÖNCE kontrol eder (ön koşullu).",
+    "Koşul en baştan YANLIŞ ise SÜRECE gövdesi hiç çalışmaz."
+  ]
+}

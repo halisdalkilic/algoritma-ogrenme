@@ -1,0 +1,133 @@
+{
+  "id": "5.6",
+  "worldId": "5",
+  "title": "Functions / Subroutines",
+  "estimatedMinutes": 6,
+  "prerequisites": ["5.5"],
+  "objectives": [
+    "Define a function with parameters and a return value",
+    "Call a function and use its result"
+  ],
+  "hook": {
+    "text": "You need to do the \"add two numbers, then square the result\" operation in 5 different places in your program. Will you copy the same three lines 5 times?"
+  },
+  "concept": [
+    {
+      "heading": "Divide and conquer: functions",
+      "body": "A function (subroutine) is a named block of code that does a specific job and can be CALLED again and again. It is defined with the structure FUNCTION name(parameters) ... RETURN result ... END. Parameters are the inputs given to the function from outside.",
+      "visual": { "type": "animation", "component": "ipo", "props": { "items": ["a = 3, b = 4", "add(a, b)", "RETURN 7"], "icons": ["📥", "⚙️", "📤"] } }
+    },
+    {
+      "heading": "Calling and the return value",
+      "body": "To call a function, you write its name and the arguments in parentheses: add(3, 4). The RETURN command sends the result the function calculated back to the place that called it. That result can be assigned to a variable or printed directly with WRITE.",
+      "visual": { "type": "animation", "component": "ipo", "props": { "items": ["add(3, 4)", "the function runs", "result ← 7"], "icons": ["📞", "⚙️", "📦"] } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "Write and use functions that add two numbers and square a number.",
+      "pseudocode": [
+        "FUNCTION add(a, b)",
+        "  RETURN a + b",
+        "END",
+        "FUNCTION square(x)",
+        "  RETURN x * x",
+        "END",
+        "result ← square(add(2, 3))",
+        "WRITE result"
+      ],
+      "runnerSource": "FUNCTION add(a, b)\n  RETURN a + b\nEND\nFUNCTION square(x)\n  RETURN x * x\nEND\nresult ← square(add(2, 3))\nWRITE result",
+      "steps": [
+        { "line": 0, "explain": "The add function is defined (it does not run yet, it is only recorded)." },
+        { "line": 3, "explain": "The square function is defined." },
+        { "line": 6, "explain": "First add(2, 3) = 5 is calculated, then square(5) = 25 is calculated." },
+        { "line": 7, "explain": "25 is written to the screen.", "output": ["25"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "5.6-e1",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "What does this code write to the screen?",
+      "pseudocode": ["FUNCTION multiply(a, b)", "  RETURN a * b", "END", "WRITE multiply(6, 7)"],
+      "correctOutput": ["42"],
+      "hint": "6 * 7 = 42."
+    },
+    {
+      "id": "5.6-e2",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "What does this code write to the screen?",
+      "pseudocode": [
+        "FUNCTION isBig(x)",
+        "  RETURN x > 10",
+        "END",
+        "WRITE isBig(15)",
+        "WRITE isBig(3)"
+      ],
+      "correctOutput": ["TRUE", "FALSE"],
+      "hint": "15 > 10 is TRUE, 3 > 10 is FALSE."
+    },
+    {
+      "id": "5.6-e3",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "What are the inputs given to a function from outside called?",
+      "options": ["Parameters", "Loops", "Constants", "Tracing"],
+      "correctIndex": 0,
+      "feedback": {
+        "correct": "Correct. Parameters are the inputs a function takes from outside.",
+        "incorrect": "The values given to a function from outside are called parameters."
+      }
+    },
+    {
+      "id": "5.6-e4",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "What is the RETURN command for?",
+      "options": [
+        "It deletes the function",
+        "It sends the result the function calculated back to the place that called it",
+        "It stops a loop",
+        "It prints a value to the screen"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. RETURN passes the function's result back to the calling code.",
+        "incorrect": "RETURN does not print to the screen like WRITE. It GIVES the result back to the calling code."
+      }
+    },
+    {
+      "id": "5.6-e5",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Put the steps that define a function that calculates the area of a triangle in the correct order.",
+      "steps": ["FUNCTION triangleArea(base, height)", "  RETURN (base * height) / 2", "END"],
+      "correctOrder": [0, 1, 2]
+    },
+    {
+      "id": "5.6-e6",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "Instead of repeating the same operation in several places, defining it once and calling it is called using a ___ (subroutine).",
+      "options": ["function", "variable", "constant", "array"],
+      "answer": "function"
+    },
+    {
+      "id": "5.6-e7",
+      "type": "pseudo-write",
+      "difficulty": 3,
+      "question": "Write a function \"smaller(a, b)\" that returns the smaller of two numbers.",
+      "requiredKeywords": ["FUNCTION", "RETURN", "END", "IF"],
+      "sampleSolution": "FUNCTION smaller(a, b)\n  IF a < b\n    RETURN a\n  ELSE\n    RETURN b\n  END\nEND"
+    }
+  ],
+  "summary": [
+    "Function: defined with FUNCTION name(parameters) ... RETURN result ... END.",
+    "Parameters are the inputs given to the function from outside.",
+    "RETURN sends the function's result back to the place that called it; that result can be assigned to a variable."
+  ]
+}

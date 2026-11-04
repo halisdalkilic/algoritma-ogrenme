@@ -1,0 +1,3 @@
+# Sunucuda (Linux) çalışan dosyalar Windows satır sonuyla (CRLF) bozulmasın
+*.sh   text eol=lf
+*.conf text eol=lf

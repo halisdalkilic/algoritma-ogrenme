@@ -1,0 +1,133 @@
+{
+  "id": "5.6",
+  "worldId": "5",
+  "title": "Fonksiyon / Altprogram",
+  "estimatedMinutes": 6,
+  "prerequisites": ["5.5"],
+  "objectives": [
+    "Bir fonksiyonu parametre ve dönüş değeriyle tanımlar",
+    "Bir fonksiyonu çağırıp sonucunu kullanır"
+  ],
+  "hook": {
+    "text": "\"İki sayının karesini topla\" işlemini programının 5 farklı yerinde yapman gerekiyor. Aynı üç satırı 5 kere mi kopyalayacaksın?"
+  },
+  "concept": [
+    {
+      "heading": "Parçala-yönet: fonksiyon",
+      "body": "Fonksiyon (altprogram), belirli bir görevi yapan, adı olan, tekrar tekrar ÇAĞRILABİLEN bir kod bloğudur. FONKSİYON isim(parametreler) ... DÖNDÜR sonuç ... BİTİR yapısıyla tanımlanır. Parametreler, fonksiyona dışarıdan verilen girdilerdir.",
+      "visual": { "type": "animation", "component": "ipo", "props": { "items": ["a = 3, b = 4", "topla(a, b)", "DÖNDÜR 7"], "icons": ["📥", "⚙️", "📤"] } }
+    },
+    {
+      "heading": "Çağırma ve dönüş değeri",
+      "body": "Bir fonksiyonu çağırmak için adını ve parantez içinde argümanları yazarsın: topla(3, 4). DÖNDÜR komutu, fonksiyonun hesapladığı sonucu çağıran yere geri gönderir. Bu sonuç bir değişkene atanabilir veya doğrudan YAZ ile yazdırılabilir.",
+      "visual": { "type": "animation", "component": "ipo", "props": { "items": ["topla(3, 4)", "fonksiyon çalışır", "sonuc ← 7"], "icons": ["📞", "⚙️", "📦"] } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "İki sayının toplamının karesini hesaplayan bir fonksiyon yaz ve kullan.",
+      "pseudocode": [
+        "FONKSİYON topla(a, b)",
+        "  DÖNDÜR a + b",
+        "BİTİR",
+        "FONKSİYON kare(x)",
+        "  DÖNDÜR x * x",
+        "BİTİR",
+        "sonuc ← kare(topla(2, 3))",
+        "YAZ sonuc"
+      ],
+      "runnerSource": "FONKSİYON topla(a, b)\n  DÖNDÜR a + b\nBİTİR\nFONKSİYON kare(x)\n  DÖNDÜR x * x\nBİTİR\nsonuc ← kare(topla(2, 3))\nYAZ sonuc",
+      "steps": [
+        { "line": 0, "explain": "topla fonksiyonu tanımlanır (henüz çalışmaz, sadece kaydedilir)." },
+        { "line": 3, "explain": "kare fonksiyonu tanımlanır." },
+        { "line": 6, "explain": "Önce topla(2,3)=5 hesaplanır, sonra kare(5)=25 hesaplanır." },
+        { "line": 7, "explain": "Ekrana 25 yazılır.", "output": ["25"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "5.6-e1",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": ["FONKSİYON carp(a, b)", "  DÖNDÜR a * b", "BİTİR", "YAZ carp(6, 7)"],
+      "correctOutput": ["42"],
+      "hint": "6 * 7 = 42."
+    },
+    {
+      "id": "5.6-e2",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": [
+        "FONKSİYON buyukMu(x)",
+        "  DÖNDÜR x > 10",
+        "BİTİR",
+        "YAZ buyukMu(15)",
+        "YAZ buyukMu(3)"
+      ],
+      "correctOutput": ["DOĞRU", "YANLIŞ"],
+      "hint": "15 > 10 DOĞRU, 3 > 10 YANLIŞ."
+    },
+    {
+      "id": "5.6-e3",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "Bir fonksiyona dışarıdan verilen girdilere ne denir?",
+      "options": ["Parametre", "Döngü", "Sabit", "İzleme"],
+      "correctIndex": 0,
+      "feedback": {
+        "correct": "Doğru. Parametreler, fonksiyonun dışarıdan aldığı girdilerdir.",
+        "incorrect": "Fonksiyona dışarıdan verilen değerlere parametre denir."
+      }
+    },
+    {
+      "id": "5.6-e4",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "DÖNDÜR komutu ne işe yarar?",
+      "options": [
+        "Fonksiyonu siler",
+        "Fonksiyonun hesapladığı sonucu çağıran yere geri gönderir",
+        "Bir döngüyü durdurur",
+        "Ekrana bir değer yazdırır"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. DÖNDÜR, fonksiyonun sonucunu çağıran koda geri iletir.",
+        "incorrect": "DÖNDÜR, YAZ gibi ekrana yazdırmaz — sonucu çağıran koda geri VERİR."
+      }
+    },
+    {
+      "id": "5.6-e5",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Bir üçgenin alanını hesaplayan fonksiyonu tanımlayan adımları doğru sıraya diz.",
+      "steps": ["FONKSİYON ucgenAlani(taban, yukseklik)", "  DÖNDÜR (taban * yukseklik) / 2", "BİTİR"],
+      "correctOrder": [0, 1, 2]
+    },
+    {
+      "id": "5.6-e6",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "Aynı işlemi birden çok yerde tekrarlamak yerine bir kere tanımlayıp çağırmaya ___ (altprogram) kullanmak denir.",
+      "options": ["fonksiyon", "değişken", "sabit", "dizi"],
+      "answer": "fonksiyon"
+    },
+    {
+      "id": "5.6-e7",
+      "type": "pseudo-write",
+      "difficulty": 3,
+      "question": "İki sayının küçük olanını döndüren bir \"kucukOlan(a, b)\" fonksiyonu yaz.",
+      "requiredKeywords": ["FONKSİYON", "DÖNDÜR", "BİTİR", "EĞER"],
+      "sampleSolution": "FONKSİYON kucukOlan(a, b)\n  EĞER a < b\n    DÖNDÜR a\n  DEĞİLSE\n    DÖNDÜR b\n  BİTİR\nBİTİR"
+    }
+  ],
+  "summary": [
+    "Fonksiyon: FONKSİYON isim(parametreler) ... DÖNDÜR sonuç ... BİTİR ile tanımlanır.",
+    "Parametreler, fonksiyona dışarıdan verilen girdilerdir.",
+    "DÖNDÜR, fonksiyonun sonucunu çağıran yere geri gönderir; bu sonuç bir değişkene atanabilir."
+  ]
+}

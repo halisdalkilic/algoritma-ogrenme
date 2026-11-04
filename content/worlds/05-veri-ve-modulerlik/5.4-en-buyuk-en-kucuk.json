@@ -1,0 +1,149 @@
+{
+  "id": "5.4",
+  "worldId": "5",
+  "title": "En Büyük / En Küçük Bulma",
+  "estimatedMinutes": 5,
+  "prerequisites": ["5.3"],
+  "objectives": [
+    "Bir dizideki en büyük (veya en küçük) değeri karşılaştırmalı tarama ile bulur"
+  ],
+  "hook": {
+    "text": "Bir sınıftaki en yüksek notu bulmak istiyorsun. Diziyi sıralamana bile gerek yok — sadece akıllıca bir tarama yeterli."
+  },
+  "concept": [
+    {
+      "heading": "Karşılaştırmalı tarama",
+      "body": "En büyüğü bulmak için: önce dizinin İLK elemanını \"şimdiki en büyük\" olarak kabul et. Sonra diğer elemanları tek tek bu değerle karşılaştır; daha büyük bir eleman bulursan \"şimdiki en büyük\"ü güncelle. Dizi bitince, elindeki değer gerçek en büyüktür.",
+      "visual": { "type": "animation", "component": "array", "props": { "values": [12, 7, 31, 9, 24], "mode": "max" } }
+    },
+    {
+      "heading": "Neden ilk elemandan başlanır?",
+      "body": "\"enBuyuk ← 0\" ile başlamak tehlikelidir — ya dizideki TÜM sayılar negatifse? O zaman 0, hiçbir zaman güncellenmez ve yanlış sonuç verir. Bu yüzden her zaman dizinin GERÇEK bir elemanından (ilk elemandan) başlanır.",
+      "visual": { "type": "animation", "component": "array", "props": { "values": [-8, -3, -12, -5], "mode": "max" } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "Bir dizideki en büyük sayıyı bul.",
+      "pseudocode": [
+        "sayilar ← [12, 45, 7, 32]",
+        "enBuyuk ← sayilar[0]",
+        "İÇİN i ← 1'DEN 3'E ADIM 1",
+        "  EĞER sayilar[i] > enBuyuk",
+        "    enBuyuk ← sayilar[i]",
+        "  BİTİR",
+        "DÖNGÜ_BİTİR",
+        "YAZ enBuyuk"
+      ],
+      "runnerSource": "sayilar ← [12, 45, 7, 32]\nenBuyuk ← sayilar[0]\nİÇİN i ← 1'DEN 3'E ADIM 1\n  EĞER sayilar[i] > enBuyuk\n    enBuyuk ← sayilar[i]\n  BİTİR\nDÖNGÜ_BİTİR\nYAZ enBuyuk",
+      "steps": [
+        { "line": 1, "explain": "enBuyuk, ilk elemanla (12) başlatılır." },
+        { "line": 3, "explain": "i=1: 45 > 12, enBuyuk ← 45." },
+        { "line": 3, "explain": "i=2: 7 > 45 YANLIŞ, değişmez. i=3: 32 > 45 YANLIŞ, değişmez." },
+        { "line": 7, "explain": "Sonuç: enBuyuk = 45.", "output": ["45"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "5.4-e1",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": [
+        "sayilar ← [8, 3, 19, 6]",
+        "enKucuk ← sayilar[0]",
+        "İÇİN i ← 1'DEN 3'E ADIM 1",
+        "  EĞER sayilar[i] < enKucuk",
+        "    enKucuk ← sayilar[i]",
+        "  BİTİR",
+        "DÖNGÜ_BİTİR",
+        "YAZ enKucuk"
+      ],
+      "correctOutput": ["3"],
+      "hint": "8, 3, 19, 6 içinde en küçük değer 3'tür."
+    },
+    {
+      "id": "5.4-e2",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "enBuyuk değişkeni neden \"0\" yerine \"sayilar[0]\" ile başlatılır?",
+      "options": [
+        "0 yazması daha uzun sürer",
+        "Dizideki tüm sayılar negatifse, 0 hiçbir zaman güncellenmez ve yanlış sonuç verir",
+        "0 bir sayı değildir",
+        "Hiçbir fark yoktur"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Dizinin gerçek bir elemanından başlamak, tüm-negatif durumlarında da doğru sonuç garanti eder.",
+        "incorrect": "Eğer tüm sayılar negatifse, 0'dan başlamak hiçbir zaman güncellenmeyen yanlış bir sonuca yol açar."
+      }
+    },
+    {
+      "id": "5.4-e3",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "En büyük eleman bulma algoritmasının adımlarını doğru sıraya diz.",
+      "steps": [
+        "enBuyuk ← dizinin ilk elemanı",
+        "Diziyi ikinci elemandan itibaren dolaş",
+        "Her elemanı enBuyuk ile karşılaştır",
+        "Daha büyükse enBuyuk'u güncelle"
+      ],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "5.4-e4",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "En büyük eleman aranırken döngü neden dizinin İKİNCİ elemanından (indeks 1) başlar?",
+      "options": [
+        "İlk eleman zaten \"şimdiki en büyük\" olarak alındığı için tekrar kontrol etmeye gerek yoktur",
+        "İlk eleman her zaman hatalıdır",
+        "Rastgele bir tercihtir",
+        "İlk eleman asla en büyük olamaz"
+      ],
+      "correctIndex": 0,
+      "feedback": {
+        "correct": "Doğru. İlk eleman zaten başlangıç değeri olarak alındığından, kalan elemanlar (indeks 1'den itibaren) taranır.",
+        "incorrect": "İlk eleman zaten enBuyuk'un başlangıç değeri olduğu için, döngü ikinci elemandan başlar."
+      }
+    },
+    {
+      "id": "5.4-e5",
+      "type": "trace-table",
+      "difficulty": 2,
+      "pseudocode": [
+        "sayilar ← [4, 9, 2, 15]",
+        "enBuyuk ← sayilar[0]",
+        "İÇİN i ← 1'DEN 3'E ADIM 1",
+        "  EĞER sayilar[i] > enBuyuk",
+        "    enBuyuk ← sayilar[i]",
+        "  BİTİR",
+        "DÖNGÜ_BİTİR"
+      ],
+      "columns": ["i", "enBuyuk"],
+      "expectedRows": [
+        { "i": 1, "enBuyuk": 9 },
+        { "i": 2, "enBuyuk": 9 },
+        { "i": 3, "enBuyuk": 15 }
+      ],
+      "hint": "enBuyuk sadece daha büyük bir eleman bulunduğunda değişir."
+    },
+    {
+      "id": "5.4-e6",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "En büyük eleman aranırken başlangıç değeri olarak dizinin ___ elemanı kullanılır.",
+      "options": ["ilk", "son", "ortanca", "rastgele"],
+      "answer": "ilk"
+    }
+  ],
+  "summary": [
+    "En büyük/küçük bulma: dizinin ilk elemanından başlayıp diğerleriyle karşılaştırarak ilerler.",
+    "Başlangıç değeri olarak 0 değil, dizinin gerçek bir elemanı (ilk eleman) kullanılır.",
+    "Döngü, ikinci elemandan (indeks 1) başlayabilir çünkü ilk eleman zaten başlangıç değeridir."
+  ]
+}

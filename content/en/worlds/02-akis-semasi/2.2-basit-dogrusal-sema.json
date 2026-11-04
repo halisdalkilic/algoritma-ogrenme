@@ -1,0 +1,109 @@
+{
+  "id": "2.2",
+  "worldId": "2",
+  "title": "A Simple Linear Flowchart",
+  "estimatedMinutes": 5,
+  "prerequisites": ["2.1"],
+  "objectives": [
+    "Turn simple, non-branching pseudocode into a flowchart",
+    "Read what a flowchart calculates"
+  ],
+  "hook": {
+    "text": "Turning pseudocode into a flowchart is like telling the same story in a different language: the content stays the same, only the presentation changes."
+  },
+  "concept": [
+    {
+      "heading": "Linear (non-branching) flowchart",
+      "body": "The simplest kind of flowchart has no decisions at all and follows a single path: Start → Input → Process → Output → End. Each line of pseudocode matches exactly one symbol.",
+      "visual": { "type": "animation", "component": "flow", "props": { "kind": "linear" } }
+    },
+    {
+      "heading": "From pseudocode to flowchart",
+      "body": "\"READ a\" becomes an input/output symbol, \"total ← a + b\" becomes a process symbol, and \"WRITE total\" becomes an input/output symbol again. Each line, in order from top to bottom, matches one symbol and one arrow.",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "READ a", "sub": "→ ▱ input/output" }, { "label": "total ← a + b", "sub": "→ ▭ process" }, { "label": "WRITE total", "sub": "→ ▱ input/output" }] } }
+    }
+  ],
+  "workedExamples": [],
+  "exercises": [
+    {
+      "id": "2.2-e1",
+      "type": "flowchart-build",
+      "difficulty": 2,
+      "question": "Build the flowchart for the algorithm \"add two numbers and print the result\".",
+      "expectedNodes": [
+        { "id": "n1", "shape": "terminal", "label": "Start" },
+        { "id": "n2", "shape": "io", "label": "Read a, b" },
+        { "id": "n3", "shape": "process", "label": "total ← a + b" },
+        { "id": "n4", "shape": "io", "label": "Write total" },
+        { "id": "n5", "shape": "terminal", "label": "End" }
+      ],
+      "expectedEdges": [
+        { "from": "n1", "to": "n2" },
+        { "from": "n2", "to": "n3" },
+        { "from": "n3", "to": "n4" },
+        { "from": "n4", "to": "n5" }
+      ]
+    },
+    {
+      "id": "2.2-e2",
+      "type": "flowchart-read",
+      "difficulty": 2,
+      "question": "What does this flowchart calculate?",
+      "nodes": [
+        { "id": "n1", "shape": "terminal", "label": "Start" },
+        { "id": "n2", "shape": "io", "label": "Read x" },
+        { "id": "n3", "shape": "process", "label": "result ← x * x" },
+        { "id": "n4", "shape": "io", "label": "Write result" },
+        { "id": "n5", "shape": "terminal", "label": "End" }
+      ],
+      "options": ["The square of a number", "The cube of a number", "The sum of two numbers", "The negative of a number"],
+      "correctIndex": 0
+    },
+    {
+      "id": "2.2-e3",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "How many different exit paths can a linear flowchart have?",
+      "options": ["Only one", "Two", "As many as the number of decisions", "Unlimited"],
+      "correctIndex": 0,
+      "feedback": {
+        "correct": "Correct. A linear flowchart has no branching, so there is only one path.",
+        "incorrect": "A linear (non-branching) flowchart has no decision symbol, so only a single path is followed."
+      }
+    },
+    {
+      "id": "2.2-e4",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Put the steps of the algorithm that calculates the area of a rectangle in the correct order.",
+      "steps": ["READ width", "READ height", "area ← width * height", "WRITE area"],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "2.2-e5",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "How many \"Start\" terminals should a flowchart have?",
+      "options": ["0", "Exactly 1", "At least 2", "Unlimited"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. Every algorithm has exactly one starting point.",
+        "incorrect": "An algorithm must have a clear start: exactly one \"Start\" terminal."
+      }
+    },
+    {
+      "id": "2.2-e6",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "In a flowchart, every chart begins with exactly one ___ symbol.",
+      "options": ["terminal", "process", "decision", "input/output"],
+      "answer": "terminal"
+    }
+  ],
+  "summary": [
+    "A linear flowchart has no decisions (branching) and follows a single path.",
+    "Each line of pseudocode matches a symbol, and each move from one line to the next matches an arrow.",
+    "A flowchart always begins with a Start terminal and ends with an End terminal."
+  ]
+}

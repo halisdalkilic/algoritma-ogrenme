@@ -1,0 +1,125 @@
+{
+  "id": "4.8",
+  "worldId": "4",
+  "title": "The Loop Trace Table",
+  "estimatedMinutes": 5,
+  "prerequisites": ["4.7"],
+  "objectives": [
+    "Write out the variable values for every round of a loop, step by step, in a table",
+    "Use a trace table as a debugging tool"
+  ],
+  "hook": {
+    "text": "A loop is giving a wrong result, but you cannot find where you went wrong. The solution: write the variable values for each round down on paper."
+  },
+  "concept": [
+    {
+      "heading": "What is a trace table?",
+      "body": "A trace table shows, row by row, the values the variables take in every round of a loop. You fill it in by thinking like a computer and running the code BY HAND. The columns stand for variables and the rows stand for rounds.",
+      "visual": { "type": "animation", "component": "trace", "props": { "columns": ["round", "i", "total"], "rows": [[1, 1, 1], [2, 2, 3], [3, 3, 6], [4, 4, 10]] } }
+    },
+    {
+      "heading": "Why is it used?",
+      "body": "A trace table lets you check whether an algorithm works CORRECTLY without running the code on a computer. It is also used to find a mistake: wherever the expected values and the values in the table split apart, that is where the mistake is.",
+      "visual": { "type": "animation", "component": "trace", "props": { "columns": ["i", "expected", "table"], "rows": [[1, 1, 1], [2, 3, 3], [3, 6, "5 ✗"]] } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "Add up the squares of the numbers from 1 to 4.",
+      "pseudocode": ["total ← 0", "FOR i ← 1 TO 4 STEP 1", "  total ← total + i * i", "END_LOOP"],
+      "runnerSource": "total ← 0\nFOR i ← 1 TO 4 STEP 1\n  total ← total + i * i\nEND_LOOP",
+      "steps": [
+        { "line": 0, "explain": "total starts from 0." },
+        { "line": 1, "explain": "i = 1: total ← 0 + 1 * 1 = 1." },
+        { "line": 1, "explain": "i = 2: total ← 1 + 2 * 2 = 5." },
+        { "line": 1, "explain": "i = 3: total ← 5 + 3 * 3 = 14. i = 4: total ← 14 + 4 * 4 = 30." }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "4.8-e1",
+      "type": "trace-table",
+      "difficulty": 2,
+      "pseudocode": ["total ← 0", "FOR i ← 1 TO 4 STEP 1", "  total ← total + i * i", "END_LOOP"],
+      "columns": ["i", "total"],
+      "expectedRows": [
+        { "i": 1, "total": 1 },
+        { "i": 2, "total": 5 },
+        { "i": 3, "total": 14 },
+        { "i": 4, "total": 30 }
+      ],
+      "hint": "In each round, add the square of i to total."
+    },
+    {
+      "id": "4.8-e2",
+      "type": "trace-table",
+      "difficulty": 2,
+      "pseudocode": ["product ← 1", "FOR i ← 1 TO 4 STEP 1", "  product ← product * i", "END_LOOP"],
+      "columns": ["i", "product"],
+      "expectedRows": [
+        { "i": 1, "product": 1 },
+        { "i": 2, "product": 2 },
+        { "i": 3, "product": 6 },
+        { "i": 4, "product": 24 }
+      ],
+      "hint": "This is the calculation of 4! (4 factorial): 1 * 1 * 2 * 3 * 4."
+    },
+    {
+      "id": "4.8-e3",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "What does each row in a trace table stand for?",
+      "options": ["A variable name", "A loop round", "An error message", "A comment"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. Each row shows the state of the variables in one round of the loop.",
+        "incorrect": "In a trace table, each row matches one round of the loop."
+      }
+    },
+    {
+      "id": "4.8-e4",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "What is a trace table used for most?",
+      "options": [
+        "To make the code prettier",
+        "To run an algorithm by hand and check that it is correct, or to find mistakes",
+        "To rename variables",
+        "To make the program faster"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. A trace table is used for debugging and verification.",
+        "incorrect": "The main purpose of a trace table is to run an algorithm by hand and check that it is correct."
+      }
+    },
+    {
+      "id": "4.8-e5",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Put the process of filling in a trace table in the correct order.",
+      "steps": [
+        "Write the variables in the column headers",
+        "Write the starting values in the first row",
+        "Write the values that change in each round in a new row",
+        "Compare the values in the last row with the program's result"
+      ],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "4.8-e6",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "In a trace table, the columns stand for ___ and the rows stand for loop rounds.",
+      "options": ["variables", "errors", "comments", "constants"],
+      "answer": "variables"
+    }
+  ],
+  "summary": [
+    "A trace table shows the variable values for every round of a loop.",
+    "The columns stand for variables and the rows stand for loop rounds.",
+    "It is used to debug or to check that an algorithm is correct."
+  ]
+}

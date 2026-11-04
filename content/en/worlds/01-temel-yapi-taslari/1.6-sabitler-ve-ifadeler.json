@@ -1,0 +1,121 @@
+{
+  "id": "1.6",
+  "worldId": "1",
+  "title": "Constants and Expressions",
+  "estimatedMinutes": 4,
+  "prerequisites": ["1.5"],
+  "objectives": [
+    "Tell a constant from a variable",
+    "Evaluate simple expressions"
+  ],
+  "hook": {
+    "text": "The number PI (3.14159...) never changes. But the number of students changes every semester. Should we store both of them the same way?"
+  },
+  "concept": [
+    {
+      "heading": "Constant vs. variable",
+      "body": "A constant (CONST PI ← 3.14) is defined once and does NOT change for the whole program. A variable can be updated again and again as the program runs. Using a constant for values that must not change keeps them from being changed by accident.",
+      "visual": { "type": "animation", "component": "vars", "props": { "boxes": [{ "name": "PI", "tag": "constant", "values": [3.14, 3.14, 3.14], "tone": "good" }, { "name": "r", "tag": "variable", "values": [1, 2, 3] }], "captions": ["PI never changes", "r ← 2", "r ← 3"] } }
+    },
+    {
+      "heading": "What is an expression?",
+      "body": "An expression is a combination of variables, constants, and operators that produces a value. \"a + b * 2\" is an expression; it is calculated and produces a single value. The right side of the ← sign in an assignment is always an expression.",
+      "visual": { "type": "animation", "component": "steps", "props": { "steps": ["a + b * 2", "a = 4, b = 3 → 4 + 3 * 2", "4 + 6", "a single value: 10"] } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "Calculate the circumference of a circle (CONST PI ← 3.14).",
+      "pseudocode": ["CONST PI ← 3.14", "READ radius", "circumference ← 2 * PI * radius", "WRITE circumference"],
+      "steps": [
+        { "line": 0, "explain": "The constant PI is defined and does not change for the whole program.", "vars": { "PI": 3.14 } },
+        { "line": 1, "explain": "The user entered 5, so 5 is put into the radius box.", "vars": { "radius": 5 } },
+        { "line": 2, "explain": "The expression is calculated: 2 * 3.14 * 5 = 31.4.", "vars": { "circumference": 31.4 } },
+        { "line": 3, "explain": "31.4 is written to the screen.", "output": ["31.4"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "1.6-e1",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "What is the main difference between a constant and a variable?",
+      "options": [
+        "A constant can only hold text",
+        "A constant's value does not change during the program, while a variable's can",
+        "A variable can only be used once",
+        "There is no difference"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. A constant cannot be changed once it is defined.",
+        "incorrect": "A constant is defined once and stays the same for the whole program; a variable can be updated."
+      }
+    },
+    {
+      "id": "1.6-e2",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Which of these is the best fit to be defined as a constant?",
+      "options": ["A student's grade", "Today's date", "The number of days in a year (365)", "The number of items in a cart"],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Correct. 365 is a fixed value that does not change during the calculation.",
+        "incorrect": "A constant is for values that are not expected to change, like the number of days in a year."
+      }
+    },
+    {
+      "id": "1.6-e3",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "What does this code write to the screen? (CONST TAX ← 0.20)",
+      "pseudocode": ["CONST TAX ← 0.20", "price ← 100", "total ← price + price * TAX", "WRITE total"],
+      "correctOutput": ["120"],
+      "hint": "100 + 100 * 0.20 = 120."
+    },
+    {
+      "id": "1.6-e4",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "Combining variables, constants, and operators to produce a single value is called an ___.",
+      "options": ["expression", "algorithm", "constant", "loop"],
+      "answer": "expression"
+    },
+    {
+      "id": "1.6-e5",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "In the expression \"a + b * 2\", what is the result if a = 3 and b = 4?",
+      "options": ["14", "11", "10", "8"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. First b * 2 = 8, then 3 + 8 = 11.",
+        "incorrect": "Multiplication comes first: b * 2 = 8, then a + 8 = 11."
+      }
+    },
+    {
+      "id": "1.6-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "What happens if you try to change a constant while the program is running?",
+      "options": [
+        "It changes without any problem",
+        "An error occurs, because constants cannot be changed",
+        "The variable is deleted automatically",
+        "The program runs faster"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. By definition a constant's value cannot be changed, so this causes an error.",
+        "incorrect": "By definition, constants cannot be assigned again. That is an error."
+      }
+    }
+  ],
+  "summary": [
+    "Constant: defined once, and its value never changes.",
+    "Variable: can be updated again and again as the program runs.",
+    "Expression: a combination of variables, constants, and operators that produces a single value."
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "id": "1.8",
+  "worldId": "1",
+  "title": "Kontrol Noktası: Dünya 1",
+  "estimatedMinutes": 6,
+  "prerequisites": ["1.7"],
+  "objectives": [
+    "Dünya 1'de öğrenilen tüm kavramları (değişken, veri tipi, atama, operatörler, girdi/çıktı, sabit, takas) birlikte uygular"
+  ],
+  "hook": {
+    "text": "Dünya 1'in sonuna geldin. Şimdi öğrendiğin her şeyi karma sorularla test etme zamanı."
+  },
+  "concept": [
+    {
+      "heading": "Kontrol noktası",
+      "body": "Bu ders yeni bir konu öğretmez; öğrendiklerini pekiştirir. Aşağıdaki sorular değişken, veri tipi, atama, operatörler, girdi/çıktı, sabit ve takas konularını karışık olarak test eder.",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "Değişken" }, { "label": "Veri tipi" }, { "label": "Atama" }, { "label": "Operatörler" }, { "label": "OKU / YAZ" }, { "label": "Sabit" }, { "label": "Takas" }] } }
+    }
+  ],
+  "workedExamples": [],
+  "exercises": [
+    {
+      "id": "1.8-e1",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "\"25\" değeri hangi veri tipindedir?",
+      "options": ["Metin", "Tamsayı", "Mantıksal", "Sabit"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Ondalık kısmı olmayan bir sayı: tamsayı.",
+        "incorrect": "25'in ondalık kısmı yok, bu yüzden tamsayıdır."
+      }
+    },
+    {
+      "id": "1.8-e2",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": ["a ← 4", "b ← 6", "toplam ← a + b * 2", "YAZ toplam"],
+      "correctOutput": ["16"],
+      "hint": "Önce çarpma: b*2=12, sonra a+12."
+    },
+    {
+      "id": "1.8-e3",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Kullanıcıdan iki sayı alıp büyük olanı yazdırmadan ÖNCE gereken hazırlık adımlarını (OKU/atama kısmını) doğru sıraya diz.",
+      "steps": ["OKU a", "OKU b", "SABIT MESAJ ← \"Karşılaştırılıyor\"", "YAZ MESAJ"],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "1.8-e4",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "a ← 5, b ← 9 iken değerlerini takas etmek için ilk adım ne olmalı?",
+      "options": ["a ← b", "b ← a", "gecici ← a", "YAZ a"],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Doğru. Önce a'nın değeri kaybolmadan geçici'ye kaydedilmeli.",
+        "incorrect": "Takasın ilk adımı, a'nın değerini bir geçici değişkene kaydetmektir."
+      }
+    },
+    {
+      "id": "1.8-e5",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "17 mod 4 işleminin sonucu ___ tir.",
+      "options": ["1", "4", "0", "17"],
+      "answer": "1"
+    },
+    {
+      "id": "1.8-e6",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "SABIT VERGI ← 0.10 iken bu kod ekrana ne yazar?",
+      "pseudocode": ["SABIT VERGI ← 0.10", "fiyat ← 200", "toplam ← fiyat + fiyat * VERGI", "YAZ toplam"],
+      "correctOutput": ["220"],
+      "hint": "200 + 200*0.10 = 220."
+    },
+    {
+      "id": "1.8-e7",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "Aşağıdakilerden hangisi geçerli bir değişken ismi DEĞİLDİR?",
+      "options": ["toplamPuan", "2sayi", "sayac", "ogrenciAdi"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Değişken ismi rakamla başlayamaz.",
+        "incorrect": "\"2sayi\" rakamla başladığı için geçersizdir; isimler harfle başlamalıdır."
+      }
+    },
+    {
+      "id": "1.8-e8",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Bir öğrencinin dersi geçip geçmediğini (evet/hayır) saklamak için hangi veri tipi kullanılır?",
+      "options": ["Tamsayı", "Ondalık", "Metin", "Mantıksal"],
+      "correctIndex": 3,
+      "feedback": {
+        "correct": "Doğru. Sadece iki durumlu bilgiler için mantıksal tip kullanılır.",
+        "incorrect": "Evet/hayır gibi iki durumlu bilgiler mantıksal (DOĞRU/YANLIŞ) tipte saklanır."
+      }
+    }
+  ],
+  "summary": [
+    "Dünya 1 tamamlandı: değişken, veri tipi, atama, operatörler, girdi/çıktı, sabit ve takas.",
+    "Bu kavramlar, Dünya 2'den itibaren karar yapıları ve döngülerin temelini oluşturacak.",
+    "Zorlandığın konuları tekrar kuyruğunda tekrar göreceksin."
+  ]
+}

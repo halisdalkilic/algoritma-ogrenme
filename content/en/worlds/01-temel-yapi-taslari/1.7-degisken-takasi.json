@@ -1,0 +1,116 @@
+{
+  "id": "1.7",
+  "worldId": "1",
+  "title": "Swapping Variables",
+  "estimatedMinutes": 5,
+  "prerequisites": ["1.6"],
+  "objectives": [
+    "Swap the values of two variables using a temporary variable",
+    "Explain why writing a ← b, b ← a directly is wrong"
+  ],
+  "hook": {
+    "text": "You are holding a glass of water and a glass of tea. You want to swap their contents, but you have no third empty glass. Is it possible?"
+  },
+  "concept": [
+    {
+      "heading": "Why is the naive solution broken?",
+      "body": "If you write a ← b, the OLD value of a is lost and a becomes the same as b. Then when you write b ← a, nothing changes, because a already equals b. In the end both variables hold the same value: no swap happens, and information is lost.",
+      "visual": { "type": "animation", "component": "vars", "props": { "boxes": [{ "name": "a", "values": [5, 7, 7] }, { "name": "b", "values": [7, 7, 7] }], "captions": ["start: a = 5, b = 7", "a ← b → the 5 in a is gone!", "b ← a → both are 7 ✗"], "ms": 1900 } }
+    },
+    {
+      "heading": "The temporary variable solution",
+      "body": "Use a third \"temporary\" box: first put the value of a into temp (save it), then write the value of b into a, and finally write the old value of a that you saved in temp into b. This is a classic exam question, and it follows the same logic as the water-and-tea example: using a third empty glass.",
+      "visual": { "type": "animation", "component": "vars", "props": { "boxes": [{ "name": "a", "values": [5, 5, 7, 7] }, { "name": "b", "values": [7, 7, 7, 5] }, { "name": "temp", "values": ["", 5, 5, 5], "tone": "good" }], "captions": ["start: a = 5, b = 7", "temp ← a", "a ← b", "b ← temp → swap done ✓"], "ms": 1900 } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "Swap the values when a ← 3 and b ← 7.",
+      "pseudocode": ["temp ← a", "a ← b", "b ← temp"],
+      "steps": [
+        { "line": 0, "explain": "The value of a (3) is saved into temp before it is lost.", "vars": { "a": 3, "b": 7, "temp": 3 } },
+        { "line": 1, "explain": "a now takes the value of b (7).", "vars": { "a": 7, "b": 7, "temp": 3 } },
+        { "line": 2, "explain": "b takes the old value of a (3) that is saved in temp.", "vars": { "a": 7, "b": 3, "temp": 3 } }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "1.7-e1",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "If a ← 3 and b ← 7, and only \"a ← b\" and \"b ← a\" are run (with no temporary variable), what is the result?",
+      "options": [
+        "a = 7, b = 3 (a correct swap)",
+        "a = 7, b = 7 (the swap failed, information was lost)",
+        "a = 3, b = 3",
+        "An error occurs"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. a ← b loses the old value of a (3); b ← a then just writes the same value back.",
+        "incorrect": "a ← b erases the old value of a. By the time b ← a runs, a already equals b, so no swap happens."
+      }
+    },
+    {
+      "id": "1.7-e2",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Put the steps that swap variables a and b using a temporary variable in the correct order.",
+      "steps": ["temp ← a", "a ← b", "b ← temp"],
+      "correctOrder": [0, 1, 2]
+    },
+    {
+      "id": "1.7-e3",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "When a ← 10 and b ← 20, what values of a and b, in order, does this code write to the screen after it runs?",
+      "pseudocode": ["a ← 10", "b ← 20", "temp ← a", "a ← b", "b ← temp", "WRITE a", "WRITE b"],
+      "correctOutput": ["20", "10"],
+      "hint": "If the swap works correctly, a and b trade their values."
+    },
+    {
+      "id": "1.7-e4",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "What is the job of a temporary variable?",
+      "options": [
+        "To print the result to the screen",
+        "To hold a value for a while before it gets overwritten",
+        "To add two variables",
+        "To count a loop"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. A temporary variable protects a value that would otherwise be lost.",
+        "incorrect": "A temporary variable is used to save a value before it is overwritten."
+      }
+    },
+    {
+      "id": "1.7-e5",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "When swapping two variables, we first save the value of a into the ___ variable.",
+      "options": ["temporary", "constant", "total", "counter"],
+      "answer": "temporary"
+    },
+    {
+      "id": "1.7-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Using a third empty glass to swap the glasses of water and tea is like which concept in algorithms?",
+      "options": ["Constant", "Temporary variable", "Loop", "Logical operator"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. The third glass is like a temporary variable that holds a value for a while.",
+        "incorrect": "The third empty glass matches a temporary variable, which holds a value that would be lost."
+      }
+    }
+  ],
+  "summary": [
+    "Writing a ← b, b ← a does NOT swap; the old value of a is lost.",
+    "The correct swap: temp ← a, a ← b, b ← temp.",
+    "A temporary variable protects a value before it is overwritten."
+  ]
+}

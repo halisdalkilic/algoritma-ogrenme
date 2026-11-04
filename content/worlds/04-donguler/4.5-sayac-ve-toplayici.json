@@ -1,0 +1,123 @@
+{
+  "id": "4.5",
+  "worldId": "4",
+  "title": "Sayaç ve Toplayıcı",
+  "estimatedMinutes": 5,
+  "prerequisites": ["4.4"],
+  "objectives": [
+    "Sayaç değişkeninin (sayac ← sayac + 1) görevini kavrar",
+    "Toplayıcı değişkeninin (toplam ← toplam + x) görevini kavrar"
+  ],
+  "hook": {
+    "text": "\"Kaç tane pozitif sayı girildi?\" ve \"girilen sayıların toplamı nedir?\" — bu iki soru, döngülerin en klasik iki yardımcısını gerektirir."
+  },
+  "concept": [
+    {
+      "heading": "Sayaç: kaç kere oldu?",
+      "body": "Bir sayaç, bir olayın kaç kere gerçekleştiğini SAYAR. Döngüden önce 0'a başlanır, döngü içinde ilgili durum oluştuğunda 1 artırılır (sayac ← sayac + 1). Örneğin \"kaç tane pozitif sayı girildi\" sorusuna sayaç cevap verir.",
+      "visual": { "type": "animation", "component": "vars", "props": { "boxes": [{ "name": "sayac", "values": [0, 1, 1, 2, 3] }], "captions": ["sayac ← 0", "x = 4 > 0 → +1", "x = -2 → sayma", "x = 7 > 0 → +1", "x = 1 > 0 → +1"] } }
+    },
+    {
+      "heading": "Toplayıcı: değerlerin toplamı",
+      "body": "Bir toplayıcı, döngü boyunca görülen değerleri BİRİKTİRİR. Döngüden önce 0'a başlanır, döngü içinde ilgili değer eklenir (toplam ← toplam + x). İkisi de aynı kalıbı izler: başlangıç değeri + her turda güncelleme.",
+      "visual": { "type": "animation", "component": "vars", "props": { "boxes": [{ "name": "toplam", "values": [0, 5, 8, 15] }, { "name": "x", "values": ["", 5, 3, 7], "tone": "good" }], "captions": ["toplam ← 0", "toplam ← 0 + 5", "toplam ← 5 + 3", "toplam ← 8 + 7"] } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "1'den 5'e kadar sayılardan çift olanları say ve topla.",
+      "pseudocode": [
+        "sayac ← 0",
+        "toplam ← 0",
+        "İÇİN i ← 1'DEN 5'E ADIM 1",
+        "  EĞER i mod 2 = 0",
+        "    sayac ← sayac + 1",
+        "    toplam ← toplam + i",
+        "  BİTİR",
+        "DÖNGÜ_BİTİR",
+        "YAZ sayac",
+        "YAZ toplam"
+      ],
+      "runnerSource": "sayac ← 0\ntoplam ← 0\nİÇİN i ← 1'DEN 5'E ADIM 1\n  EĞER i mod 2 = 0\n    sayac ← sayac + 1\n    toplam ← toplam + i\n  BİTİR\nDÖNGÜ_BİTİR\nYAZ sayac\nYAZ toplam",
+      "steps": [
+        { "line": 0, "explain": "sayac ve toplam 0'dan başlar." },
+        { "line": 3, "explain": "i=2 iken 2 mod 2 = 0 DOĞRU, sayac ve toplam güncellenir." },
+        { "line": 3, "explain": "i=4 iken de aynı şey olur." },
+        { "line": 8, "explain": "Sonuç: sayac=2, toplam=6 (2+4).", "output": ["2", "6"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "4.5-e1",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": ["sayac ← 0", "İÇİN i ← 1'DEN 10'A ADIM 1", "  sayac ← sayac + 1", "DÖNGÜ_BİTİR", "YAZ sayac"],
+      "correctOutput": ["10"],
+      "hint": "Döngü 10 kez çalışır, sayac her seferinde 1 artar."
+    },
+    {
+      "id": "4.5-e2",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": ["toplam ← 0", "İÇİN i ← 1'DEN 4'E ADIM 1", "  toplam ← toplam + i * 2", "DÖNGÜ_BİTİR", "YAZ toplam"],
+      "correctOutput": ["20"],
+      "hint": "2+4+6+8 = 20."
+    },
+    {
+      "id": "4.5-e3",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "Bir sayaç veya toplayıcı değişkeni döngüden ÖNCE hangi değere başlatılmalıdır?",
+      "options": ["1", "0", "Rastgele bir değer", "Başlatılmasına gerek yok"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. 0'dan başlamak, ilk eklemenin doğru sonucu vermesini sağlar.",
+        "incorrect": "Sayaç ve toplayıcılar 0'dan başlar; aksi halde ilk hesaplama yanlış olur."
+      }
+    },
+    {
+      "id": "4.5-e4",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "\"sayac ← sayac + 1\" ifadesi bir ___ güncellemesidir.",
+      "options": ["sayaç", "toplayıcı", "sabit", "koşul"],
+      "answer": "sayaç"
+    },
+    {
+      "id": "4.5-e5",
+      "type": "trace-table",
+      "difficulty": 2,
+      "question": "toplam değişkeninin her turdaki değerini izle.",
+      "pseudocode": ["toplam ← 0", "İÇİN i ← 1'DEN 4'E ADIM 1", "  toplam ← toplam + i", "DÖNGÜ_BİTİR"],
+      "columns": ["i", "toplam"],
+      "expectedRows": [
+        { "i": 1, "toplam": 1 },
+        { "i": 2, "toplam": 3 },
+        { "i": 3, "toplam": 6 },
+        { "i": 4, "toplam": 10 }
+      ],
+      "hint": "Her turda toplam'a o turun i değerini ekle."
+    },
+    {
+      "id": "4.5-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "\"Girilen negatif sayıları say\" problemi hangi kalıbı gerektirir?",
+      "options": ["Sadece toplayıcı", "Sadece sayaç", "Sayaç ve toplayıcı birlikte", "Hiçbirini"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Sadece \"kaç tane\" sorusu soruluyor, bu yüzden sayaç yeterlidir.",
+        "incorrect": "\"Kaç tane\" sorusu bir sayma işlemidir — toplam değil, sayaç gerekir."
+      }
+    }
+  ],
+  "summary": [
+    "Sayaç: bir olayın kaç kere gerçekleştiğini sayar (sayac ← sayac + 1).",
+    "Toplayıcı: döngü boyunca değerleri biriktirir (toplam ← toplam + x).",
+    "İkisi de 0'dan başlar ve döngü içinde güncellenir."
+  ]
+}

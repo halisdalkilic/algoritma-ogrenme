@@ -1,0 +1,155 @@
+{
+  "id": "6.3",
+  "worldId": "6",
+  "title": "İkili Arama (Binary Search)",
+  "estimatedMinutes": 6,
+  "prerequisites": ["6.2"],
+  "objectives": [
+    "İkili aramanın SIRALI bir dizide ortadan bölerek arama mantığını kavrar",
+    "Doğrusal arama ile ikili arama arasındaki hız farkını açıklar"
+  ],
+  "hook": {
+    "text": "Bir sözlükte \"kelebek\" kelimesini ararken A'dan başlayıp tek tek mi okursun, yoksa ortadan açıp hangi yarıda olduğuna mı bakarsın?"
+  },
+  "concept": [
+    {
+      "heading": "Ortadan böl, yarıyı at",
+      "body": "İkili arama SADECE SIRALI dizilerde çalışır. Dizinin ORTA elemanına bakılır: aranan değer ortadakinden küçükse SOL yarıda, büyükse SAĞ yarıda aranır — diğer yarı tamamen elenir. Bu işlem, aranan bulunana ya da arama aralığı boşalana kadar tekrarlanır.",
+      "visual": { "type": "animation", "component": "array", "props": { "values": [3, 8, 12, 17, 21, 29, 34, 40, 47], "mode": "binary", "target": 34 } }
+    },
+    {
+      "heading": "Neden doğrusal aramadan hızlı?",
+      "body": "Doğrusal arama en kötü durumda N eleman kontrol eder. İkili arama ise HER ADIMDA arama alanını YARIYA indirdiği için, 1000 elemanlı bir dizide sadece ~10 adımda sonuca ulaşır (2 üzeri 10 = 1024). Bu fark, büyük dizilerde çok belirgindir.",
+      "visual": { "type": "animation", "component": "growth", "props": { "lines": ["log", "n"] } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "Sıralı [10, 20, 30, 40, 50] dizisinde 40'ı ikili arama ile bul.",
+      "pseudocode": [
+        "sayilar ← [10, 20, 30, 40, 50]",
+        "sol ← 0",
+        "sag ← 4",
+        "konum ← -1",
+        "SÜRECE sol ≤ sag",
+        "  orta ← (sol + sag) div 2",
+        "  EĞER sayilar[orta] = 40",
+        "    konum ← orta",
+        "    sag ← sol - 1",
+        "  DEĞİLSE",
+        "    EĞER sayilar[orta] < 40",
+        "      sol ← orta + 1",
+        "    DEĞİLSE",
+        "      sag ← orta - 1",
+        "    BİTİR",
+        "  BİTİR",
+        "DÖNGÜ_BİTİR",
+        "YAZ konum"
+      ],
+      "runnerSource": "sayilar ← [10, 20, 30, 40, 50]\nsol ← 0\nsag ← 4\nkonum ← -1\nSÜRECE sol ≤ sag\n  orta ← (sol + sag) div 2\n  EĞER sayilar[orta] = 40\n    konum ← orta\n    sag ← sol - 1\n  DEĞİLSE\n    EĞER sayilar[orta] < 40\n      sol ← orta + 1\n    DEĞİLSE\n      sag ← orta - 1\n    BİTİR\n  BİTİR\nDÖNGÜ_BİTİR\nYAZ konum",
+      "steps": [
+        { "line": 5, "explain": "orta = (0+4) div 2 = 2. sayilar[2]=30 < 40, sol ← 3." },
+        { "line": 5, "explain": "orta = (3+4) div 2 = 3. sayilar[3]=40 = 40, bulundu! konum ← 3." },
+        { "line": 17, "explain": "Sonuç: konum = 3 (40, indeks 3'te bulundu).", "output": ["3"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "6.3-e1",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "İkili arama hangi ön koşulu gerektirir?",
+      "options": ["Dizi boş olmalı", "Dizi SIRALI olmalı", "Dizi sadece sayı içermeli", "Dizi tek elemanlı olmalı"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. İkili arama sadece sıralı dizilerde doğru sonuç verir.",
+        "incorrect": "İkili arama, hangi yarının elenebileceğine karar verebilmek için dizinin SIRALI olmasını gerektirir."
+      }
+    },
+    {
+      "id": "6.3-e2",
+      "type": "predict-output",
+      "difficulty": 3,
+      "question": "Sıralı [1, 3, 5, 7, 9, 11] dizisinde 5'in indeksini bulan bu kod ekrana ne yazar?",
+      "pseudocode": [
+        "sayilar ← [1, 3, 5, 7, 9, 11]",
+        "sol ← 0",
+        "sag ← 5",
+        "konum ← -1",
+        "SÜRECE sol ≤ sag",
+        "  orta ← (sol + sag) div 2",
+        "  EĞER sayilar[orta] = 5",
+        "    konum ← orta",
+        "    sag ← sol - 1",
+        "  DEĞİLSE",
+        "    EĞER sayilar[orta] < 5",
+        "      sol ← orta + 1",
+        "    DEĞİLSE",
+        "      sag ← orta - 1",
+        "    BİTİR",
+        "  BİTİR",
+        "DÖNGÜ_BİTİR",
+        "YAZ konum"
+      ],
+      "correctOutput": ["2"],
+      "hint": "orta=(0+5)div2=2, sayilar[2]=5 — ilk denemede bulunur."
+    },
+    {
+      "id": "6.3-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "1024 elemanlı sıralı bir dizide ikili arama en kötü durumda yaklaşık kaç karşılaştırma yapar?",
+      "options": ["1024", "512", "~10", "1"],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Doğru. Her adımda alan yarıya indiği için 2^10=1024 → ~10 adım yeterlidir.",
+        "incorrect": "Arama alanı her adımda yarıya indiğinden, 1024 eleman için sadece ~10 adım (log₂1024=10) yeterlidir."
+      }
+    },
+    {
+      "id": "6.3-e4",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "İkili aramanın bir adımındaki mantığı doğru sıraya diz.",
+      "steps": [
+        "Orta elemana bak",
+        "Aranan değerle orta elemanı karşılaştır",
+        "Eşitse konumu kaydet ve dur",
+        "Değilse, doğru yarıyı seç ve tekrarla"
+      ],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "6.3-e5",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "İkili arama, her adımda arama alanını ___ küçültür.",
+      "options": ["yarıya", "bire", "ikiye katlayarak", "hiç"],
+      "answer": "yarıya"
+    },
+    {
+      "id": "6.3-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Sırasız (karışık) bir dizide ikili arama uygulamaya çalışırsan ne olur?",
+      "options": [
+        "Normal çalışır, sonuç doğru olur",
+        "Yanlış sonuç verebilir çünkü hangi yarının elenebileceği belirsizleşir",
+        "Otomatik olarak diziyi sıralar",
+        "Doğrusal aramaya döner"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Sırasız bir dizide \"hangi yarıda olduğu\" varsayımı geçersizleşir, yanlış sonuç riski doğar.",
+        "incorrect": "İkili arama, dizinin sıralı olduğu varsayımına dayanır; sırasız dizide bu varsayım bozulur ve sonuç güvenilmez olur."
+      }
+    }
+  ],
+  "summary": [
+    "İkili arama, sadece SIRALI dizilerde çalışır.",
+    "Her adımda orta elemana bakılır, hangi yarıda arandığına karar verilir, diğer yarı elenir.",
+    "N elemanlı bir dizide ikili arama yaklaşık log₂N adımda sonuca ulaşır — doğrusal aramadan çok daha hızlı."
+  ]
+}

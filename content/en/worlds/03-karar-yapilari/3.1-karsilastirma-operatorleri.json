@@ -1,0 +1,105 @@
+{
+  "id": "3.1",
+  "worldId": "3",
+  "title": "Comparison Operators",
+  "estimatedMinutes": 4,
+  "prerequisites": ["2.6"],
+  "objectives": [
+    "Understand what =, ≠, <, >, ≤, and ≥ mean",
+    "Work out the TRUE/FALSE result of a comparison expression"
+  ],
+  "hook": {
+    "text": "The expression \"age ≥ 18\" is not a number, it is a QUESTION. Its answer is either TRUE or FALSE."
+  },
+  "concept": [
+    {
+      "heading": "Six comparison operators",
+      "body": "= is equal to, ≠ is not equal to, < is less than, > is greater than, ≤ is less than or equal to, ≥ is greater than or equal to. The result of these operators is always a boolean value (TRUE/FALSE), never a numeric value.",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "5 = 5", "sub": "TRUE", "tone": "good" }, { "label": "5 ≠ 3", "sub": "TRUE", "tone": "good" }, { "label": "2 < 1", "sub": "FALSE", "tone": "bad" }, { "label": "7 > 9", "sub": "FALSE", "tone": "bad" }, { "label": "4 ≤ 4", "sub": "TRUE", "tone": "good" }, { "label": "3 ≥ 8", "sub": "FALSE", "tone": "bad" }] } }
+    },
+    {
+      "heading": "Why does it matter?",
+      "body": "Comparisons are the foundation of the IF command you will learn in the next lesson. The expression \"IF age ≥ 18\" first works out the comparison age ≥ 18 as TRUE or FALSE, then picks a branch based on that result.",
+      "visual": { "type": "animation", "component": "flow", "props": { "kind": "decision" } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "When age ← 20, what is the result of the expression \"age ≥ 18\"?",
+      "pseudocode": ["age ← 20", "result ← age ≥ 18", "WRITE result"],
+      "runnerSource": "age ← 20\nresult ← age ≥ 18\nWRITE result",
+      "steps": [
+        { "line": 0, "explain": "20 is put into the age box.", "vars": { "age": 20 } },
+        { "line": 1, "explain": "The comparison 20 ≥ 18 gives the result TRUE.", "vars": { "age": 20, "result": true } },
+        { "line": 2, "explain": "TRUE is written to the screen.", "output": ["TRUE"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "3.1-e1",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "What is the result of the expression \"5 ≠ 5\"?",
+      "options": ["TRUE", "FALSE", "5", "0"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. 5 is equal to 5, so the \"not equal\" expression is FALSE.",
+        "incorrect": "5 and 5 are equal, so the \"≠\" (not equal) expression gives FALSE."
+      }
+    },
+    {
+      "id": "3.1-e2",
+      "type": "predict-output",
+      "difficulty": 1,
+      "question": "What does this code write to the screen?",
+      "pseudocode": ["WRITE 7 > 3"],
+      "correctOutput": ["TRUE"],
+      "hint": "Is 7 greater than 3?"
+    },
+    {
+      "id": "3.1-e3",
+      "type": "predict-output",
+      "difficulty": 1,
+      "question": "What does this code write to the screen?",
+      "pseudocode": ["WRITE 4 ≥ 4"],
+      "correctOutput": ["TRUE"],
+      "hint": "≥ means \"greater than OR equal to\"."
+    },
+    {
+      "id": "3.1-e4",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "What does this code write to the screen?",
+      "pseudocode": ["a ← 10", "b ← 15", "WRITE a ≤ b"],
+      "correctOutput": ["TRUE"],
+      "hint": "Is 10 less than or equal to 15?"
+    },
+    {
+      "id": "3.1-e5",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "What data type is the result of a comparison expression (e.g. a > b)?",
+      "options": ["Integer", "Decimal", "Text", "Boolean"],
+      "correctIndex": 3,
+      "feedback": {
+        "correct": "Correct. Comparisons always give a TRUE or FALSE (boolean) result.",
+        "incorrect": "The result of a comparison is always a boolean (TRUE/FALSE) value."
+      }
+    },
+    {
+      "id": "3.1-e6",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "The \"less than or equal to\" relation is written with the ___ symbol.",
+      "options": ["≤", "≥", "≠", "="],
+      "answer": "≤"
+    }
+  ],
+  "summary": [
+    "Six operators: =, ≠, <, >, ≤, ≥.",
+    "The result of a comparison is always TRUE or FALSE (the boolean type).",
+    "Comparisons are the foundation of the IF command, which you will learn in the next lesson."
+  ]
+}

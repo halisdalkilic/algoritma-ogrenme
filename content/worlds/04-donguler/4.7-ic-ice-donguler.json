@@ -1,0 +1,139 @@
+{
+  "id": "4.7",
+  "worldId": "4",
+  "title": "İç İçe Döngüler",
+  "estimatedMinutes": 6,
+  "prerequisites": ["4.6"],
+  "objectives": [
+    "Bir döngünün içine başka bir döngü yerleştirir",
+    "İç içe döngülerin toplam kaç kere çalıştığını hesaplar"
+  ],
+  "hook": {
+    "text": "1'den 3'e kadar çarpım tablosunu yazdırmak istiyorsun: 1x1, 1x2, 1x3, 2x1, 2x2... Bunun için tek bir döngü yeterli mi?"
+  },
+  "concept": [
+    {
+      "heading": "Döngü içinde döngü",
+      "body": "Bir döngünün gövdesine başka bir döngü yazılabilir. Buna iç içe (nested) döngü denir. Dıştaki döngü her bir turunda, içteki döngü BAŞTAN SONA kadar tamamen çalışır.",
+      "visual": { "type": "animation", "component": "loop", "props": { "variant": "nested", "rows": 3, "cols": 3 } }
+    },
+    {
+      "heading": "Toplam tekrar sayısı",
+      "body": "Dış döngü N kere, iç döngü her dış turda M kere çalışıyorsa, içteki gövde toplam N×M kere çalışır. 3'e kadar çarpım tablosunda dış döngü 3 tur, iç döngü her turda 3 tur — toplam 3×3=9 satır yazdırılır.",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "dış: N tur" }, { "label": "iç: M tur" }, { "label": "toplam: N × M", "sub": "3 × 3 = 9", "tone": "good" }] } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "1'den 3'e kadar çarpım tablosunu yazdır.",
+      "pseudocode": [
+        "İÇİN i ← 1'DEN 3'E ADIM 1",
+        "  İÇİN j ← 1'DEN 3'E ADIM 1",
+        "    YAZ i * j",
+        "  DÖNGÜ_BİTİR",
+        "DÖNGÜ_BİTİR"
+      ],
+      "runnerSource": "İÇİN i ← 1'DEN 3'E ADIM 1\n  İÇİN j ← 1'DEN 3'E ADIM 1\n    YAZ i * j\n  DÖNGÜ_BİTİR\nDÖNGÜ_BİTİR",
+      "steps": [
+        { "line": 0, "explain": "Dış döngü başlar: i=1." },
+        { "line": 1, "explain": "İç döngü başlar: j=1." },
+        { "line": 2, "explain": "1*1=1 yazılır.", "output": ["1"] },
+        { "line": 1, "explain": "İç döngü devam eder: j=2, sonra j=3 — dış i=1 için toplam 3 satır." }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "4.7-e1",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "Bu kod ekrana kaç satır yazar (sayıları saymana gerek yok, sadece satır sayısını yaz)?",
+      "pseudocode": [
+        "İÇİN i ← 1'DEN 2'YE ADIM 1",
+        "  İÇİN j ← 1'DEN 4'E ADIM 1",
+        "    YAZ i * j",
+        "  DÖNGÜ_BİTİR",
+        "DÖNGÜ_BİTİR"
+      ],
+      "correctOutput": ["8"],
+      "hint": "Dış döngü 2 tur, iç döngü her turda 4 tur: 2*4=8."
+    },
+    {
+      "id": "4.7-e2",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": [
+        "İÇİN i ← 1'DEN 2'YE ADIM 1",
+        "  İÇİN j ← 1'DEN 2'YE ADIM 1",
+        "    YAZ i + j",
+        "  DÖNGÜ_BİTİR",
+        "DÖNGÜ_BİTİR"
+      ],
+      "correctOutput": ["2", "3", "3", "4"],
+      "hint": "i=1: j=1→2, j=2→3. i=2: j=1→3, j=2→4."
+    },
+    {
+      "id": "4.7-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Dış döngü 5 kez, iç döngü her dış turda 3 kez çalışıyorsa, içteki gövde toplam kaç kez çalışır?",
+      "options": ["5", "3", "8", "15"],
+      "correctIndex": 3,
+      "feedback": {
+        "correct": "Doğru. 5 × 3 = 15.",
+        "incorrect": "İç içe döngülerde toplam tekrar sayısı, dış × iç tur sayısıdır: 5 × 3 = 15."
+      }
+    },
+    {
+      "id": "4.7-e4",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "5 satır 5 sütunluk bir yıldız deseni (kare) yazdıran algoritmanın adımlarını doğru sıraya diz.",
+      "steps": [
+        "İÇİN satir ← 1'DEN 5'E ADIM 1",
+        "  İÇİN sutun ← 1'DEN 5'E ADIM 1",
+        "    YAZ \"*\"",
+        "  DÖNGÜ_BİTİR",
+        "DÖNGÜ_BİTİR"
+      ],
+      "correctOrder": [0, 1, 2, 3, 4]
+    },
+    {
+      "id": "4.7-e5",
+      "type": "trace-table",
+      "difficulty": 3,
+      "question": "İç içe döngüde i ve j'nin değerlerini izle.",
+      "pseudocode": [
+        "İÇİN i ← 1'DEN 2'YE ADIM 1",
+        "  İÇİN j ← 1'DEN 2'YE ADIM 1",
+        "    YAZ i",
+        "    YAZ j",
+        "  DÖNGÜ_BİTİR",
+        "DÖNGÜ_BİTİR"
+      ],
+      "columns": ["i", "j"],
+      "expectedRows": [
+        { "i": 1, "j": 1 },
+        { "i": 1, "j": 2 },
+        { "i": 2, "j": 1 },
+        { "i": 2, "j": 2 }
+      ],
+      "hint": "Dış döngünün her turunda, iç döngü baştan sona tamamen çalışır."
+    },
+    {
+      "id": "4.7-e6",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "İç içe döngülerde toplam tekrar sayısı, dış döngü tur sayısı ile iç döngü tur sayısının ___ eşittir.",
+      "options": ["çarpımına", "toplamına", "farkına", "bölümüne"],
+      "answer": "çarpımına"
+    }
+  ],
+  "summary": [
+    "Bir döngünün gövdesine başka bir döngü yazılabilir — buna iç içe döngü denir.",
+    "Dış döngünün her turunda, iç döngü baştan sona tamamen çalışır.",
+    "Toplam tekrar sayısı: dış tur sayısı × iç tur sayısı."
+  ]
+}

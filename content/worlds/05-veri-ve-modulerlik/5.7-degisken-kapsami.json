@@ -1,0 +1,133 @@
+{
+  "id": "5.7",
+  "worldId": "5",
+  "title": "Değişken Kapsamı",
+  "estimatedMinutes": 6,
+  "prerequisites": ["5.6"],
+  "objectives": [
+    "Yerel (local) ve global değişken arasındaki farkı ayırt eder",
+    "Bir fonksiyon içindeki atamanın dıştaki aynı isimli değişkeni etkilemediğini kavrar"
+  ],
+  "hook": {
+    "text": "Bir fonksiyonun içinde \"x ← 20\" yazdın. Fonksiyon dışındaki x, hâlâ eski değerini mi koruyor, yoksa değişti mi?"
+  },
+  "concept": [
+    {
+      "heading": "Global ve yerel değişken",
+      "body": "Global değişken, programın her yerinden görülebilen değişkendir. Yerel (local) değişken ise sadece TANIMLANDIĞI fonksiyon içinde var olur — fonksiyon bitince yok olur. Bir fonksiyonun parametreleri de yereldir.",
+      "visual": { "type": "animation", "component": "vars", "props": { "boxes": [{ "name": "x", "tag": "global", "values": [10, 10, 10], "tone": "good" }, { "name": "y", "tag": "yerel", "values": ["", 5, ""] }], "captions": ["global x her yerden görülür", "fonksiyon çalışıyor: yerel y = 5", "fonksiyon bitti → y yok oldu"], "ms": 1800 } }
+    },
+    {
+      "heading": "Fonksiyon içindeki atama neden dışarıyı etkilemez?",
+      "body": "Bir fonksiyon içinde bir değişkene değer atadığında (aynı isimde bir global olsa bile), bu YENİ bir yerel değişken oluşturur — dıştaki global'e DOKUNMAZ. Fonksiyon global bir değişkeni OKUYABİLİR ama ona yazarsa (atama yaparsa) kendi yerel kopyasını yaratır.",
+      "visual": { "type": "animation", "component": "vars", "props": { "boxes": [{ "name": "x", "tag": "global", "values": [10, 10, 10], "tone": "good" }, { "name": "x", "tag": "fonksiyon içi", "values": ["", 99, ""] }], "captions": ["global x = 10", "fonksiyonda x ← 99 → YENİ yerel x", "dışarıda x hâlâ 10 ✓"], "ms": 1800 } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "Bir fonksiyon içinde aynı isimli bir değişkene atama yap; dıştaki değişken değişir mi?",
+      "pseudocode": [
+        "x ← 10",
+        "FONKSİYON degistir()",
+        "  x ← 20",
+        "BİTİR",
+        "sonuc ← degistir()",
+        "YAZ x"
+      ],
+      "runnerSource": "x ← 10\nFONKSİYON degistir()\n  x ← 20\nBİTİR\nsonuc ← degistir()\nYAZ x",
+      "steps": [
+        { "line": 0, "explain": "Global x, 10 olur." },
+        { "line": 2, "explain": "Fonksiyon içinde x ← 20 çalışır — ama bu YEREL bir x'tir, global x'e dokunmaz." },
+        { "line": 5, "explain": "Fonksiyon bitip yerel x yok olunca, YAZ x global x'i (10) yazdırır.", "output": ["10"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "5.7-e1",
+      "type": "predict-output",
+      "difficulty": 3,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": [
+        "sayi ← 5",
+        "FONKSİYON ikiKatiYap()",
+        "  sayi ← sayi * 2",
+        "BİTİR",
+        "sonuc ← ikiKatiYap()",
+        "YAZ sayi"
+      ],
+      "correctOutput": ["5"],
+      "hint": "Fonksiyon içindeki 'sayi ← sayi * 2', dıştaki global sayi'yi DEĞİL, yeni bir yerel sayi'yi oluşturur."
+    },
+    {
+      "id": "5.7-e2",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": [
+        "carpan ← 3",
+        "FONKSİYON ucKatiAl(x)",
+        "  DÖNDÜR x * carpan",
+        "BİTİR",
+        "YAZ ucKatiAl(5)"
+      ],
+      "correctOutput": ["15"],
+      "hint": "Fonksiyon, tanımlamadığı bir global değişkeni (carpan) OKUYABİLİR."
+    },
+    {
+      "id": "5.7-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Bir fonksiyonun parametreleri hangi kapsamdadır?",
+      "options": ["Global", "Yerel", "Her ikisi de", "Hiçbiri"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Parametreler, sadece o fonksiyon çağrısı içinde var olan yerel değişkenlerdir.",
+        "incorrect": "Parametreler yereldir — sadece tanımlandıkları fonksiyon çağrısı süresince vardır."
+      }
+    },
+    {
+      "id": "5.7-e4",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Bir fonksiyon, tanımlamadığı (sadece okuduğu) bir global değişkene erişebilir mi?",
+      "options": ["Evet, okuyabilir", "Hayır, asla", "Sadece SABIT ise", "Sadece parametre ise"],
+      "correctIndex": 0,
+      "feedback": {
+        "correct": "Doğru. Fonksiyonlar, kendileri atama yapmadıkları global değişkenleri okuyabilir.",
+        "incorrect": "Bir fonksiyon, henüz kendi yerel kopyasını oluşturmadığı sürece global değişkenleri okuyabilir."
+      }
+    },
+    {
+      "id": "5.7-e5",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "Sadece tanımlandığı fonksiyon içinde var olan değişkene ___ değişken denir.",
+      "options": ["yerel", "global", "sabit", "statik"],
+      "answer": "yerel"
+    },
+    {
+      "id": "5.7-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "\"Yerel değişkenler neden faydalıdır?\" sorusunun en iyi cevabı hangisidir?",
+      "options": [
+        "Programı yavaşlatırlar",
+        "Bir fonksiyonun içindeki değişiklikler, programın geri kalanını yanlışlıkla bozmaz",
+        "Hiçbir faydası yoktur",
+        "Sadece sayılarla çalışırlar"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Yerel değişkenler, fonksiyonları birbirinden ve global koddan izole ederek yan etkileri önler.",
+        "incorrect": "Yerel değişkenlerin en büyük faydası, fonksiyon içi değişikliklerin dışarıyı yanlışlıkla etkilememesidir."
+      }
+    }
+  ],
+  "summary": [
+    "Global değişken: her yerden görülür. Yerel değişken: sadece tanımlandığı fonksiyon içinde var olur.",
+    "Bir fonksiyon içinde bir değişkene atama yapmak, aynı isimli global varsa bile YENİ bir yerel değişken oluşturur.",
+    "Bir fonksiyon, kendi atamadığı global değişkenleri okuyabilir."
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "id": "5.3",
+  "worldId": "5",
+  "title": "Searching an Array",
+  "estimatedMinutes": 5,
+  "prerequisites": ["5.2"],
+  "objectives": [
+    "Build the linear search algorithm",
+    "Find whether an element is in an array and where it is"
+  ],
+  "hook": {
+    "text": "Is \"Alice\" in a student list, and if so, at what position? To find out, you need to CHECK the array from start to end."
+  },
+  "concept": [
+    {
+      "heading": "The logic of linear search",
+      "body": "Linear search walks through the array from start to end and compares each element with the target value. If a match is found, that index is recorded. If no match is found by the time the array ends, the element is NOT in the array.",
+      "visual": { "type": "animation", "component": "array", "props": { "values": [12, 7, 31, 9, 24], "mode": "search", "target": 9 } }
+    },
+    {
+      "heading": "The not-found case",
+      "body": "Before the search begins, you prepare a \"found\" (or \"position ← -1\") variable. It is updated if a match is found during the loop. If this variable is still at its starting value when the loop ends, the element is not in the array.",
+      "visual": { "type": "animation", "component": "array", "props": { "values": [12, 7, 31, 9, 24], "mode": "search", "target": 50 } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "Find whether the number 30 is in an array and, if it is, its index.",
+      "pseudocode": [
+        "numbers ← [10, 20, 30, 40]",
+        "position ← -1",
+        "FOR i ← 0 TO 3 STEP 1",
+        "  IF numbers[i] = 30",
+        "    position ← i",
+        "  END",
+        "END_LOOP",
+        "WRITE position"
+      ],
+      "runnerSource": "numbers ← [10, 20, 30, 40]\nposition ← -1\nFOR i ← 0 TO 3 STEP 1\n  IF numbers[i] = 30\n    position ← i\n  END\nEND_LOOP\nWRITE position",
+      "steps": [
+        { "line": 1, "explain": "position is set to -1, meaning \"not found yet\"." },
+        { "line": 3, "explain": "When i = 2, numbers[2] = 30 matches, and position ← 2." },
+        { "line": 7, "explain": "Result: position = 2 (30 was found at index 2).", "output": ["2"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "5.3-e1",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "What does this code write to the screen?",
+      "pseudocode": [
+        "names ← [\"Ali\", \"Alice\", \"Dan\"]",
+        "position ← -1",
+        "FOR i ← 0 TO 2 STEP 1",
+        "  IF names[i] = \"Dan\"",
+        "    position ← i",
+        "  END",
+        "END_LOOP",
+        "WRITE position"
+      ],
+      "correctOutput": ["2"],
+      "hint": "\"Dan\" is the 3rd element (index 2) of the names array."
+    },
+    {
+      "id": "5.3-e2",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "What does this code write to the screen (the target value is not in the array)?",
+      "pseudocode": [
+        "numbers ← [5, 10, 15]",
+        "position ← -1",
+        "FOR i ← 0 TO 2 STEP 1",
+        "  IF numbers[i] = 99",
+        "    position ← i",
+        "  END",
+        "END_LOOP",
+        "WRITE position"
+      ],
+      "correctOutput": ["-1"],
+      "hint": "99 is not in the array, so position is never updated."
+    },
+    {
+      "id": "5.3-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "What does it mean if the \"position\" variable is still -1 after the loop ends?",
+      "options": ["The array is empty", "The target element was not found in the array", "An error occurred", "The first element was being searched for"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. If position stays at its starting value (-1), no match was found.",
+        "incorrect": "-1 is the \"not found yet\" starting value. If it is still -1 at the end of the loop, the element is not in the array."
+      }
+    },
+    {
+      "id": "5.3-e4",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Put the steps of the linear search algorithm in the correct order.",
+      "steps": [
+        "position ← -1",
+        "Walk through the array from start to end",
+        "Compare each element with the target value",
+        "If there is a match, record the position"
+      ],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "5.3-e5",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "How many comparisons does a linear search make in the worst case in an array of N elements?",
+      "options": ["1", "N/2", "N", "N*N"],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Correct. If the element is not in the array or is at the very end, all N elements are checked.",
+        "incorrect": "In the worst case (the element is missing or at the end), a linear search checks all N elements."
+      }
+    },
+    {
+      "id": "5.3-e6",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "Searching for an element by checking an array one element at a time from start to end is called ___ search.",
+      "options": ["linear", "binary", "random", "reverse"],
+      "answer": "linear"
+    }
+  ],
+  "summary": [
+    "Linear search walks through the array from start to end and compares each element with the target value.",
+    "Starting with \"position ← -1\" stands for the \"not found\" case.",
+    "In the worst case, N comparisons are made in an array of N elements."
+  ]
+}

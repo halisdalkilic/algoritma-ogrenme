@@ -1,0 +1,114 @@
+{
+  "id": "2.3",
+  "worldId": "2",
+  "title": "Şemadan Sözde Koda",
+  "estimatedMinutes": 5,
+  "prerequisites": ["2.2"],
+  "objectives": [
+    "Bir akış şemasını sözde koda çevirir (ters yön çeviri)",
+    "Şemadaki her sembolün karşılık geldiği komutu yazar"
+  ],
+  "hook": {
+    "text": "Bir öğretmenin tahtaya çizdiği şemayı görüyorsun ama sözde kodu yok. Şemadan geriye doğru, sözde kodu sen yazabilir misin?"
+  },
+  "concept": [
+    {
+      "heading": "Ters yön çeviri",
+      "body": "2.2'de sözde koddan şemaya gittik. Şimdi tersini yapıyoruz: bir şemaya bakıp sözde kodu yeniden yazıyoruz. Kural aynı: her sembol bir satıra, her ok bir sıraya karşılık gelir. Terminal ve Bitir sembolleri genelde sözde koda yazılmaz, sadece başlangıç/bitişi işaretler.",
+      "visual": { "type": "animation", "component": "flow", "props": { "kind": "linear" } }
+    }
+  ],
+  "workedExamples": [],
+  "exercises": [
+    {
+      "id": "2.3-e1",
+      "type": "flowchart-read",
+      "difficulty": 2,
+      "question": "Bu şemanın sözde kod karşılığı hangisidir?",
+      "nodes": [
+        { "id": "n1", "shape": "terminal", "label": "Başla" },
+        { "id": "n2", "shape": "io", "label": "yaricap oku" },
+        { "id": "n3", "shape": "process", "label": "alan ← yaricap * yaricap * 3.14" },
+        { "id": "n4", "shape": "io", "label": "alan yaz" },
+        { "id": "n5", "shape": "terminal", "label": "Bitir" }
+      ],
+      "options": [
+        "OKU yaricap / alan ← yaricap * yaricap * 3.14 / YAZ alan",
+        "YAZ yaricap / alan ← yaricap * yaricap * 3.14 / OKU alan",
+        "OKU alan / yaricap ← alan * 3.14 / YAZ yaricap",
+        "alan ← yaricap * yaricap * 3.14 / OKU yaricap / YAZ alan"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "2.3-e2",
+      "type": "flowchart-read",
+      "difficulty": 2,
+      "question": "Bu şemanın sözde kod karşılığı hangisidir?",
+      "nodes": [
+        { "id": "n1", "shape": "terminal", "label": "Başla" },
+        { "id": "n2", "shape": "io", "label": "isim oku" },
+        { "id": "n3", "shape": "io", "label": "\"Merhaba \" + isim yaz" },
+        { "id": "n4", "shape": "terminal", "label": "Bitir" }
+      ],
+      "options": [
+        "OKU isim / YAZ \"Merhaba \" + isim",
+        "YAZ isim / OKU \"Merhaba \" + isim",
+        "isim ← \"Merhaba\" / YAZ isim",
+        "OKU \"Merhaba \" + isim / YAZ isim"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "2.3-e3",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Şema sırası \"Başla → x oku → küp ← x*x*x → küp yaz → Bitir\" ise, sözde kod adımlarını doğru sıraya diz.",
+      "steps": ["OKU x", "kup ← x * x * x", "YAZ kup"],
+      "correctOrder": [0, 1, 2]
+    },
+    {
+      "id": "2.3-e4",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "Bir şemadaki paralelkenar (girdi/çıktı) sembolü sözde kodda hangi komutlardan birine çevrilir?",
+      "options": ["EĞER veya DEĞİLSE", "OKU veya YAZ", "İÇİN veya SÜRECE", "SABIT"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Girdi/çıktı sembolü OKU veya YAZ komutuna karşılık gelir.",
+        "incorrect": "Paralelkenar (girdi/çıktı) sembolü, OKU ya da YAZ komutlarından birine karşılık gelir."
+      }
+    },
+    {
+      "id": "2.3-e5",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "Şemadaki dikdörtgen (süreç) sembolü sözde kodda genellikle bir ___ ifadesine karşılık gelir.",
+      "options": ["atama", "girdi", "çıktı", "terminal"],
+      "answer": "atama"
+    },
+    {
+      "id": "2.3-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Bir şemayı sözde koda çevirirken Terminal sembolleri (Başla/Bitir) genelde nasıl yazılır?",
+      "options": [
+        "OKU komutuyla",
+        "Ayrı bir satıra yazılmaz, sadece programın sınırlarını belirtir",
+        "YAZ komutuyla",
+        "SABIT olarak"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Terminal semboller, sözde kodun başlangıç/bitiş sınırını gösterir; ayrı bir komut değildir.",
+        "incorrect": "Terminal semboller bir komuta karşılık gelmez, sadece programın nerede başlayıp bittiğini gösterir."
+      }
+    }
+  ],
+  "summary": [
+    "Şemadan sözde koda çeviri, sözde koddan şemaya çevirinin tersidir.",
+    "Her sembol bir satıra, her ok bir sonraki satıra geçişe karşılık gelir.",
+    "Terminal semboller ayrı bir komut değildir, sadece başlangıç/bitişi işaretler."
+  ]
+}

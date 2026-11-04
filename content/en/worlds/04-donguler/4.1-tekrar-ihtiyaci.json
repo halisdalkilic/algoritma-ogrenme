@@ -1,0 +1,124 @@
+{
+  "id": "4.1",
+  "worldId": "4",
+  "title": "The Need for Repetition",
+  "estimatedMinutes": 4,
+  "prerequisites": ["3.7"],
+  "objectives": [
+    "Explain why repeating the same operation with copy-pasted code is a problem",
+    "Recognize example problems that call for a loop"
+  ],
+  "hook": {
+    "text": "You want to add up the numbers from 1 to 100. Will you write 100 lines of \"total ← total + number\"?"
+  },
+  "concept": [
+    {
+      "heading": "The problem with copy-paste code",
+      "body": "Writing 100 lines like \"WRITE 1\", \"WRITE 2\", \"WRITE 3\" ... causes three problems: (1) it gets very long and hard to read, (2) to fix one mistake you have to change all 100 lines one by one, (3) if the number goes up to 1000, you have to rewrite all of the code.",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "WRITE 1" }, { "label": "WRITE 2" }, { "label": "WRITE 3" }, { "label": "…" }, { "label": "WRITE 100", "sub": "100 lines! ✗", "tone": "bad" }] } }
+    },
+    {
+      "heading": "Loops: automating repetition",
+      "body": "A loop is the way to say \"repeat these steps N times\". A few lines you write once can run hundreds of times thanks to a loop. In the next lesson you will learn the first type of loop (the counting loop).",
+      "visual": { "type": "animation", "component": "loop", "props": { "variant": "for", "from": 1, "to": 5 } }
+    }
+  ],
+  "workedExamples": [],
+  "exercises": [
+    {
+      "id": "4.1-e1",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "What is the biggest problem with writing the numbers from 1 to 100 one by one with the \"WRITE\" command?",
+      "options": [
+        "The program runs too fast",
+        "The code gets very long and hard to change",
+        "The computer cannot do it",
+        "There is no problem"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. Copy-paste code is long, error-prone, and hard to maintain.",
+        "incorrect": "Repeated code increases the number of lines and makes changes harder."
+      }
+    },
+    {
+      "id": "4.1-e2",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "If there is a mistake in 100 lines of copy-paste code, what do you have to do to fix it?",
+      "options": [
+        "Changing just one line is enough",
+        "You will probably have to find and fix every line that contains the mistake, one by one",
+        "You do not have to do anything",
+        "The program fixes itself"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. You have to fix each line where the same mistake is repeated separately, which is a maintenance nightmare.",
+        "incorrect": "In copy-paste code, a mistake is usually repeated on many lines, and you have to find and fix all of them."
+      }
+    },
+    {
+      "id": "4.1-e3",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "What does a loop basically let you do?",
+      "options": [
+        "Split a problem into parts",
+        "Automatically repeat a set of steps more than once",
+        "Compare two values",
+        "Make a variable constant"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. A loop lets you automatically repeat a group of steps N times.",
+        "incorrect": "The basic job of a loop is to run the same steps again and again (automatically)."
+      }
+    },
+    {
+      "id": "4.1-e4",
+      "type": "order-steps",
+      "difficulty": 1,
+      "question": "Put the process of deciding to solve a problem with a loop in the correct order.",
+      "steps": [
+        "Notice that the same operation is repeated many times",
+        "Work out what changes in each repetition (e.g. a counter)",
+        "Decide the number of repetitions or the stopping condition",
+        "Write the loop structure"
+      ],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "4.1-e5",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "The structure that automatically runs a set of steps more than once is called a ___.",
+      "options": ["loop", "variable", "constant", "function"],
+      "answer": "loop"
+    },
+    {
+      "id": "4.1-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Which of these problems does NOT require a loop?",
+      "options": [
+        "Adding up the numbers from 1 to 1000",
+        "Printing every item in a list",
+        "Calculating the sum of two numbers",
+        "Rolling a die 10 times and recording the results"
+      ],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Correct. Adding two numbers is a single operation and needs no repetition.",
+        "incorrect": "The sum of two numbers is calculated in a single step; the others involve repeated operations."
+      }
+    }
+  ],
+  "summary": [
+    "Copy-paste code is long, error-prone, and hard to maintain.",
+    "A loop lets you automatically repeat a set of steps more than once.",
+    "The question \"is the same operation being done again and again?\" is a sign that you need a loop."
+  ]
+}

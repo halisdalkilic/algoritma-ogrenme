@@ -1,0 +1,104 @@
+{
+  "id": "0.2",
+  "worldId": "0",
+  "title": "What an Algorithm Is, and What Makes It Good",
+  "estimatedMinutes": 4,
+  "prerequisites": ["0.1"],
+  "objectives": [
+    "Define the concept of an algorithm",
+    "List the four basic properties of an algorithm (finiteness, definiteness, effectiveness, input/output)"
+  ],
+  "hook": {
+    "text": "Is \"be happy\" an algorithm? And what about \"close your eyes, breathe in for 4 seconds, hold for 4 seconds, breathe out for 4 seconds\"?"
+  },
+  "concept": [
+    {
+      "heading": "What is an algorithm?",
+      "body": "An algorithm is a sequence of clear, finite steps followed to solve a problem. \"Be happy\" is not an algorithm because it does not say which steps to take. A breathing exercise is an algorithm: the steps are clear and can be carried out in order.",
+      "visual": { "type": "animation", "component": "steps", "props": { "steps": ["Breathe in 4 s", "Hold 4 s", "Breathe out 4 s", "Repeat 3 times"] } }
+    },
+    {
+      "heading": "Four basic properties",
+      "body": "A good algorithm has four things: Finiteness (it must end at some point), Definiteness (every step must be clear and unambiguous), Effectiveness (every step must really be doable), and Input/Output (it takes zero or more inputs and produces at least one output).",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "Finiteness", "sub": "ends at some point" }, { "label": "Definiteness", "sub": "unambiguous steps" }, { "label": "Effectiveness", "sub": "doable" }, { "label": "Input/Output", "sub": "at least 1 output" }] } }
+    }
+  ],
+  "workedExamples": [],
+  "exercises": [
+    {
+      "id": "0.2-e1",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "Which property does the statement \"wait for a while, then continue\" violate?",
+      "options": ["Finiteness", "Definiteness", "Input", "Output"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. \"A while\" is not clear, so definiteness is violated.",
+        "incorrect": "\"A while\" is vague, so the step is not unambiguous: that is a definiteness violation."
+      }
+    },
+    {
+      "id": "0.2-e2",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "Which property does a process that runs forever and never stops violate?",
+      "options": ["Effectiveness", "Finiteness", "Input/Output", "Definiteness"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. An algorithm must end at some point: finiteness.",
+        "incorrect": "An algorithm has to end. That property is called finiteness."
+      }
+    },
+    {
+      "id": "0.2-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Which property does the step \"catch the clouds with your hands\" violate?",
+      "options": ["Finiteness", "Input/Output", "Effectiveness", "Definiteness"],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Correct. This step cannot be carried out physically: an effectiveness violation.",
+        "incorrect": "Effectiveness requires every step to be really doable. You cannot catch clouds."
+      }
+    },
+    {
+      "id": "0.2-e4",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "Every step of an algorithm must be clear and unambiguous. This property is called ___.",
+      "options": ["definiteness", "finiteness", "effectiveness", "input"],
+      "answer": "definiteness"
+    },
+    {
+      "id": "0.2-e5",
+      "type": "order-steps",
+      "difficulty": 1,
+      "question": "Put the 4-4-4 breathing exercise algorithm in the correct order.",
+      "steps": ["Close your eyes", "Breathe in for 4 seconds", "Hold for 4 seconds", "Breathe out for 4 seconds"],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "0.2-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Which of these has a COMPLETE set of algorithm properties?",
+      "options": [
+        "\"Have a nice day\"",
+        "\"Count from 1 to 10 and say each number out loud\"",
+        "\"Run as fast as possible\"",
+        "\"Eat something\""
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. It has a clear start, a clear end, and doable steps: everything is there.",
+        "incorrect": "The other options contain vague phrases (\"something\", \"nice\", \"as possible\")."
+      }
+    }
+  ],
+  "summary": [
+    "Algorithm: a sequence of clear, finite steps followed to solve a problem.",
+    "Four properties: finiteness, definiteness, effectiveness, input/output.",
+    "Vague phrases (\"a bit\", \"a while\", \"if possible\") cannot be an algorithm step."
+  ]
+}

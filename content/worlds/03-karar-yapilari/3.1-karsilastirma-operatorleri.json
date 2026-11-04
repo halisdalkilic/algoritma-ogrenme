@@ -1,0 +1,105 @@
+{
+  "id": "3.1",
+  "worldId": "3",
+  "title": "Karşılaştırma Operatörleri",
+  "estimatedMinutes": 4,
+  "prerequisites": ["2.6"],
+  "objectives": [
+    "=, ≠, <, >, ≤, ≥ operatörlerinin anlamını kavrar",
+    "Bir karşılaştırma ifadesinin DOĞRU/YANLIŞ sonucunu hesaplar"
+  ],
+  "hook": {
+    "text": "\"yas ≥ 18\" ifadesi bir sayı değil, bir SORUdur — cevabı ya DOĞRU ya da YANLIŞ olur."
+  },
+  "concept": [
+    {
+      "heading": "Altı karşılaştırma operatörü",
+      "body": "= eşit mi, ≠ eşit değil mi, < küçük mü, > büyük mü, ≤ küçük veya eşit mi, ≥ büyük veya eşit mi. Bu operatörlerin sonucu her zaman mantıksal (DOĞRU/YANLIŞ) bir değerdir — sayısal bir değer değil.",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "5 = 5", "sub": "DOĞRU", "tone": "good" }, { "label": "5 ≠ 3", "sub": "DOĞRU", "tone": "good" }, { "label": "2 < 1", "sub": "YANLIŞ", "tone": "bad" }, { "label": "7 > 9", "sub": "YANLIŞ", "tone": "bad" }, { "label": "4 ≤ 4", "sub": "DOĞRU", "tone": "good" }, { "label": "3 ≥ 8", "sub": "YANLIŞ", "tone": "bad" }] } }
+    },
+    {
+      "heading": "Neden önemli?",
+      "body": "Karşılaştırmalar, bir sonraki derste öğreneceğin EĞER komutunun temelidir. \"EĞER yas ≥ 18\" ifadesi önce yas ≥ 18 karşılaştırmasını DOĞRU/YANLIŞ olarak hesaplar, sonra o sonuca göre bir dal seçer.",
+      "visual": { "type": "animation", "component": "flow", "props": { "kind": "decision" } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "yas ← 20 iken \"yas ≥ 18\" ifadesinin sonucu nedir?",
+      "pseudocode": ["yas ← 20", "sonuc ← yas ≥ 18", "YAZ sonuc"],
+      "runnerSource": "yas ← 20\nsonuc ← yas ≥ 18\nYAZ sonuc",
+      "steps": [
+        { "line": 0, "explain": "yas kutusuna 20 konur.", "vars": { "yas": 20 } },
+        { "line": 1, "explain": "20 ≥ 18 karşılaştırması DOĞRU sonucunu verir.", "vars": { "yas": 20, "sonuc": true } },
+        { "line": 2, "explain": "Ekrana DOĞRU yazılır.", "output": ["DOĞRU"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "3.1-e1",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "\"5 ≠ 5\" ifadesinin sonucu nedir?",
+      "options": ["DOĞRU", "YANLIŞ", "5", "0"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. 5, 5'e eşit olduğu için \"eşit değil\" ifadesi YANLIŞ'tır.",
+        "incorrect": "5 ile 5 eşittir, bu yüzden \"≠\" (eşit değil) ifadesi YANLIŞ sonucunu verir."
+      }
+    },
+    {
+      "id": "3.1-e2",
+      "type": "predict-output",
+      "difficulty": 1,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": ["YAZ 7 > 3"],
+      "correctOutput": ["DOĞRU"],
+      "hint": "7, 3'ten büyük müdür?"
+    },
+    {
+      "id": "3.1-e3",
+      "type": "predict-output",
+      "difficulty": 1,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": ["YAZ 4 ≥ 4"],
+      "correctOutput": ["DOĞRU"],
+      "hint": "≥, \"büyük VEYA eşit\" anlamına gelir."
+    },
+    {
+      "id": "3.1-e4",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": ["a ← 10", "b ← 15", "YAZ a ≤ b"],
+      "correctOutput": ["DOĞRU"],
+      "hint": "10, 15'ten küçük veya eşit midir?"
+    },
+    {
+      "id": "3.1-e5",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Bir karşılaştırma ifadesinin (örn. a > b) sonucu hangi veri tipindedir?",
+      "options": ["Tamsayı", "Ondalık", "Metin", "Mantıksal"],
+      "correctIndex": 3,
+      "feedback": {
+        "correct": "Doğru. Karşılaştırmalar her zaman DOĞRU veya YANLIŞ (mantıksal) sonuç verir.",
+        "incorrect": "Bir karşılaştırmanın sonucu her zaman mantıksal (DOĞRU/YANLIŞ) bir değerdir."
+      }
+    },
+    {
+      "id": "3.1-e6",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "\"küçük veya eşit\" ilişkisi ___ sembolüyle gösterilir.",
+      "options": ["≤", "≥", "≠", "="],
+      "answer": "≤"
+    }
+  ],
+  "summary": [
+    "Altı operatör: =, ≠, <, >, ≤, ≥.",
+    "Bir karşılaştırmanın sonucu her zaman DOĞRU veya YANLIŞ'tır (mantıksal tip).",
+    "Karşılaştırmalar, bir sonraki derste öğrenilecek EĞER komutunun temelidir."
+  ]
+}

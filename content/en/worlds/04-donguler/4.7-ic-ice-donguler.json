@@ -1,0 +1,139 @@
+{
+  "id": "4.7",
+  "worldId": "4",
+  "title": "Nested Loops",
+  "estimatedMinutes": 6,
+  "prerequisites": ["4.6"],
+  "objectives": [
+    "Place one loop inside another loop",
+    "Work out how many times in total nested loops run"
+  ],
+  "hook": {
+    "text": "You want to print a multiplication table up to 3: 1x1, 1x2, 1x3, 2x1, 2x2... Is a single loop enough for that?"
+  },
+  "concept": [
+    {
+      "heading": "A loop inside a loop",
+      "body": "You can write another loop inside the body of a loop. This is called a nested loop. In every single round of the outer loop, the inner loop runs completely from start to finish.",
+      "visual": { "type": "animation", "component": "loop", "props": { "variant": "nested", "rows": 3, "cols": 3 } }
+    },
+    {
+      "heading": "Total number of repetitions",
+      "body": "If the outer loop runs N times and the inner loop runs M times in each outer round, the inner body runs N×M times in total. In the multiplication table up to 3, the outer loop has 3 rounds and the inner loop has 3 rounds each time, so 3×3 = 9 lines are printed.",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "outer: N rounds" }, { "label": "inner: M rounds" }, { "label": "total: N × M", "sub": "3 × 3 = 9", "tone": "good" }] } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "Print the multiplication table from 1 to 3.",
+      "pseudocode": [
+        "FOR i ← 1 TO 3 STEP 1",
+        "  FOR j ← 1 TO 3 STEP 1",
+        "    WRITE i * j",
+        "  END_LOOP",
+        "END_LOOP"
+      ],
+      "runnerSource": "FOR i ← 1 TO 3 STEP 1\n  FOR j ← 1 TO 3 STEP 1\n    WRITE i * j\n  END_LOOP\nEND_LOOP",
+      "steps": [
+        { "line": 0, "explain": "The outer loop starts: i = 1." },
+        { "line": 1, "explain": "The inner loop starts: j = 1." },
+        { "line": 2, "explain": "1 * 1 = 1 is written.", "output": ["1"] },
+        { "line": 1, "explain": "The inner loop continues: j = 2, then j = 3, so there are 3 lines in total for the outer i = 1." }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "4.7-e1",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "How many lines does this code write to the screen (you do not need to count the numbers, just write the number of lines)?",
+      "pseudocode": [
+        "FOR i ← 1 TO 2 STEP 1",
+        "  FOR j ← 1 TO 4 STEP 1",
+        "    WRITE i * j",
+        "  END_LOOP",
+        "END_LOOP"
+      ],
+      "correctOutput": ["8"],
+      "hint": "The outer loop has 2 rounds and the inner loop has 4 rounds each time: 2 * 4 = 8."
+    },
+    {
+      "id": "4.7-e2",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "What does this code write to the screen?",
+      "pseudocode": [
+        "FOR i ← 1 TO 2 STEP 1",
+        "  FOR j ← 1 TO 2 STEP 1",
+        "    WRITE i + j",
+        "  END_LOOP",
+        "END_LOOP"
+      ],
+      "correctOutput": ["2", "3", "3", "4"],
+      "hint": "i = 1: j = 1 gives 2, j = 2 gives 3. i = 2: j = 1 gives 3, j = 2 gives 4."
+    },
+    {
+      "id": "4.7-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "If the outer loop runs 5 times and the inner loop runs 3 times in each outer round, how many times does the inner body run in total?",
+      "options": ["5", "3", "8", "15"],
+      "correctIndex": 3,
+      "feedback": {
+        "correct": "Correct. 5 × 3 = 15.",
+        "incorrect": "In nested loops, the total number of repetitions is the outer rounds times the inner rounds: 5 × 3 = 15."
+      }
+    },
+    {
+      "id": "4.7-e4",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Put the steps of the algorithm that prints a star pattern (a square) of 5 rows and 5 columns in the correct order.",
+      "steps": [
+        "FOR row ← 1 TO 5 STEP 1",
+        "  FOR column ← 1 TO 5 STEP 1",
+        "    WRITE \"*\"",
+        "  END_LOOP",
+        "END_LOOP"
+      ],
+      "correctOrder": [0, 1, 2, 3, 4]
+    },
+    {
+      "id": "4.7-e5",
+      "type": "trace-table",
+      "difficulty": 3,
+      "question": "Trace the values of i and j in a nested loop.",
+      "pseudocode": [
+        "FOR i ← 1 TO 2 STEP 1",
+        "  FOR j ← 1 TO 2 STEP 1",
+        "    WRITE i",
+        "    WRITE j",
+        "  END_LOOP",
+        "END_LOOP"
+      ],
+      "columns": ["i", "j"],
+      "expectedRows": [
+        { "i": 1, "j": 1 },
+        { "i": 1, "j": 2 },
+        { "i": 2, "j": 1 },
+        { "i": 2, "j": 2 }
+      ],
+      "hint": "In every round of the outer loop, the inner loop runs completely from start to finish."
+    },
+    {
+      "id": "4.7-e6",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "In nested loops, the total number of repetitions is equal to the ___ of the outer loop's rounds and the inner loop's rounds.",
+      "options": ["product", "sum", "difference", "quotient"],
+      "answer": "product"
+    }
+  ],
+  "summary": [
+    "You can write another loop inside the body of a loop. This is called a nested loop.",
+    "In every round of the outer loop, the inner loop runs completely from start to finish.",
+    "Total number of repetitions: outer rounds × inner rounds."
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "id": "6.4",
+  "worldId": "6",
+  "title": "Özyineleme (Recursion)",
+  "estimatedMinutes": 7,
+  "prerequisites": ["6.3"],
+  "objectives": [
+    "Bir fonksiyonun kendi kendini çağırabileceğini (özyineleme) kavrar",
+    "Taban durumun (base case) sonsuz çağrıyı nasıl durdurduğunu açıklar"
+  ],
+  "hook": {
+    "text": "\"5 faktöriyel\" (5!) = 5×4×3×2×1. Ama aynı zamanda 5! = 5 × 4!. Ve 4! = 4 × 3!. Bir fonksiyon, kendini tanımlamak için KENDİSİNİ çağırabilir mi?"
+  },
+  "concept": [
+    {
+      "heading": "Kendi kendini çağıran fonksiyon",
+      "body": "Özyineleme (recursion), bir fonksiyonun kendi gövdesi içinde KENDİSİNİ çağırmasıdır. faktoriyel(n), \"n × faktoriyel(n-1)\" olarak tanımlanabilir — problem, kendisinin daha küçük bir versiyonuna indirgenir.",
+      "visual": { "type": "animation", "component": "recursion", "props": { "n": 3 } }
+    },
+    {
+      "heading": "Taban durum (base case) şart",
+      "body": "Özyinelemeli bir fonksiyon MUTLAKA bir TABAN DURUMA sahip olmalıdır — kendini çağırmadan doğrudan bir sonuç döndüren durum (örn. faktoriyel(1) DÖNDÜR 1). Taban durum olmazsa fonksiyon sonsuza kadar kendini çağırır (döngülerdeki sonsuz döngüye benzer bir hata — bkz. ders 4.6).",
+      "visual": { "type": "animation", "component": "recursion", "props": { "n": 3, "noBase": true } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "faktoriyel(n) fonksiyonunu özyinelemeli tanımla ve faktoriyel(4)'ü hesapla.",
+      "pseudocode": [
+        "FONKSİYON faktoriyel(n)",
+        "  EĞER n ≤ 1",
+        "    DÖNDÜR 1",
+        "  BİTİR",
+        "  DÖNDÜR n * faktoriyel(n - 1)",
+        "BİTİR",
+        "YAZ faktoriyel(4)"
+      ],
+      "runnerSource": "FONKSİYON faktoriyel(n)\n  EĞER n ≤ 1\n    DÖNDÜR 1\n  BİTİR\n  DÖNDÜR n * faktoriyel(n - 1)\nBİTİR\nYAZ faktoriyel(4)",
+      "steps": [
+        { "line": 0, "explain": "faktoriyel fonksiyonu tanımlanır." },
+        { "line": 6, "explain": "faktoriyel(4) çağrılır: 4 ≤ 1 YANLIŞ, bu yüzden 4 * faktoriyel(3) hesaplanmalı." },
+        { "line": 4, "explain": "Bu da 3 * faktoriyel(2), o da 2 * faktoriyel(1) gerektirir. faktoriyel(1) TABAN DURUMDUR: doğrudan 1 döner." },
+        { "line": 6, "explain": "Geriye doğru: 2*1=2, 3*2=6, 4*6=24.", "output": ["24"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "6.4-e1",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": ["FONKSİYON faktoriyel(n)", "  EĞER n ≤ 1", "    DÖNDÜR 1", "  BİTİR", "  DÖNDÜR n * faktoriyel(n - 1)", "BİTİR", "YAZ faktoriyel(5)"],
+      "correctOutput": ["120"],
+      "hint": "5! = 5×4×3×2×1 = 120."
+    },
+    {
+      "id": "6.4-e2",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Bir özyinelemeli fonksiyonda taban durum (base case) yoksa ne olur?",
+      "options": [
+        "Fonksiyon daha hızlı çalışır",
+        "Fonksiyon sonsuza kadar kendini çağırır (sonsuz özyineleme)",
+        "Hiçbir sorun olmaz",
+        "Fonksiyon otomatik olarak 0 döner"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Taban durum olmadan fonksiyon kendini durmadan çağırır — sonsuz döngünün özyinelemeli hâli.",
+        "incorrect": "Taban durum, özyinelemenin DURACAĞI noktadır; olmazsa çağrı zinciri sonsuza kadar sürer."
+      }
+    },
+    {
+      "id": "6.4-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "faktoriyel(n) tanımındaki \"n * faktoriyel(n-1)\" ifadesinde problem nasıl küçültülüyor?",
+      "options": [
+        "n büyütülerek",
+        "n bir azaltılarak (n-1)",
+        "n sıfırlanarak",
+        "Küçültülmüyor"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Her çağrıda n bir azalır, bu da taban duruma (n≤1) doğru ilerlemeyi garanti eder.",
+        "incorrect": "Her özyinelemeli çağrıda n-1 kullanılır — problem her adımda biraz küçülür ve taban duruma yaklaşır."
+      }
+    },
+    {
+      "id": "6.4-e4",
+      "type": "order-steps",
+      "difficulty": 3,
+      "question": "faktoriyel(3) çağrısının değerlendirilme sırasını doğru diz.",
+      "steps": [
+        "faktoriyel(3) çağrılır, 3*faktoriyel(2) gerekir",
+        "faktoriyel(2) çağrılır, 2*faktoriyel(1) gerekir",
+        "faktoriyel(1) taban durumdur, 1 döner",
+        "Geriye doğru çarpılır: 2*1=2, sonra 3*2=6"
+      ],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "6.4-e5",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "Kendi kendini çağırmadan doğrudan sonuç döndüren duruma ___ durum denir.",
+      "options": ["taban", "tavan", "döngü", "global"],
+      "answer": "taban"
+    },
+    {
+      "id": "6.4-e6",
+      "type": "pseudo-write",
+      "difficulty": 3,
+      "question": "n'in 2 üzeri kaçıncı kuvvet olduğunu özyinelemeli hesaplayan \"ikiUzeri(n)\" fonksiyonunu yaz (ikiUzeri(0)=1).",
+      "requiredKeywords": ["FONKSİYON", "DÖNDÜR", "BİTİR", "EĞER"],
+      "sampleSolution": "FONKSİYON ikiUzeri(n)\n  EĞER n = 0\n    DÖNDÜR 1\n  BİTİR\n  DÖNDÜR 2 * ikiUzeri(n - 1)\nBİTİR"
+    }
+  ],
+  "summary": [
+    "Özyineleme: bir fonksiyonun kendi gövdesi içinde kendisini çağırmasıdır.",
+    "Her özyinelemeli fonksiyon mutlaka bir taban duruma (base case) sahip olmalıdır.",
+    "Her çağrı, problemi biraz küçültüp taban duruma doğru ilerlemelidir — aksi halde sonsuz özyineleme oluşur."
+  ]
+}

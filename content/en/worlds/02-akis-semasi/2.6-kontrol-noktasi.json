@@ -1,0 +1,124 @@
+{
+  "id": "2.6",
+  "worldId": "2",
+  "title": "Checkpoint: World 2",
+  "estimatedMinutes": 6,
+  "prerequisites": ["2.5"],
+  "objectives": [
+    "Apply everything learned in World 2 (symbols, linear flowcharts, reverse translation, mistakes, building flowcharts) together"
+  ],
+  "hook": {
+    "text": "You have reached the end of World 2. Now it is time to test your flowchart reading and drawing skills with mixed questions."
+  },
+  "concept": [
+    {
+      "heading": "Checkpoint",
+      "body": "This lesson does not teach a new topic; it reinforces what you have learned. The questions below test symbol recognition, reading flowcharts, building flowcharts, and common mistakes in a mix.",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "Symbols" }, { "label": "Reading flowcharts" }, { "label": "Building flowcharts" }, { "label": "Common mistakes" }] } }
+    }
+  ],
+  "workedExamples": [],
+  "exercises": [
+    {
+      "id": "2.6-e1",
+      "type": "flowchart-read",
+      "difficulty": 1,
+      "question": "What does this symbol mean?",
+      "nodes": [{ "id": "n1", "shape": "io", "label": "?" }],
+      "options": ["Process", "Decision", "Input/Output", "Terminal"],
+      "correctIndex": 2
+    },
+    {
+      "id": "2.6-e2",
+      "type": "flowchart-read",
+      "difficulty": 2,
+      "question": "What does this flowchart calculate?",
+      "nodes": [
+        { "id": "n1", "shape": "terminal", "label": "Start" },
+        { "id": "n2", "shape": "io", "label": "Read a, b" },
+        { "id": "n3", "shape": "process", "label": "difference ← a - b" },
+        { "id": "n4", "shape": "io", "label": "Write difference" },
+        { "id": "n5", "shape": "terminal", "label": "End" }
+      ],
+      "options": ["The sum of two numbers", "The difference of two numbers", "The product of two numbers", "The square of a number"],
+      "correctIndex": 1
+    },
+    {
+      "id": "2.6-e3",
+      "type": "flowchart-build",
+      "difficulty": 2,
+      "question": "Build the flowchart for the algorithm \"calculate double a number and print it\".",
+      "expectedNodes": [
+        { "id": "n1", "shape": "terminal", "label": "Start" },
+        { "id": "n2", "shape": "io", "label": "Read x" },
+        { "id": "n3", "shape": "process", "label": "result ← x * 2" },
+        { "id": "n4", "shape": "io", "label": "Write result" },
+        { "id": "n5", "shape": "terminal", "label": "End" }
+      ],
+      "expectedEdges": [
+        { "from": "n1", "to": "n2" },
+        { "from": "n2", "to": "n3" },
+        { "from": "n3", "to": "n4" },
+        { "from": "n4", "to": "n5" }
+      ]
+    },
+    {
+      "id": "2.6-e4",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "What is the state of a flowchart if the \"No\" branch of a decision symbol is not connected to anything?",
+      "options": ["Valid", "Invalid: the branch is left hanging", "It runs faster", "It does not matter"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. An unconnected branch leaves the flow unclear.",
+        "incorrect": "Every decision branch must lead somewhere, otherwise the flowchart is invalid."
+      }
+    },
+    {
+      "id": "2.6-e5",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "The IF command is shown in a flowchart with the ___ symbol.",
+      "options": ["decision", "process", "terminal", "input/output"],
+      "answer": "decision"
+    },
+    {
+      "id": "2.6-e6",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "At most how many arrows can leave a process symbol?",
+      "options": ["0", "1", "2", "Unlimited"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. A process symbol must have a single exit.",
+        "incorrect": "A process symbol can have only one exit; more than one requires a decision symbol."
+      }
+    },
+    {
+      "id": "2.6-e7",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Put the pseudocode steps of the algorithm \"calculate the cube of a number\" in the correct order.",
+      "steps": ["READ x", "cube ← x * x * x", "WRITE cube"],
+      "correctOrder": [0, 1, 2]
+    },
+    {
+      "id": "2.6-e8",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Which of these two commands can the parallelogram symbol in a flowchart stand for?",
+      "options": ["IF / ELSE", "READ / WRITE", "FOR / WHILE", "CONST / VARIABLE"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. The input/output symbol matches the READ or WRITE commands.",
+        "incorrect": "The parallelogram symbol stands for one of the READ or WRITE commands."
+      }
+    }
+  ],
+  "summary": [
+    "World 2 complete: flowchart symbols, linear flowcharts, reverse translation, common mistakes, building flowcharts.",
+    "These skills will be used from World 3 onward to read and draw flowcharts for decision structures.",
+    "You will see the topics you struggled with again in your review queue."
+  ]
+}

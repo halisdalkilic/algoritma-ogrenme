@@ -1,0 +1,134 @@
+{
+  "id": "4.9",
+  "worldId": "4",
+  "title": "Kontrol Noktası: Dünya 4",
+  "estimatedMinutes": 7,
+  "prerequisites": ["4.8"],
+  "objectives": [
+    "Dünya 4'te öğrenilen tüm kavramları (FOR, WHILE, DO-WHILE, sayaç/toplayıcı, sonsuz döngü, iç içe döngüler, izleme tablosu) birlikte uygular"
+  ],
+  "hook": {
+    "text": "Dünya 4'ün sonuna geldin. Şimdi döngü becerini karma sorularla test etme zamanı."
+  },
+  "concept": [
+    {
+      "heading": "Kontrol noktası",
+      "body": "Bu ders yeni bir konu öğretmez; öğrendiklerini pekiştirir. Aşağıdaki sorular tüm döngü tiplerini ve yaygın hatalarını karışık olarak test eder.",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "FOR" }, { "label": "WHILE" }, { "label": "DO-WHILE" }, { "label": "Sayaç / toplayıcı" }, { "label": "Sonsuz döngü" }, { "label": "İç içe" }, { "label": "İzleme tablosu" }] } }
+    }
+  ],
+  "workedExamples": [],
+  "exercises": [
+    {
+      "id": "4.9-e1",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": ["İÇİN i ← 5'TEN 1'E ADIM -1", "  YAZ i", "DÖNGÜ_BİTİR"],
+      "correctOutput": ["5", "4", "3", "2", "1"],
+      "hint": "Negatif adım, geriye doğru sayar."
+    },
+    {
+      "id": "4.9-e2",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "Tur sayısı baştan bilinmiyorsa hangi döngü tercih edilir?",
+      "options": ["İÇİN (FOR)", "SÜRECE (WHILE)", "İkisi de", "Hiçbiri"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Tur sayısı bilinmediğinde SÜRECE (koşula bağlı) döngü kullanılır.",
+        "incorrect": "Bilinmeyen tur sayısı için SÜRECE (WHILE) daha uygundur."
+      }
+    },
+    {
+      "id": "4.9-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "DO-WHILE ile SÜRECE arasındaki fark nedir?",
+      "options": [
+        "DO-WHILE koşulu sonda kontrol eder, gövde en az bir kere çalışır",
+        "Aralarında hiç fark yoktur",
+        "SÜRECE hiçbir zaman çalışmaz",
+        "DO-WHILE sadece sayılarla çalışır"
+      ],
+      "correctIndex": 0,
+      "feedback": {
+        "correct": "Doğru. DO-WHILE son koşulludur, gövde garanti en az bir kez çalışır.",
+        "incorrect": "Fark, kontrolün yeridir: DO-WHILE sonda kontrol eder, bu yüzden gövde en az bir kez çalışır."
+      }
+    },
+    {
+      "id": "4.9-e4",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": ["sayac ← 0", "İÇİN i ← 1'DEN 6'YA ADIM 1", "  EĞER i mod 3 = 0", "    sayac ← sayac + 1", "  BİTİR", "DÖNGÜ_BİTİR", "YAZ sayac"],
+      "correctOutput": ["2"],
+      "hint": "1'den 6'ya kadar 3'ün katları: 3 ve 6."
+    },
+    {
+      "id": "4.9-e5",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Bir SÜRECE döngüsünün sonsuza kadar çalışmasının en yaygın sebebi nedir?",
+      "options": [
+        "Çok fazla değişken kullanılması",
+        "Koşulu etkileyen değişkenin döngü içinde güncellenmeyi unutulması",
+        "YAZ komutunun eksik olması",
+        "Döngünün çok kısa olması"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Güncelleme unutulursa koşul hiç YANLIŞ olmaz.",
+        "incorrect": "En yaygın sebep, koşulu etkileyen değişkenin döngü içinde güncellenmemesidir."
+      }
+    },
+    {
+      "id": "4.9-e6",
+      "type": "trace-table",
+      "difficulty": 2,
+      "pseudocode": ["carpim ← 1", "İÇİN i ← 1'DEN 3'E ADIM 1", "  carpim ← carpim * i", "DÖNGÜ_BİTİR"],
+      "columns": ["i", "carpim"],
+      "expectedRows": [
+        { "i": 1, "carpim": 1 },
+        { "i": 2, "carpim": 2 },
+        { "i": 3, "carpim": 6 }
+      ],
+      "hint": "3! = 1*1*2*3 = 6."
+    },
+    {
+      "id": "4.9-e7",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Dış döngü 4 kez, iç döngü her turda 2 kez çalışıyorsa, iç gövde toplam kaç kez çalışır?",
+      "options": ["4", "2", "6", "8"],
+      "correctIndex": 3,
+      "feedback": {
+        "correct": "Doğru. 4 × 2 = 8.",
+        "incorrect": "Toplam tekrar sayısı dış × iç: 4 × 2 = 8."
+      }
+    },
+    {
+      "id": "4.9-e8",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "\"toplam ← toplam + x\" ifadesi bir ___ güncellemesidir.",
+      "options": ["toplayıcı", "sayaç", "sabit", "karar"],
+      "answer": "toplayıcı"
+    },
+    {
+      "id": "4.9-e9",
+      "type": "pseudo-write",
+      "difficulty": 3,
+      "question": "1'den 10'a kadar olan sayılardan çift olanları toplayan bir algoritma yaz.",
+      "requiredKeywords": ["İÇİN", "DÖNGÜ_BİTİR", "EĞER", "BİTİR", "mod"],
+      "sampleSolution": "toplam ← 0\nİÇİN i ← 1'DEN 10'A ADIM 1\n  EĞER i mod 2 = 0\n    toplam ← toplam + i\n  BİTİR\nDÖNGÜ_BİTİR\nYAZ toplam"
+    }
+  ],
+  "summary": [
+    "Dünya 4 tamamlandı: FOR, WHILE, DO-WHILE, sayaç/toplayıcı, sonsuz döngü, iç içe döngüler, izleme tablosu.",
+    "Bu beceriler, Dünya 5'te dizilerle çalışırken doğrudan kullanılacak.",
+    "Zorlandığın konuları tekrar kuyruğunda tekrar göreceksin."
+  ]
+}

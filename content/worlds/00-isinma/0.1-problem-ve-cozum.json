@@ -1,0 +1,109 @@
+{
+  "id": "0.1",
+  "worldId": "0",
+  "title": "Problem Nedir, Çözüm Nedir",
+  "estimatedMinutes": 4,
+  "prerequisites": [],
+  "objectives": [
+    "Bir problemi girdi/işlem/çıktı olarak parçalayabilir",
+    "Problem ile çözüm arasındaki farkı ayırt eder"
+  ],
+  "hook": {
+    "text": "Arkadaşın sana \"3 su bardağı un, 200 gr tereyağı ve 2 yumurtayla kurabiye nasıl yapılır?\" diye soruyor. Bu bir problem mi, yoksa bir çözüm mü?"
+  },
+  "concept": [
+    {
+      "heading": "Problem ve çözüm",
+      "body": "Problem, cevaplanması gereken bir sorudur: \"Kurabiye nasıl yapılır?\" Çözüm ise o soruya verilen adım adım cevaptır: tarifin kendisi. Bir algoritma her zaman bir çözümdür — probleme değil.",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "❓ Problem", "sub": "Kurabiye nasıl yapılır?" }, { "label": "📋 Çözüm", "sub": "adım adım tarif", "tone": "good" }] } }
+    },
+    {
+      "heading": "Girdi, işlem, çıktı",
+      "body": "Her problemi üç parçaya ayırabilirsin: elindeki malzemeler (girdi), onlarla yaptığın işlemler (işlem/algoritma), ve elde ettiğin sonuç (çıktı). Kurabiye örneğinde girdi un-şeker-yumurta, işlem karıştırıp pişirmek, çıktı ise kurabiyenin kendisidir.",
+      "visual": { "type": "animation", "component": "ipo", "props": { "items": ["Girdi", "İşlem", "Çıktı"], "icons": ["🥚", "🥣", "🍪"] } }
+    }
+  ],
+  "workedExamples": [],
+  "exercises": [
+    {
+      "id": "0.1-e1",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "Bir ATM'den para çekme işleminde aşağıdakilerden hangisi \"girdi\"dir?",
+      "options": ["Elindeki banknotlar", "Kart ve şifre", "Makinenin bip sesi", "Ekrandaki teşekkür mesajı"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Kart ve şifre, işlemi başlatmak için sisteme verdiğin girdidir.",
+        "incorrect": "Girdi, işlemi başlatmak için sisteme verdiğin bilgidir: kart ve şifre."
+      }
+    },
+    {
+      "id": "0.1-e2",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "Aynı ATM örneğinde \"çıktı\" nedir?",
+      "options": ["Kartın takılması", "Şifrenin girilmesi", "Elindeki banknotlar", "Bekleme süresi"],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Doğru. Çıktı, işlemin sonunda elde ettiğin sonuçtur: banknotlar.",
+        "incorrect": "Çıktı, sürecin sonunda eline geçen sonuçtur — burada banknotlar."
+      }
+    },
+    {
+      "id": "0.1-e3",
+      "type": "order-steps",
+      "difficulty": 1,
+      "question": "Bir problemi çözüme dönüştüren süreci doğru sıraya diz.",
+      "steps": ["Problemi tanı", "Girdiyi belirle", "Çözüm adımlarını uygula", "Çıktıyı elde et"],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "0.1-e4",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "Bir tarif, bir problemin ___ dır.",
+      "options": ["çözümü", "girdisi", "sorusu", "hatası"],
+      "answer": "çözümü"
+    },
+    {
+      "id": "0.1-e5",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "\"Evde internet neden yavaş?\" bir problem cümlesidir. Aşağıdakilerden hangisi bunun bir çözümü olabilir?",
+      "options": [
+        "İnternetin neden yavaş olduğunu sormak",
+        "Modemi yeniden başlat, hâlâ yavaşsa sağlayıcıyı ara",
+        "Yavaşlığın ne zaman başladığını hatırlamak",
+        "İnternetin hızlı olmasını dilemek"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Bu, uygulanabilir adımlardan oluşan somut bir çözümdür.",
+        "incorrect": "Çözüm, uygulanabilir somut adımlar içermelidir — sadece soruyu tekrarlamak veya beklemek değil."
+      }
+    },
+    {
+      "id": "0.1-e6",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "Bir problemi \"girdi / işlem / çıktı\" olarak ayırmanın faydası nedir?",
+      "options": [
+        "Problemi daha karmaşık hale getirir",
+        "Neyle başladığımızı ve neyi hedeflediğimizi netleştirir",
+        "Hiçbir faydası yoktur",
+        "Sadece bilgisayarlar için geçerlidir"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Bu ayrım, çözüme başlamadan önce net bir çerçeve kurmanı sağlar.",
+        "incorrect": "Bu ayrım, elimizdeki (girdi) ve ulaşmak istediğimiz (çıktı) şeyi netleştirmek içindir."
+      }
+    }
+  ],
+  "summary": [
+    "Problem: cevaplanması gereken soru. Çözüm: o soruya verilen adım adım cevap.",
+    "Her problem girdi, işlem ve çıktı olarak üçe ayrılabilir.",
+    "Bir algoritma her zaman bir çözümdür, problemin kendisi değil."
+  ]
+}

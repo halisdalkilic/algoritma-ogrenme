@@ -1,0 +1,120 @@
+{
+  "id": "0.4",
+  "worldId": "0",
+  "title": "Adım Sırası Neden Önemli",
+  "estimatedMinutes": 4,
+  "prerequisites": ["0.3"],
+  "objectives": [
+    "Adım sırasının sonucu nasıl değiştirdiğini gösterir",
+    "Yanlış sıralanmış bir algoritmadaki hatayı tespit eder"
+  ],
+  "hook": {
+    "text": "\"Çorapları giy, ayakkabıları giy\" ile \"ayakkabıları giy, çorapları giy\" — aynı adımlar, farklı sıra. Sonuç aynı mı olur?"
+  },
+  "concept": [
+    {
+      "heading": "Sıra, anlamı değiştirir",
+      "body": "Bir algoritmadaki adımlar aynı olsa bile sırası değişince sonuç tamamen değişebilir, hatta imkansız hale gelebilir. \"Ayakkabıyı giy, sonra çorabı giy\" mantıksal olarak bozuktur çünkü ikinci adım artık uygulanamaz.",
+      "visual": { "type": "animation", "component": "steps", "props": { "steps": ["Çorabı giy", "Ayakkabıyı giy"], "wrongOrder": ["Ayakkabıyı giy", "Çorabı giy"] } }
+    },
+    {
+      "heading": "Bağımlı adımlar",
+      "body": "Bazı adımlar bir öncekinin sonucuna ihtiyaç duyar. \"Suyu kaynat\" tamamlanmadan \"kaynar suyu demliğe dök\" adımı anlamsızdır. Bu tür adımlara bağımlı adımlar denir ve sırası değiştirilemez.",
+      "visual": { "type": "animation", "component": "steps", "props": { "steps": ["Suyu kaynat", "Kaynar suyu demliğe dök", "Demlenmesini bekle"], "wrongOrder": ["Kaynar suyu demliğe dök", "Suyu kaynat", "Demlenmesini bekle"] } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "Yanlış sıralanmış bir algoritma: 1) Parayı hesaba yatır 2) Bankamatiğe git 3) Kartı tak. Bu neden çalışmaz?",
+      "pseudocode": ["1. Parayı hesaba yatır", "2. Bankamatiğe git", "3. Kartı tak"],
+      "steps": [
+        { "line": 0, "explain": "İlk adım, bankamatiğe gitmeden para yatırmayı istiyor — bu adım henüz uygulanamaz." },
+        { "line": 1, "explain": "Bankamatiğe gitmek aslında ilk yapılması gereken adımdı." },
+        { "line": 2, "explain": "Kart takmak, para yatırmadan ÖNCE gerekir; sıra tamamen ters." }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "0.4-e1",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "\"Ayakkabıyı giy, çorabı giy\" sırası neden hatalıdır?",
+      "options": [
+        "Hatalı değildir, ikisi de olur",
+        "Çorap, ayakkabıdan önce giyilmelidir",
+        "Ayakkabı çorapsız giyilemez",
+        "Sıra önemli değildir"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Çorap ayakkabıdan önce giyilmelidir; adım bağımlıdır.",
+        "incorrect": "Çorabı ayakkabıdan sonra giymeye çalışmak fiziksel olarak anlamsızdır."
+      }
+    },
+    {
+      "id": "0.4-e2",
+      "type": "order-steps",
+      "difficulty": 1,
+      "question": "Bir bankamatikten para çekme algoritmasını doğru sıraya diz.",
+      "steps": ["Bankamatiğe git", "Kartı tak", "Şifreyi gir", "Tutarı seç", "Parayı al"],
+      "correctOrder": [0, 1, 2, 3, 4]
+    },
+    {
+      "id": "0.4-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "\"Suyu kaynat\" ile \"çay poşetini bardağa koy\" adımlarının sırası değişirse ne olur?",
+      "options": [
+        "Hiçbir şey değişmez, çay yine demlenir",
+        "Çay soğuk suyla demlenmeye çalışılır, sonuç zayıf olur",
+        "Algoritma çalışmaz hale gelir",
+        "Su asla kaynamaz"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Sonuç imkansız olmasa da beklenenden farklı ve kötü olur.",
+        "incorrect": "Sıra değişince çay, kaynar su yerine soğuk suyla demlenmeye çalışılır — sonuç bozulur."
+      }
+    },
+    {
+      "id": "0.4-e4",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "Bir adımın çalışması, bir önceki adımın sonucuna ihtiyaç duyuyorsa, bu adımlara ___ adımlar denir.",
+      "options": ["bağımlı", "bağımsız", "gereksiz", "rastgele"],
+      "answer": "bağımlı"
+    },
+    {
+      "id": "0.4-e5",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Bir e-posta gönderme algoritmasını doğru sıraya diz.",
+      "steps": ["E-posta uygulamasını aç", "Alıcı adresini yaz", "Mesajı yaz", "Gönder'e bas"],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "0.4-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "\"1) Fırını önceden ısıt 2) Hamuru fırına koy 3) Hamuru hazırla\" sıralamasındaki sorun nedir?",
+      "options": [
+        "Sorun yok",
+        "Hamur hazırlanmadan fırına konulamaz — 2 ve 3 yer değiştirmeli",
+        "Fırın önceden ısıtılmamalı",
+        "Hamur asla fırına konulmamalı"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Hamur, fırına konulmadan önce hazırlanmış olmalıdır.",
+        "incorrect": "Hamurun fırına konulabilmesi için önce hazırlanmış olması gerekir; 2. ve 3. adım yer değiştirmeli."
+      }
+    }
+  ],
+  "summary": [
+    "Aynı adımlar farklı sırayla tamamen farklı (veya imkansız) sonuçlar verebilir.",
+    "Bir adım, bir öncekinin sonucuna ihtiyaç duyuyorsa buna bağımlı adım denir.",
+    "Algoritma yazarken her adımın \"bir öncekine mi bağımlı?\" sorusunu sor."
+  ]
+}

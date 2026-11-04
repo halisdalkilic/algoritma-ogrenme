@@ -1,0 +1,117 @@
+{
+  "id": "3.4",
+  "worldId": "3",
+  "title": "Mantıksal Operatörler",
+  "estimatedMinutes": 5,
+  "prerequisites": ["3.3"],
+  "objectives": [
+    "VE, VEYA, DEĞİL operatörlerini kullanır",
+    "Doğruluk tablolarını okur ve birleşik koşullar kurar"
+  ],
+  "hook": {
+    "text": "\"Öğrenciysen VE 18 yaşından büyüksen indirimli bilet alabilirsin.\" Bu cümledeki \"VE\" iki koşulu nasıl birleştiriyor?"
+  },
+  "concept": [
+    {
+      "heading": "VE, VEYA, DEĞİL",
+      "body": "VE: her iki koşul da DOĞRU olmalı. VEYA: en az bir koşul DOĞRU olmalı. DEĞİL: bir koşulun tam tersini alır (DOĞRU'yu YANLIŞ'a çevirir). Bu operatörler birden fazla koşulu tek bir EĞER içinde birleştirmeni sağlar.",
+      "visual": { "type": "animation", "component": "logic", "props": { "view": "gates" } }
+    },
+    {
+      "heading": "Doğruluk tablosu",
+      "body": "A VE B: sadece A=DOĞRU ve B=DOĞRU iken sonuç DOĞRU'dur, diğer tüm durumlarda YANLIŞ. A VEYA B: A ve B'den EN AZ BİRİ DOĞRU ise sonuç DOĞRU'dur, ikisi de YANLIŞ ise sonuç YANLIŞ.",
+      "visual": { "type": "animation", "component": "logic", "props": { "view": "table" } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "Bir bilet indiriminin koşulu: öğrenci VE 18 yaşından büyük.",
+      "pseudocode": [
+        "ogrenciMi ← DOĞRU",
+        "yas ← 20",
+        "EĞER ogrenciMi VE yas ≥ 18",
+        "  YAZ \"İndirimli bilet\"",
+        "DEĞİLSE",
+        "  YAZ \"Normal bilet\"",
+        "BİTİR"
+      ],
+      "runnerSource": "ogrenciMi ← DOĞRU\nyas ← 20\nEĞER ogrenciMi VE yas ≥ 18\n  YAZ \"İndirimli bilet\"\nDEĞİLSE\n  YAZ \"Normal bilet\"\nBİTİR",
+      "steps": [
+        { "line": 2, "explain": "İki koşul da DOĞRU olduğu için VE ifadesi DOĞRU olur." },
+        { "line": 3, "explain": "Ekrana \"İndirimli bilet\" yazılır.", "output": ["İndirimli bilet"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "3.4-e1",
+      "type": "predict-output",
+      "difficulty": 1,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": ["YAZ DOĞRU VE YANLIŞ"],
+      "correctOutput": ["YANLIŞ"],
+      "hint": "VE için HER İKİ taraf da DOĞRU olmalı."
+    },
+    {
+      "id": "3.4-e2",
+      "type": "predict-output",
+      "difficulty": 1,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": ["YAZ DOĞRU VEYA YANLIŞ"],
+      "correctOutput": ["DOĞRU"],
+      "hint": "VEYA için sadece BİR taraf DOĞRU olması yeterli."
+    },
+    {
+      "id": "3.4-e3",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": ["YAZ DEĞİL DOĞRU"],
+      "correctOutput": ["YANLIŞ"],
+      "hint": "DEĞİL, bir mantıksal değeri tersine çevirir."
+    },
+    {
+      "id": "3.4-e4",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "yas ← 15 iken \"yas ≥ 18 VEYA yas < 0\" ifadesinin sonucu nedir?",
+      "options": ["DOĞRU", "YANLIŞ", "15", "Hata"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. 15 ≥ 18 YANLIŞ, 15 < 0 da YANLIŞ; VEYA'da ikisi de YANLIŞ ise sonuç YANLIŞ'tır.",
+        "incorrect": "Her iki koşul da YANLIŞ olduğu için VEYA ifadesinin sonucu da YANLIŞ'tır."
+      }
+    },
+    {
+      "id": "3.4-e5",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "\"A VE B\" ifadesi hangi durumda DOĞRU olur?",
+      "options": [
+        "Sadece A DOĞRU ise",
+        "Sadece B DOĞRU ise",
+        "Hem A hem B DOĞRU ise",
+        "A veya B'den biri DOĞRU ise"
+      ],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Doğru. VE operatörü, HER İKİ koşulun da DOĞRU olmasını gerektirir.",
+        "incorrect": "VE operatöründe sonucun DOĞRU olması için hem A hem de B'nin DOĞRU olması gerekir."
+      }
+    },
+    {
+      "id": "3.4-e6",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "İki koşuldan en az birinin DOĞRU olması yeterliyse ___ operatörü kullanılır.",
+      "options": ["VEYA", "VE", "DEĞİL", "EĞER"],
+      "answer": "VEYA"
+    }
+  ],
+  "summary": [
+    "VE: her iki koşul da DOĞRU olmalı. VEYA: en az biri DOĞRU olmalı. DEĞİL: sonucu tersine çevirir.",
+    "Bu operatörler, birden fazla koşulu tek bir EĞER içinde birleştirmeni sağlar.",
+    "Doğruluk tablosunu ezberlemek yerine, \"hepsi mi, biri mi?\" sorusunu sormak yeterlidir."
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "id": "3.6",
+  "worldId": "3",
+  "title": "Decision Mistakes",
+  "estimatedMinutes": 5,
+  "prerequisites": ["3.5"],
+  "objectives": [
+    "Spot uncovered cases (a missing ELSE)",
+    "Find unreachable branch mistakes (code that never runs)"
+  ],
+  "hook": {
+    "text": "\"IF grade ≥ 50 PASSED, ELSE IF grade < 50 FAILED\": is that second check really needed, or is it redundant?"
+  },
+  "concept": [
+    {
+      "heading": "Uncovered case",
+      "body": "When an IF chain leaves some cases unhandled, that is an uncovered case mistake. For example, if you only check \"grade ≥ 50\" and \"grade < 0\", values between 0 and 50 (e.g. grade = 30) may not enter any branch. That is a logic error.",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "grade < 0", "sub": "error branch" }, { "label": "0 – 49", "sub": "enters no branch ✗", "tone": "bad" }, { "label": "grade ≥ 50", "sub": "passed branch", "tone": "good" }] } }
+    },
+    {
+      "heading": "Unreachable branch",
+      "body": "In an IF chain, if an earlier condition always covers a later one, the later branch NEVER runs. For example, if \"age ≥ 0\" is checked first and something happens when it is TRUE, the check \"age ≥ 18\" after it can never be evaluated on its own (because the first condition has already \"caught\" it).",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "age ≥ 0", "sub": "catches everything first" }, { "label": "age ≥ 18", "sub": "never reachable ✗", "tone": "bad" }] } }
+    }
+  ],
+  "workedExamples": [],
+  "exercises": [
+    {
+      "id": "3.6-e1",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "In the chain \"IF grade ≥ 50 THEN Passed, ELSE IF grade < 0 THEN Invalid\", what happens when grade = 30?",
+      "options": [
+        "\"Passed\" is written",
+        "\"Invalid\" is written",
+        "Nothing is written: an uncovered case",
+        "An error occurs"
+      ],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Correct. 30 is neither ≥ 50 nor < 0, so no branch runs. This is an uncovered case mistake.",
+        "incorrect": "30 meets none of the conditions, so nothing is written. This is a case that was not handled (uncovered)."
+      }
+    },
+    {
+      "id": "3.6-e2",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "In the order \"IF age ≥ 0 ... ELSE IF age ≥ 18 ...\", why is the second condition (age ≥ 18) pointless?",
+      "options": [
+        "It is not pointless at all",
+        "The first condition (age ≥ 0) is almost always TRUE, so the second branch is hardly ever entered",
+        "The second condition is always FALSE",
+        "Order does not matter"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. Since age ≥ 0 is TRUE for most real ages, the ELSE branch is almost never entered.",
+        "incorrect": "The first condition (age ≥ 0) will always be TRUE for normal age values, so the second condition becomes practically unreachable."
+      }
+    },
+    {
+      "id": "3.6-e3",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "What is the safest way to avoid an uncovered case mistake?",
+      "options": [
+        "Never use ELSE",
+        "Add a \"general\" ELSE (a default case) at the end of the chain",
+        "Only use the = operator",
+        "Put the conditions in random order"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. Adding a default ELSE at the end of the chain catches uncovered cases.",
+        "incorrect": "Adding a catch-all ELSE block at the very end also handles the cases where no condition matches."
+      }
+    },
+    {
+      "id": "3.6-e4",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "When a range is left that no condition in an IF chain covers, that is an ___ case mistake.",
+      "options": ["uncovered", "unreachable", "infinite", "undefined"],
+      "answer": "uncovered"
+    },
+    {
+      "id": "3.6-e5",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "What is the mistake in the order \"IF score ≥ 90 ... ELSE IF score ≥ 95 ...\"?",
+      "options": [
+        "The order is reversed: the ≥95 check never runs, because ≥90 already catches it",
+        "There is no mistake",
+        "The ≥90 check never runs",
+        "Both conditions run at the same time"
+      ],
+      "correctIndex": 0,
+      "feedback": {
+        "correct": "Correct. The broader condition (≥90) is written first, so the narrower condition (≥95) is never tested. That is an unreachable branch.",
+        "incorrect": "Since ≥90 already covers every case where the score is ≥95, the second check never runs on its own. It is an unreachable branch."
+      }
+    },
+    {
+      "id": "3.6-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "In nested threshold checks, what should the correct order usually be?",
+      "options": [
+        "In random order",
+        "From the narrowest/highest threshold to the broadest/lowest threshold",
+        "From the broadest threshold to the narrowest threshold",
+        "In alphabetical order"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. The highest/narrowest threshold must be checked first, otherwise a broad condition \"catches\" it and makes it unreachable.",
+        "incorrect": "You usually start with the highest/narrowest threshold; otherwise a broad condition keeps the narrow one from ever being tested."
+      }
+    }
+  ],
+  "summary": [
+    "Uncovered case: some value ranges meet no condition, so no branch runs.",
+    "Unreachable branch: an earlier broad condition keeps a later narrow condition from ever being tested.",
+    "Safe ordering: start from the narrowest/highest threshold and add a catch-all ELSE at the end."
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "id": "6.1",
+  "worldId": "6",
+  "title": "Bubble Sort",
+  "estimatedMinutes": 6,
+  "prerequisites": ["5.8"],
+  "objectives": [
+    "Understand the logic of bubble sort: compare neighbors and swap them",
+    "Sort an array from smallest to largest with bubble sort"
+  ],
+  "hook": {
+    "text": "You want to put a jumbled set of numbers in order from smallest to largest. The simplest method: compare two neighboring elements, swap them if they are in the wrong order, and repeat this from start to end."
+  },
+  "concept": [
+    {
+      "heading": "Comparing neighbors and swapping",
+      "body": "As bubble sort walks through the array from start to end, it compares two NEIGHBORING elements at each step. If the left one is larger than the right one, the two are SWAPPED (see lesson 1.7, Swapping Variables: the same logic, with a temporary variable). After one full pass, the largest element has risen to the end of the array \"like a bubble\".",
+      "visual": { "type": "animation", "component": "sort", "props": { "values": [5, 2, 4, 1, 3], "algo": "bubble" } }
+    },
+    {
+      "heading": "Several passes are needed",
+      "body": "A single pass is not enough to sort the array fully; it only moves the largest element to the end. To fully sort an array of N elements, N - 1 passes are needed in total, and each pass does not have to check again the elements that settled at the end in the previous pass.",
+      "visual": { "type": "animation", "component": "sort", "props": { "values": [4, 3, 2, 1], "algo": "bubble" } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "Sort the array [5, 2, 4] with bubble sort.",
+      "pseudocode": [
+        "numbers ← [5, 2, 4]",
+        "FOR i ← 0 TO 1 STEP 1",
+        "  FOR j ← 0 TO 1 STEP 1",
+        "    IF numbers[j] > numbers[j + 1]",
+        "      temp ← numbers[j]",
+        "      numbers[j] ← numbers[j + 1]",
+        "      numbers[j + 1] ← temp",
+        "    END",
+        "  END_LOOP",
+        "END_LOOP",
+        "WRITE numbers[0]",
+        "WRITE numbers[1]",
+        "WRITE numbers[2]"
+      ],
+      "runnerSource": "numbers ← [5, 2, 4]\nFOR i ← 0 TO 1 STEP 1\n  FOR j ← 0 TO 1 STEP 1\n    IF numbers[j] > numbers[j + 1]\n      temp ← numbers[j]\n      numbers[j] ← numbers[j + 1]\n      numbers[j + 1] ← temp\n    END\n  END_LOOP\nEND_LOOP\nWRITE numbers[0]\nWRITE numbers[1]\nWRITE numbers[2]",
+      "steps": [
+        { "line": 0, "explain": "The array: [5, 2, 4]." },
+        { "line": 3, "explain": "j = 0: numbers[0] = 5 > numbers[1] = 2, so they are swapped → [2, 5, 4]." },
+        { "line": 3, "explain": "j = 1: numbers[1] = 5 > numbers[2] = 4, so they are swapped → [2, 4, 5]." },
+        { "line": 10, "explain": "Nothing changes in the second pass. Result: [2, 4, 5].", "output": ["2", "4", "5"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "6.1-e1",
+      "type": "predict-output",
+      "difficulty": 3,
+      "question": "What does this code write to the screen?",
+      "pseudocode": [
+        "numbers ← [3, 1, 2]",
+        "FOR i ← 0 TO 1 STEP 1",
+        "  FOR j ← 0 TO 1 STEP 1",
+        "    IF numbers[j] > numbers[j + 1]",
+        "      temp ← numbers[j]",
+        "      numbers[j] ← numbers[j + 1]",
+        "      numbers[j + 1] ← temp",
+        "    END",
+        "  END_LOOP",
+        "END_LOOP",
+        "WRITE numbers[0]",
+        "WRITE numbers[1]",
+        "WRITE numbers[2]"
+      ],
+      "correctOutput": ["1", "2", "3"],
+      "hint": "[3, 1, 2] becomes [1, 2, 3] in one pass, and the second pass changes nothing."
+    },
+    {
+      "id": "6.1-e2",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "In bubble sort, what is done when one element is larger than its neighbor?",
+      "options": ["It is deleted", "It is swapped with its neighbor", "It is removed from the array", "Nothing"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. Neighboring elements that are in the wrong order are swapped.",
+        "incorrect": "The basic operation of bubble sort is swapping neighboring elements that are in the wrong order."
+      }
+    },
+    {
+      "id": "6.1-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "How many passes are generally needed to fully sort an array of N elements with bubble sort?",
+      "options": ["1", "N-1", "N*N", "0"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. In the worst case, N - 1 passes are needed.",
+        "incorrect": "Fully sorting an array of N elements needs N - 1 passes in the worst case."
+      }
+    },
+    {
+      "id": "6.1-e4",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Put the steps that swap two elements in the correct order (remember lesson 1.7).",
+      "steps": ["temp ← numbers[j]", "numbers[j] ← numbers[j + 1]", "numbers[j + 1] ← temp"],
+      "correctOrder": [0, 1, 2]
+    },
+    {
+      "id": "6.1-e5",
+      "type": "trace-table",
+      "difficulty": 3,
+      "pseudocode": [
+        "numbers ← [4, 2, 1]",
+        "FOR j ← 0 TO 1 STEP 1",
+        "  IF numbers[j] > numbers[j + 1]",
+        "    temp ← numbers[j]",
+        "    numbers[j] ← numbers[j + 1]",
+        "    numbers[j + 1] ← temp",
+        "  END",
+        "END_LOOP"
+      ],
+      "columns": ["j", "numbers[0]", "numbers[1]", "numbers[2]"],
+      "expectedRows": [
+        { "j": 0, "numbers[0]": 2, "numbers[1]": 4, "numbers[2]": 1 },
+        { "j": 1, "numbers[0]": 2, "numbers[1]": 1, "numbers[2]": 4 }
+      ],
+      "hint": "j = 0: 4 > 2, swap. j = 1: 4 > 1, swap."
+    },
+    {
+      "id": "6.1-e6",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "In bubble sort, after one pass the largest element settles at the ___ of the array.",
+      "options": ["end", "start", "middle", "outside"],
+      "answer": "end"
+    }
+  ],
+  "summary": [
+    "Bubble sort compares neighboring elements and swaps them if they are in the wrong order.",
+    "Each full pass moves the largest remaining element to the end of the array.",
+    "Fully sorting an array of N elements needs N - 1 passes in the worst case."
+  ]
+}

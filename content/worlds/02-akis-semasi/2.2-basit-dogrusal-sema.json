@@ -1,0 +1,109 @@
+{
+  "id": "2.2",
+  "worldId": "2",
+  "title": "Basit Doğrusal Şema",
+  "estimatedMinutes": 5,
+  "prerequisites": ["2.1"],
+  "objectives": [
+    "Basit, dallanmayan bir sözde kodu akış şemasına çevirir",
+    "Bir akış şemasının ne hesapladığını okuyabilir"
+  ],
+  "hook": {
+    "text": "Bir sözde kodu şemaya çevirmek, aynı hikayeyi farklı bir dille anlatmak gibidir — içerik aynı kalır, sadece gösterim değişir."
+  },
+  "concept": [
+    {
+      "heading": "Doğrusal (dallanmayan) şema",
+      "body": "En basit şema türü, hiç karar içermeyen, tek bir yoldan giden şemadır: Başla → Girdi → İşlem → Çıktı → Bitir. Her sözde kod satırı, tek bir sembole karşılık gelir.",
+      "visual": { "type": "animation", "component": "flow", "props": { "kind": "linear" } }
+    },
+    {
+      "heading": "Sözde koddan şemaya",
+      "body": "\"OKU a\" bir girdi/çıktı sembolüne, \"toplam ← a + b\" bir süreç sembolüne, \"YAZ toplam\" tekrar bir girdi/çıktı sembolüne dönüşür. Her satır sırayla, yukarıdan aşağıya bir sembole ve bir oka karşılık gelir.",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "OKU a", "sub": "→ ▱ girdi/çıktı" }, { "label": "toplam ← a + b", "sub": "→ ▭ süreç" }, { "label": "YAZ toplam", "sub": "→ ▱ girdi/çıktı" }] } }
+    }
+  ],
+  "workedExamples": [],
+  "exercises": [
+    {
+      "id": "2.2-e1",
+      "type": "flowchart-build",
+      "difficulty": 2,
+      "question": "\"İki sayıyı topla ve sonucu yazdır\" algoritmasının şemasını kur.",
+      "expectedNodes": [
+        { "id": "n1", "shape": "terminal", "label": "Başla" },
+        { "id": "n2", "shape": "io", "label": "a, b oku" },
+        { "id": "n3", "shape": "process", "label": "toplam ← a + b" },
+        { "id": "n4", "shape": "io", "label": "toplam yaz" },
+        { "id": "n5", "shape": "terminal", "label": "Bitir" }
+      ],
+      "expectedEdges": [
+        { "from": "n1", "to": "n2" },
+        { "from": "n2", "to": "n3" },
+        { "from": "n3", "to": "n4" },
+        { "from": "n4", "to": "n5" }
+      ]
+    },
+    {
+      "id": "2.2-e2",
+      "type": "flowchart-read",
+      "difficulty": 2,
+      "question": "Bu şema ne hesaplar?",
+      "nodes": [
+        { "id": "n1", "shape": "terminal", "label": "Başla" },
+        { "id": "n2", "shape": "io", "label": "x oku" },
+        { "id": "n3", "shape": "process", "label": "sonuc ← x * x" },
+        { "id": "n4", "shape": "io", "label": "sonuc yaz" },
+        { "id": "n5", "shape": "terminal", "label": "Bitir" }
+      ],
+      "options": ["Bir sayının karesi", "Bir sayının küpü", "İki sayının toplamı", "Bir sayının negatifi"],
+      "correctIndex": 0
+    },
+    {
+      "id": "2.2-e3",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "Doğrusal bir şemada kaç farklı çıkış yolu bulunabilir?",
+      "options": ["Sadece bir", "İki", "Karar sayısı kadar", "Sınırsız"],
+      "correctIndex": 0,
+      "feedback": {
+        "correct": "Doğru. Doğrusal şemada dallanma olmadığı için tek bir yol vardır.",
+        "incorrect": "Doğrusal (dallanmayan) bir şemada karar sembolü yoktur, bu yüzden sadece tek bir yol izlenir."
+      }
+    },
+    {
+      "id": "2.2-e4",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Bir dikdörtgenin alanını hesaplayan algoritmanın adımlarını doğru sıraya diz.",
+      "steps": ["OKU en", "OKU boy", "alan ← en * boy", "YAZ alan"],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "2.2-e5",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "Bir akış şeması kaç tane \"Başla\" terminaline sahip olmalıdır?",
+      "options": ["0", "Tam olarak 1", "En az 2", "Sınırsız"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Her algoritmanın tam olarak bir başlangıç noktası vardır.",
+        "incorrect": "Bir algoritmanın net bir başlangıcı olmalıdır — tam olarak bir \"Başla\" terminali."
+      }
+    },
+    {
+      "id": "2.2-e6",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "Akış şemasında her şema tam olarak bir ___ sembolüyle başlar.",
+      "options": ["terminal", "süreç", "karar", "girdi/çıktı"],
+      "answer": "terminal"
+    }
+  ],
+  "summary": [
+    "Doğrusal şema: karar (dallanma) içermeyen, tek yoldan giden şemadır.",
+    "Her sözde kod satırı bir sembole, her satır geçişi bir oka karşılık gelir.",
+    "Şema her zaman bir Başla terminaliyle başlar, bir Bitir terminaliyle sona erer."
+  ]
+}

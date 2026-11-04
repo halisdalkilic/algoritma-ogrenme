@@ -1,0 +1,130 @@
+{
+  "id": "4.6",
+  "worldId": "4",
+  "title": "Infinite Loops and Escaping Them",
+  "estimatedMinutes": 4,
+  "prerequisites": ["4.5"],
+  "objectives": [
+    "Explain why a loop can run forever",
+    "Know how to avoid an infinite loop"
+  ],
+  "hook": {
+    "text": "What happens if you forget to increase the counter inside a WHILE loop? Your computer looks frozen. In fact, it is repeating the same job forever."
+  },
+  "concept": [
+    {
+      "heading": "Why does an infinite loop happen?",
+      "body": "If the condition of a WHILE loop NEVER becomes FALSE, the loop never ends. The most common cause is forgetting to update, inside the loop, the variable that affects the condition (for example, a missing counter ← counter + 1 line).",
+      "visual": { "type": "animation", "component": "loop", "props": { "variant": "infinite" } }
+    },
+    {
+      "heading": "How do you avoid it?",
+      "body": "Every time you write a WHILE (or DO-WHILE), ask yourself: \"Is there an update that will make this condition FALSE, and does that update really run?\" Remember the finiteness property (lesson 0.2): an algorithm must end.",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "counter ← counter + 1", "sub": "has an update ✓", "tone": "good" }, { "label": "the condition becomes FALSE one day", "sub": "the loop ends ✓", "tone": "good" }] } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "The counter is never updated in this loop. What happens? (Warning: this is a deliberate example of a mistake.)",
+      "pseudocode": ["i ← 0", "WHILE i < 5", "  WRITE i", "END_LOOP"],
+      "runnerSource": "i ← 0\nWHILE i < 5\n  WRITE i\nEND_LOOP",
+      "steps": [
+        { "line": 0, "explain": "i starts as 0." },
+        { "line": 1, "explain": "i < 5 is TRUE, so the loop is entered." },
+        { "line": 2, "explain": "0 is written. But i NEVER changes, so the condition will stay TRUE forever!" }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "4.6-e1",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Why does the loop in the worked example above never end?",
+      "options": [
+        "Because i is a text variable",
+        "Because i is never updated inside the loop, so the condition stays TRUE",
+        "Because the WRITE command is wrong",
+        "Actually this loop runs 5 times and ends"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. Since i is not updated, the condition i < 5 never becomes FALSE.",
+        "incorrect": "The problem is that the variable i is never changed inside the loop, so the condition stays TRUE forever."
+      }
+    },
+    {
+      "id": "4.6-e2",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "When you write a WHILE loop, you must make sure the variable that affects the condition is ___ inside the loop.",
+      "options": ["updated", "left unchanged", "deleted", "printed"],
+      "answer": "updated"
+    },
+    {
+      "id": "4.6-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "When can \"WHILE TRUE ... END_LOOP\" (a loop whose condition is always TRUE) be a valid thing to use?",
+      "options": [
+        "Never, it is always a mistake",
+        "When it is ended inside the loop by some other mechanism (for example, a conditional exit with an IF)",
+        "Only when used together with a FOR loop",
+        "Only when it is never run"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. In some languages it can be used in a controlled way with an exit mechanism like \"break\", but that is an advanced topic and needs care.",
+        "incorrect": "Deliberate infinite loops can be used if there is another ending mechanism inside, but you have to be careful."
+      }
+    },
+    {
+      "id": "4.6-e4",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "Which algorithm property does an infinite loop violate?",
+      "options": ["Definiteness", "Finiteness", "Input/Output", "Effectiveness"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. An algorithm must end at some point: the finiteness property.",
+        "incorrect": "An infinite loop violates the finiteness property, which says an algorithm must end."
+      }
+    },
+    {
+      "id": "4.6-e5",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Put the debugging process for writing a WHILE loop in the correct order.",
+      "steps": [
+        "Identify the condition of the loop",
+        "Find the variable that affects the condition",
+        "Check that this variable is updated inside the loop",
+        "Check that the update moves in the direction that will make the condition FALSE"
+      ],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "4.6-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "What happens with the loop \"FOR i ← 1 TO 10 STEP -1\" (the step is negative but the start is smaller than the end)?",
+      "options": [
+        "It runs 10 times",
+        "It never runs (the condition is not met from the start)",
+        "It becomes an infinite loop",
+        "It gives an error"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. When the step is negative and the start is smaller than the end, the loop condition is never met and the body does not run.",
+        "incorrect": "In a counting loop, if the step direction does not match the start/end relationship, the loop never runs. It does not become an infinite loop."
+      }
+    }
+  ],
+  "summary": [
+    "An infinite loop is a loop whose condition never becomes FALSE.",
+    "The most common cause: forgetting to update, inside the loop, the variable that affects the condition.",
+    "Every time you write a loop, ask: \"will this really end?\""
+  ]
+}

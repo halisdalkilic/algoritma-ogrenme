@@ -1,0 +1,121 @@
+{
+  "id": "1.6",
+  "worldId": "1",
+  "title": "Sabitler ve İfadeler",
+  "estimatedMinutes": 4,
+  "prerequisites": ["1.5"],
+  "objectives": [
+    "Sabit ile değişken arasındaki farkı ayırt eder",
+    "Basit ifadeleri (expression) değerlendirir"
+  ],
+  "hook": {
+    "text": "PI sayısı (3.14159...) hiç değişmez. Ama öğrenci sayısı her dönem değişir. İkisini de aynı şekilde mi saklamalıyız?"
+  },
+  "concept": [
+    {
+      "heading": "Sabit vs değişken",
+      "body": "Sabit (SABIT PI ← 3.14), bir kere tanımlanır ve program boyunca DEĞİŞMEZ. Değişken ise programın akışı içinde defalarca güncellenebilir. Değişmemesi gereken değerler için sabit kullanmak, yanlışlıkla değiştirilmelerini önler.",
+      "visual": { "type": "animation", "component": "vars", "props": { "boxes": [{ "name": "PI", "tag": "sabit", "values": [3.14, 3.14, 3.14], "tone": "good" }, { "name": "r", "tag": "değişken", "values": [1, 2, 3] }], "captions": ["PI hiç değişmez", "r ← 2", "r ← 3"] } }
+    },
+    {
+      "heading": "İfade nedir?",
+      "body": "İfade (expression), bir değer üretecek şekilde değişken, sabit ve operatörlerin bir araya gelmesidir. \"a + b * 2\" bir ifadedir; hesaplanır ve tek bir değer üretir. Atama işleminde ← işaretinin sağı her zaman bir ifadedir.",
+      "visual": { "type": "animation", "component": "steps", "props": { "steps": ["a + b * 2", "a = 4, b = 3 → 4 + 3 * 2", "4 + 6", "tek bir değer: 10"] } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "Bir dairenin çevresini hesapla (SABIT PI ← 3.14).",
+      "pseudocode": ["SABIT PI ← 3.14", "OKU yaricap", "cevre ← 2 * PI * yaricap", "YAZ cevre"],
+      "steps": [
+        { "line": 0, "explain": "PI sabiti tanımlanır, program boyunca değişmez.", "vars": { "PI": 3.14 } },
+        { "line": 1, "explain": "Kullanıcı 5 girdi, yaricap kutusuna 5 konur.", "vars": { "yaricap": 5 } },
+        { "line": 2, "explain": "İfade hesaplanır: 2 * 3.14 * 5 = 31.4.", "vars": { "cevre": 31.4 } },
+        { "line": 3, "explain": "Ekrana 31.4 yazılır.", "output": ["31.4"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "1.6-e1",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "Bir sabit ile bir değişken arasındaki temel fark nedir?",
+      "options": [
+        "Sabit sadece metin tutabilir",
+        "Sabitin değeri program boyunca değişmez, değişkeninki değişebilir",
+        "Değişken sadece bir kere kullanılabilir",
+        "Aralarında fark yoktur"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Sabit tanımlandıktan sonra değiştirilemez.",
+        "incorrect": "Sabit, bir kere tanımlanır ve program boyunca aynı kalır; değişken güncellenebilir."
+      }
+    },
+    {
+      "id": "1.6-e2",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Aşağıdakilerden hangisi sabit olarak tanımlanmaya en uygundur?",
+      "options": ["Öğrenci notu", "Bugünün tarihi", "Bir yılın gün sayısı (365)", "Sepetteki ürün sayısı"],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Doğru. 365, hesaplama boyunca değişmeyen sabit bir değerdir.",
+        "incorrect": "Sabit, değişmesi beklenmeyen değerler içindir — bir yılın gün sayısı gibi."
+      }
+    },
+    {
+      "id": "1.6-e3",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "Bu kod ekrana ne yazar? (SABIT VERGI ← 0.20)",
+      "pseudocode": ["SABIT VERGI ← 0.20", "fiyat ← 100", "toplam ← fiyat + fiyat * VERGI", "YAZ toplam"],
+      "correctOutput": ["120"],
+      "hint": "100 + 100*0.20 = 120."
+    },
+    {
+      "id": "1.6-e4",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "Değişken, sabit ve operatörlerin bir araya gelip tek bir değer üretmesine ___ denir.",
+      "options": ["ifade", "algoritma", "sabit", "döngü"],
+      "answer": "ifade"
+    },
+    {
+      "id": "1.6-e5",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "\"a + b * 2\" ifadesinde a=3, b=4 ise sonuç nedir?",
+      "options": ["14", "11", "10", "8"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Önce b*2=8, sonra 3+8=11.",
+        "incorrect": "Önce çarpma yapılır: b*2=8, sonra a+8=11."
+      }
+    },
+    {
+      "id": "1.6-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Bir sabiti program çalışırken değiştirmeye çalışırsan ne olur?",
+      "options": [
+        "Sorunsuz değişir",
+        "Hata oluşur, çünkü sabitler değiştirilemez",
+        "Değişken otomatik olarak silinir",
+        "Program daha hızlı çalışır"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Sabitin tanımı gereği değeri değiştirilemez, bu bir hataya yol açar.",
+        "incorrect": "Sabitler, tanımları gereği tekrar atanamaz; bu bir hata durumudur."
+      }
+    }
+  ],
+  "summary": [
+    "Sabit: bir kere tanımlanır, değeri asla değişmez.",
+    "Değişken: program akışı boyunca defalarca güncellenebilir.",
+    "İfade: değişken, sabit ve operatörlerin bir araya gelip tek bir değer üretmesidir."
+  ]
+}

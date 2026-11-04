@@ -1,0 +1,112 @@
+{
+  "id": "1.5",
+  "worldId": "1",
+  "title": "Input and Output",
+  "estimatedMinutes": 4,
+  "prerequisites": ["1.4"],
+  "objectives": [
+    "Understand what the READ and WRITE commands do",
+    "Store values taken from the user in a variable"
+  ],
+  "hook": {
+    "text": "An algorithm cannot say \"Hello Ahmet, you are 20 years old\" without getting a name and an age from outside. Where will it get that information?"
+  },
+  "concept": [
+    {
+      "heading": "READ: take data from outside",
+      "body": "The READ command takes a value from the user (or from some other source) and stores it in a variable. When you say \"READ name\", the value the user typed is put into the name box.",
+      "visual": { "type": "animation", "component": "ipo", "props": { "items": ["User: Alice", "READ name", "name = \"Alice\""], "icons": ["⌨️", "📥", "📦"] } }
+    },
+    {
+      "heading": "WRITE: give a result to the outside",
+      "body": "The WRITE command prints the value of a variable or an expression to the screen. \"WRITE name\" shows whatever is in the name box at that moment. READ and WRITE are the two doors through which an algorithm talks to the outside world.",
+      "visual": { "type": "animation", "component": "ipo", "props": { "items": ["name = \"Alice\"", "WRITE name", "Screen: Alice"], "icons": ["📦", "📤", "🖥️"] } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "Ask the user for a name and greet them.",
+      "pseudocode": ["READ name", "WRITE \"Hello \" + name"],
+      "steps": [
+        { "line": 0, "explain": "The user typed \"Alice\", so \"Alice\" is put into the name box.", "vars": { "name": "Alice" } },
+        { "line": 1, "explain": "The text \"Hello \" is joined with name and printed.", "output": ["Hello Alice"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "1.5-e1",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "What is the READ command for?",
+      "options": [
+        "It prints a value to the screen",
+        "It takes a value from the user and stores it in a variable",
+        "It deletes a variable",
+        "It compares two variables"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. READ takes a value from outside and stores it in a variable.",
+        "incorrect": "READ is used to take data from outside (from the user)."
+      }
+    },
+    {
+      "id": "1.5-e2",
+      "type": "predict-output",
+      "difficulty": 1,
+      "question": "If the user enters \"12\", what does this code write to the screen?",
+      "pseudocode": ["READ age", "WRITE age"],
+      "correctOutput": ["12"],
+      "hint": "WRITE shows whatever is in the variable at that moment."
+    },
+    {
+      "id": "1.5-e3",
+      "type": "order-steps",
+      "difficulty": 1,
+      "question": "Put the algorithm that takes two numbers from the user and prints their sum in the correct order.",
+      "steps": ["READ a", "READ b", "total ← a + b", "WRITE total"],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "1.5-e4",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "What happens if \"READ name\" is not run BEFORE the command \"WRITE name\"?",
+      "options": [
+        "Nothing goes wrong",
+        "The name box is empty or undefined, so the result is unexpected",
+        "The program automatically makes up a name",
+        "WRITE automatically calls READ"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. A variable must be filled first (READ) and used afterward (WRITE).",
+        "incorrect": "A variable must have a value before it is used; otherwise the result is undefined."
+      }
+    },
+    {
+      "id": "1.5-e5",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "The ___ command is used to show a result on the screen.",
+      "options": ["WRITE", "READ", "IF", "LOOP"],
+      "answer": "WRITE"
+    },
+    {
+      "id": "1.5-e6",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "If the user enters \"3\" and then \"4\", what does this code write to the screen?",
+      "pseudocode": ["READ a", "READ b", "product ← a * b", "WRITE product"],
+      "correctOutput": ["12"],
+      "hint": "Both inputs are read as numbers and multiplied."
+    }
+  ],
+  "summary": [
+    "READ: takes a value from outside and stores it in a variable.",
+    "WRITE: shows the value of a variable or an expression on the screen.",
+    "A variable must have a value before it is used."
+  ]
+}

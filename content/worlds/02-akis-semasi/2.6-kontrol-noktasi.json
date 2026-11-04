@@ -1,0 +1,124 @@
+{
+  "id": "2.6",
+  "worldId": "2",
+  "title": "Kontrol Noktası: Dünya 2",
+  "estimatedMinutes": 6,
+  "prerequisites": ["2.5"],
+  "objectives": [
+    "Dünya 2'de öğrenilen tüm kavramları (semboller, doğrusal şema, ters çeviri, hatalar, şema kurma) birlikte uygular"
+  ],
+  "hook": {
+    "text": "Dünya 2'nin sonuna geldin. Şimdi şema okuma ve çizme becerini karma sorularla test etme zamanı."
+  },
+  "concept": [
+    {
+      "heading": "Kontrol noktası",
+      "body": "Bu ders yeni bir konu öğretmez; öğrendiklerini pekiştirir. Aşağıdaki sorular sembol tanıma, şema okuma, şema kurma ve yaygın hataları karışık olarak test eder.",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "Semboller" }, { "label": "Şema okuma" }, { "label": "Şema kurma" }, { "label": "Sık hatalar" }] } }
+    }
+  ],
+  "workedExamples": [],
+  "exercises": [
+    {
+      "id": "2.6-e1",
+      "type": "flowchart-read",
+      "difficulty": 1,
+      "question": "Bu sembol ne anlama gelir?",
+      "nodes": [{ "id": "n1", "shape": "io", "label": "?" }],
+      "options": ["Süreç", "Karar", "Girdi/Çıktı", "Terminal"],
+      "correctIndex": 2
+    },
+    {
+      "id": "2.6-e2",
+      "type": "flowchart-read",
+      "difficulty": 2,
+      "question": "Bu şema ne hesaplar?",
+      "nodes": [
+        { "id": "n1", "shape": "terminal", "label": "Başla" },
+        { "id": "n2", "shape": "io", "label": "a, b oku" },
+        { "id": "n3", "shape": "process", "label": "fark ← a - b" },
+        { "id": "n4", "shape": "io", "label": "fark yaz" },
+        { "id": "n5", "shape": "terminal", "label": "Bitir" }
+      ],
+      "options": ["İki sayının toplamı", "İki sayının farkı", "İki sayının çarpımı", "Bir sayının karesi"],
+      "correctIndex": 1
+    },
+    {
+      "id": "2.6-e3",
+      "type": "flowchart-build",
+      "difficulty": 2,
+      "question": "\"Bir sayının 2 katını hesapla ve yazdır\" algoritmasının şemasını kur.",
+      "expectedNodes": [
+        { "id": "n1", "shape": "terminal", "label": "Başla" },
+        { "id": "n2", "shape": "io", "label": "x oku" },
+        { "id": "n3", "shape": "process", "label": "sonuc ← x * 2" },
+        { "id": "n4", "shape": "io", "label": "sonuc yaz" },
+        { "id": "n5", "shape": "terminal", "label": "Bitir" }
+      ],
+      "expectedEdges": [
+        { "from": "n1", "to": "n2" },
+        { "from": "n2", "to": "n3" },
+        { "from": "n3", "to": "n4" },
+        { "from": "n4", "to": "n5" }
+      ]
+    },
+    {
+      "id": "2.6-e4",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Bir karar sembolünün \"Hayır\" dalı hiçbir yere bağlanmamışsa şema ne durumdadır?",
+      "options": ["Geçerli", "Geçersiz — dal boşta bırakılmış", "Daha hızlı çalışır", "Fark etmez"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Bağlanmamış bir dal, akışı belirsiz bırakır.",
+        "incorrect": "Her karar dalı bir yere bağlanmalıdır; aksi halde şema geçersizdir."
+      }
+    },
+    {
+      "id": "2.6-e5",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "EĞER komutu, şemada ___ sembolüyle gösterilir.",
+      "options": ["karar", "süreç", "terminal", "girdi/çıktı"],
+      "answer": "karar"
+    },
+    {
+      "id": "2.6-e6",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "Bir süreç sembolünden en fazla kaç ok çıkabilir?",
+      "options": ["0", "1", "2", "Sınırsız"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Süreç sembolünün tek bir çıkışı olmalıdır.",
+        "incorrect": "Süreç sembolünün sadece bir çıkışı olabilir; birden fazlası bir karar sembolü gerektirir."
+      }
+    },
+    {
+      "id": "2.6-e7",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "\"Bir sayının küpünü hesapla\" algoritmasının sözde kod adımlarını doğru sıraya diz.",
+      "steps": ["OKU x", "kup ← x * x * x", "YAZ kup"],
+      "correctOrder": [0, 1, 2]
+    },
+    {
+      "id": "2.6-e8",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Bir şemadaki paralelkenar sembolü hangi iki komuttan birine karşılık gelebilir?",
+      "options": ["EĞER / DEĞİLSE", "OKU / YAZ", "İÇİN / SÜRECE", "SABIT / DEĞİŞKEN"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Girdi/çıktı sembolü OKU veya YAZ komutlarına karşılık gelir.",
+        "incorrect": "Paralelkenar sembolü OKU veya YAZ komutlarından birini temsil eder."
+      }
+    }
+  ],
+  "summary": [
+    "Dünya 2 tamamlandı: şema sembolleri, doğrusal şema, ters çeviri, yaygın hatalar, şema kurma.",
+    "Bu beceriler, Dünya 3'ten itibaren karar yapılarının şemalarını okuyup çizmede kullanılacak.",
+    "Zorlandığın konuları tekrar kuyruğunda tekrar göreceksin."
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "id": "6.5",
+  "worldId": "6",
+  "title": "Karmaşıklık Sezgisi ve Problem Çözme Stratejileri",
+  "estimatedMinutes": 8,
+  "prerequisites": ["6.4"],
+  "objectives": [
+    "Bir algoritmanın girdi büyüdükçe ne kadar yavaşlayacağına dair temel sezgi geliştirir (O(1), O(n), O(n²), O(log n))",
+    "Karşılaştığı yeni bir probleme hangi stratejilerle yaklaşacağını bilir"
+  ],
+  "hook": {
+    "text": "Bir arama algoritmasını 10 elemanlı bir dizide test ettin, hızlı çalıştı. Ya 10 milyon elemanlı bir dizide çalıştırsan — hâlâ hızlı olur mu? Bu, algoritmanın 'karmaşıklığına' bağlı."
+  },
+  "concept": [
+    {
+      "heading": "Büyüme hızı sezgisi",
+      "body": "O(1): girdi boyutundan bağımsız, sabit sürede biter (örn. dizi[0]'a erişmek). O(n): girdi kadar adım gerekir (örn. doğrusal arama, dizide toplama). O(n²): iç içe döngü nedeniyle girdi karesi kadar adım gerekir (örn. kabarcık/seçmeli sıralama). O(log n): her adımda iş yarıya iner (örn. ikili arama) — çok büyük girdilerde bile hızlı kalır.",
+      "visual": { "type": "animation", "component": "growth", "props": { "lines": ["1", "n", "n2"] } }
+    },
+    {
+      "heading": "Problem çözme stratejileri",
+      "body": "Yeni bir probleme şu sorularla yaklaş: (1) Girdi/işlem/çıktı nedir? (2) Daha önce çözdüğüm benzer bir problem var mı (arama, sıralama, sayaç/toplayıcı)? (3) Problemi daha küçük parçalara bölebilir miyim (fonksiyon, özyineleme)? (4) Kaba bir çözümle başlayıp sonra iyileştirebilir miyim?",
+      "visual": { "type": "animation", "component": "steps", "props": { "steps": ["Girdi / işlem / çıktı nedir?", "Benzer bir problem çözdüm mü?", "Küçük parçalara bölebilir miyim?", "Elle dene: izleme tablosu kur"] } }
+    }
+  ],
+  "workedExamples": [],
+  "exercises": [
+    {
+      "id": "6.5-e1",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Bir dizideki ilk elemana erişmek (dizi[0]) hangi karmaşıklığa sahiptir?",
+      "options": ["O(1)", "O(n)", "O(n²)", "O(log n)"],
+      "correctIndex": 0,
+      "feedback": {
+        "correct": "Doğru. Dizi boyutundan bağımsız, her zaman tek adımda erişilir: O(1).",
+        "incorrect": "Bir dizinin herhangi bir indeksine doğrudan erişim, boyuttan bağımsız sabit süre alır: O(1)."
+      }
+    },
+    {
+      "id": "6.5-e2",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Doğrusal arama hangi karmaşıklığa sahiptir?",
+      "options": ["O(1)", "O(n)", "O(n²)", "O(log n)"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. En kötü durumda dizinin tamamı (n eleman) kontrol edilir.",
+        "incorrect": "Doğrusal arama en kötü durumda n elemanı tek tek kontrol eder: O(n)."
+      }
+    },
+    {
+      "id": "6.5-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Kabarcık sıralama (iç içe döngü) hangi karmaşıklığa sahiptir?",
+      "options": ["O(1)", "O(n)", "O(n²)", "O(log n)"],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Doğru. İç içe iki döngü, n×n adıma yol açar: O(n²).",
+        "incorrect": "İki iç içe döngü, girdi büyüklüğünün karesi kadar adım gerektirir: O(n²)."
+      }
+    },
+    {
+      "id": "6.5-e4",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "İkili arama hangi karmaşıklığa sahiptir?",
+      "options": ["O(1)", "O(n)", "O(n²)", "O(log n)"],
+      "correctIndex": 3,
+      "feedback": {
+        "correct": "Doğru. Her adımda arama alanı yarıya indiği için O(log n).",
+        "incorrect": "İkili arama, arama alanını her adımda yarıya indirdiği için O(log n) karmaşıklığa sahiptir."
+      }
+    },
+    {
+      "id": "6.5-e5",
+      "type": "mcq",
+      "difficulty": 3,
+      "question": "1 milyon elemanlı bir dizide hangi algoritma pratikte en hızlı sonuç verir?",
+      "options": [
+        "O(n²) bir sıralama algoritması",
+        "O(n) bir doğrusal arama",
+        "O(log n) bir ikili arama (dizi sıralıysa)",
+        "Hepsi aynı hızda çalışır"
+      ],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Doğru. Büyük girdilerde O(log n), diğerlerinden çarpıcı biçimde hızlıdır.",
+        "incorrect": "Büyük girdilerde O(log n) algoritmalar (ikili arama gibi) O(n) ve özellikle O(n²)'den çok daha hızlıdır."
+      }
+    },
+    {
+      "id": "6.5-e6",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Yeni bir problemle karşılaştığında izlenecek düşünme sırasını doğru diz.",
+      "steps": [
+        "Girdi/işlem/çıktıyı belirle",
+        "Benzer, daha önce çözülmüş bir problem var mı diye düşün",
+        "Problemi daha küçük parçalara böl",
+        "Kaba bir çözümle başla, sonra iyileştir"
+      ],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "6.5-e7",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "\"Karmaşıklık\" (O notasyonu) ne ölçer?",
+      "options": [
+        "Kodun kaç satır olduğunu",
+        "Girdi büyüdükçe algoritmanın ne kadar yavaşlayacağını",
+        "Programın rengini",
+        "Kaç değişken kullanıldığını"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. O notasyonu, girdi büyüklüğü arttıkça çalışma süresinin nasıl büyüdüğünü ifade eder.",
+        "incorrect": "Karmaşıklık, satır sayısını değil, girdi büyüdükçe algoritmanın yavaşlama HIZINI ölçer."
+      }
+    },
+    {
+      "id": "6.5-e8",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "Girdi boyutundan bağımsız, her zaman sabit sürede biten işlemlere ___ karmaşıklık denir.",
+      "options": ["O(1)", "O(n)", "O(n²)", "O(log n)"],
+      "answer": "O(1)"
+    }
+  ],
+  "summary": [
+    "O(1): sabit. O(n): girdi kadar. O(n²): girdi karesi kadar. O(log n): her adımda yarıya iner.",
+    "Büyük girdilerde O(log n) ve O(n), O(n²)'den çok daha hızlıdır.",
+    "Yeni bir problemde: girdi/çıktıyı belirle, benzer bir problem ara, parçala, kaba çözümle başlayıp iyileştir.",
+    "Tebrikler — Algoritma Öğrenme'nin çekirdek müfredatını tamamladın! 🎉"
+  ]
+}

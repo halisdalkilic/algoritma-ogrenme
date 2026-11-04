@@ -1,0 +1,121 @@
+{
+  "id": "5.2",
+  "worldId": "5",
+  "title": "Dizide Gezinme",
+  "estimatedMinutes": 5,
+  "prerequisites": ["5.1"],
+  "objectives": [
+    "Bir diziyi döngü ile baştan sona dolaşır",
+    "Dizinin boyutunu döngü sınırı olarak kullanır"
+  ],
+  "hook": {
+    "text": "Bir dizideki HER elemanı tek tek \"dizi[0]\", \"dizi[1]\", \"dizi[2]\"... diye mi yazacaksın? Artık döngüleri biliyorsun — onları birleştirme zamanı."
+  },
+  "concept": [
+    {
+      "heading": "Döngü + indeks = gezinme",
+      "body": "Bir diziyi dolaşmak için, indeks değişkenini 0'dan dizinin son indeksine kadar döndüren bir İÇİN döngüsü kullanılır: İÇİN i ← 0'DAN (boyut-1)'E ADIM 1. Her turda dizi[i] o turun elemanına erişir.",
+      "visual": { "type": "animation", "component": "array", "props": { "values": [70, 85, 90, 60], "mode": "scan", "name": "notlar" } }
+    },
+    {
+      "heading": "Boyut, sınırı belirler",
+      "body": "N elemanlı bir dizide döngü, i=0'dan i=N-1'e kadar sürmelidir. Eğer i=N'e kadar gidersen (bir fazla), sınır dışı hatası alırsın. Bu, dizilerle çalışırken en sık yapılan hatadır — \"kapalı-aralık\" (fencepost) hatası.",
+      "visual": { "type": "animation", "component": "array", "props": { "values": [70, 85, 90], "mode": "bounds", "name": "notlar" } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "Bir dizideki tüm elemanları sırayla yazdır.",
+      "pseudocode": ["sayilar ← [10, 20, 30]", "İÇİN i ← 0'DAN 2'YE ADIM 1", "  YAZ sayilar[i]", "DÖNGÜ_BİTİR"],
+      "runnerSource": "sayilar ← [10, 20, 30]\nİÇİN i ← 0'DAN 2'YE ADIM 1\n  YAZ sayilar[i]\nDÖNGÜ_BİTİR",
+      "steps": [
+        { "line": 0, "explain": "3 elemanlı dizi oluşturulur." },
+        { "line": 1, "explain": "i, 0'dan 2'ye kadar döner (3 eleman, indeks 0-2)." },
+        { "line": 2, "explain": "Her turda sayilar[i] yazılır: 10, 20, 30.", "output": ["10", "20", "30"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "5.2-e1",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": ["sayilar ← [5, 15, 25, 35]", "İÇİN i ← 0'DAN 3'E ADIM 1", "  YAZ sayilar[i]", "DÖNGÜ_BİTİR"],
+      "correctOutput": ["5", "15", "25", "35"],
+      "hint": "4 elemanlı dizi, indeksler 0'dan 3'e kadar."
+    },
+    {
+      "id": "5.2-e2",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": [
+        "sayilar ← [1, 2, 3, 4]",
+        "toplam ← 0",
+        "İÇİN i ← 0'DAN 3'E ADIM 1",
+        "  toplam ← toplam + sayilar[i]",
+        "DÖNGÜ_BİTİR",
+        "YAZ toplam"
+      ],
+      "correctOutput": ["10"],
+      "hint": "1+2+3+4 = 10."
+    },
+    {
+      "id": "5.2-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "6 elemanlı bir diziyi tam olarak dolaşan döngü sınırı hangisidir?",
+      "options": [
+        "İÇİN i ← 0'DAN 6'YA ADIM 1",
+        "İÇİN i ← 0'DAN 5'E ADIM 1",
+        "İÇİN i ← 1'DEN 6'YA ADIM 1",
+        "İÇİN i ← 1'DEN 5'E ADIM 1"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. 6 elemanlı dizide geçerli indeksler 0'dan 5'e kadardır.",
+        "incorrect": "6 elemanlı bir dizide son geçerli indeks 5'tir (6-1); döngü 0'dan 5'e kadar sürmelidir."
+      }
+    },
+    {
+      "id": "5.2-e4",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "\"İÇİN i ← 0'DAN 6'YA ADIM 1\" ile 6 elemanlı bir diziyi dolaşırsan ne olur?",
+      "options": [
+        "Doğru çalışır",
+        "Son turda dizi[6] sınır dışı hatası verir",
+        "İlk eleman atlanır",
+        "Döngü hiç çalışmaz"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. i=6 olduğunda dizi[6] geçerli değildir (son indeks 5'tir) — sınır dışı hatası.",
+        "incorrect": "i, 6'ya kadar gittiğinde dizi[6]'ya erişilmeye çalışılır; bu geçerli aralığın (0-5) dışındadır."
+      }
+    },
+    {
+      "id": "5.2-e5",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Bir dizideki tüm elemanları yazdıran algoritmanın adımlarını doğru sıraya diz (3 elemanlı dizi).",
+      "steps": ["sayilar ← [4, 8, 12]", "İÇİN i ← 0'DAN 2'YE ADIM 1", "  YAZ sayilar[i]", "DÖNGÜ_BİTİR"],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "5.2-e6",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "Bir diziyi döngüyle dolaşırken, döngü sınırı dizinin ___'undan bir eksik olmalıdır.",
+      "options": ["boyut", "adı", "tipi", "ilk elemanı"],
+      "answer": "boyut"
+    }
+  ],
+  "summary": [
+    "Bir diziyi dolaşmak için i=0'dan boyut-1'e kadar süren bir döngü kullanılır.",
+    "N elemanlı dizide geçerli indeksler 0'dan N-1'e kadardır.",
+    "Döngü sınırını yanlış ayarlamak (fencepost hatası) en sık yapılan dizi hatasıdır."
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "id": "4.4",
+  "worldId": "4",
+  "title": "DO-WHILE",
+  "estimatedMinutes": 5,
+  "prerequisites": ["4.3"],
+  "objectives": [
+    "Understand that DO-WHILE is a post-test loop (body first, check after)",
+    "Tell the difference between WHILE (pre-test) and DO-WHILE (post-test)"
+  ],
+  "hook": {
+    "text": "You want to show a menu at least ONCE, no matter what the user picks. WHILE cannot guarantee that, because it checks the condition first."
+  },
+  "concept": [
+    {
+      "heading": "The post-test loop",
+      "body": "DO-WHILE runs the body ONCE first, THEN checks the condition. If the condition is TRUE, the body runs again; if it is FALSE, the loop ends. This guarantees the body runs AT LEAST ONCE.",
+      "visual": { "type": "animation", "component": "flow", "props": { "kind": "dowhile" } }
+    },
+    {
+      "heading": "How it differs from WHILE",
+      "body": "WHILE checks the condition first, so if the condition is FALSE from the start, the body may never run. DO-WHILE puts the condition at the end, so the body always runs at least once. There is only one difference: the PLACE of the check (before or after).",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "WHILE", "sub": "check first → can run 0 times" }, { "label": "DO-WHILE", "sub": "check after → at least 1 time", "tone": "good" }] } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "Take a menu choice from the user and ask again until they choose to exit (it must be asked at least once).",
+      "pseudocode": ["DO", "  READ choice", "  WRITE \"Your choice: \" + choice", "WHILE choice ≠ \"exit\""],
+      "steps": [
+        { "line": 1, "explain": "The body runs FIRST, because the condition has not been checked yet." },
+        { "line": 2, "explain": "The user's choice is written to the screen." },
+        { "line": 3, "explain": "Only now is the condition checked: if the choice is not \"exit\", the body runs again." }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "4.4-e1",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "What is the main difference between DO-WHILE and WHILE?",
+      "options": [
+        "DO-WHILE never runs",
+        "DO-WHILE checks the condition at the end, so the body runs at least once",
+        "There is no difference between them",
+        "WHILE is always faster"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. In DO-WHILE the check is at the end, so the body is guaranteed to run once.",
+        "incorrect": "The difference is the PLACE where the condition is checked: in DO-WHILE it is at the end, so the body runs at least once."
+      }
+    },
+    {
+      "id": "4.4-e2",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "When choice ← \"exit\", how many times does a WHILE choice ≠ \"exit\" loop run?",
+      "options": ["0 times", "1 time", "Infinitely many times", "It gives an error"],
+      "correctIndex": 0,
+      "feedback": {
+        "correct": "Correct. The condition is FALSE from the start, so the WHILE body never runs.",
+        "incorrect": "WHILE checks the condition first; \"exit\" ≠ \"exit\" is FALSE, so the body never runs."
+      }
+    },
+    {
+      "id": "4.4-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "In the same scenario (choice ← \"exit\"), how many times does a DO-WHILE loop run?",
+      "options": ["0 times", "At least 1 time", "Infinitely many times", "It gives an error"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. DO-WHILE checks the condition AFTER the body, so the body runs at least once.",
+        "incorrect": "By definition, DO-WHILE runs the body first; the condition is checked only after that."
+      }
+    },
+    {
+      "id": "4.4-e4",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Put the order in which a DO-WHILE loop runs in the correct order.",
+      "steps": ["The body runs", "The condition is checked", "If the condition is TRUE, go back to the body", "If the condition is FALSE, the loop ends"],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "4.4-e5",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "A DO-WHILE loop is called a ___-test loop because the condition check is done at the very end.",
+      "options": ["post", "pre", "mid", "double"],
+      "answer": "post"
+    },
+    {
+      "id": "4.4-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Which loop is more natural for the scenario \"show the menu at least once, then repeat until the user wants to quit\"?",
+      "options": ["FOR", "WHILE", "DO-WHILE", "None of them"],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Correct. DO-WHILE is the most natural choice when you need an \"at least once\" guarantee.",
+        "incorrect": "\"It must run at least once\" is exactly what DO-WHILE guarantees."
+      }
+    }
+  ],
+  "summary": [
+    "DO-WHILE: the body runs first, the condition is checked after (post-test).",
+    "WHILE: the condition is checked first (pre-test), and the body may never run.",
+    "If you need something to run at least once, prefer DO-WHILE."
+  ]
+}

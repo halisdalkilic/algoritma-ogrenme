@@ -1,0 +1,133 @@
+{
+  "id": "5.7",
+  "worldId": "5",
+  "title": "Variable Scope",
+  "estimatedMinutes": 6,
+  "prerequisites": ["5.6"],
+  "objectives": [
+    "Tell local and global variables apart",
+    "Understand that an assignment inside a function does not affect an outer variable with the same name"
+  ],
+  "hook": {
+    "text": "You wrote \"x ← 20\" inside a function. Does the x outside the function still keep its old value, or did it change?"
+  },
+  "concept": [
+    {
+      "heading": "Global and local variables",
+      "body": "A global variable can be seen from everywhere in the program. A local variable exists only inside the function where it was DEFINED, and it disappears when the function ends. A function's parameters are local too.",
+      "visual": { "type": "animation", "component": "vars", "props": { "boxes": [{ "name": "x", "tag": "global", "values": [10, 10, 10], "tone": "good" }, { "name": "y", "tag": "local", "values": ["", 5, ""] }], "captions": ["global x is visible everywhere", "the function is running: local y = 5", "the function ended → y is gone"], "ms": 1800 } }
+    },
+    {
+      "heading": "Why doesn't an assignment inside a function affect the outside?",
+      "body": "When you assign a value to a variable inside a function (even if there is a global with the same name), this creates a NEW local variable and does NOT TOUCH the outer global. A function can READ a global variable, but if it writes to it (makes an assignment), it creates its own local copy.",
+      "visual": { "type": "animation", "component": "vars", "props": { "boxes": [{ "name": "x", "tag": "global", "values": [10, 10, 10], "tone": "good" }, { "name": "x", "tag": "inside function", "values": ["", 99, ""] }], "captions": ["global x = 10", "in the function x ← 99 → a NEW local x", "outside, x is still 10 ✓"], "ms": 1800 } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "Make an assignment to a variable with the same name inside a function. Does the outer variable change?",
+      "pseudocode": [
+        "x ← 10",
+        "FUNCTION change()",
+        "  x ← 20",
+        "END",
+        "result ← change()",
+        "WRITE x"
+      ],
+      "runnerSource": "x ← 10\nFUNCTION change()\n  x ← 20\nEND\nresult ← change()\nWRITE x",
+      "steps": [
+        { "line": 0, "explain": "The global x becomes 10." },
+        { "line": 2, "explain": "Inside the function, x ← 20 runs, but this is a LOCAL x and does not touch the global x." },
+        { "line": 5, "explain": "After the function ends and the local x is gone, WRITE x prints the global x (10).", "output": ["10"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "5.7-e1",
+      "type": "predict-output",
+      "difficulty": 3,
+      "question": "What does this code write to the screen?",
+      "pseudocode": [
+        "number ← 5",
+        "FUNCTION doubleIt()",
+        "  number ← number * 2",
+        "END",
+        "result ← doubleIt()",
+        "WRITE number"
+      ],
+      "correctOutput": ["5"],
+      "hint": "The 'number ← number * 2' inside the function creates a new local number, NOT the outer global number."
+    },
+    {
+      "id": "5.7-e2",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "What does this code write to the screen?",
+      "pseudocode": [
+        "factor ← 3",
+        "FUNCTION triple(x)",
+        "  RETURN x * factor",
+        "END",
+        "WRITE triple(5)"
+      ],
+      "correctOutput": ["15"],
+      "hint": "A function can READ a global variable (factor) that it did not define."
+    },
+    {
+      "id": "5.7-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "What scope are a function's parameters in?",
+      "options": ["Global", "Local", "Both", "Neither"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. Parameters are local variables that exist only inside that function call.",
+        "incorrect": "Parameters are local: they exist only for the duration of the function call where they are defined."
+      }
+    },
+    {
+      "id": "5.7-e4",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Can a function reach a global variable that it did not define (it only reads it)?",
+      "options": ["Yes, it can read it", "No, never", "Only if it is a CONST", "Only if it is a parameter"],
+      "correctIndex": 0,
+      "feedback": {
+        "correct": "Correct. Functions can read global variables that they do not assign to themselves.",
+        "incorrect": "A function can read global variables as long as it has not created its own local copy."
+      }
+    },
+    {
+      "id": "5.7-e5",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "A variable that exists only inside the function where it was defined is called a ___ variable.",
+      "options": ["local", "global", "constant", "static"],
+      "answer": "local"
+    },
+    {
+      "id": "5.7-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "What is the best answer to the question \"Why are local variables useful?\"",
+      "options": [
+        "They slow the program down",
+        "Changes inside a function do not accidentally break the rest of the program",
+        "They have no use",
+        "They only work with numbers"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. Local variables prevent side effects by isolating functions from each other and from the global code.",
+        "incorrect": "The biggest benefit of local variables is that changes inside a function do not accidentally affect the outside."
+      }
+    }
+  ],
+  "summary": [
+    "Global variable: visible everywhere. Local variable: exists only inside the function where it was defined.",
+    "Assigning to a variable inside a function creates a NEW local variable, even if a global with the same name exists.",
+    "A function can read global variables that it does not assign to itself."
+  ]
+}

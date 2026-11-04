@@ -1,0 +1,128 @@
+{
+  "id": "2.4",
+  "worldId": "2",
+  "title": "Sık Yapılan Şema Hataları",
+  "estimatedMinutes": 4,
+  "prerequisites": ["2.3"],
+  "objectives": [
+    "Yaygın akış şeması hatalarını (kapanmayan dallar, çift çıkışlı süreç) tanır",
+    "Bir şemanın geçerli olup olmadığını değerlendirir"
+  ],
+  "hook": {
+    "text": "Bir şema \"güzel görünmesi\" yetmez — kurallara uymazsa hiç çalışmayan bir algoritmayı temsil eder."
+  },
+  "concept": [
+    {
+      "heading": "Kapanmayan dallar",
+      "body": "Bir karar (EĞER) sembolünün İKİ çıkışı da (Evet/Hayır) bir yere bağlanmalıdır. Bir dal hiçbir yere bağlanmadan \"havada\" bırakılırsa, o durumda ne olacağı belirsiz kalır — bu geçersiz bir şemadır.",
+      "visual": { "type": "animation", "component": "flow", "props": { "kind": "open-branch" } }
+    },
+    {
+      "heading": "Çift çıkışlı süreç",
+      "body": "Bir süreç (dikdörtgen) sembolünün SADECE BİR çıkışı olmalıdır. Bir süreçten iki ok çıkıyorsa, bu bir tasarım hatasıdır — birden fazla çıkışa izin veren tek sembol karardır (eşkenar dörtgen).",
+      "visual": { "type": "animation", "component": "flow", "props": { "kind": "double-exit" } }
+    }
+  ],
+  "workedExamples": [],
+  "exercises": [
+    {
+      "id": "2.4-e1",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Bir EĞER sembolünün \"Hayır\" çıkışı hiçbir yere bağlanmamışsa ne olur?",
+      "options": [
+        "Sorun olmaz, çıktı otomatik boş olur",
+        "Şema geçersizdir çünkü o durumda ne olacağı belirsiz kalır",
+        "Program iki katı hızlı çalışır",
+        "Hiçbir zaman \"Hayır\" durumu oluşmaz"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Her karar dalı bir yere bağlanmalı, aksi halde akış belirsiz kalır.",
+        "incorrect": "Bağlanmamış bir dal, o duruma girildiğinde ne olacağını belirsiz bırakır — şema geçersizdir."
+      }
+    },
+    {
+      "id": "2.4-e2",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Bir süreç (dikdörtgen) sembolünden iki farklı ok çıkıyorsa bu ne anlama gelir?",
+      "options": [
+        "Normal bir durumdur",
+        "Süreç sembolü aslında bir karar sembolü olmalıydı — tasarım hatası",
+        "İki işlem aynı anda yapılıyor demektir",
+        "Şema daha hızlı çalışır"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Birden fazla çıkışa sadece karar (eşkenar dörtgen) sembolü izin verir.",
+        "incorrect": "Süreç sembolünün tek çıkışı olmalıdır; birden fazla çıkış gerekiyorsa orada bir karar sembolü olmalıdır."
+      }
+    },
+    {
+      "id": "2.4-e3",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "Bir şemada \"Bitir\" terminali hiç yoksa ne olur?",
+      "options": [
+        "Şema geçerlidir, sorun yok",
+        "Algoritmanın ne zaman sonlanacağı belirsizdir — sonluluk ilkesi ihlal edilir",
+        "Şema otomatik olarak tamamlanır",
+        "Sadece görsel bir eksikliktir, mantıksal sorun yoktur"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. \"Bitir\" olmadan algoritmanın sonlanacağı garanti edilmez.",
+        "incorrect": "Bir \"Bitir\" terminali olmadan, algoritmanın sonluluk özelliği (bir noktada bitmesi) sağlanamaz."
+      }
+    },
+    {
+      "id": "2.4-e4",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "Bir karar sembolünün her iki dalı da (Evet ve Hayır) bir yere ___ olmalıdır.",
+      "options": ["bağlı", "boş", "renkli", "kesik"],
+      "answer": "bağlı"
+    },
+    {
+      "id": "2.4-e5",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "İki karar sembolü birbirine bağlıyken hangisi bir hatadır?",
+      "options": [
+        "Bu geçerlidir, iç içe kararlar normaldir",
+        "Kararların art arda gelmesi her zaman yasaktır",
+        "Sadece terminal semboller art arda gelebilir",
+        "Süreç sembolleri asla karardan sonra gelemez"
+      ],
+      "correctIndex": 0,
+      "feedback": {
+        "correct": "Doğru. İç içe (ardışık) kararlar tamamen geçerlidir — 3.3'te bunu detaylı göreceksin.",
+        "incorrect": "Ardışık veya iç içe kararlar geçerlidir; şema kuralları bunu yasaklamaz."
+      }
+    },
+    {
+      "id": "2.4-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Bir şemada aynı sembole birden fazla ok GİRİYORSA (örneğin bir döngü başı) bu bir hata mıdır?",
+      "options": [
+        "Evet, her zaman hatadır",
+        "Hayır, döngülerde ve birleşen dallarda bu normaldir",
+        "Sadece terminal sembollerinde hatadır",
+        "Sadece karar sembollerinde hatadır"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Bir sembole birden fazla ok girmesi (örn. döngü başlangıcı) tamamen normaldir.",
+        "incorrect": "Bir sembole birden fazla ok girebilir — bu, döngülerde ve birleşen dallarda normaldir; hata olan, ÇIKIŞ oklarının kuralı ihlal etmesidir."
+      }
+    }
+  ],
+  "summary": [
+    "Her karar dalı (Evet/Hayır) mutlaka bir yere bağlanmalıdır.",
+    "Bir süreç sembolünün sadece bir çıkışı olabilir; birden fazla çıkış gerekiyorsa orada bir karar olmalıdır.",
+    "Her şemada tam olarak bir Başla, en az bir Bitir olmalıdır."
+  ]
+}

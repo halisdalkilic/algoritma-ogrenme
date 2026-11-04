@@ -1,0 +1,109 @@
+{
+  "id": "1.3",
+  "worldId": "1",
+  "title": "Atama İşlemi",
+  "estimatedMinutes": 5,
+  "prerequisites": ["1.2"],
+  "objectives": [
+    "← atama operatörünün anlamını kavrar",
+    "a ← a + 1 gibi kendine referanslı atamaları doğru yorumlar"
+  ],
+  "hook": {
+    "text": "Matematikte \"a = a + 1\" imkansız görünür. Ama algoritmada tamamen normaldir. Neden?"
+  },
+  "concept": [
+    {
+      "heading": "← okuma yönü: sağdan sola",
+      "body": "a ← 5 ifadesi \"a EŞİTTİR 5\" değil, \"5 değerini a kutusuna KOY\" demektir. Atama her zaman sağdaki değeri hesaplar, sonra sonucu soldaki kutuya yerleştirir.",
+      "visual": { "type": "animation", "component": "vars", "props": { "boxes": [{ "name": "a", "values": ["", 5] }], "captions": ["a ← 5 : sağdan sola okunur", "5 değeri a kutusuna KONDU"] } }
+    },
+    {
+      "heading": "a ← a + 1 nasıl çalışır?",
+      "body": "Önce sağ taraf hesaplanır: a'nın ŞU ANKİ değeri alınır ve 1 eklenir. Sonra bu yeni sonuç, a kutusuna geri konur ve eski değerin üzerine yazılır. Matematiksel eşitlik değil, bir GÜNCELLEME işlemidir.",
+      "visual": { "type": "animation", "component": "vars", "props": { "boxes": [{ "name": "a", "values": [5, 5, 6] }], "captions": ["şu an a = 5", "önce sağ taraf: a + 1 = 6", "a ← 6 (eski 5'in üzerine yazıldı)"] } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "a ← 5 sonra a ← a + 1 çalıştırılırsa a'nın son değeri nedir?",
+      "pseudocode": ["a ← 5", "a ← a + 1", "YAZ a"],
+      "steps": [
+        { "line": 0, "explain": "a kutusuna 5 konur.", "vars": { "a": 5 } },
+        { "line": 1, "explain": "Sağ taraf hesaplanır: a(5) + 1 = 6. Sonuç a'ya yazılır.", "vars": { "a": 6 } },
+        { "line": 2, "explain": "Ekrana 6 yazılır.", "vars": { "a": 6 }, "output": ["6"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "1.3-e1",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "a ← 5 ifadesi ne anlama gelir?",
+      "options": ["a, 5'e eşit mi diye kontrol et", "5 değerini a kutusuna koy", "a'yı 5 ile karşılaştır", "5'i a'dan çıkar"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. ← operatörü, sağdaki değeri soldaki kutuya yerleştirir.",
+        "incorrect": "← bir karşılaştırma değil, bir atamadır: sağdaki değer sol kutuya konur."
+      }
+    },
+    {
+      "id": "1.3-e2",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "Bu kod parçası ekrana hangi sayıyı yazar?",
+      "pseudocode": ["sayi ← 10", "sayi ← sayi + 5", "YAZ sayi"],
+      "correctOutput": ["15"],
+      "hint": "Önce sayi'nın mevcut değerine 5 ekle, sonra sonucu sayi'ya yaz."
+    },
+    {
+      "id": "1.3-e3",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "Bu kod parçası ekrana hangi sayıyı yazar?",
+      "pseudocode": ["x ← 2", "x ← x * 3", "x ← x - 1", "YAZ x"],
+      "correctOutput": ["5"],
+      "hint": "Adım adım ilerle: 2 → çarpma → çıkarma."
+    },
+    {
+      "id": "1.3-e4",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "a ← a + 1 ifadesi matematikteki \"a = a + 1\" eşitliğinden nasıl farklıdır?",
+      "options": [
+        "Farkı yoktur, ikisi de aynı şeydir",
+        "Matematikte bu bir eşitlik değildir ama algoritmada bir güncelleme işlemidir",
+        "Algoritmada bu işlem yasaktır",
+        "Matematikte hep doğrudur"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Algoritmada ← bir eşitlik değil, sırayla çalışan bir güncelleme komutudur.",
+        "incorrect": "Matematikte a=a+1 imkansızdır (0=1 çıkar); algoritmada ise a'yı güncelleyen bir komuttur."
+      }
+    },
+    {
+      "id": "1.3-e5",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "a ← b ifadesinde önce ___ tarafı hesaplanır, sonra sonuç sol tarafa yazılır.",
+      "options": ["sağ", "sol", "üst", "alt"],
+      "answer": "sağ"
+    },
+    {
+      "id": "1.3-e6",
+      "type": "predict-output",
+      "difficulty": 1,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": ["ad ← \"Ali\"", "ad ← \"Veli\"", "YAZ ad"],
+      "correctOutput": ["Veli"],
+      "hint": "Son atanan değer, kutudaki değeri değiştirir."
+    }
+  ],
+  "summary": [
+    "← operatörü sağdaki değeri hesaplar ve soldaki kutuya yazar; bir eşitlik değildir.",
+    "a ← a + 1, a'nın eski değerini okur, 1 ekler, sonucu tekrar a'ya yazar.",
+    "Bir değişkene yeni değer atandığında eski değer kalıcı olarak silinir."
+  ]
+}

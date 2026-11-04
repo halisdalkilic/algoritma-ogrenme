@@ -1,0 +1,108 @@
+{
+  "id": "1.1",
+  "worldId": "1",
+  "title": "Değişken Kavramı",
+  "estimatedMinutes": 5,
+  "prerequisites": ["0.4"],
+  "objectives": [
+    "Değişkeni bir 'kutu' olarak tanımlar",
+    "Geçerli ve geçersiz değişken isimlerini ayırt eder"
+  ],
+  "hook": {
+    "text": "Bir algoritmanın bir bilgiyi hatırlaması gerekiyor: yaşını, adını, hesapladığı bir toplamı. Bu bilgiyi nerede saklayacak?"
+  },
+  "concept": [
+    {
+      "heading": "Değişken = etiketli kutu",
+      "body": "Değişken, içine bir değer koyabildiğin, üzerinde ismi yazan bir kutu gibi düşünülebilir. \"yas\" adlı bir kutuya 20 değerini koyarsın; algoritma her \"yas\" dediğinde o kutunun içine bakar.",
+      "visual": { "type": "animation", "component": "vars", "props": { "boxes": [{ "name": "yas", "values": ["", 20, 21] }], "captions": ["yas adında boş bir kutu", "yas ← 20", "yas ← 21 (eski değer silinir)"] } }
+    },
+    {
+      "heading": "İsimlendirme kuralları",
+      "body": "Değişken isimleri harfle başlamalı, boşluk içermemeli ve anlamlı olmalıdır. \"yas\" iyi bir isimdir, \"1yas\" veya \"ya s\" geçersizdir. Anlamlı isimler (toplam, sayac) kodun okunabilirliğini artırır.",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "yas", "sub": "geçerli ✓", "tone": "good" }, { "label": "toplam", "sub": "geçerli ✓", "tone": "good" }, { "label": "1yas", "sub": "rakamla başlıyor ✗", "tone": "bad" }, { "label": "ya s", "sub": "boşluk var ✗", "tone": "bad" }] } }
+    }
+  ],
+  "workedExamples": [],
+  "exercises": [
+    {
+      "id": "1.1-e1",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "Değişken en iyi hangisine benzetilebilir?",
+      "options": ["Sabit bir duvar yazısına", "İçine değer konulup çıkarılabilen etiketli bir kutuya", "Bir algoritmanın adına", "Bir ekran görüntüsüne"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Değişken, içeriği değişebilen, etiketli bir kutudur.",
+        "incorrect": "Değişken; içine değer konup değiştirilebilen, üzerinde ismi yazan bir kutu gibidir."
+      }
+    },
+    {
+      "id": "1.1-e2",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "Aşağıdakilerden hangisi geçerli bir değişken ismidir?",
+      "options": ["1sayi", "toplam_puan", "top lam", "ad-soyad"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Harfle başlıyor, boşluk ve özel karakter içermiyor.",
+        "incorrect": "Değişken ismi rakamla başlayamaz, boşluk veya '-' içeremez. \"toplam_puan\" geçerlidir."
+      }
+    },
+    {
+      "id": "1.1-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "\"x\" yerine \"ogrenciSayisi\" kullanmanın avantajı nedir?",
+      "options": [
+        "Daha hızlı çalışır",
+        "Daha az yer kaplar",
+        "Kodun ne işe yaradığı daha kolay anlaşılır",
+        "Hiçbir avantajı yoktur"
+      ],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Doğru. Anlamlı isimler okunabilirliği artırır, hızı etkilemez.",
+        "incorrect": "Anlamlı isim seçmek çalışma hızını değil, okunabilirliği etkiler."
+      }
+    },
+    {
+      "id": "1.1-e4",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "Bir değişken ismi mutlaka bir ___ ile başlamalıdır.",
+      "options": ["harf", "rakam", "boşluk", "sembol"],
+      "answer": "harf"
+    },
+    {
+      "id": "1.1-e5",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "\"yas\" adlı kutuya önce 20, sonra 21 değeri konulursa kutuda ne kalır?",
+      "options": ["20", "21", "20 ve 21 birlikte", "Kutu boşalır"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Yeni değer eskisinin üzerine yazılır, sadece son değer kalır.",
+        "incorrect": "Bir değişkene yeni değer atandığında eski değer kaybolur; sadece 21 kalır."
+      }
+    },
+    {
+      "id": "1.1-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Bir öğrencinin notunu saklamak için hangi isim en uygundur?",
+      "options": ["n", "not1234567", "notOrtalamasi", "değişken1"],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Doğru. Kısa ama ne olduğunu açıkça belirten bir isimdir.",
+        "incorrect": "İyi bir isim hem kısa hem de neyi tuttuğunu açıkça belirtir: notOrtalamasi."
+      }
+    }
+  ],
+  "summary": [
+    "Değişken, içine değer konulabilen, üzerinde ismi yazan bir kutudur.",
+    "İsimler harfle başlamalı, boşluk içermemeli, anlamlı olmalıdır.",
+    "Bir değişkene yeni değer atandığında eski değer kaybolur."
+  ]
+}

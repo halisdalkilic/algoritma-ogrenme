@@ -1,0 +1,129 @@
+{
+  "id": "3.7",
+  "worldId": "3",
+  "title": "Checkpoint: World 3",
+  "estimatedMinutes": 7,
+  "prerequisites": ["3.6"],
+  "objectives": [
+    "Apply everything learned in World 3 (comparison, IF/ELSE, nested decisions, logical operators, CASE, decision mistakes) together"
+  ],
+  "hook": {
+    "text": "You have reached the end of World 3. Now it is time to test decision structures with mixed questions."
+  },
+  "concept": [
+    {
+      "heading": "Checkpoint",
+      "body": "This lesson does not teach a new topic; it reinforces what you have learned. The questions below test comparison, IF/ELSE, nested decisions, logical operators, and decision mistakes in a mix.",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "Comparison" }, { "label": "IF / ELSE" }, { "label": "Nested decision" }, { "label": "AND / OR / NOT" }, { "label": "Decision mistakes" }] } }
+    }
+  ],
+  "workedExamples": [],
+  "exercises": [
+    {
+      "id": "3.7-e1",
+      "type": "predict-output",
+      "difficulty": 1,
+      "question": "What does this code write to the screen?",
+      "pseudocode": ["WRITE 8 ≥ 8"],
+      "correctOutput": ["TRUE"],
+      "hint": "≥ includes the equal case too."
+    },
+    {
+      "id": "3.7-e2",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "When grade ← 55, what does this code write to the screen?",
+      "pseudocode": ["grade ← 55", "IF grade ≥ 50", "  WRITE \"Passed\"", "ELSE", "  WRITE \"Failed\"", "END"],
+      "correctOutput": ["Passed"],
+      "hint": "55 ≥ 50 is TRUE."
+    },
+    {
+      "id": "3.7-e3",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "When age ← 25 and isStudent ← FALSE, what does this code write to the screen?",
+      "pseudocode": [
+        "age ← 25",
+        "isStudent ← FALSE",
+        "IF isStudent AND age ≥ 18",
+        "  WRITE \"Discount\"",
+        "ELSE",
+        "  WRITE \"Regular\"",
+        "END"
+      ],
+      "correctOutput": ["Regular"],
+      "hint": "For AND, both conditions must be TRUE; isStudent is FALSE."
+    },
+    {
+      "id": "3.7-e4",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "When grade ← 72, what does this code write to the screen?",
+      "pseudocode": [
+        "grade ← 72",
+        "IF grade ≥ 90",
+        "  WRITE \"AA\"",
+        "ELSE",
+        "  IF grade ≥ 70",
+        "    WRITE \"BA\"",
+        "  ELSE",
+        "    WRITE \"CC\"",
+        "  END",
+        "END"
+      ],
+      "correctOutput": ["BA"],
+      "hint": "72 ≥ 90 is FALSE, but 72 ≥ 70 is TRUE."
+    },
+    {
+      "id": "3.7-e5",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "When is the expression \"A OR B\" FALSE?",
+      "options": ["When both A and B are TRUE", "When both A and B are FALSE", "When only A is TRUE", "It is never FALSE"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. OR gives FALSE only if both conditions are FALSE.",
+        "incorrect": "An OR expression is FALSE only when BOTH A and B are FALSE."
+      }
+    },
+    {
+      "id": "3.7-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "What happens if a broad condition (e.g. ≥0) is written before a narrow condition (e.g. ≥18) in an IF chain?",
+      "options": [
+        "The narrow condition can never be tested on its own: an unreachable branch",
+        "There is no problem",
+        "The broad condition never runs",
+        "The program gives an error"
+      ],
+      "correctIndex": 0,
+      "feedback": {
+        "correct": "Correct. The broad condition \"catches\" the narrow one, so the narrow condition can never be tested on its own.",
+        "incorrect": "If a broad condition is written first, the narrow condition after it can never be evaluated on its own."
+      }
+    },
+    {
+      "id": "3.7-e7",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Put the steps of the algorithm that finds whether a number is even or odd in the correct order.",
+      "steps": ["READ number", "IF number MOD 2 = 0", "  WRITE \"Even\"", "ELSE", "  WRITE \"Odd\"", "END"],
+      "correctOrder": [0, 1, 2, 3, 4, 5]
+    },
+    {
+      "id": "3.7-e8",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "A CASE structure is, behind the scenes, an IF chain that makes consecutive equality checks using the ___ variable.",
+      "options": ["same", "different", "random", "non-constant"],
+      "answer": "same"
+    }
+  ],
+  "summary": [
+    "World 3 complete: comparison operators, IF/ELSE, nested decisions, logical operators, CASE, decision mistakes.",
+    "These skills will be used directly in the condition part of the loops you will learn in World 4.",
+    "You will see the topics you struggled with again in your review queue."
+  ]
+}

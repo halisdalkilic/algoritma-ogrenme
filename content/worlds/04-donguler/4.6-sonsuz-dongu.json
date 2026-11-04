@@ -1,0 +1,130 @@
+{
+  "id": "4.6",
+  "worldId": "4",
+  "title": "Sonsuz Döngü ve Kaçış",
+  "estimatedMinutes": 4,
+  "prerequisites": ["4.5"],
+  "objectives": [
+    "Bir döngünün neden sonsuza kadar çalışabileceğini açıklar",
+    "Sonsuz döngüden nasıl kaçınılacağını bilir"
+  ],
+  "hook": {
+    "text": "Bir SÜRECE döngüsü içinde sayacı artırmayı unutursan ne olur? Bilgisayarın donmuş gibi görünür — aslında sonsuza kadar aynı işi tekrarlıyordur."
+  },
+  "concept": [
+    {
+      "heading": "Sonsuz döngü neden oluşur?",
+      "body": "Bir SÜRECE döngüsünün koşulu HİÇBİR ZAMAN YANLIŞ olmuyorsa, döngü asla bitmez. En yaygın sebep: döngü içinde koşulu etkileyen değişkenin güncellenmeyi unutulmasıdır (örn. sayac ← sayac + 1 satırının eksik olması).",
+      "visual": { "type": "animation", "component": "loop", "props": { "variant": "infinite" } }
+    },
+    {
+      "heading": "Nasıl kaçınılır?",
+      "body": "Her SÜRECE (ve DO-WHILE) yazarken kendine sor: \"Bu koşulu YANLIŞ yapacak bir güncelleme var mı, ve bu güncelleme gerçekten çalışıyor mu?\" Sonluluk ilkesini (bölüm 0.2) hatırla — bir algoritma mutlaka bitmelidir.",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "sayac ← sayac + 1", "sub": "güncelleme var ✓", "tone": "good" }, { "label": "koşul bir gün YANLIŞ olur", "sub": "döngü biter ✓", "tone": "good" }] } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "Bu döngüde sayaç hiç güncellenmiyor — ne olur? (Uyarı: bu kasıtlı bir hata örneğidir.)",
+      "pseudocode": ["i ← 0", "SÜRECE i < 5", "  YAZ i", "DÖNGÜ_BİTİR"],
+      "runnerSource": "i ← 0\nSÜRECE i < 5\n  YAZ i\nDÖNGÜ_BİTİR",
+      "steps": [
+        { "line": 0, "explain": "i, 0 olarak başlar." },
+        { "line": 1, "explain": "i < 5 DOĞRU, döngüye girilir." },
+        { "line": 2, "explain": "0 yazılır. Ama i HİÇ değişmiyor — koşul hep DOĞRU kalacak!" }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "4.6-e1",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Yukarıdaki çözümlü örnekteki döngü neden asla bitmez?",
+      "options": [
+        "Çünkü i bir metin değişkenidir",
+        "Çünkü döngü içinde i hiç güncellenmiyor, koşul hep DOĞRU kalıyor",
+        "Çünkü YAZ komutu hatalıdır",
+        "Aslında bu döngü 5 kere çalışıp biter"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. i güncellenmediği için i < 5 koşulu asla YANLIŞ olmaz.",
+        "incorrect": "Sorun, i değişkeninin döngü içinde hiç değiştirilmemesidir — koşul sonsuza kadar DOĞRU kalır."
+      }
+    },
+    {
+      "id": "4.6-e2",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "Bir SÜRECE döngüsü yazarken, koşulu etkileyen değişkenin döngü içinde ___ emin olmalısın.",
+      "options": ["güncellendiğinden", "sabit kaldığından", "silindiğinden", "yazdırıldığından"],
+      "answer": "güncellendiğinden"
+    },
+    {
+      "id": "4.6-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "\"SÜRECE DOĞRU ... DÖNGÜ_BİTİR\" (koşulu her zaman DOĞRU olan bir döngü) ne zaman geçerli bir kullanım olabilir?",
+      "options": [
+        "Asla, her zaman hatadır",
+        "Döngü içinde başka bir mekanizmayla (örn. bir EĞER ile koşullu çıkış) sonlandırılıyorsa",
+        "Sadece FOR döngüsüyle birlikte kullanıldığında",
+        "Sadece hiç çalıştırılmadığında"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Bazı dillerde \"kır\" (break) gibi bir çıkış mekanizmasıyla kontrollü kullanılabilir; ama bu ileri bir konudur ve dikkat gerektirir.",
+        "incorrect": "Kasıtlı sonsuz döngüler, içeride başka bir sonlandırma mekanizması varsa kullanılabilir — ama dikkatli olunmalıdır."
+      }
+    },
+    {
+      "id": "4.6-e4",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "Sonsuz döngü hangi algoritma özelliğini ihlal eder?",
+      "options": ["Kesinlik", "Sonluluk", "Girdi/Çıktı", "Etkinlik"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Bir algoritma mutlaka bir noktada bitmelidir — sonluluk ilkesi.",
+        "incorrect": "Sonsuz döngü, bir algoritmanın bitmesi gerektiğini söyleyen sonluluk ilkesini ihlal eder."
+      }
+    },
+    {
+      "id": "4.6-e5",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Bir SÜRECE döngüsü yazarken hata ayıklama sürecini doğru sıraya diz.",
+      "steps": [
+        "Döngünün koşulunu belirle",
+        "Koşulu etkileyen değişkeni bul",
+        "O değişkenin döngü içinde güncellendiğini doğrula",
+        "Güncelleme yönünün koşulu YANLIŞ yapacak yönde olduğunu kontrol et"
+      ],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "4.6-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "\"İÇİN i ← 1'DEN 10'A ADIM -1\" (adım negatif ama başlangıç bitişten küçük) döngüsü ne olur?",
+      "options": [
+        "10 kere çalışır",
+        "Hiç çalışmaz (koşul baştan sağlanmaz)",
+        "Sonsuz döngüye girer",
+        "Hata verir"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Adım negatifken başlangıç bitişten küçükse, döngü koşulu hiç sağlanmaz ve gövde çalışmaz.",
+        "incorrect": "Sayaçlı döngüde adım yönü ile başlangıç/bitiş ilişkisi uyuşmazsa, döngü hiç çalışmaz — sonsuz döngüye girmez."
+      }
+    }
+  ],
+  "summary": [
+    "Sonsuz döngü, koşulu hiçbir zaman YANLIŞ yapmayan bir döngüdür.",
+    "En yaygın sebep: koşulu etkileyen değişkenin döngü içinde güncellenmeyi unutulmasıdır.",
+    "Her döngü yazarken \"bu gerçekten bitecek mi?\" sorusunu sor."
+  ]
+}

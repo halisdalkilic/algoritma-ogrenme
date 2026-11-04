@@ -1,0 +1,116 @@
+{
+  "id": "5.1",
+  "worldId": "5",
+  "title": "What an Array Is",
+  "estimatedMinutes": 5,
+  "prerequisites": ["4.9"],
+  "objectives": [
+    "Recognize an array as an ordered structure that holds several values of the same type",
+    "Understand the concept of an index and that it starts at 0"
+  ],
+  "hook": {
+    "text": "You want to store the grades of 30 students. Will you create 30 separate variables called grade1, grade2, grade3...?"
+  },
+  "concept": [
+    {
+      "heading": "Array: an ordered group of boxes",
+      "body": "An array holds several values of the same type under a SINGLE name, in order. When you write grades ← [70, 85, 90], one group of boxes named grades is created, and three separate values are lined up inside it.",
+      "visual": { "type": "animation", "component": "array", "props": { "values": [70, 85, 90], "mode": "index", "name": "grades" } }
+    },
+    {
+      "heading": "Index: the address of an element",
+      "body": "You reach each element in an array through its INDEX (position number). In this lesson and in the Step Runner, arrays start at 0: grades[0] is the first element and grades[1] is the second element. The SIZE of an array (how many elements it holds) is different from its last valid index (size - 1).",
+      "visual": { "type": "animation", "component": "array", "props": { "values": [70, 85, 90], "mode": "index", "name": "grades" } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "Create an array and reach one of its elements.",
+      "pseudocode": ["grades ← [70, 85, 90]", "WRITE grades[0]", "WRITE grades[2]"],
+      "runnerSource": "grades ← [70, 85, 90]\nWRITE grades[0]\nWRITE grades[2]",
+      "steps": [
+        { "line": 0, "explain": "The grades array is created with 3 elements: [70, 85, 90]." },
+        { "line": 1, "explain": "grades[0] is the first element: 70.", "output": ["70"] },
+        { "line": 2, "explain": "grades[2] is the THIRD element (index 2): 90.", "output": ["70", "90"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "5.1-e1",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "In the array numbers ← [10, 20, 30], what value is numbers[0]?",
+      "options": ["10", "20", "30", "Undefined"],
+      "correctIndex": 0,
+      "feedback": {
+        "correct": "Correct. Index 0 matches the FIRST element of the array.",
+        "incorrect": "Arrays start at 0; index 0 points to the first element (10)."
+      }
+    },
+    {
+      "id": "5.1-e2",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "What does this code write to the screen?",
+      "pseudocode": ["colors ← [\"red\", \"green\", \"blue\"]", "WRITE colors[1]"],
+      "correctOutput": ["green"],
+      "hint": "Index 1 is the SECOND element of the array."
+    },
+    {
+      "id": "5.1-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "What is the index of the last element of an array with 5 elements?",
+      "options": ["5", "4", "6", "0"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. Since it starts at 0, the last index is size - 1: 5 - 1 = 4.",
+        "incorrect": "Since arrays start at 0, the last index of an array with 5 elements is 5 - 1 = 4."
+      }
+    },
+    {
+      "id": "5.1-e4",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "What happens if you try to reach array[5] in an array with 5 elements?",
+      "options": [
+        "It gives the last element",
+        "It gives an out-of-bounds error (the index should have been between 0 and 4)",
+        "It returns 0",
+        "It makes the array bigger"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. Valid indexes go from 0 to 4; 5 is out of bounds.",
+        "incorrect": "In an array with 5 elements, the valid indexes are 0 to 4, so array[5] goes out of bounds."
+      }
+    },
+    {
+      "id": "5.1-e5",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "The position number of an element in an array is called its ___.",
+      "options": ["index", "variable", "constant", "operator"],
+      "answer": "index"
+    },
+    {
+      "id": "5.1-e6",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "Which structure is the best fit for storing the grades of 30 students?",
+      "options": ["30 separate variables", "A single array", "A single constant", "A single boolean variable"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. An array holds many values of the same type under a single name.",
+        "incorrect": "Instead of 30 separate variables, using a single array (grades[0]...grades[29]) is much easier to manage."
+      }
+    }
+  ],
+  "summary": [
+    "Array: a structure that holds several values of the same type in order under a single name.",
+    "Index: the position number of an element in the array, and it starts at 0.",
+    "In an array of N elements, the valid indexes go from 0 to N - 1."
+  ]
+}

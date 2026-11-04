@@ -1,0 +1,124 @@
+{
+  "id": "4.1",
+  "worldId": "4",
+  "title": "Tekrar İhtiyacı",
+  "estimatedMinutes": 4,
+  "prerequisites": ["3.7"],
+  "objectives": [
+    "Aynı işlemi tekrar tekrar yapmanın kopyala-yapıştır kodla neden sorunlu olduğunu açıklar",
+    "Döngü ihtiyacını doğuran problem örneklerini tanır"
+  ],
+  "hook": {
+    "text": "1'den 100'e kadar sayıları toplamak istiyorsun. 100 satır \"toplam ← toplam + sayi\" mı yazacaksın?"
+  },
+  "concept": [
+    {
+      "heading": "Kopyala-yapıştır kodun sorunu",
+      "body": "\"YAZ 1\", \"YAZ 2\", \"YAZ 3\" ... şeklinde 100 satır yazmak üç sorun doğurur: (1) çok uzun ve okunması zor olur, (2) bir hatayı düzeltmek için 100 satırı tek tek değiştirmek gerekir, (3) sayı 1000'e çıkarsa tüm kodu yeniden yazman gerekir.",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "YAZ 1" }, { "label": "YAZ 2" }, { "label": "YAZ 3" }, { "label": "…" }, { "label": "YAZ 100", "sub": "100 satır! ✗", "tone": "bad" }] } }
+    },
+    {
+      "heading": "Döngü: tekrarı otomatikleştirmek",
+      "body": "Döngü, \"bu adımları N kere tekrarla\" demenin yoludur. Bir defa yazılan birkaç satır, döngü sayesinde yüzlerce kez çalıştırılabilir. Bir sonraki derste ilk döngü tipini (sayaçlı döngü) öğreneceksin.",
+      "visual": { "type": "animation", "component": "loop", "props": { "variant": "for", "from": 1, "to": 5 } }
+    }
+  ],
+  "workedExamples": [],
+  "exercises": [
+    {
+      "id": "4.1-e1",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "1'den 100'e kadar sayıları tek tek \"YAZ\" komutuyla yazmanın en büyük sorunu nedir?",
+      "options": [
+        "Programın çok hızlı çalışması",
+        "Kod çok uzun olur ve değiştirmesi zorlaşır",
+        "Bilgisayarın bunu yapamaması",
+        "Hiçbir sorun yoktur"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Kopyala-yapıştır kod, uzun, hataya açık ve bakımı zor olur.",
+        "incorrect": "Tekrarlanan kod, satır sayısını artırır ve değişiklik yapmayı zorlaştırır."
+      }
+    },
+    {
+      "id": "4.1-e2",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "100 satırlık kopyala-yapıştır kodda bir hata varsa, bu hatayı düzeltmek için ne yapman gerekir?",
+      "options": [
+        "Sadece bir satırı değiştirmek yeterlidir",
+        "Muhtemelen hatayı içeren tüm satırları tek tek bulup düzeltmek gerekir",
+        "Hiçbir şey yapmaya gerek yoktur",
+        "Program otomatik düzelir"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Aynı hatanın tekrarlandığı her satırı ayrı ayrı düzeltmek gerekir — bu bir bakım kabusudur.",
+        "incorrect": "Kopyala-yapıştır kodda bir hata genelde birçok satırda tekrarlanır ve hepsini bulup düzeltmek gerekir."
+      }
+    },
+    {
+      "id": "4.1-e3",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "Döngü, temelde ne yapmanı sağlar?",
+      "options": [
+        "Bir problemi bölümlere ayırmanı",
+        "Bir dizi adımı otomatik olarak birden çok kez tekrarlamanı",
+        "İki değeri karşılaştırmanı",
+        "Bir değişkeni sabit yapmanı"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Döngü, bir adım grubunu otomatik olarak N kere tekrarlamanı sağlar.",
+        "incorrect": "Döngünün temel görevi, aynı adımları tekrar tekrar (otomatik olarak) çalıştırmaktır."
+      }
+    },
+    {
+      "id": "4.1-e4",
+      "type": "order-steps",
+      "difficulty": 1,
+      "question": "Bir problemi döngüyle çözmeye karar verme sürecini doğru sıraya diz.",
+      "steps": [
+        "Aynı işlemin birden çok kez tekrarlandığını fark et",
+        "Her tekrarda neyin değiştiğini belirle (örn. sayaç)",
+        "Tekrar sayısını veya bitiş koşulunu belirle",
+        "Döngü yapısını yaz"
+      ],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "4.1-e5",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "Bir dizi adımı otomatik olarak birden çok kez çalıştırmayı sağlayan yapıya ___ denir.",
+      "options": ["döngü", "değişken", "sabit", "fonksiyon"],
+      "answer": "döngü"
+    },
+    {
+      "id": "4.1-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Aşağıdaki problemlerden hangisi döngü kullanmayı GEREKTİRMEZ?",
+      "options": [
+        "1'den 1000'e kadar sayıları toplamak",
+        "Bir listedeki her öğeyi ekrana yazmak",
+        "İki sayının toplamını hesaplamak",
+        "10 kez zar atıp sonuçları kaydetmek"
+      ],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Doğru. İki sayıyı toplamak tek bir işlemdir, tekrar gerektirmez.",
+        "incorrect": "İki sayının toplamı tek bir adımda hesaplanır; diğerleri tekrarlayan işlemler içerir."
+      }
+    }
+  ],
+  "summary": [
+    "Kopyala-yapıştır kod uzun, hataya açık ve bakımı zordur.",
+    "Döngü, bir dizi adımı otomatik olarak birden çok kez tekrarlamanı sağlar.",
+    "Bir problemde \"aynı işlem tekrar tekrar mı yapılıyor?\" sorusu döngü ihtiyacının işaretidir."
+  ]
+}

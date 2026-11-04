@@ -1,0 +1,123 @@
+{
+  "id": "4.5",
+  "worldId": "4",
+  "title": "Counter and Accumulator",
+  "estimatedMinutes": 5,
+  "prerequisites": ["4.4"],
+  "objectives": [
+    "Understand the job of a counter variable (counter ← counter + 1)",
+    "Understand the job of an accumulator variable (total ← total + x)"
+  ],
+  "hook": {
+    "text": "\"How many positive numbers were entered?\" and \"what is the sum of the numbers entered?\" These two questions call for the two most classic helpers of loops."
+  },
+  "concept": [
+    {
+      "heading": "Counter: how many times did it happen?",
+      "body": "A counter COUNTS how many times something happens. It starts at 0 before the loop, and inside the loop it goes up by 1 whenever the relevant case occurs (counter ← counter + 1). A counter answers a question like \"how many positive numbers were entered?\".",
+      "visual": { "type": "animation", "component": "vars", "props": { "boxes": [{ "name": "counter", "values": [0, 1, 1, 2, 3] }], "captions": ["counter ← 0", "x = 4 > 0 → +1", "x = -2 → don't count", "x = 7 > 0 → +1", "x = 1 > 0 → +1"] } }
+    },
+    {
+      "heading": "Accumulator: the sum of values",
+      "body": "An accumulator BUILDS UP the values seen during the loop. It starts at 0 before the loop, and inside the loop the relevant value is added (total ← total + x). Both follow the same pattern: a starting value plus an update in every round.",
+      "visual": { "type": "animation", "component": "vars", "props": { "boxes": [{ "name": "total", "values": [0, 5, 8, 15] }, { "name": "x", "values": ["", 5, 3, 7], "tone": "good" }], "captions": ["total ← 0", "total ← 0 + 5", "total ← 5 + 3", "total ← 8 + 7"] } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "Count and add up the even numbers among the numbers from 1 to 5.",
+      "pseudocode": [
+        "counter ← 0",
+        "total ← 0",
+        "FOR i ← 1 TO 5 STEP 1",
+        "  IF i MOD 2 = 0",
+        "    counter ← counter + 1",
+        "    total ← total + i",
+        "  END",
+        "END_LOOP",
+        "WRITE counter",
+        "WRITE total"
+      ],
+      "runnerSource": "counter ← 0\ntotal ← 0\nFOR i ← 1 TO 5 STEP 1\n  IF i MOD 2 = 0\n    counter ← counter + 1\n    total ← total + i\n  END\nEND_LOOP\nWRITE counter\nWRITE total",
+      "steps": [
+        { "line": 0, "explain": "counter and total start from 0." },
+        { "line": 3, "explain": "When i = 2, 2 MOD 2 = 0 is TRUE, so counter and total are updated." },
+        { "line": 3, "explain": "The same thing happens when i = 4." },
+        { "line": 8, "explain": "Result: counter = 2, total = 6 (2 + 4).", "output": ["2", "6"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "4.5-e1",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "What does this code write to the screen?",
+      "pseudocode": ["counter ← 0", "FOR i ← 1 TO 10 STEP 1", "  counter ← counter + 1", "END_LOOP", "WRITE counter"],
+      "correctOutput": ["10"],
+      "hint": "The loop runs 10 times, and counter goes up by 1 each time."
+    },
+    {
+      "id": "4.5-e2",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "What does this code write to the screen?",
+      "pseudocode": ["total ← 0", "FOR i ← 1 TO 4 STEP 1", "  total ← total + i * 2", "END_LOOP", "WRITE total"],
+      "correctOutput": ["20"],
+      "hint": "2 + 4 + 6 + 8 = 20."
+    },
+    {
+      "id": "4.5-e3",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "What value should a counter or accumulator variable be set to BEFORE the loop?",
+      "options": ["1", "0", "A random value", "It does not need to be set"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. Starting from 0 makes sure the first addition gives the right result.",
+        "incorrect": "Counters and accumulators start from 0; otherwise the first calculation would be wrong."
+      }
+    },
+    {
+      "id": "4.5-e4",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "The statement \"counter ← counter + 1\" is an update of a ___.",
+      "options": ["counter", "accumulator", "constant", "condition"],
+      "answer": "counter"
+    },
+    {
+      "id": "4.5-e5",
+      "type": "trace-table",
+      "difficulty": 2,
+      "question": "Trace the value of total in each round.",
+      "pseudocode": ["total ← 0", "FOR i ← 1 TO 4 STEP 1", "  total ← total + i", "END_LOOP"],
+      "columns": ["i", "total"],
+      "expectedRows": [
+        { "i": 1, "total": 1 },
+        { "i": 2, "total": 3 },
+        { "i": 3, "total": 6 },
+        { "i": 4, "total": 10 }
+      ],
+      "hint": "In each round, add that round's value of i to total."
+    },
+    {
+      "id": "4.5-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Which pattern does the problem \"count the negative numbers entered\" need?",
+      "options": ["Only an accumulator", "Only a counter", "A counter and an accumulator together", "Neither"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. Only a \"how many\" question is being asked, so a counter is enough.",
+        "incorrect": "A \"how many\" question is a counting job. You need a counter, not a total."
+      }
+    }
+  ],
+  "summary": [
+    "Counter: counts how many times something happens (counter ← counter + 1).",
+    "Accumulator: builds up values during the loop (total ← total + x).",
+    "Both start from 0 and are updated inside the loop."
+  ]
+}

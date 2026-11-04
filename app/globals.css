@@ -1,0 +1,464 @@
+@import "tailwindcss";
+
+/* Manuel tema anahtarı: <html data-theme="dark|light"> (bkz. ThemeToggle + layout'taki inline script) */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ------------------------------------------------------------------ */
+/* Tasarım token'ları                                                  */
+/* ------------------------------------------------------------------ */
+:root {
+  color-scheme: light;
+  --bg: #f4f5fc;
+  --surface: #ffffff;
+  --surface-2: #eceef9;
+  --line: #dfe3f3;
+  --ink: #181b38;
+  --muted: #5f6690;
+
+  --brand: #6d4bf6;
+  --brand-dark: #4b32c4;
+  --brand-soft: #ebe7ff;
+
+  --good: #1fb860;
+  --good-dark: #12873f;
+  --good-soft: #def7e8;
+  --bad: #ef4439;
+  --bad-dark: #bd2a20;
+  --bad-soft: #fde6e3;
+  --good-ink: #0f6e33;
+  --bad-ink: #a82219;
+
+  --xp: #f4a10a;
+  --flame: #ff7a1a;
+
+  --disabled: #d7dbec;
+  --disabled-ink: #98a0c4;
+
+  --code-bg: #12152e;
+  --code-ink: #e7e9ff;
+  --code-line: #262b55;
+
+  --shadow-card: 0 1px 2px rgba(24, 27, 56, 0.05), 0 12px 32px -12px rgba(24, 27, 56, 0.18);
+  --glow: radial-gradient(60rem 28rem at 50% -8rem, rgba(109, 75, 246, 0.16), transparent 70%);
+
+  /* Akış şeması sembol renkleri (NodeShape) */
+  --fc-terminal-fill: #ebe7ff;
+  --fc-terminal-stroke: #6d4bf6;
+  --fc-process-fill: #e2eeff;
+  --fc-process-stroke: #3b82f6;
+  --fc-decision-fill: #fff1d6;
+  --fc-decision-stroke: #f59e0b;
+  --fc-io-fill: #def7e8;
+  --fc-io-stroke: #1fb860;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0a0c1b;
+  --surface: #13162e;
+  --surface-2: #1a1e3c;
+  --line: #292e58;
+  --ink: #eef0ff;
+  --muted: #9aa2d2;
+
+  --brand: #8b74ff;
+  --brand-dark: #5a42d4;
+  --brand-soft: #251f55;
+
+  --good: #35d27c;
+  --good-dark: #19924c;
+  --good-soft: #11301f;
+  --bad: #ff6c61;
+  --bad-dark: #c63d34;
+  --bad-soft: #3b1816;
+  --good-ink: #5ef0a0;
+  --bad-ink: #ff9a91;
+
+  --disabled: #252a4e;
+  --disabled-ink: #5e6694;
+
+  --code-bg: #090b1b;
+  --code-line: #232853;
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.35), 0 14px 36px -14px rgba(0, 0, 0, 0.7);
+  --glow: radial-gradient(60rem 28rem at 50% -8rem, rgba(139, 116, 255, 0.22), transparent 70%);
+
+  --fc-terminal-fill: #251f55;
+  --fc-terminal-stroke: #8b74ff;
+  --fc-process-fill: #14284f;
+  --fc-process-stroke: #5b9bff;
+  --fc-decision-fill: #3d2d0c;
+  --fc-decision-stroke: #f5b13a;
+  --fc-io-fill: #11301f;
+  --fc-io-stroke: #35d27c;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-brand: var(--brand);
+  --color-brand-dark: var(--brand-dark);
+  --color-brand-soft: var(--brand-soft);
+  --color-good: var(--good);
+  --color-good-dark: var(--good-dark);
+  --color-good-soft: var(--good-soft);
+  --color-bad: var(--bad);
+  --color-bad-dark: var(--bad-dark);
+  --color-bad-soft: var(--bad-soft);
+  --color-xp: var(--xp);
+  --color-flame: var(--flame);
+  --font-sans: var(--font-nunito);
+  --font-mono: var(--font-jetbrains);
+}
+
+html {
+  background: var(--bg);
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-nunito), ui-rounded, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Sayfanın üstünde yumuşak marka ışıması */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: var(--glow);
+  pointer-events: none;
+  z-index: 0;
+}
+/* İçeriği ışıma katmanının üstüne çıkarır. DİKKAT: bu kural katmansız (unlayered) olduğu için
+   Tailwind'in `fixed` gibi katmanlı sınıflarını ezer; kendi konumunu yöneten öğeler
+   (kutlama penceresi, "İçeriğe geç" bağlantısı) data-own-position ile hariç tutulur. */
+body > :not([data-own-position]) {
+  position: relative;
+  z-index: 1;
+}
+
+::selection {
+  background: var(--brand);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 3px;
+  border-radius: 0.5rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* Bileşen sınıfları                                                   */
+/* ------------------------------------------------------------------ */
+@layer components {
+  .card {
+    background: var(--surface);
+    border: 2px solid var(--line);
+    border-radius: 1.25rem;
+    box-shadow: var(--shadow-card);
+  }
+
+  /* 3D "basılan" butonlar (Duolingo tarzı) */
+  .btn {
+    --b: var(--brand);
+    --bd: var(--brand-dark);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.6rem;
+    border-radius: 1rem;
+    border: 0;
+    background: var(--b);
+    color: #fff;
+    font-weight: 900;
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    box-shadow: 0 5px 0 var(--bd);
+    transform: translateY(0);
+    transition:
+      transform 0.08s ease,
+      box-shadow 0.08s ease,
+      filter 0.15s ease;
+    cursor: pointer;
+    user-select: none;
+  }
+  .btn:hover:not(:disabled) {
+    filter: brightness(1.07);
+  }
+  .btn:active:not(:disabled) {
+    transform: translateY(5px);
+    box-shadow: 0 0 0 var(--bd);
+  }
+  .btn:disabled {
+    --b: var(--disabled);
+    --bd: color-mix(in srgb, var(--disabled) 75%, black);
+    color: var(--disabled-ink);
+    cursor: not-allowed;
+  }
+  .btn-good {
+    --b: var(--good);
+    --bd: var(--good-dark);
+  }
+  .btn-bad {
+    --b: var(--bad);
+    --bd: var(--bad-dark);
+  }
+  .btn-light {
+    --b: #ffffff;
+    --bd: #c9bfff;
+    color: #3b2aa8;
+  }
+  .btn-ghost {
+    --b: var(--surface);
+    --bd: var(--line);
+    color: var(--brand);
+    border: 2px solid var(--line);
+    box-shadow: 0 4px 0 var(--line);
+  }
+  .btn-block {
+    display: flex;
+    width: 100%;
+  }
+
+  /* Seçenek kartları */
+  .choice {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    width: 100%;
+    text-align: left;
+    padding: 0.85rem 1rem;
+    border-radius: 1rem;
+    border: 2px solid var(--line);
+    border-bottom-width: 5px;
+    background: var(--surface);
+    color: var(--ink);
+    font-weight: 700;
+    line-height: 1.35;
+    transition:
+      transform 0.08s ease,
+      background 0.15s ease,
+      border-color 0.15s ease;
+    cursor: pointer;
+  }
+  .choice:hover:not(:disabled) {
+    background: var(--surface-2);
+    border-color: color-mix(in srgb, var(--brand) 45%, var(--line));
+  }
+  .choice:active:not(:disabled) {
+    transform: translateY(3px);
+    border-bottom-width: 2px;
+    margin-bottom: 3px;
+  }
+  .choice:disabled {
+    cursor: default;
+  }
+  .choice[data-state="selected"] {
+    border-color: var(--brand);
+    background: var(--brand-soft);
+  }
+  .choice[data-state="correct"] {
+    border-color: var(--good);
+    background: var(--good-soft);
+  }
+  .choice[data-state="wrong"] {
+    border-color: var(--bad);
+    background: var(--bad-soft);
+  }
+  .choice-key {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.6rem;
+    border: 2px solid var(--line);
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-weight: 900;
+    background: var(--surface);
+  }
+  .choice[data-state="selected"] .choice-key {
+    background: var(--brand);
+    border-color: var(--brand);
+    color: #fff;
+  }
+  .choice[data-state="correct"] .choice-key {
+    background: var(--good);
+    border-color: var(--good);
+    color: #fff;
+  }
+  .choice[data-state="wrong"] .choice-key {
+    background: var(--bad);
+    border-color: var(--bad);
+    color: #fff;
+  }
+
+  /* Form alanları */
+  .field {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 0.9rem;
+    border: 2px solid var(--line);
+    background: var(--surface);
+    color: var(--ink);
+    font-weight: 700;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .field:focus {
+    outline: none;
+    border-color: var(--brand);
+    background: var(--brand-soft);
+  }
+  .field:disabled {
+    opacity: 0.85;
+  }
+  .field[data-state="correct"] {
+    border-color: var(--good);
+    background: var(--good-soft);
+  }
+  .field[data-state="wrong"] {
+    border-color: var(--bad);
+    background: var(--bad-soft);
+  }
+
+  /* Kod blokları */
+  .code-block {
+    background: var(--code-bg);
+    color: var(--code-ink);
+    border: 2px solid var(--code-line);
+    border-radius: 1.1rem;
+    padding: 1rem 1.15rem;
+    font-family: var(--font-jetbrains), ui-monospace, monospace;
+    font-size: 0.88rem;
+    line-height: 1.7;
+    overflow-x: auto;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    background: var(--brand-soft);
+    color: var(--brand);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+}
+
+/* Header: logodaki karar elmasının nabzı */
+@keyframes logo-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+.logo-diamond {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: logo-pulse 4.5s ease-in-out infinite;
+}
+
+/* Header: soldan sağa solan marka rengi (statik) ve açılışta tek seferlik geçen ışık */
+.header-wash {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--brand) 20%, transparent) 0%, color-mix(in srgb, var(--brand) 6%, transparent) 38%, transparent 70%);
+}
+.header-sweep {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 45%;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--brand) 32%, transparent), transparent);
+  opacity: 0;
+  animation: header-sweep 1.9s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
+}
+@keyframes header-sweep {
+  0% { transform: translateX(-100%); opacity: 0.9; }
+  100% { transform: translateX(260%); opacity: 0; }
+}
+
+/* Görünür boyutu küçük (36px) ama dokunma alanı 44px olan öğeler için: üst öğe `relative` olmalı. */
+.hit44 { position: relative; }
+.hit44::after { content: ""; position: absolute; inset: -4px; }
+.hit48 { position: relative; }
+.hit48::after { content: ""; position: absolute; inset: -8px; }
+
+/* Çift dokunmayla yakınlaştırma gecikmesi ve istenmeyen zoom olmasın; kaydırma ve sıkıştırma serbest. */
+a, button, [role="button"], [role="switch"], [role="radio"], [role="tab"], input, select, textarea, label, summary {
+  touch-action: manipulation;
+}
+
+/* Geri bildirim efektleri: yalnızca transform/opacity (GPU dostu). Hareket azaltma tercihinde aşağıdaki
+   genel kural animasyonları anında bitirir; parçacıklar görünmez, kutular son halinde kalır. */
+@keyframes fx-pop {
+  0% { transform: scale(0.92); opacity: 0.4; }
+  55% { transform: scale(1.04); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes fx-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-7px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(2px); }
+}
+@keyframes fx-rise {
+  from { transform: translateY(8px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes fx-burst {
+  0% { transform: translate(0, 0) rotate(0deg) scale(0.4); opacity: 0; }
+  15% { opacity: 1; }
+  100% { transform: translate(var(--dx), var(--dy)) rotate(var(--r)) scale(1); opacity: 0; }
+}
+.fx-correct { animation: fx-pop 0.5s cubic-bezier(0.2, 1.3, 0.4, 1) both; }
+.fx-wrong { animation: fx-shake 0.45s ease-in-out both; }
+.fx-pop { animation: fx-pop 0.45s cubic-bezier(0.2, 1.3, 0.4, 1) 0.12s both; }
+.fx-rise { animation: fx-rise 0.25s ease-out 0.08s both; }
+.choice[data-state="correct"] { animation: fx-pop 0.45s cubic-bezier(0.2, 1.3, 0.4, 1) both; }
+.choice[data-state="wrong"],
+.field[data-state="wrong"] { animation: fx-shake 0.4s ease-in-out both; }
+.fx-burst {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+.fx-burst > i {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--s);
+  height: calc(var(--s) * 0.6);
+  margin: -2px 0 0 -4px;
+  border-radius: 2px;
+  background: var(--c);
+  opacity: 0;
+  animation: fx-burst var(--t) cubic-bezier(0.15, 0.8, 0.3, 1) var(--d) both;
+  will-change: transform, opacity;
+}
+
+/* Hareket tercihine saygı */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

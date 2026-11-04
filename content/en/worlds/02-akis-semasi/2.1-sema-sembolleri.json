@@ -1,0 +1,94 @@
+{
+  "id": "2.1",
+  "worldId": "2",
+  "title": "Flowchart Symbols",
+  "estimatedMinutes": 5,
+  "prerequisites": ["1.8"],
+  "objectives": [
+    "Recognize the four basic flowchart symbols (terminal, process, decision, input/output)",
+    "Know which type of command each symbol stands for"
+  ],
+  "hook": {
+    "text": "Even if a friend has never seen the pseudocode language you write in, they can understand your algorithm by looking at a chart you draw. That is because a flowchart is an almost universal visual language."
+  },
+  "concept": [
+    {
+      "heading": "Four basic symbols",
+      "body": "Terminal (oval): marks the Start and End points, and every flowchart has exactly one start. Process (rectangle): shows an operation or an assignment (e.g. total ← a + b). Decision (diamond): shows an IF check and has two exits. Input/Output (parallelogram): shows the READ or WRITE commands.",
+      "visual": { "type": "animation", "component": "flow", "props": { "kind": "shapes" } }
+    },
+    {
+      "heading": "Arrows: the direction of flow",
+      "body": "The arrows between symbols show the order in which the algorithm moves. At least one arrow leaves every symbol (except the End terminal), and the flow is always followed from top to bottom or in the direction indicated.",
+      "visual": { "type": "animation", "component": "flow", "props": { "kind": "linear" } }
+    }
+  ],
+  "workedExamples": [],
+  "exercises": [
+    {
+      "id": "2.1-e1",
+      "type": "flowchart-read",
+      "difficulty": 1,
+      "question": "What does this symbol mean?",
+      "nodes": [{ "id": "n1", "shape": "decision", "label": "?" }],
+      "options": ["Process", "Decision", "Input/Output", "Terminal"],
+      "correctIndex": 1
+    },
+    {
+      "id": "2.1-e2",
+      "type": "flowchart-read",
+      "difficulty": 1,
+      "question": "What does this symbol mean?",
+      "nodes": [{ "id": "n1", "shape": "io", "label": "?" }],
+      "options": ["Process", "Decision", "Input/Output", "Terminal"],
+      "correctIndex": 2
+    },
+    {
+      "id": "2.1-e3",
+      "type": "flowchart-read",
+      "difficulty": 1,
+      "question": "What does this symbol mean?",
+      "nodes": [{ "id": "n1", "shape": "terminal", "label": "?" }],
+      "options": ["Process", "Decision", "Input/Output", "Start / End"],
+      "correctIndex": 3
+    },
+    {
+      "id": "2.1-e4",
+      "type": "flowchart-read",
+      "difficulty": 1,
+      "question": "What does this symbol mean?",
+      "nodes": [{ "id": "n1", "shape": "process", "label": "?" }],
+      "options": ["Process / operation", "Decision", "Input/Output", "Terminal"],
+      "correctIndex": 0
+    },
+    {
+      "id": "2.1-e5",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "What do the arrows in a flowchart show?",
+      "options": ["The color of the symbols", "The direction / order of the flow", "Variable names", "Errors"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. The arrows show the order in which the algorithm is followed.",
+        "incorrect": "The arrows show the order of moving from one step to the next, the direction of the flow."
+      }
+    },
+    {
+      "id": "2.1-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Which symbol stands for the IF command in a flowchart?",
+      "options": ["Rectangle (process)", "Parallelogram (input/output)", "Diamond (decision)", "Oval (terminal)"],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Correct. IF is shown with the two-exit decision symbol (the diamond).",
+        "incorrect": "IF checks are shown with the diamond (decision) symbol, which has two exits."
+      }
+    }
+  ],
+  "summary": [
+    "Terminal (oval): Start/End. Process (rectangle): operation. Decision (diamond): IF. Input/Output (parallelogram): READ/WRITE.",
+    "Every flowchart has exactly one Start and at least one End point.",
+    "The arrows show the order in which the flow is followed."
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "id": "1.2",
+  "worldId": "1",
+  "title": "Veri Tipleri",
+  "estimatedMinutes": 5,
+  "prerequisites": ["1.1"],
+  "objectives": [
+    "Tamsayı, ondalık, metin ve mantıksal veri tiplerini ayırt eder",
+    "Bir değere uygun veri tipini seçer"
+  ],
+  "hook": {
+    "text": "\"20\", \"20.5\" ve \"yirmi\" — üçü de sayıyla ilgili görünüyor ama bilgisayar için tamamen farklı şeyler."
+  },
+  "concept": [
+    {
+      "heading": "Dört temel tip",
+      "body": "Tamsayı (5, -3, 100): ondalık kısmı olmayan sayılar. Ondalık (3.14, 0.5): kesirli sayılar. Metin (\"Ali\", \"merhaba\"): harf dizileri, tırnak içinde yazılır. Mantıksal (DOĞRU / YANLIŞ): sadece iki değer alabilir.",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "5, -3", "sub": "Tamsayı" }, { "label": "3.14", "sub": "Ondalık" }, { "label": "\"Ali\"", "sub": "Metin" }, { "label": "DOĞRU", "sub": "Mantıksal" }] } }
+    },
+    {
+      "heading": "Neden önemli?",
+      "body": "Bir değişkenin tipi, üzerinde yapabileceğin işlemleri belirler. İki metni toplayamazsın ama iki tamsayıyı toplayabilirsin. Yanlış tip seçmek algoritmanın hata vermesine yol açar.",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "5 + 3 → 8", "sub": "sayı + sayı ✓", "tone": "good" }, { "label": "\"Ali\" + 3", "sub": "metin + sayı ✗", "tone": "bad" }] } }
+    }
+  ],
+  "workedExamples": [],
+  "exercises": [
+    {
+      "id": "1.2-e1",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "\"17\" değeri hangi veri tipidir?",
+      "options": ["Metin", "Tamsayı", "Ondalık", "Mantıksal"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Ondalık kısmı olmayan bir sayı: tamsayı.",
+        "incorrect": "17'nin ondalık kısmı yok, bu yüzden tamsayıdır."
+      }
+    },
+    {
+      "id": "1.2-e2",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "\"3.14\" değeri hangi veri tipidir?",
+      "options": ["Tamsayı", "Ondalık", "Metin", "Mantıksal"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Kesirli bir sayı: ondalık.",
+        "incorrect": "3.14 kesirli bir sayı olduğu için ondalık tipindedir."
+      }
+    },
+    {
+      "id": "1.2-e3",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "\"Merhaba dünya\" değeri hangi veri tipidir?",
+      "options": ["Metin", "Tamsayı", "Mantıksal", "Ondalık"],
+      "correctIndex": 0,
+      "feedback": {
+        "correct": "Doğru. Harflerden oluşan bir dizi: metin.",
+        "incorrect": "Harflerden oluşan ifadeler metin (string) tipindedir."
+      }
+    },
+    {
+      "id": "1.2-e4",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "\"Öğrenci sınavı geçti mi?\" sorusunun cevabını tutmak için en uygun tip hangisidir?",
+      "options": ["Tamsayı", "Metin", "Mantıksal", "Ondalık"],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Doğru. Sadece DOĞRU/YANLIŞ olabilecek bir bilgi için mantıksal tip idealdir.",
+        "incorrect": "Bu soru sadece iki cevap alabilir (evet/hayır), bu yüzden mantıksal tip en uygunudur."
+      }
+    },
+    {
+      "id": "1.2-e5",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "\"Ahmet\" ismi bir değişkende saklanacaksa, değişkenin tipi ___ olmalıdır.",
+      "options": ["metin", "tamsayı", "ondalık", "mantıksal"],
+      "answer": "metin"
+    },
+    {
+      "id": "1.2-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Bir öğrencinin sınıf mevcudunu (kişi sayısı) tutmak için en uygun tip hangisidir?",
+      "options": ["Ondalık", "Tamsayı", "Metin", "Mantıksal"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Kişi sayısı her zaman tam bir sayıdır, ondalık gerekmez.",
+        "incorrect": "Kişi sayısı kesirli olamaz (12.5 öğrenci olmaz), bu yüzden tamsayı kullanılır."
+      }
+    }
+  ],
+  "summary": [
+    "Dört temel tip: tamsayı, ondalık, metin, mantıksal.",
+    "Bir değişkenin tipi, üzerinde yapılabilecek işlemleri belirler.",
+    "Sadece iki durumlu bilgiler (evet/hayır) için mantıksal tip kullanılır."
+  ]
+}

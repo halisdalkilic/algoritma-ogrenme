@@ -1,0 +1,127 @@
+{
+  "id": "6.4",
+  "worldId": "6",
+  "title": "Recursion",
+  "estimatedMinutes": 7,
+  "prerequisites": ["6.3"],
+  "objectives": [
+    "Understand that a function can call itself (recursion)",
+    "Explain how the base case stops an endless chain of calls"
+  ],
+  "hook": {
+    "text": "\"5 factorial\" (5!) = 5×4×3×2×1. But it is also true that 5! = 5 × 4!. And 4! = 4 × 3!. Can a function call ITSELF to define itself?"
+  },
+  "concept": [
+    {
+      "heading": "A function that calls itself",
+      "body": "Recursion is when a function calls ITSELF inside its own body. factorial(n) can be defined as \"n × factorial(n-1)\": the problem is reduced to a smaller version of itself.",
+      "visual": { "type": "animation", "component": "recursion", "props": { "n": 3 } }
+    },
+    {
+      "heading": "The base case is a must",
+      "body": "A recursive function MUST have a BASE CASE: a case that returns a result directly without calling itself (e.g. factorial(1) RETURN 1). Without a base case, the function keeps calling itself forever (a mistake similar to an infinite loop in loops, see lesson 4.6).",
+      "visual": { "type": "animation", "component": "recursion", "props": { "n": 3, "noBase": true } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "Define the factorial(n) function recursively and calculate factorial(4).",
+      "pseudocode": [
+        "FUNCTION factorial(n)",
+        "  IF n ≤ 1",
+        "    RETURN 1",
+        "  END",
+        "  RETURN n * factorial(n - 1)",
+        "END",
+        "WRITE factorial(4)"
+      ],
+      "runnerSource": "FUNCTION factorial(n)\n  IF n ≤ 1\n    RETURN 1\n  END\n  RETURN n * factorial(n - 1)\nEND\nWRITE factorial(4)",
+      "steps": [
+        { "line": 0, "explain": "The factorial function is defined." },
+        { "line": 6, "explain": "factorial(4) is called: 4 ≤ 1 is FALSE, so 4 * factorial(3) has to be calculated." },
+        { "line": 4, "explain": "That in turn needs 3 * factorial(2), which needs 2 * factorial(1). factorial(1) is the BASE CASE: it returns 1 directly." },
+        { "line": 6, "explain": "Going back: 2 * 1 = 2, 3 * 2 = 6, 4 * 6 = 24.", "output": ["24"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "6.4-e1",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "What does this code write to the screen?",
+      "pseudocode": ["FUNCTION factorial(n)", "  IF n ≤ 1", "    RETURN 1", "  END", "  RETURN n * factorial(n - 1)", "END", "WRITE factorial(5)"],
+      "correctOutput": ["120"],
+      "hint": "5! = 5×4×3×2×1 = 120."
+    },
+    {
+      "id": "6.4-e2",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "What happens if a recursive function has no base case?",
+      "options": [
+        "The function runs faster",
+        "The function keeps calling itself forever (infinite recursion)",
+        "Nothing goes wrong",
+        "The function automatically returns 0"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. Without a base case, the function calls itself nonstop: the recursive version of an infinite loop.",
+        "incorrect": "The base case is the point where recursion STOPS; without it, the chain of calls goes on forever."
+      }
+    },
+    {
+      "id": "6.4-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "In the definition factorial(n) = \"n * factorial(n-1)\", how is the problem made smaller?",
+      "options": [
+        "By making n bigger",
+        "By reducing n by one (n-1)",
+        "By setting n to zero",
+        "It is not made smaller"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. In every call n goes down by one, which guarantees progress toward the base case (n ≤ 1).",
+        "incorrect": "Every recursive call uses n-1, so the problem gets a little smaller at each step and moves closer to the base case."
+      }
+    },
+    {
+      "id": "6.4-e4",
+      "type": "order-steps",
+      "difficulty": 3,
+      "question": "Put the order in which the call factorial(3) is evaluated in the correct order.",
+      "steps": [
+        "factorial(3) is called, and it needs 3*factorial(2)",
+        "factorial(2) is called, and it needs 2*factorial(1)",
+        "factorial(1) is the base case, and it returns 1",
+        "Multiplying on the way back: 2*1 = 2, then 3*2 = 6"
+      ],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "6.4-e5",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "The case that returns a result directly, without calling itself, is called the ___ case.",
+      "options": ["base", "top", "loop", "global"],
+      "answer": "base"
+    },
+    {
+      "id": "6.4-e6",
+      "type": "pseudo-write",
+      "difficulty": 3,
+      "question": "Write a function \"powerOfTwo(n)\" that recursively calculates 2 to the power of n (powerOfTwo(0) = 1).",
+      "requiredKeywords": ["FUNCTION", "RETURN", "END", "IF"],
+      "sampleSolution": "FUNCTION powerOfTwo(n)\n  IF n = 0\n    RETURN 1\n  END\n  RETURN 2 * powerOfTwo(n - 1)\nEND"
+    }
+  ],
+  "summary": [
+    "Recursion: a function calls itself inside its own body.",
+    "Every recursive function must have a base case.",
+    "Every call must make the problem a little smaller and move toward the base case, otherwise infinite recursion occurs."
+  ]
+}

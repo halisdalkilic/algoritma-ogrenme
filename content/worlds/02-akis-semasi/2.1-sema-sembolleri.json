@@ -1,0 +1,94 @@
+{
+  "id": "2.1",
+  "worldId": "2",
+  "title": "Şema Sembolleri",
+  "estimatedMinutes": 5,
+  "prerequisites": ["1.8"],
+  "objectives": [
+    "Akış şemasındaki dört temel sembolü (terminal, süreç, karar, girdi/çıktı) tanır",
+    "Her sembolün hangi komut tipini temsil ettiğini bilir"
+  ],
+  "hook": {
+    "text": "Bir arkadaşın senin yazdığın sözde kod dilini hiç bilmese bile, çizdiğin bir şemaya bakarak algoritmanı anlayabilir. Çünkü akış şeması, neredeyse evrensel bir görsel dildir."
+  },
+  "concept": [
+    {
+      "heading": "Dört temel sembol",
+      "body": "Terminal (oval): Başla / Bitir noktalarını gösterir, her şemada tam olarak bir başlangıç vardır. Süreç (dikdörtgen): bir işlem veya atamayı gösterir (örn. toplam ← a + b). Karar (eşkenar dörtgen): bir EĞER kontrolünü gösterir, iki çıkışı olur. Girdi/Çıktı (paralelkenar): OKU veya YAZ komutlarını gösterir.",
+      "visual": { "type": "animation", "component": "flow", "props": { "kind": "shapes" } }
+    },
+    {
+      "heading": "Oklar: akışın yönü",
+      "body": "Semboller arasındaki oklar, algoritmanın hangi sırayla ilerlediğini gösterir. Her sembolden en az bir ok çıkar (terminal'in bitiş noktası hariç) ve akış her zaman yukarıdan aşağıya veya belirtilen yöne doğru izlenir.",
+      "visual": { "type": "animation", "component": "flow", "props": { "kind": "linear" } }
+    }
+  ],
+  "workedExamples": [],
+  "exercises": [
+    {
+      "id": "2.1-e1",
+      "type": "flowchart-read",
+      "difficulty": 1,
+      "question": "Bu sembol ne anlama gelir?",
+      "nodes": [{ "id": "n1", "shape": "decision", "label": "?" }],
+      "options": ["Süreç", "Karar", "Girdi/Çıktı", "Terminal"],
+      "correctIndex": 1
+    },
+    {
+      "id": "2.1-e2",
+      "type": "flowchart-read",
+      "difficulty": 1,
+      "question": "Bu sembol ne anlama gelir?",
+      "nodes": [{ "id": "n1", "shape": "io", "label": "?" }],
+      "options": ["Süreç", "Karar", "Girdi/Çıktı", "Terminal"],
+      "correctIndex": 2
+    },
+    {
+      "id": "2.1-e3",
+      "type": "flowchart-read",
+      "difficulty": 1,
+      "question": "Bu sembol ne anlama gelir?",
+      "nodes": [{ "id": "n1", "shape": "terminal", "label": "?" }],
+      "options": ["Süreç", "Karar", "Girdi/Çıktı", "Başla / Bitir"],
+      "correctIndex": 3
+    },
+    {
+      "id": "2.1-e4",
+      "type": "flowchart-read",
+      "difficulty": 1,
+      "question": "Bu sembol ne anlama gelir?",
+      "nodes": [{ "id": "n1", "shape": "process", "label": "?" }],
+      "options": ["Süreç / işlem", "Karar", "Girdi/Çıktı", "Terminal"],
+      "correctIndex": 0
+    },
+    {
+      "id": "2.1-e5",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "Akış şemasındaki oklar neyi gösterir?",
+      "options": ["Sembollerin rengini", "Akışın yönünü / sırasını", "Değişken isimlerini", "Hataları"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Oklar, algoritmanın hangi sırayla izleneceğini gösterir.",
+        "incorrect": "Oklar, bir adımdan diğerine geçiş sırasını / akışın yönünü gösterir."
+      }
+    },
+    {
+      "id": "2.1-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "EĞER komutunun akış şemasındaki karşılığı hangi semboldür?",
+      "options": ["Dikdörtgen (süreç)", "Paralelkenar (girdi/çıktı)", "Eşkenar dörtgen (karar)", "Oval (terminal)"],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Doğru. EĞER, iki çıkışlı karar sembolüyle (eşkenar dörtgen) gösterilir.",
+        "incorrect": "EĞER kontrolleri, iki çıkışı olan eşkenar dörtgen (karar) sembolüyle gösterilir."
+      }
+    }
+  ],
+  "summary": [
+    "Terminal (oval): Başla/Bitir. Süreç (dikdörtgen): işlem. Karar (eşkenar dörtgen): EĞER. Girdi/Çıktı (paralelkenar): OKU/YAZ.",
+    "Her şema tam olarak bir Başla ve en az bir Bitir noktasına sahiptir.",
+    "Oklar, akışın hangi sırayla izleneceğini gösterir."
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "id": "1.1",
+  "worldId": "1",
+  "title": "What a Variable Is",
+  "estimatedMinutes": 5,
+  "prerequisites": ["0.4"],
+  "objectives": [
+    "Describe a variable as a \"box\"",
+    "Tell valid variable names from invalid ones"
+  ],
+  "hook": {
+    "text": "An algorithm needs to remember a piece of information: an age, a name, a total it calculated. Where will it keep that information?"
+  },
+  "concept": [
+    {
+      "heading": "Variable = labeled box",
+      "body": "Think of a variable as a box with a name written on it that you can put a value into. You put the value 20 into a box named \"age\"; every time the algorithm says \"age\", it looks inside that box.",
+      "visual": { "type": "animation", "component": "vars", "props": { "boxes": [{ "name": "age", "values": ["", 20, 21] }], "captions": ["an empty box named age", "age ← 20", "age ← 21 (the old value is erased)"] } }
+    },
+    {
+      "heading": "Naming rules",
+      "body": "Variable names must start with a letter, must not contain spaces, and should be meaningful. \"age\" is a good name, while \"1age\" or \"my age\" is invalid. Meaningful names (total, counter) make code easier to read.",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "age", "sub": "valid ✓", "tone": "good" }, { "label": "total", "sub": "valid ✓", "tone": "good" }, { "label": "1age", "sub": "starts with a digit ✗", "tone": "bad" }, { "label": "my age", "sub": "has a space ✗", "tone": "bad" }] } }
+    }
+  ],
+  "workedExamples": [],
+  "exercises": [
+    {
+      "id": "1.1-e1",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "Which of these is a variable most like?",
+      "options": ["A fixed sign on a wall", "A labeled box you can put values into and take them out of", "The name of an algorithm", "A screenshot"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. A variable is a labeled box whose contents can change.",
+        "incorrect": "A variable is like a box with its name written on it, where you can put a value and change it."
+      }
+    },
+    {
+      "id": "1.1-e2",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "Which of these is a valid variable name?",
+      "options": ["1number", "total_score", "total score", "first-last"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. It starts with a letter and has no spaces or special characters.",
+        "incorrect": "A variable name cannot start with a digit or contain a space or \"-\". \"total_score\" is valid."
+      }
+    },
+    {
+      "id": "1.1-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "What is the advantage of using \"studentCount\" instead of \"x\"?",
+      "options": [
+        "It runs faster",
+        "It takes up less space",
+        "It is easier to understand what the code is for",
+        "It has no advantage"
+      ],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Correct. Meaningful names improve readability; they do not affect speed.",
+        "incorrect": "A meaningful name affects readability, not running speed."
+      }
+    },
+    {
+      "id": "1.1-e4",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "A variable name must always start with a ___.",
+      "options": ["letter", "digit", "space", "symbol"],
+      "answer": "letter"
+    },
+    {
+      "id": "1.1-e5",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "If you put 20 and then 21 into the box named \"age\", what is left in the box?",
+      "options": ["20", "21", "Both 20 and 21", "The box becomes empty"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. The new value overwrites the old one, so only the last value stays.",
+        "incorrect": "When a new value is assigned to a variable, the old value is lost. Only 21 remains."
+      }
+    },
+    {
+      "id": "1.1-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Which name is the best for storing a student's grade?",
+      "options": ["n", "grade1234567", "gradeAverage", "variable1"],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Correct. It is short but clearly says what it holds.",
+        "incorrect": "A good name is both short and clear about what it holds: gradeAverage."
+      }
+    }
+  ],
+  "summary": [
+    "A variable is a box with a name on it that you can put a value into.",
+    "Names must start with a letter, have no spaces, and be meaningful.",
+    "When a variable gets a new value, the old value is lost."
+  ]
+}

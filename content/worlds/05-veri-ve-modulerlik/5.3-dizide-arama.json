@@ -1,0 +1,136 @@
+{
+  "id": "5.3",
+  "worldId": "5",
+  "title": "Dizide Arama",
+  "estimatedMinutes": 5,
+  "prerequisites": ["5.2"],
+  "objectives": [
+    "Doğrusal arama (linear search) algoritmasını kurar",
+    "Bir elemanın dizide olup olmadığını ve konumunu bulur"
+  ],
+  "hook": {
+    "text": "Bir öğrenci listesinde \"Ayşe\" var mı, varsa kaçıncı sırada? Bunu bulmak için diziyi baştan sona KONTROL ETMEN gerekir."
+  },
+  "concept": [
+    {
+      "heading": "Doğrusal arama mantığı",
+      "body": "Doğrusal (linear) arama, diziyi baştan sona tek tek dolaşıp her elemanı aranan değerle karşılaştırır. Eşleşme bulunursa o indeks kaydedilir. Dizi bitene kadar eşleşme bulunamazsa, eleman dizide YOK demektir.",
+      "visual": { "type": "animation", "component": "array", "props": { "values": [12, 7, 31, 9, 24], "mode": "search", "target": 9 } }
+    },
+    {
+      "heading": "Bulunamadı durumu",
+      "body": "Arama başlamadan önce bir \"bulunduMu\" (ya da \"konum ← -1\") değişkeni hazırlanır. Döngü boyunca eşleşme bulunursa güncellenir. Döngü bittiğinde bu değişkenin hâlâ başlangıç değerinde olması, elemanın dizide olmadığını gösterir.",
+      "visual": { "type": "animation", "component": "array", "props": { "values": [12, 7, 31, 9, 24], "mode": "search", "target": 50 } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "Bir dizide 30 sayısının olup olmadığını, varsa indeksini bul.",
+      "pseudocode": [
+        "sayilar ← [10, 20, 30, 40]",
+        "konum ← -1",
+        "İÇİN i ← 0'DAN 3'E ADIM 1",
+        "  EĞER sayilar[i] = 30",
+        "    konum ← i",
+        "  BİTİR",
+        "DÖNGÜ_BİTİR",
+        "YAZ konum"
+      ],
+      "runnerSource": "sayilar ← [10, 20, 30, 40]\nkonum ← -1\nİÇİN i ← 0'DAN 3'E ADIM 1\n  EĞER sayilar[i] = 30\n    konum ← i\n  BİTİR\nDÖNGÜ_BİTİR\nYAZ konum",
+      "steps": [
+        { "line": 1, "explain": "konum, \"henüz bulunamadı\" anlamında -1'e başlatılır." },
+        { "line": 3, "explain": "i=2 iken sayilar[2]=30 eşleşir, konum ← 2 olur." },
+        { "line": 7, "explain": "Sonuç: konum = 2 (30, indeks 2'de bulundu).", "output": ["2"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "5.3-e1",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": [
+        "isimler ← [\"Ali\", \"Ayşe\", \"Can\"]",
+        "konum ← -1",
+        "İÇİN i ← 0'DAN 2'YE ADIM 1",
+        "  EĞER isimler[i] = \"Can\"",
+        "    konum ← i",
+        "  BİTİR",
+        "DÖNGÜ_BİTİR",
+        "YAZ konum"
+      ],
+      "correctOutput": ["2"],
+      "hint": "\"Can\", isimler dizisinin 3. elemanı (indeks 2)."
+    },
+    {
+      "id": "5.3-e2",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "Bu kod ekrana ne yazar (aranan değer dizide yok)?",
+      "pseudocode": [
+        "sayilar ← [5, 10, 15]",
+        "konum ← -1",
+        "İÇİN i ← 0'DAN 2'YE ADIM 1",
+        "  EĞER sayilar[i] = 99",
+        "    konum ← i",
+        "  BİTİR",
+        "DÖNGÜ_BİTİR",
+        "YAZ konum"
+      ],
+      "correctOutput": ["-1"],
+      "hint": "99 dizide olmadığı için konum hiç güncellenmez."
+    },
+    {
+      "id": "5.3-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Döngü bittikten sonra \"konum\" değişkeni hâlâ -1 ise bu ne anlama gelir?",
+      "options": ["Dizi boştur", "Aranan eleman dizide bulunamadı", "Bir hata oluştu", "İlk eleman aranıyordu"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. konum'un başlangıç değerinde (-1) kalması, eşleşme bulunamadığını gösterir.",
+        "incorrect": "-1, \"henüz bulunamadı\" başlangıç değeridir; döngü sonunda hâlâ -1 ise eleman dizide yoktur."
+      }
+    },
+    {
+      "id": "5.3-e4",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Doğrusal arama algoritmasının adımlarını doğru sıraya diz.",
+      "steps": [
+        "konum ← -1",
+        "Diziyi baştan sona dolaş",
+        "Her elemanı aranan değerle karşılaştır",
+        "Eşleşme varsa konumu kaydet"
+      ],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "5.3-e5",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "N elemanlı bir dizide doğrusal arama en kötü durumda kaç karşılaştırma yapar?",
+      "options": ["1", "N/2", "N", "N*N"],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Doğru. Eleman dizide yoksa ya da en sonda ise, tüm N eleman kontrol edilir.",
+        "incorrect": "En kötü durumda (eleman yok ya da sonda), doğrusal arama tüm N elemanı kontrol eder."
+      }
+    },
+    {
+      "id": "5.3-e6",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "Bir diziyi baştan sona tek tek kontrol ederek eleman arama yöntemine ___ arama denir.",
+      "options": ["doğrusal", "ikili", "rastgele", "ters"],
+      "answer": "doğrusal"
+    }
+  ],
+  "summary": [
+    "Doğrusal arama, diziyi baştan sona dolaşıp her elemanı aranan değerle karşılaştırır.",
+    "Bir \"konum ← -1\" başlangıcı, \"bulunamadı\" durumunu temsil eder.",
+    "En kötü durumda N elemanlı bir dizide N karşılaştırma yapılır."
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "id": "4.4",
+  "worldId": "4",
+  "title": "DO-WHILE",
+  "estimatedMinutes": 5,
+  "prerequisites": ["4.3"],
+  "objectives": [
+    "DO-WHILE'ın son koşullu (gövde önce, kontrol sonra) çalıştığını kavrar",
+    "SÜRECE (ön koşullu) ile DO-WHILE (son koşullu) arasındaki farkı ayırt eder"
+  ],
+  "hook": {
+    "text": "Bir menüyü en az BİR KERE göstermek istiyorsun — kullanıcı ne seçerse seçsin. SÜRECE bunu garanti edemez, çünkü koşulu önce kontrol eder."
+  },
+  "concept": [
+    {
+      "heading": "Son koşullu döngü",
+      "body": "DO-WHILE (bazı dillerde YAP-SÜRECE), gövdeyi ÖNCE bir kere çalıştırır, SONRA koşulu kontrol eder. Koşul DOĞRU ise gövde tekrar çalışır; YANLIŞ ise döngü biter. Bu, gövdenin EN AZ BİR KERE çalışmasını garanti eder.",
+      "visual": { "type": "animation", "component": "flow", "props": { "kind": "dowhile" } }
+    },
+    {
+      "heading": "SÜRECE ile fark",
+      "body": "SÜRECE (WHILE), koşulu önce kontrol ettiği için koşul baştan YANLIŞ ise gövde hiç çalışmayabilir. DO-WHILE ise koşulu sona koyduğu için gövde her zaman en az bir kere çalışır. Fark tek bir şeydir: kontrolün YERİ (önce mi, sonra mı).",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "SÜRECE", "sub": "önce kontrol → 0 kez olabilir" }, { "label": "DO-WHILE", "sub": "sonra kontrol → en az 1 kez", "tone": "good" }] } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "Kullanıcıdan bir menü seçimi al; geçerli bir seçim yapana kadar tekrar sor (en az bir kere sorulmalı).",
+      "pseudocode": ["YAP", "  OKU secim", "  YAZ \"Seçimin: \" + secim", "SÜRECE secim ≠ \"çıkış\""],
+      "steps": [
+        { "line": 1, "explain": "Gövde İLK ÖNCE çalışır — koşul henüz hiç kontrol edilmedi." },
+        { "line": 2, "explain": "Kullanıcının seçimi ekrana yazılır." },
+        { "line": 3, "explain": "Ancak şimdi koşul kontrol edilir: seçim \"çıkış\" değilse gövde tekrar çalışır." }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "4.4-e1",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "DO-WHILE ile SÜRECE (WHILE) arasındaki temel fark nedir?",
+      "options": [
+        "DO-WHILE hiçbir zaman çalışmaz",
+        "DO-WHILE koşulu sonda kontrol eder, bu yüzden gövde en az bir kere çalışır",
+        "İkisi arasında hiç fark yoktur",
+        "SÜRECE her zaman daha hızlıdır"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. DO-WHILE'da kontrol sonda olduğu için gövde garanti bir kere çalışır.",
+        "incorrect": "Fark, koşulun kontrol edildiği YER'dir: DO-WHILE'da sonda, bu yüzden gövde en az bir kere çalışır."
+      }
+    },
+    {
+      "id": "4.4-e2",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "secim ← \"çıkış\" iken bir SÜRECE secim ≠ \"çıkış\" döngüsü kaç kere çalışır?",
+      "options": ["0 kere", "1 kere", "Sonsuz kere", "Hata verir"],
+      "correctIndex": 0,
+      "feedback": {
+        "correct": "Doğru. Koşul baştan YANLIŞ olduğu için SÜRECE gövdesi hiç çalışmaz.",
+        "incorrect": "SÜRECE koşulu önce kontrol eder; \"çıkış\" ≠ \"çıkış\" YANLIŞ olduğu için gövde hiç çalışmaz."
+      }
+    },
+    {
+      "id": "4.4-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Aynı senaryoda (secim ← \"çıkış\") bir DO-WHILE döngüsü kaç kere çalışır?",
+      "options": ["0 kere", "En az 1 kere", "Sonsuz kere", "Hata verir"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. DO-WHILE koşulu SONRA kontrol eder, bu yüzden gövde en az bir kez çalışır.",
+        "incorrect": "DO-WHILE'ın tanımı gereği gövde önce çalışır; koşul ancak ondan sonra kontrol edilir."
+      }
+    },
+    {
+      "id": "4.4-e4",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Bir DO-WHILE döngüsünün çalışma sırasını doğru diz.",
+      "steps": ["Gövde çalışır", "Koşul kontrol edilir", "Koşul DOĞRU ise gövdeye geri dönülür", "Koşul YANLIŞ ise döngü biter"],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "4.4-e5",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "DO-WHILE döngüsüne ___ koşullu döngü denir çünkü koşul kontrolü en sonda yapılır.",
+      "options": ["son", "ön", "orta", "çift"],
+      "answer": "son"
+    },
+    {
+      "id": "4.4-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "\"Menüyü en az bir kere göster, sonra kullanıcı çıkmak isteyene kadar tekrarla\" senaryosu için hangi döngü daha doğaldır?",
+      "options": ["İÇİN (FOR)", "SÜRECE (WHILE)", "DO-WHILE", "Hiçbiri"],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Doğru. \"En az bir kere\" garantisi gerektiğinde DO-WHILE en doğal seçimdir.",
+        "incorrect": "\"En az bir kere çalışmalı\" ifadesi, tam olarak DO-WHILE'ın garanti ettiği şeydir."
+      }
+    }
+  ],
+  "summary": [
+    "DO-WHILE: gövde önce çalışır, koşul sonra kontrol edilir (son koşullu).",
+    "SÜRECE (WHILE): koşul önce kontrol edilir (ön koşullu), gövde hiç çalışmayabilir.",
+    "\"En az bir kere çalışmalı\" ihtiyacı varsa DO-WHILE tercih edilir."
+  ]
+}

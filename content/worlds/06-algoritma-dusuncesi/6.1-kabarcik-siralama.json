@@ -1,0 +1,145 @@
+{
+  "id": "6.1",
+  "worldId": "6",
+  "title": "Kabarcık Sıralama (Bubble Sort)",
+  "estimatedMinutes": 6,
+  "prerequisites": ["5.8"],
+  "objectives": [
+    "Kabarcık sıralamanın komşu elemanları karşılaştırıp yer değiştirme mantığını kavrar",
+    "Bir diziyi kabarcık sıralama ile küçükten büyüğe sıralar"
+  ],
+  "hook": {
+    "text": "Bir dizi karışık sayıyı küçükten büyüğe dizmek istiyorsun. En basit yöntem: komşu iki elemanı karşılaştır, yanlış sıradaysa yer değiştir, baştan sona bunu tekrarla."
+  },
+  "concept": [
+    {
+      "heading": "Komşu karşılaştırma ve takas",
+      "body": "Kabarcık sıralama, diziyi baştan sona dolaşırken her adımda KOMŞU iki elemanı karşılaştırır. Soldaki sağdakinden büyükse, ikisi TAKAS edilir (bkz. ders 1.7 Değişken Takası — aynı mantık, geçici değişkenle). Bir tam geçişten sonra en büyük eleman \"kabarcık gibi\" dizinin sonuna yükselmiş olur.",
+      "visual": { "type": "animation", "component": "sort", "props": { "values": [5, 2, 4, 1, 3], "algo": "bubble" } }
+    },
+    {
+      "heading": "Birden çok geçiş gerekir",
+      "body": "Tek bir geçiş diziyi tam sıralamaya yetmez — sadece en büyük elemanı sona taşır. N elemanlı bir diziyi tam sıralamak için toplam N-1 geçiş gerekir; her geçiş, bir önceki geçişte sona yerleşmiş elemanları tekrar kontrol etmeye gerek duymaz.",
+      "visual": { "type": "animation", "component": "sort", "props": { "values": [4, 3, 2, 1], "algo": "bubble" } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "[5, 2, 4] dizisini kabarcık sıralama ile sırala.",
+      "pseudocode": [
+        "sayilar ← [5, 2, 4]",
+        "İÇİN i ← 0'DAN 1'E ADIM 1",
+        "  İÇİN j ← 0'DAN 1'E ADIM 1",
+        "    EĞER sayilar[j] > sayilar[j + 1]",
+        "      gecici ← sayilar[j]",
+        "      sayilar[j] ← sayilar[j + 1]",
+        "      sayilar[j + 1] ← gecici",
+        "    BİTİR",
+        "  DÖNGÜ_BİTİR",
+        "DÖNGÜ_BİTİR",
+        "YAZ sayilar[0]",
+        "YAZ sayilar[1]",
+        "YAZ sayilar[2]"
+      ],
+      "runnerSource": "sayilar ← [5, 2, 4]\nİÇİN i ← 0'DAN 1'E ADIM 1\n  İÇİN j ← 0'DAN 1'E ADIM 1\n    EĞER sayilar[j] > sayilar[j + 1]\n      gecici ← sayilar[j]\n      sayilar[j] ← sayilar[j + 1]\n      sayilar[j + 1] ← gecici\n    BİTİR\n  DÖNGÜ_BİTİR\nDÖNGÜ_BİTİR\nYAZ sayilar[0]\nYAZ sayilar[1]\nYAZ sayilar[2]",
+      "steps": [
+        { "line": 0, "explain": "Dizi: [5, 2, 4]." },
+        { "line": 3, "explain": "j=0: sayilar[0]=5 > sayilar[1]=2, takas edilir → [2, 5, 4]." },
+        { "line": 3, "explain": "j=1: sayilar[1]=5 > sayilar[2]=4, takas edilir → [2, 4, 5]." },
+        { "line": 10, "explain": "İkinci geçişte değişiklik olmaz. Sonuç: [2, 4, 5].", "output": ["2", "4", "5"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "6.1-e1",
+      "type": "predict-output",
+      "difficulty": 3,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": [
+        "sayilar ← [3, 1, 2]",
+        "İÇİN i ← 0'DAN 1'E ADIM 1",
+        "  İÇİN j ← 0'DAN 1'E ADIM 1",
+        "    EĞER sayilar[j] > sayilar[j + 1]",
+        "      gecici ← sayilar[j]",
+        "      sayilar[j] ← sayilar[j + 1]",
+        "      sayilar[j + 1] ← gecici",
+        "    BİTİR",
+        "  DÖNGÜ_BİTİR",
+        "DÖNGÜ_BİTİR",
+        "YAZ sayilar[0]",
+        "YAZ sayilar[1]",
+        "YAZ sayilar[2]"
+      ],
+      "correctOutput": ["1", "2", "3"],
+      "hint": "[3,1,2] → bir geçişte [1,2,3] elde edilir, ikinci geçiş değiştirmez."
+    },
+    {
+      "id": "6.1-e2",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Kabarcık sıralamada bir eleman diğerinden büyükse ne yapılır?",
+      "options": ["Silinir", "Komşusuyla takas edilir", "Diziden çıkarılır", "Hiçbir şey"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Yanlış sıradaki komşu elemanlar takas edilir.",
+        "incorrect": "Kabarcık sıralamanın temel işlemi, yanlış sıradaki komşu elemanları takas etmektir."
+      }
+    },
+    {
+      "id": "6.1-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "N elemanlı bir diziyi kabarcık sıralamayla tam sıralamak için genelde kaç geçiş gerekir?",
+      "options": ["1", "N-1", "N*N", "0"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. En kötü durumda N-1 geçiş gerekir.",
+        "incorrect": "N elemanlı bir diziyi tam sıralamak en kötü durumda N-1 geçiş gerektirir."
+      }
+    },
+    {
+      "id": "6.1-e4",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "İki elemanı takas eden adımları doğru sıraya diz (1.7'den hatırla).",
+      "steps": ["gecici ← sayilar[j]", "sayilar[j] ← sayilar[j + 1]", "sayilar[j + 1] ← gecici"],
+      "correctOrder": [0, 1, 2]
+    },
+    {
+      "id": "6.1-e5",
+      "type": "trace-table",
+      "difficulty": 3,
+      "pseudocode": [
+        "sayilar ← [4, 2, 1]",
+        "İÇİN j ← 0'DAN 1'E ADIM 1",
+        "  EĞER sayilar[j] > sayilar[j + 1]",
+        "    gecici ← sayilar[j]",
+        "    sayilar[j] ← sayilar[j + 1]",
+        "    sayilar[j + 1] ← gecici",
+        "  BİTİR",
+        "DÖNGÜ_BİTİR"
+      ],
+      "columns": ["j", "sayilar[0]", "sayilar[1]", "sayilar[2]"],
+      "expectedRows": [
+        { "j": 0, "sayilar[0]": 2, "sayilar[1]": 4, "sayilar[2]": 1 },
+        { "j": 1, "sayilar[0]": 2, "sayilar[1]": 1, "sayilar[2]": 4 }
+      ],
+      "hint": "j=0: 4>2 takas. j=1: 4>1 takas."
+    },
+    {
+      "id": "6.1-e6",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "Kabarcık sıralamada bir geçişten sonra en büyük eleman dizinin ___ yerleşir.",
+      "options": ["sonuna", "başına", "ortasına", "dışına"],
+      "answer": "sonuna"
+    }
+  ],
+  "summary": [
+    "Kabarcık sıralama, komşu elemanları karşılaştırıp yanlış sıradaysa takas eder.",
+    "Her tam geçiş, en büyük kalan elemanı dizinin sonuna taşır.",
+    "N elemanlı bir diziyi tam sıralamak en kötü durumda N-1 geçiş gerektirir."
+  ]
+}

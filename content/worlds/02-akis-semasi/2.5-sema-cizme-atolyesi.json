@@ -1,0 +1,120 @@
+{
+  "id": "2.5",
+  "worldId": "2",
+  "title": "Şema Çizme Atölyesi",
+  "estimatedMinutes": 6,
+  "prerequisites": ["2.4"],
+  "objectives": [
+    "Sıfırdan, verilen bir problem tanımından akış şeması kurar"
+  ],
+  "hook": {
+    "text": "Artık kuralları biliyorsun. Şimdi sıra sende: birkaç problemi sıfırdan şemaya dök."
+  },
+  "concept": [
+    {
+      "heading": "Atölye zamanı",
+      "body": "Bu derste yeni bir kavram yok — öğrendiğin her şeyi (semboller, doğrusal akış, sözde kod çevirisi) birleştirerek sıfırdan şema kuracaksın. Her problem için önce zihninde adımları sırala, sonra doğru sembolü doğru yere yerleştir.",
+      "visual": { "type": "animation", "component": "steps", "props": { "steps": ["Problemi anla", "Adımları sırala", "Doğru sembolü seç", "Okları bağla"] } }
+    }
+  ],
+  "workedExamples": [],
+  "exercises": [
+    {
+      "id": "2.5-e1",
+      "type": "flowchart-build",
+      "difficulty": 2,
+      "question": "\"Kullanıcıdan bir isim al ve ona selam ver\" algoritmasının şemasını kur.",
+      "expectedNodes": [
+        { "id": "n1", "shape": "terminal", "label": "Başla" },
+        { "id": "n2", "shape": "io", "label": "isim oku" },
+        { "id": "n3", "shape": "io", "label": "\"Merhaba \" + isim yaz" },
+        { "id": "n4", "shape": "terminal", "label": "Bitir" }
+      ],
+      "expectedEdges": [
+        { "from": "n1", "to": "n2" },
+        { "from": "n2", "to": "n3" },
+        { "from": "n3", "to": "n4" }
+      ]
+    },
+    {
+      "id": "2.5-e2",
+      "type": "flowchart-build",
+      "difficulty": 2,
+      "question": "\"İki sayıyı çarp ve sonucu yazdır\" algoritmasının şemasını kur.",
+      "expectedNodes": [
+        { "id": "n1", "shape": "terminal", "label": "Başla" },
+        { "id": "n2", "shape": "io", "label": "a, b oku" },
+        { "id": "n3", "shape": "process", "label": "carpim ← a * b" },
+        { "id": "n4", "shape": "io", "label": "carpim yaz" },
+        { "id": "n5", "shape": "terminal", "label": "Bitir" }
+      ],
+      "expectedEdges": [
+        { "from": "n1", "to": "n2" },
+        { "from": "n2", "to": "n3" },
+        { "from": "n3", "to": "n4" },
+        { "from": "n4", "to": "n5" }
+      ]
+    },
+    {
+      "id": "2.5-e3",
+      "type": "flowchart-build",
+      "difficulty": 3,
+      "question": "\"Bir dairenin çevresini hesapla (SABIT PI ← 3.14)\" algoritmasının şemasını kur.",
+      "expectedNodes": [
+        { "id": "n1", "shape": "terminal", "label": "Başla" },
+        { "id": "n2", "shape": "io", "label": "yaricap oku" },
+        { "id": "n3", "shape": "process", "label": "cevre ← 2 * 3.14 * yaricap" },
+        { "id": "n4", "shape": "io", "label": "cevre yaz" },
+        { "id": "n5", "shape": "terminal", "label": "Bitir" }
+      ],
+      "expectedEdges": [
+        { "from": "n1", "to": "n2" },
+        { "from": "n2", "to": "n3" },
+        { "from": "n3", "to": "n4" },
+        { "from": "n4", "to": "n5" }
+      ]
+    },
+    {
+      "id": "2.5-e4",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "Bir şema kurarken ilk yerleştirmen gereken sembol hangisidir?",
+      "options": ["Süreç", "Karar", "Başla (terminal)", "Girdi/Çıktı"],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Doğru. Her şema bir \"Başla\" terminaliyle başlar.",
+        "incorrect": "Her şemanın ilk sembolü, \"Başla\" terminalidir."
+      }
+    },
+    {
+      "id": "2.5-e5",
+      "type": "order-steps",
+      "difficulty": 1,
+      "question": "Bir şema kurarken izlenecek düşünme sırasını doğru diz.",
+      "steps": [
+        "Problemi girdi/işlem/çıktı olarak ayır",
+        "Adımları sırayla listele",
+        "Her adıma doğru sembolü ata",
+        "Sembolleri oklarla bağla"
+      ],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "2.5-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "\"a ← a + 1\" adımı bir şemada hangi sembolle gösterilir?",
+      "options": ["Terminal", "Karar", "Süreç", "Girdi/Çıktı"],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Doğru. Bir atama işlemi her zaman süreç (dikdörtgen) sembolüyle gösterilir.",
+        "incorrect": "Atama işlemleri (← ile) süreç (dikdörtgen) sembolüyle gösterilir."
+      }
+    }
+  ],
+  "summary": [
+    "Şema kurma süreci: problemi ayır → adımları sırala → doğru sembolü seç → oklarla bağla.",
+    "Her adım bir sembole karşılık gelir: OKU/YAZ → girdi/çıktı, atama → süreç, EĞER → karar.",
+    "Pratik yaptıkça şema kurmak, sözde kod yazmak kadar doğal hale gelir."
+  ]
+}

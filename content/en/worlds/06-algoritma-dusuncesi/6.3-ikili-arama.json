@@ -1,0 +1,155 @@
+{
+  "id": "6.3",
+  "worldId": "6",
+  "title": "Binary Search",
+  "estimatedMinutes": 6,
+  "prerequisites": ["6.2"],
+  "objectives": [
+    "Understand how binary search works on a SORTED array by splitting it in the middle",
+    "Explain the speed difference between linear search and binary search"
+  ],
+  "hook": {
+    "text": "When you look for the word \"butterfly\" in a dictionary, do you start at A and read one by one, or do you open it in the middle and check which half it is in?"
+  },
+  "concept": [
+    {
+      "heading": "Split in the middle, throw away half",
+      "body": "Binary search works ONLY on sorted arrays. You look at the MIDDLE element of the array: if the target value is smaller than the middle one, you search in the LEFT half, and if it is larger, in the RIGHT half. The other half is dropped completely. This is repeated until the target is found or the search range is empty.",
+      "visual": { "type": "animation", "component": "array", "props": { "values": [3, 8, 12, 17, 21, 29, 34, 40, 47], "mode": "binary", "target": 34 } }
+    },
+    {
+      "heading": "Why is it faster than linear search?",
+      "body": "In the worst case, linear search checks N elements. Binary search cuts the search space IN HALF at EVERY step, so in an array of 1000 elements it reaches the answer in only about 10 steps (2 to the power of 10 = 1024). This difference is very noticeable in large arrays.",
+      "visual": { "type": "animation", "component": "growth", "props": { "lines": ["log", "n"] } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "Find 40 in the sorted array [10, 20, 30, 40, 50] with binary search.",
+      "pseudocode": [
+        "numbers ← [10, 20, 30, 40, 50]",
+        "left ← 0",
+        "right ← 4",
+        "position ← -1",
+        "WHILE left ≤ right",
+        "  mid ← (left + right) DIV 2",
+        "  IF numbers[mid] = 40",
+        "    position ← mid",
+        "    right ← left - 1",
+        "  ELSE",
+        "    IF numbers[mid] < 40",
+        "      left ← mid + 1",
+        "    ELSE",
+        "      right ← mid - 1",
+        "    END",
+        "  END",
+        "END_LOOP",
+        "WRITE position"
+      ],
+      "runnerSource": "numbers ← [10, 20, 30, 40, 50]\nleft ← 0\nright ← 4\nposition ← -1\nWHILE left ≤ right\n  mid ← (left + right) DIV 2\n  IF numbers[mid] = 40\n    position ← mid\n    right ← left - 1\n  ELSE\n    IF numbers[mid] < 40\n      left ← mid + 1\n    ELSE\n      right ← mid - 1\n    END\n  END\nEND_LOOP\nWRITE position",
+      "steps": [
+        { "line": 5, "explain": "mid = (0 + 4) DIV 2 = 2. numbers[2] = 30 < 40, so left ← 3." },
+        { "line": 5, "explain": "mid = (3 + 4) DIV 2 = 3. numbers[3] = 40 = 40, found! position ← 3." },
+        { "line": 17, "explain": "Result: position = 3 (40 was found at index 3).", "output": ["3"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "6.3-e1",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "What precondition does binary search need?",
+      "options": ["The array must be empty", "The array must be SORTED", "The array must contain only numbers", "The array must have one element"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. Binary search gives the right result only on sorted arrays.",
+        "incorrect": "Binary search needs the array to be SORTED so that it can decide which half can be dropped."
+      }
+    },
+    {
+      "id": "6.3-e2",
+      "type": "predict-output",
+      "difficulty": 3,
+      "question": "What does this code, which finds the index of 5 in the sorted array [1, 3, 5, 7, 9, 11], write to the screen?",
+      "pseudocode": [
+        "numbers ← [1, 3, 5, 7, 9, 11]",
+        "left ← 0",
+        "right ← 5",
+        "position ← -1",
+        "WHILE left ≤ right",
+        "  mid ← (left + right) DIV 2",
+        "  IF numbers[mid] = 5",
+        "    position ← mid",
+        "    right ← left - 1",
+        "  ELSE",
+        "    IF numbers[mid] < 5",
+        "      left ← mid + 1",
+        "    ELSE",
+        "      right ← mid - 1",
+        "    END",
+        "  END",
+        "END_LOOP",
+        "WRITE position"
+      ],
+      "correctOutput": ["2"],
+      "hint": "mid = (0 + 5) DIV 2 = 2, and numbers[2] = 5, so it is found on the first try."
+    },
+    {
+      "id": "6.3-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "In a sorted array of 1024 elements, about how many comparisons does binary search make in the worst case?",
+      "options": ["1024", "512", "~10", "1"],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Correct. The space is halved at each step, so 2^10 = 1024 means about 10 steps are enough.",
+        "incorrect": "Since the search space is halved at each step, only about 10 steps (log₂1024 = 10) are enough for 1024 elements."
+      }
+    },
+    {
+      "id": "6.3-e4",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Put the logic of one step of binary search in the correct order.",
+      "steps": [
+        "Look at the middle element",
+        "Compare the target value with the middle element",
+        "If they are equal, record the position and stop",
+        "If not, pick the right half and repeat"
+      ],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "6.3-e5",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "Binary search shrinks the search space ___ at every step.",
+      "options": ["by half", "by one", "by doubling it", "not at all"],
+      "answer": "by half"
+    },
+    {
+      "id": "6.3-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "What happens if you try to use binary search on an unsorted (jumbled) array?",
+      "options": [
+        "It works normally and the result is correct",
+        "It may give a wrong result, because it becomes unclear which half can be dropped",
+        "It sorts the array automatically",
+        "It falls back to linear search"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. In an unsorted array, the assumption about \"which half it is in\" breaks down, and there is a risk of a wrong result.",
+        "incorrect": "Binary search relies on the assumption that the array is sorted; in an unsorted array this assumption breaks and the result cannot be trusted."
+      }
+    }
+  ],
+  "summary": [
+    "Binary search works only on SORTED arrays.",
+    "At each step you look at the middle element, decide which half to search in, and drop the other half.",
+    "In an array of N elements, binary search reaches the result in about log₂N steps, which is much faster than linear search."
+  ]
+}

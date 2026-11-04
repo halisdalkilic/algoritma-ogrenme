@@ -1,0 +1,116 @@
+{
+  "id": "5.1",
+  "worldId": "5",
+  "title": "Dizi Kavramı",
+  "estimatedMinutes": 5,
+  "prerequisites": ["4.9"],
+  "objectives": [
+    "Diziyi, aynı tipte birden çok değeri tutan sıralı bir yapı olarak tanır",
+    "İndeks kavramını ve 0'dan başladığını kavrar"
+  ],
+  "hook": {
+    "text": "30 öğrencinin notunu saklamak istiyorsun. not1, not2, not3... diye 30 ayrı değişken mi açacaksın?"
+  },
+  "concept": [
+    {
+      "heading": "Dizi: sıralı bir kutu grubu",
+      "body": "Dizi (array), aynı tipte birden çok değeri TEK bir isim altında, sıralı şekilde tutan bir yapıdır. notlar ← [70, 85, 90] dediğinde, notlar isimli tek bir kutu grubu oluşur; içinde üç ayrı değer sıralanır.",
+      "visual": { "type": "animation", "component": "array", "props": { "values": [70, 85, 90], "mode": "index", "name": "notlar" } }
+    },
+    {
+      "heading": "İndeks: elemanın adresi",
+      "body": "Bir dizideki her elemana, o elemanın İNDEKSİ (konum numarası) ile erişilirsin. Bu derste ve Step Runner'da diziler 0'dan başlar: notlar[0] ilk elemandır, notlar[1] ikinci elemandır. Dizinin BOYUTU (kaç eleman tuttuğu) ile son geçerli indeks (boyut-1) birbirinden farklıdır.",
+      "visual": { "type": "animation", "component": "array", "props": { "values": [70, 85, 90], "mode": "index", "name": "notlar" } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "Bir diziyi oluştur ve bir elemanına eriş.",
+      "pseudocode": ["notlar ← [70, 85, 90]", "YAZ notlar[0]", "YAZ notlar[2]"],
+      "runnerSource": "notlar ← [70, 85, 90]\nYAZ notlar[0]\nYAZ notlar[2]",
+      "steps": [
+        { "line": 0, "explain": "notlar dizisi 3 elemanla oluşturulur: [70, 85, 90]." },
+        { "line": 1, "explain": "notlar[0], ilk elemandır: 70.", "output": ["70"] },
+        { "line": 2, "explain": "notlar[2], ÜÇÜNCÜ elemandır (indeks 2): 90.", "output": ["70", "90"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "5.1-e1",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "sayilar ← [10, 20, 30] dizisinde sayilar[0] hangi değerdir?",
+      "options": ["10", "20", "30", "Tanımsız"],
+      "correctIndex": 0,
+      "feedback": {
+        "correct": "Doğru. İndeks 0, dizinin İLK elemanına karşılık gelir.",
+        "incorrect": "Diziler 0'dan başlar; indeks 0, ilk elemanı (10) gösterir."
+      }
+    },
+    {
+      "id": "5.1-e2",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": ["renkler ← [\"kırmızı\", \"yeşil\", \"mavi\"]", "YAZ renkler[1]"],
+      "correctOutput": ["yeşil"],
+      "hint": "İndeks 1, dizinin İKİNCİ elemanıdır."
+    },
+    {
+      "id": "5.1-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "5 elemanlı bir dizinin son elemanının indeksi kaçtır?",
+      "options": ["5", "4", "6", "0"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. 0'dan başladığı için son indeks, boyut-1'dir: 5-1=4.",
+        "incorrect": "Diziler 0'dan başladığından, 5 elemanlı bir dizinin son indeksi 5-1=4'tür."
+      }
+    },
+    {
+      "id": "5.1-e4",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "5 elemanlı bir dizide dizi[5]'e erişmeye çalışırsan ne olur?",
+      "options": [
+        "Son elemanı verir",
+        "Sınır dışı hata verir (indeks 0-4 arasında olmalıydı)",
+        "0 döner",
+        "Diziyi büyütür"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Geçerli indeksler 0'dan 4'e kadardır; 5 sınır dışıdır.",
+        "incorrect": "5 elemanlı bir dizide geçerli indeksler 0-4'tür; dizi[5] sınır dışına çıkar."
+      }
+    },
+    {
+      "id": "5.1-e5",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "Bir dizideki elemanların konum numarasına ___ denir.",
+      "options": ["indeks", "değişken", "sabit", "operatör"],
+      "answer": "indeks"
+    },
+    {
+      "id": "5.1-e6",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "30 öğrencinin notunu saklamak için en uygun yapı hangisidir?",
+      "options": ["30 ayrı değişken", "Tek bir dizi", "Tek bir sabit", "Tek bir mantıksal değişken"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Bir dizi, aynı tipte çok sayıda değeri tek isim altında tutar.",
+        "incorrect": "30 ayrı değişken yerine, tek bir dizi (notlar[0]...notlar[29]) kullanmak çok daha yönetilebilirdir."
+      }
+    }
+  ],
+  "summary": [
+    "Dizi: aynı tipte birden çok değeri tek bir isim altında sıralı tutan yapı.",
+    "İndeks: bir elemanın dizideki konum numarasıdır ve 0'dan başlar.",
+    "N elemanlı bir dizide geçerli indeksler 0'dan N-1'e kadardır."
+  ]
+}

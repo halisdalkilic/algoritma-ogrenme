@@ -1,0 +1,120 @@
+{
+  "id": "2.5",
+  "worldId": "2",
+  "title": "Flowchart Drawing Workshop",
+  "estimatedMinutes": 6,
+  "prerequisites": ["2.4"],
+  "objectives": [
+    "Build a flowchart from scratch from a given problem description"
+  ],
+  "hook": {
+    "text": "Now you know the rules. It is your turn: turn a few problems into flowcharts from scratch."
+  },
+  "concept": [
+    {
+      "heading": "Workshop time",
+      "body": "This lesson has no new concept. You will combine everything you have learned (symbols, linear flow, pseudocode translation) to build flowcharts from scratch. For each problem, first put the steps in order in your head, then place the right symbol in the right spot.",
+      "visual": { "type": "animation", "component": "steps", "props": { "steps": ["Understand the problem", "Put the steps in order", "Pick the right symbol", "Connect the arrows"] } }
+    }
+  ],
+  "workedExamples": [],
+  "exercises": [
+    {
+      "id": "2.5-e1",
+      "type": "flowchart-build",
+      "difficulty": 2,
+      "question": "Build the flowchart for the algorithm \"get a name from the user and greet them\".",
+      "expectedNodes": [
+        { "id": "n1", "shape": "terminal", "label": "Start" },
+        { "id": "n2", "shape": "io", "label": "Read name" },
+        { "id": "n3", "shape": "io", "label": "Write \"Hello \" + name" },
+        { "id": "n4", "shape": "terminal", "label": "End" }
+      ],
+      "expectedEdges": [
+        { "from": "n1", "to": "n2" },
+        { "from": "n2", "to": "n3" },
+        { "from": "n3", "to": "n4" }
+      ]
+    },
+    {
+      "id": "2.5-e2",
+      "type": "flowchart-build",
+      "difficulty": 2,
+      "question": "Build the flowchart for the algorithm \"multiply two numbers and print the result\".",
+      "expectedNodes": [
+        { "id": "n1", "shape": "terminal", "label": "Start" },
+        { "id": "n2", "shape": "io", "label": "Read a, b" },
+        { "id": "n3", "shape": "process", "label": "product ← a * b" },
+        { "id": "n4", "shape": "io", "label": "Write product" },
+        { "id": "n5", "shape": "terminal", "label": "End" }
+      ],
+      "expectedEdges": [
+        { "from": "n1", "to": "n2" },
+        { "from": "n2", "to": "n3" },
+        { "from": "n3", "to": "n4" },
+        { "from": "n4", "to": "n5" }
+      ]
+    },
+    {
+      "id": "2.5-e3",
+      "type": "flowchart-build",
+      "difficulty": 3,
+      "question": "Build the flowchart for the algorithm \"calculate the circumference of a circle (CONST PI ← 3.14)\".",
+      "expectedNodes": [
+        { "id": "n1", "shape": "terminal", "label": "Start" },
+        { "id": "n2", "shape": "io", "label": "Read radius" },
+        { "id": "n3", "shape": "process", "label": "circumference ← 2 * 3.14 * radius" },
+        { "id": "n4", "shape": "io", "label": "Write circumference" },
+        { "id": "n5", "shape": "terminal", "label": "End" }
+      ],
+      "expectedEdges": [
+        { "from": "n1", "to": "n2" },
+        { "from": "n2", "to": "n3" },
+        { "from": "n3", "to": "n4" },
+        { "from": "n4", "to": "n5" }
+      ]
+    },
+    {
+      "id": "2.5-e4",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "Which symbol should you place first when building a flowchart?",
+      "options": ["Process", "Decision", "Start (terminal)", "Input/Output"],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Correct. Every flowchart begins with a \"Start\" terminal.",
+        "incorrect": "The first symbol of every flowchart is the \"Start\" terminal."
+      }
+    },
+    {
+      "id": "2.5-e5",
+      "type": "order-steps",
+      "difficulty": 1,
+      "question": "Put the thinking order to follow when building a flowchart in the correct order.",
+      "steps": [
+        "Split the problem into input/process/output",
+        "List the steps in order",
+        "Assign the right symbol to each step",
+        "Connect the symbols with arrows"
+      ],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "2.5-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Which symbol shows the step \"a ← a + 1\" in a flowchart?",
+      "options": ["Terminal", "Decision", "Process", "Input/Output"],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Correct. An assignment is always shown with the process (rectangle) symbol.",
+        "incorrect": "Assignments (with ←) are shown with the process (rectangle) symbol."
+      }
+    }
+  ],
+  "summary": [
+    "How to build a flowchart: split the problem, put the steps in order, pick the right symbol, connect with arrows.",
+    "Each step matches a symbol: READ/WRITE → input/output, assignment → process, IF → decision.",
+    "With practice, building flowcharts becomes as natural as writing pseudocode."
+  ]
+}

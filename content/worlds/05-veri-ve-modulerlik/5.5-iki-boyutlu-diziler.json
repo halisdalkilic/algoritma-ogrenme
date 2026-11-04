@@ -1,0 +1,117 @@
+{
+  "id": "5.5",
+  "worldId": "5",
+  "title": "İki Boyutlu Diziler",
+  "estimatedMinutes": 6,
+  "prerequisites": ["5.4"],
+  "objectives": [
+    "İki boyutlu diziyi (matris) satır ve sütunlardan oluşan bir yapı olarak tanır",
+    "Çift indeksle (dizi[satir][sutun]) bir elemana erişir"
+  ],
+  "hook": {
+    "text": "Bir tic-tac-toe tahtası ya da bir sınıfın oturma planı — bunlar tek boyutlu bir dizi ile kolayca temsil edilemez. İki boyuta ihtiyacın var."
+  },
+  "concept": [
+    {
+      "heading": "Matris: dizilerin dizisi",
+      "body": "İki boyutlu bir dizi (matris), her elemanı KENDİSİ de bir dizi olan bir dizidir. matris ← [[1,2,3],[4,5,6]] iki satırlı, üç sütunlu bir yapı oluşturur. matris[0], ilk satırın tamamıdır ([1,2,3]).",
+      "visual": { "type": "animation", "component": "array", "props": { "values": [1, 2, 3, 4, 5, 6], "mode": "matrix", "cols": 3, "name": "matris" } }
+    },
+    {
+      "heading": "Çift indeksleme",
+      "body": "Tek bir elemana erişmek için İKİ indeks gerekir: matris[satir][sutun]. matris[0][2], ilk satırın (indeks 0) üçüncü elemanına (indeks 2) erişir — yukarıdaki örnekte bu 3'tür.",
+      "visual": { "type": "animation", "component": "array", "props": { "values": [1, 2, 3, 4, 5, 6], "mode": "matrix", "cols": 3, "name": "matris" } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "2x3'lük bir matrisin bir elemanına eriş.",
+      "pseudocode": ["matris ← [[1, 2, 3], [4, 5, 6]]", "YAZ matris[0][2]", "YAZ matris[1][0]"],
+      "runnerSource": "matris ← [[1, 2, 3], [4, 5, 6]]\nYAZ matris[0][2]\nYAZ matris[1][0]",
+      "steps": [
+        { "line": 0, "explain": "2 satır, 3 sütunluk bir matris oluşturulur." },
+        { "line": 1, "explain": "matris[0][2]: 0. satırın 2. indeksi (3. elemanı) = 3.", "output": ["3"] },
+        { "line": 2, "explain": "matris[1][0]: 1. satırın 0. indeksi (1. elemanı) = 4.", "output": ["3", "4"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "5.5-e1",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": ["tahta ← [[1, 2], [3, 4]]", "YAZ tahta[1][1]"],
+      "correctOutput": ["4"],
+      "hint": "1. satır ([3,4]), 1. sütun (indeks 1) = 4."
+    },
+    {
+      "id": "5.5-e2",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "matris ← [[1,2,3],[4,5,6],[7,8,9]] kaç satır ve kaç sütuna sahiptir?",
+      "options": ["2 satır, 3 sütun", "3 satır, 3 sütun", "3 satır, 2 sütun", "9 satır, 1 sütun"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Dış dizide 3 eleman (satır) var, her satırda 3 eleman (sütun) var.",
+        "incorrect": "Dış dizinin 3 elemanı (satır), her iç dizinin 3 elemanı (sütun) vardır: 3x3."
+      }
+    },
+    {
+      "id": "5.5-e3",
+      "type": "predict-output",
+      "difficulty": 3,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": [
+        "matris ← [[1, 2], [3, 4]]",
+        "toplam ← 0",
+        "İÇİN i ← 0'DAN 1'E ADIM 1",
+        "  İÇİN j ← 0'DAN 1'E ADIM 1",
+        "    toplam ← toplam + matris[i][j]",
+        "  DÖNGÜ_BİTİR",
+        "DÖNGÜ_BİTİR",
+        "YAZ toplam"
+      ],
+      "correctOutput": ["10"],
+      "hint": "1+2+3+4 = 10; iç içe döngü tüm elemanları tek tek dolaşır."
+    },
+    {
+      "id": "5.5-e4",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "matris[2][0] ifadesi hangi elemana erişir?",
+      "options": ["1. satır, 1. sütun", "3. satır, 1. sütun", "1. satır, 3. sütun", "3. satır, 3. sütun"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. İndeks 2 → 3. satır (0'dan sayınca), indeks 0 → 1. sütun.",
+        "incorrect": "0-indeksli sayımda indeks 2, üçüncü satırdır; indeks 0, birinci sütundur."
+      }
+    },
+    {
+      "id": "5.5-e5",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "İki boyutlu bir diziye tek bir elemana erişmek için ___ indeks gerekir.",
+      "options": ["iki", "bir", "üç", "sıfır"],
+      "answer": "iki"
+    },
+    {
+      "id": "5.5-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Bir matrisin TÜM elemanlarını dolaşmak için genelde kaç döngü gerekir?",
+      "options": ["1", "2 (iç içe)", "3", "Hiç gerekmez"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Bir döngü satırları, içteki döngü her satırın sütunlarını dolaşır.",
+        "incorrect": "Matrisin tamamını dolaşmak için iç içe iki döngü gerekir: biri satırlar, biri sütunlar için."
+      }
+    }
+  ],
+  "summary": [
+    "İki boyutlu dizi (matris), her elemanı kendisi de bir dizi olan bir dizidir.",
+    "Tek bir elemana erişmek için çift indeks gerekir: matris[satir][sutun].",
+    "Bir matrisin tamamını dolaşmak için iç içe iki döngü kullanılır."
+  ]
+}

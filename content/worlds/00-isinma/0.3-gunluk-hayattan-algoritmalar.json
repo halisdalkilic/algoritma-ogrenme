@@ -1,0 +1,117 @@
+{
+  "id": "0.3",
+  "worldId": "0",
+  "title": "Günlük Hayattan Algoritmalar",
+  "estimatedMinutes": 5,
+  "prerequisites": ["0.2"],
+  "objectives": [
+    "Günlük hayattaki rutinleri algoritma olarak ifade eder",
+    "Bir algoritmadaki eksik veya belirsiz adımları fark eder"
+  ],
+  "hook": {
+    "text": "Her sabah çay demlerken aslında bir algoritma çalıştırıyorsun — sadece farkında değilsin."
+  },
+  "concept": [
+    {
+      "heading": "Rutinler, algoritmadır",
+      "body": "Çay demlemek, diş fırçalamak, otobüse binmek — hepsi net adımlardan oluşur. Bunları yazıya döktüğünde bir algoritma elde edersin. Fark, bilgisayara yazdığında adımların HİÇBİR yorum payı bırakmaması gerektiğidir.",
+      "visual": { "type": "animation", "component": "steps", "props": { "steps": ["Suyu kaynat", "Demliğe çay koy", "Kaynar suyu dök", "10 dk demlendir"] } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "Çay demleme algoritması",
+      "pseudocode": [
+        "1. Su ısıt",
+        "2. Su kaynayınca demliğe dök",
+        "3. Çay poşetini demliğe koy",
+        "4. 3 dakika bekle",
+        "5. Poşeti çıkar, bardağa dök"
+      ],
+      "steps": [
+        { "line": 0, "explain": "Girdi: soğuk su. İşlem başlar." },
+        { "line": 1, "explain": "Belirli bir koşul sağlanınca (kaynama) bir sonraki adıma geçiliyor." },
+        { "line": 3, "explain": "\"3 dakika\" net bir süre — kesinlik ilkesine uyar, \"biraz bekle\" olsaydı uymazdı." },
+        { "line": 4, "explain": "Çıktı: içilebilir çay." }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "0.3-e1",
+      "type": "order-steps",
+      "difficulty": 1,
+      "question": "Diş fırçalama algoritmasını doğru sıraya diz.",
+      "steps": ["Fırçaya macun sık", "Dişleri 2 dakika fırçala", "Ağzı su ile çalkala", "Fırçayı durula"],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "0.3-e2",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "\"ATM'den para çek\" algoritmasında hangi adım eksiktir: 1) Kartı tak 2) Parayı al?",
+      "options": [
+        "Hiçbir şey eksik değil",
+        "Şifre girme ve tutar seçme adımları eksik",
+        "Kartı takmak gereksiz",
+        "Parayı almak gereksiz"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Şifre ve tutar girilmeden makine parayı vermez — adımlar eksik.",
+        "incorrect": "Kart takıldıktan sonra şifre ve tutar girilmesi gerekir; bu adımlar atlanmış."
+      }
+    },
+    {
+      "id": "0.3-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "\"Kapıyı aç, çık, kapıyı kapat\" algoritması hangi durumda başarısız olur?",
+      "options": [
+        "Kapı kilitliyse",
+        "Hava güzelse",
+        "Saat 12:00 ise",
+        "Hiçbir zaman başarısız olmaz"
+      ],
+      "correctIndex": 0,
+      "feedback": {
+        "correct": "Doğru. Kapı kilitliyse \"aç\" adımı uygulanamaz — etkinlik ilkesi bozulur.",
+        "incorrect": "Kapı kilitliyken \"aç\" adımı gerçekleştirilemez, bu yüzden algoritma orada tıkanır."
+      }
+    },
+    {
+      "id": "0.3-e4",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "\"3 dakika bekle\" ifadesi \"biraz bekle\"den daha iyidir çünkü daha ___ dır.",
+      "options": ["kesin", "yavaş", "eğlenceli", "uzun"],
+      "answer": "kesin"
+    },
+    {
+      "id": "0.3-e5",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Çamaşır makinesini çalıştırma algoritmasını doğru sıraya diz.",
+      "steps": ["Çamaşırları makineye koy", "Deterjanı ekle", "Programı seç", "Başlat düğmesine bas"],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "0.3-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Bir tarifte \"tuz ekle\" yazıyor ama miktar belirtilmemiş. Bu hangi algoritma özelliğini zayıflatır?",
+      "options": ["Sonluluk", "Kesinlik", "Girdi/Çıktı", "Hiçbirini"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Miktar belirtilmemesi adımı belirsiz kılar: kesinlik zayıflar.",
+        "incorrect": "Miktarın belirsiz olması, adımın tek anlamlı olmasını engeller: kesinlik sorunu."
+      }
+    }
+  ],
+  "summary": [
+    "Günlük rutinler de birer algoritmadır; sadece yazıya dökülmemiştir.",
+    "\"Biraz\", \"mümkünse\", \"bir süre\" gibi ifadeler kesinliği bozar.",
+    "Bir algoritmadaki eksik adım, işlemi tıkanma noktasına getirir."
+  ]
+}

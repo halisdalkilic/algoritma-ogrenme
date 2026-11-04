@@ -1,0 +1,135 @@
+{
+  "id": "3.6",
+  "worldId": "3",
+  "title": "Karar Hataları",
+  "estimatedMinutes": 5,
+  "prerequisites": [
+    "3.5"
+  ],
+  "objectives": [
+    "Kapsanmayan durumları (eksik DEĞİLSE) fark eder",
+    "Ulaşılamaz dal (asla çalışmayan kod) hatalarını tespit eder"
+  ],
+  "hook": {
+    "text": "\"EĞER not ≥ 50 BAŞARILI DEĞİLSE not < 50 BAŞARISIZ\" — bu ikinci kontrol gerçekten gerekli mi, yoksa gereksiz mi?"
+  },
+  "concept": [
+    {
+      "heading": "Kapsanmayan durum",
+      "body": "Bir EĞER zincirinde bazı durumların hiç ele alınmaması, kapsanmayan durum hatasıdır. Örneğin sadece \"not ≥ 50\" ve \"not < 0\" kontrol edilirse, 0 ile 50 arası (örn. not=30) hiçbir dala girmeyebilir — bu bir mantık hatasıdır.",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "not < 0", "sub": "hata dalı" }, { "label": "0 – 49", "sub": "hiçbir dala girmiyor ✗", "tone": "bad" }, { "label": "not ≥ 50", "sub": "geçti dalı", "tone": "good" }] } }
+    },
+    {
+      "heading": "Ulaşılamaz dal",
+      "body": "Bir EĞER zincirinde, önceki bir koşul her zaman sonraki koşulu da kapsıyorsa, sonraki dal ASLA çalışmaz. Örneğin önce \"yas ≥ 0\" kontrol edilip DOĞRU ise bir şey yapılıyorsa, ardından \"yas ≥ 18\" kontrolü hiçbir zaman ayrı olarak değerlendirilemez (çünkü ilk koşulda zaten \"yakalanmıştır\").",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "yas ≥ 0", "sub": "her şeyi önce yakalar" }, { "label": "yas ≥ 18", "sub": "asla ulaşılamaz ✗", "tone": "bad" }] } }
+    }
+  ],
+  "workedExamples": [],
+  "exercises": [
+    {
+      "id": "3.6-e1",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "\"EĞER not ≥ 50 ise Geçti, DEĞİLSE EĞER not < 0 ise Geçersiz\" zincirinde not = 30 için ne olur?",
+      "options": [
+        "\"Geçti\" yazılır",
+        "\"Geçersiz\" yazılır",
+        "Hiçbir şey yazılmaz — kapsanmayan durum",
+        "Hata oluşur"
+      ],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Doğru. 30, ne ≥50 ne de <0 olduğu için hiçbir dal çalışmaz — bu bir kapsanmayan durum hatasıdır.",
+        "incorrect": "30 hiçbir koşulu sağlamadığı için hiçbir şey yazılmaz; bu, ele alınmamış (kapsanmayan) bir durumdur."
+      }
+    },
+    {
+      "id": "3.6-e2",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "\"EĞER yas ≥ 0 ... DEĞİLSE EĞER yas ≥ 18 ...\" sıralamasında ikinci koşul (yas ≥ 18) neden anlamsızdır?",
+      "options": [
+        "Hiç anlamsız değildir",
+        "İlk koşul (yas ≥ 0) zaten neredeyse her zaman DOĞRU olduğundan, ikinci dala hemen hiç girilmez",
+        "İkinci koşul her zaman YANLIŞ'tır",
+        "Sıra önemli değildir"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. yas ≥ 0 çoğu gerçek yaş için zaten DOĞRU olduğundan, DEĞİLSE dalına neredeyse hiç girilmez.",
+        "incorrect": "İlk koşul (yas ≥ 0) normal yaş değerleri için hep DOĞRU olacağından ikinci koşul pratikte ulaşılamaz hale gelir."
+      }
+    },
+    {
+      "id": "3.6-e3",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "Kapsanmayan durum hatasından kaçınmanın en güvenli yolu nedir?",
+      "options": [
+        "Hiç DEĞİLSE kullanmamak",
+        "Zincirin sonuna bir \"genel\" DEĞİLSE (varsayılan durum) eklemek",
+        "Sadece = operatörü kullanmak",
+        "Koşulları rastgele sıralamak"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Zincirin sonuna bir varsayılan DEĞİLSE eklemek, kapsanmayan durumları yakalar.",
+        "incorrect": "Zincirin en sonuna kapsayıcı bir DEĞİLSE bloğu eklemek, hiçbir koşulun eşleşmediği durumları da ele alır."
+      }
+    },
+    {
+      "id": "3.6-e4",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "Bir EĞER zincirinde hiçbir koşulun kapsamadığı bir aralık kalması ___ durum hatasıdır.",
+      "options": [
+        "kapsanmayan",
+        "ulaşılamaz",
+        "sonsuz",
+        "tanımsız"
+      ],
+      "answer": "kapsanmayan"
+    },
+    {
+      "id": "3.6-e5",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "\"EĞER puan ≥ 90 ... DEĞİLSE EĞER puan ≥ 95 ...\" sıralamasındaki hata nedir?",
+      "options": [
+        "Sıra ters — ≥95 kontrolü hiçbir zaman çalışmaz çünkü ≥90 onu zaten yakalar",
+        "Hiçbir hata yok",
+        "≥90 kontrolü hiç çalışmaz",
+        "İki koşul da aynı anda çalışır"
+      ],
+      "correctIndex": 0,
+      "feedback": {
+        "correct": "Doğru. Daha geniş bir koşul (≥90) önce yazıldığından, daha dar koşul (≥95) asla test edilmez — ulaşılamaz dal.",
+        "incorrect": "≥90 zaten ≥95 olan tüm durumları kapsadığından, ikinci kontrol asla ayrı olarak çalışmaz — bu ulaşılamaz bir daldır."
+      }
+    },
+    {
+      "id": "3.6-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "İç içe eşik kontrollerinde doğru sıralama genelde nasıl olmalıdır?",
+      "options": [
+        "Rastgele sırayla",
+        "En dar/yüksek eşikten en geniş/düşük eşiğe doğru",
+        "En geniş eşikten en dar eşiğe doğru",
+        "Alfabetik sırayla"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Önce en yüksek/dar eşik kontrol edilmeli, aksi halde geniş bir koşul onu \"yakalar\" ve ulaşılamaz kılar.",
+        "incorrect": "Genelde en yüksek/dar eşikten başlanır; aksi halde geniş bir koşul dar olanı asla test edilemez hale getirir."
+      }
+    }
+  ],
+  "summary": [
+    "Kapsanmayan durum: bazı değer aralıkları hiçbir koşulu sağlamaz, hiçbir dal çalışmaz.",
+    "Ulaşılamaz dal: önceki geniş bir koşul, sonraki dar koşulu asla test edilemez hale getirir.",
+    "Güvenli sıralama: en dar/yüksek eşikten başla, sona kapsayıcı bir DEĞİLSE ekle."
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "id": "0.2",
+  "worldId": "0",
+  "title": "Algoritma Tanımı ve Özellikleri",
+  "estimatedMinutes": 4,
+  "prerequisites": ["0.1"],
+  "objectives": [
+    "Algoritma kavramını tanımlar",
+    "Bir algoritmanın dört temel özelliğini (sonluluk, kesinlik, etkinlik, girdi/çıktı) sayar"
+  ],
+  "hook": {
+    "text": "\"Mutlu ol\" bir algoritma mıdır? Peki \"gözlerini kapat, 4 saniye nefes al, 4 saniye tut, 4 saniye ver\" nasıl?"
+  },
+  "concept": [
+    {
+      "heading": "Algoritma nedir?",
+      "body": "Algoritma, bir problemi çözmek için izlenen, net ve sonlu adımlar dizisidir. \"Mutlu ol\" bir algoritma değildir çünkü hangi adımların atılacağı belli değil. Nefes egzersizi ise algoritmadır: adımlar net ve sırayla uygulanabilir.",
+      "visual": { "type": "animation", "component": "steps", "props": { "steps": ["4 sn nefes al", "4 sn tut", "4 sn nefes ver", "3 kez tekrarla"] } }
+    },
+    {
+      "heading": "Dört temel özellik",
+      "body": "İyi bir algoritma dört şeye sahip olmalı: Sonluluk (bir noktada bitmeli), Kesinlik (her adım net ve tek anlamlı olmalı), Etkinlik (her adım gerçekten uygulanabilir olmalı), Girdi/Çıktı (sıfır veya daha fazla girdi alır, en az bir çıktı üretir).",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "Sonluluk", "sub": "bir noktada biter" }, { "label": "Kesinlik", "sub": "tek anlamlı adımlar" }, { "label": "Etkinlik", "sub": "uygulanabilir" }, { "label": "Girdi/Çıktı", "sub": "en az 1 çıktı" }] } }
+    }
+  ],
+  "workedExamples": [],
+  "exercises": [
+    {
+      "id": "0.2-e1",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "\"Bir süre bekle, sonra devam et\" ifadesi hangi özelliği ihlal eder?",
+      "options": ["Sonluluk", "Kesinlik", "Girdi", "Çıktı"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. \"Bir süre\" net değildir — kesinlik ilkesi ihlal edilir.",
+        "incorrect": "\"Bir süre\" belirsizdir, yani adım tek anlamlı değildir: kesinlik ihlali."
+      }
+    },
+    {
+      "id": "0.2-e2",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "Sonsuza kadar çalışan, hiç durmayan bir işlem hangi özelliği ihlal eder?",
+      "options": ["Etkinlik", "Sonluluk", "Girdi/Çıktı", "Kesinlik"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Bir algoritma mutlaka bir noktada bitmelidir: sonluluk.",
+        "incorrect": "Bir algoritmanın bitmesi gerekir — bu özelliğe sonluluk denir."
+      }
+    },
+    {
+      "id": "0.2-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "\"Bulutları elinle tut\" adımı hangi özelliği ihlal eder?",
+      "options": ["Sonluluk", "Girdi/Çıktı", "Etkinlik", "Kesinlik"],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Doğru. Bu adım fiziksel olarak uygulanamaz: etkinlik ihlali.",
+        "incorrect": "Etkinlik, her adımın gerçekten yapılabilir olmasını gerektirir. Bulutları tutmak yapılamaz."
+      }
+    },
+    {
+      "id": "0.2-e4",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "Bir algoritmanın her adımı net ve tek anlamlı olmalıdır. Bu özelliğe ___ denir.",
+      "options": ["kesinlik", "sonluluk", "etkinlik", "girdi"],
+      "answer": "kesinlik"
+    },
+    {
+      "id": "0.2-e5",
+      "type": "order-steps",
+      "difficulty": 1,
+      "question": "4-4-4 nefes egzersizi algoritmasını doğru sıraya diz.",
+      "steps": ["Gözlerini kapat", "4 saniye nefes al", "4 saniye tut", "4 saniye ver"],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "0.2-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Aşağıdakilerden hangisi TAM bir algoritma özelliği setine sahiptir?",
+      "options": [
+        "\"Güzel bir gün geçir\"",
+        "\"1'den 10'a kadar say ve her sayıyı yüksek sesle söyle\"",
+        "\"Mümkün olduğunca hızlı koş\"",
+        "\"Bir şeyler ye\""
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Net başlangıç, net bitiş, uygulanabilir adımlar — hepsi var.",
+        "incorrect": "Diğer seçenekler belirsiz (\"bir şeyler\", \"güzel\", \"mümkün olduğunca\") ifadeler içeriyor."
+      }
+    }
+  ],
+  "summary": [
+    "Algoritma: bir problemi çözmek için izlenen net ve sonlu adımlar dizisidir.",
+    "Dört özellik: sonluluk, kesinlik, etkinlik, girdi/çıktı.",
+    "Belirsiz ifadeler (\"biraz\", \"bir süre\", \"mümkünse\") algoritma adımı olamaz."
+  ]
+}

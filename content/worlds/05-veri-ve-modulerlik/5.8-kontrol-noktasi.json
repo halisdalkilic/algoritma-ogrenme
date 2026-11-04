@@ -1,0 +1,127 @@
+{
+  "id": "5.8",
+  "worldId": "5",
+  "title": "Kontrol Noktası: Dünya 5",
+  "estimatedMinutes": 8,
+  "prerequisites": ["5.7"],
+  "objectives": [
+    "Dünya 5'te öğrenilen tüm kavramları (diziler, gezinme, arama, en büyük/küçük, matris, fonksiyon, kapsam) birlikte uygular"
+  ],
+  "hook": {
+    "text": "Dünya 5'in sonuna geldin — ve Dizi + Fonksiyon Ustalığı yolculuğunun sonuna! Şimdi karma sorularla test etme zamanı."
+  },
+  "concept": [
+    {
+      "heading": "Kontrol noktası",
+      "body": "Bu ders yeni bir konu öğretmez; öğrendiklerini pekiştirir. Aşağıdaki sorular dizi kavramı, gezinme, arama, en büyük/küçük bulma, matris, fonksiyon ve kapsamı karışık olarak test eder.",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "Dizi" }, { "label": "Gezinme" }, { "label": "Arama" }, { "label": "En büyük/küçük" }, { "label": "Matris" }, { "label": "Fonksiyon" }, { "label": "Kapsam" }] } }
+    }
+  ],
+  "workedExamples": [],
+  "exercises": [
+    {
+      "id": "5.8-e1",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": ["sayilar ← [3, 6, 9, 12]", "YAZ sayilar[3]"],
+      "correctOutput": ["12"],
+      "hint": "4 elemanlı dizide indeks 3, SON elemandır."
+    },
+    {
+      "id": "5.8-e2",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": [
+        "sayilar ← [2, 4, 6, 8]",
+        "toplam ← 0",
+        "İÇİN i ← 0'DAN 3'E ADIM 1",
+        "  toplam ← toplam + sayilar[i]",
+        "DÖNGÜ_BİTİR",
+        "YAZ toplam"
+      ],
+      "correctOutput": ["20"],
+      "hint": "2+4+6+8=20."
+    },
+    {
+      "id": "5.8-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Doğrusal aramada döngü bittiğinde \"konum\" hâlâ -1 ise ne anlama gelir?",
+      "options": ["Dizi boştur", "Aranan eleman bulunamadı", "Hata oluştu", "Dizi çok büyüktür"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. -1, hiçbir eşleşme bulunamadığını gösterir.",
+        "incorrect": "-1 başlangıç değeri güncellenmediyse, aranan eleman dizide bulunamamıştır."
+      }
+    },
+    {
+      "id": "5.8-e4",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": [
+        "sayilar ← [7, 2, 19, 5]",
+        "enBuyuk ← sayilar[0]",
+        "İÇİN i ← 1'DEN 3'E ADIM 1",
+        "  EĞER sayilar[i] > enBuyuk",
+        "    enBuyuk ← sayilar[i]",
+        "  BİTİR",
+        "DÖNGÜ_BİTİR",
+        "YAZ enBuyuk"
+      ],
+      "correctOutput": ["19"],
+      "hint": "7, 2, 19, 5 içinde en büyük 19'dur."
+    },
+    {
+      "id": "5.8-e5",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": ["matris ← [[1, 2], [3, 4]]", "YAZ matris[1][0]"],
+      "correctOutput": ["3"],
+      "hint": "1. satır ([3,4]), 0. sütun = 3."
+    },
+    {
+      "id": "5.8-e6",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": ["FONKSİYON kup(x)", "  DÖNDÜR x * x * x", "BİTİR", "YAZ kup(3)"],
+      "correctOutput": ["27"],
+      "hint": "3 * 3 * 3 = 27."
+    },
+    {
+      "id": "5.8-e7",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Bir fonksiyon içinde global bir değişkenle aynı isimde bir atama yapılırsa ne olur?",
+      "options": [
+        "Global değişken kalıcı olarak değişir",
+        "Yeni bir yerel değişken oluşur, global değişmez",
+        "Program hata verir",
+        "İkisi de aynı anda güncellenir"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Fonksiyon içi atama, global değişkeni etkilemeyen yeni bir yerel değişken oluşturur.",
+        "incorrect": "Fonksiyon içindeki atama, aynı isimli olsa bile yeni bir YEREL değişken yaratır; global etkilenmez."
+      }
+    },
+    {
+      "id": "5.8-e8",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "N elemanlı bir dizide geçerli indeksler 0'dan ___'e kadardır.",
+      "options": ["N-1", "N", "N+1", "1"],
+      "answer": "N-1"
+    }
+  ],
+  "summary": [
+    "Dünya 5 tamamlandı: diziler, gezinme, arama, en büyük/küçük, matris, fonksiyon, değişken kapsamı.",
+    "Bu, temel algoritma müfredatının çekirdeğini tamamlar — tebrikler!",
+    "Zorlandığın konuları tekrar kuyruğunda tekrar göreceksin."
+  ]
+}

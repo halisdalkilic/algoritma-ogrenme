@@ -1,0 +1,121 @@
+{
+  "id": "5.2",
+  "worldId": "5",
+  "title": "Traversing an Array",
+  "estimatedMinutes": 5,
+  "prerequisites": ["5.1"],
+  "objectives": [
+    "Walk through an array from start to end with a loop",
+    "Use the size of the array as the loop limit"
+  ],
+  "hook": {
+    "text": "Will you write out EVERY element of an array one by one as \"array[0]\", \"array[1]\", \"array[2]\"...? Now you know loops. It is time to combine them."
+  },
+  "concept": [
+    {
+      "heading": "Loop + index = traversal",
+      "body": "To walk through an array, you use a FOR loop that takes the index variable from 0 up to the last index of the array: FOR i ← 0 TO (size - 1) STEP 1. In each round, array[i] reaches that round's element.",
+      "visual": { "type": "animation", "component": "array", "props": { "values": [70, 85, 90, 60], "mode": "scan", "name": "grades" } }
+    },
+    {
+      "heading": "The size sets the limit",
+      "body": "In an array of N elements, the loop should run from i = 0 to i = N - 1. If you go all the way to i = N (one too many), you get an out-of-bounds error. This is the most common mistake when working with arrays: the \"fencepost\" error.",
+      "visual": { "type": "animation", "component": "array", "props": { "values": [70, 85, 90], "mode": "bounds", "name": "grades" } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "Print all the elements of an array in order.",
+      "pseudocode": ["numbers ← [10, 20, 30]", "FOR i ← 0 TO 2 STEP 1", "  WRITE numbers[i]", "END_LOOP"],
+      "runnerSource": "numbers ← [10, 20, 30]\nFOR i ← 0 TO 2 STEP 1\n  WRITE numbers[i]\nEND_LOOP",
+      "steps": [
+        { "line": 0, "explain": "An array with 3 elements is created." },
+        { "line": 1, "explain": "i runs from 0 to 2 (3 elements, indexes 0-2)." },
+        { "line": 2, "explain": "In each round numbers[i] is written: 10, 20, 30.", "output": ["10", "20", "30"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "5.2-e1",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "What does this code write to the screen?",
+      "pseudocode": ["numbers ← [5, 15, 25, 35]", "FOR i ← 0 TO 3 STEP 1", "  WRITE numbers[i]", "END_LOOP"],
+      "correctOutput": ["5", "15", "25", "35"],
+      "hint": "An array with 4 elements, with indexes from 0 to 3."
+    },
+    {
+      "id": "5.2-e2",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "What does this code write to the screen?",
+      "pseudocode": [
+        "numbers ← [1, 2, 3, 4]",
+        "total ← 0",
+        "FOR i ← 0 TO 3 STEP 1",
+        "  total ← total + numbers[i]",
+        "END_LOOP",
+        "WRITE total"
+      ],
+      "correctOutput": ["10"],
+      "hint": "1 + 2 + 3 + 4 = 10."
+    },
+    {
+      "id": "5.2-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Which loop limit walks through an array of 6 elements exactly?",
+      "options": [
+        "FOR i ← 0 TO 6 STEP 1",
+        "FOR i ← 0 TO 5 STEP 1",
+        "FOR i ← 1 TO 6 STEP 1",
+        "FOR i ← 1 TO 5 STEP 1"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. In an array of 6 elements, the valid indexes go from 0 to 5.",
+        "incorrect": "In an array of 6 elements, the last valid index is 5 (6 - 1); the loop should run from 0 to 5."
+      }
+    },
+    {
+      "id": "5.2-e4",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "What happens if you walk through an array of 6 elements with \"FOR i ← 0 TO 6 STEP 1\"?",
+      "options": [
+        "It works correctly",
+        "In the last round, array[6] gives an out-of-bounds error",
+        "The first element is skipped",
+        "The loop never runs"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. When i = 6, array[6] is not valid (the last index is 5): an out-of-bounds error.",
+        "incorrect": "When i goes up to 6, the code tries to reach array[6], which is outside the valid range (0-5)."
+      }
+    },
+    {
+      "id": "5.2-e5",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Put the steps of the algorithm that prints all the elements of an array in the correct order (an array of 3 elements).",
+      "steps": ["numbers ← [4, 8, 12]", "FOR i ← 0 TO 2 STEP 1", "  WRITE numbers[i]", "END_LOOP"],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "5.2-e6",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "When walking through an array with a loop, the loop limit should be one less than the ___ of the array.",
+      "options": ["size", "name", "type", "first element"],
+      "answer": "size"
+    }
+  ],
+  "summary": [
+    "To walk through an array, use a loop that runs from i = 0 to size - 1.",
+    "In an array of N elements, the valid indexes go from 0 to N - 1.",
+    "Setting the loop limit wrong (the fencepost error) is the most common array mistake."
+  ]
+}

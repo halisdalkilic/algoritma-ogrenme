@@ -1,0 +1,109 @@
+{
+  "id": "1.3",
+  "worldId": "1",
+  "title": "The Assignment Operation",
+  "estimatedMinutes": 5,
+  "prerequisites": ["1.2"],
+  "objectives": [
+    "Understand what the ← assignment operator means",
+    "Read self-referencing assignments like a ← a + 1 correctly"
+  ],
+  "hook": {
+    "text": "In math, \"a = a + 1\" looks impossible. In an algorithm, it is perfectly normal. Why?"
+  },
+  "concept": [
+    {
+      "heading": "← reads right to left",
+      "body": "The statement a ← 5 does not mean \"a EQUALS 5\". It means \"PUT the value 5 into the box a\". An assignment always works out the value on the right first, then places the result in the box on the left.",
+      "visual": { "type": "animation", "component": "vars", "props": { "boxes": [{ "name": "a", "values": ["", 5] }], "captions": ["a ← 5 : read from right to left", "the value 5 was PUT into box a"] } }
+    },
+    {
+      "heading": "How does a ← a + 1 work?",
+      "body": "First the right side is calculated: take the CURRENT value of a and add 1. Then this new result is put back into the box a, overwriting the old value. It is not a mathematical equation, it is an UPDATE.",
+      "visual": { "type": "animation", "component": "vars", "props": { "boxes": [{ "name": "a", "values": [5, 5, 6] }], "captions": ["right now a = 5", "first the right side: a + 1 = 6", "a ← 6 (the old 5 was overwritten)"] } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "If a ← 5 and then a ← a + 1 are run, what is the final value of a?",
+      "pseudocode": ["a ← 5", "a ← a + 1", "WRITE a"],
+      "steps": [
+        { "line": 0, "explain": "5 is put into the box a.", "vars": { "a": 5 } },
+        { "line": 1, "explain": "The right side is calculated: a (5) + 1 = 6. The result is written into a.", "vars": { "a": 6 } },
+        { "line": 2, "explain": "6 is written to the screen.", "vars": { "a": 6 }, "output": ["6"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "1.3-e1",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "What does the statement a ← 5 mean?",
+      "options": ["Check whether a equals 5", "Put the value 5 into the box a", "Compare a with 5", "Subtract 5 from a"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. The ← operator places the value on the right into the box on the left.",
+        "incorrect": "← is an assignment, not a comparison: the value on the right is put into the box on the left."
+      }
+    },
+    {
+      "id": "1.3-e2",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "Which number does this code snippet write to the screen?",
+      "pseudocode": ["number ← 10", "number ← number + 5", "WRITE number"],
+      "correctOutput": ["15"],
+      "hint": "First add 5 to the current value of number, then write the result back into number."
+    },
+    {
+      "id": "1.3-e3",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "Which number does this code snippet write to the screen?",
+      "pseudocode": ["x ← 2", "x ← x * 3", "x ← x - 1", "WRITE x"],
+      "correctOutput": ["5"],
+      "hint": "Go step by step: 2, then multiplication, then subtraction."
+    },
+    {
+      "id": "1.3-e4",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "How is a ← a + 1 different from the math equation \"a = a + 1\"?",
+      "options": [
+        "There is no difference, they are the same thing",
+        "In math it is not a valid equation, but in an algorithm it is an update operation",
+        "This operation is forbidden in algorithms",
+        "In math it is always true"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. In an algorithm, ← is not an equality, it is an update command that runs in order.",
+        "incorrect": "In math a = a + 1 is impossible (it would give 0 = 1). In an algorithm it is a command that updates a."
+      }
+    },
+    {
+      "id": "1.3-e5",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "In the statement a ← b, the ___ side is calculated first, then the result is written to the left side.",
+      "options": ["right", "left", "top", "bottom"],
+      "answer": "right"
+    },
+    {
+      "id": "1.3-e6",
+      "type": "predict-output",
+      "difficulty": 1,
+      "question": "What does this code write to the screen?",
+      "pseudocode": ["name ← \"Alice\"", "name ← \"Bob\"", "WRITE name"],
+      "correctOutput": ["Bob"],
+      "hint": "The last assigned value replaces what is in the box."
+    }
+  ],
+  "summary": [
+    "The ← operator calculates the value on the right and writes it into the box on the left. It is not an equality.",
+    "a ← a + 1 reads the old value of a, adds 1, and writes the result back into a.",
+    "When a variable gets a new value, the old value is erased for good."
+  ]
+}

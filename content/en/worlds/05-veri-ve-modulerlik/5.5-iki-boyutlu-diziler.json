@@ -1,0 +1,117 @@
+{
+  "id": "5.5",
+  "worldId": "5",
+  "title": "Two-Dimensional Arrays",
+  "estimatedMinutes": 6,
+  "prerequisites": ["5.4"],
+  "objectives": [
+    "Recognize a two-dimensional array (matrix) as a structure made of rows and columns",
+    "Reach an element with a double index (array[row][column])"
+  ],
+  "hook": {
+    "text": "A tic-tac-toe board or a classroom seating plan: these cannot be easily represented with a one-dimensional array. You need two dimensions."
+  },
+  "concept": [
+    {
+      "heading": "Matrix: an array of arrays",
+      "body": "A two-dimensional array (matrix) is an array where every element is ITSELF an array. matrix ← [[1,2,3],[4,5,6]] creates a structure with two rows and three columns. matrix[0] is the whole first row ([1,2,3]).",
+      "visual": { "type": "animation", "component": "array", "props": { "values": [1, 2, 3, 4, 5, 6], "mode": "matrix", "cols": 3, "name": "matrix" } }
+    },
+    {
+      "heading": "Double indexing",
+      "body": "To reach a single element you need TWO indexes: matrix[row][column]. matrix[0][2] reaches the third element (index 2) of the first row (index 0), which is 3 in the example above.",
+      "visual": { "type": "animation", "component": "array", "props": { "values": [1, 2, 3, 4, 5, 6], "mode": "matrix", "cols": 3, "name": "matrix" } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "Reach an element of a 2x3 matrix.",
+      "pseudocode": ["matrix ← [[1, 2, 3], [4, 5, 6]]", "WRITE matrix[0][2]", "WRITE matrix[1][0]"],
+      "runnerSource": "matrix ← [[1, 2, 3], [4, 5, 6]]\nWRITE matrix[0][2]\nWRITE matrix[1][0]",
+      "steps": [
+        { "line": 0, "explain": "A matrix with 2 rows and 3 columns is created." },
+        { "line": 1, "explain": "matrix[0][2]: index 2 (the 3rd element) of row 0 = 3.", "output": ["3"] },
+        { "line": 2, "explain": "matrix[1][0]: index 0 (the 1st element) of row 1 = 4.", "output": ["3", "4"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "5.5-e1",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "What does this code write to the screen?",
+      "pseudocode": ["board ← [[1, 2], [3, 4]]", "WRITE board[1][1]"],
+      "correctOutput": ["4"],
+      "hint": "Row 1 ([3, 4]), column 1 (index 1) = 4."
+    },
+    {
+      "id": "5.5-e2",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "How many rows and columns does matrix ← [[1,2,3],[4,5,6],[7,8,9]] have?",
+      "options": ["2 rows, 3 columns", "3 rows, 3 columns", "3 rows, 2 columns", "9 rows, 1 column"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. The outer array has 3 elements (rows), and each row has 3 elements (columns).",
+        "incorrect": "The outer array has 3 elements (rows) and each inner array has 3 elements (columns): 3x3."
+      }
+    },
+    {
+      "id": "5.5-e3",
+      "type": "predict-output",
+      "difficulty": 3,
+      "question": "What does this code write to the screen?",
+      "pseudocode": [
+        "matrix ← [[1, 2], [3, 4]]",
+        "total ← 0",
+        "FOR i ← 0 TO 1 STEP 1",
+        "  FOR j ← 0 TO 1 STEP 1",
+        "    total ← total + matrix[i][j]",
+        "  END_LOOP",
+        "END_LOOP",
+        "WRITE total"
+      ],
+      "correctOutput": ["10"],
+      "hint": "1 + 2 + 3 + 4 = 10; the nested loop walks through every element one by one."
+    },
+    {
+      "id": "5.5-e4",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Which element does the expression matrix[2][0] reach?",
+      "options": ["1st row, 1st column", "3rd row, 1st column", "1st row, 3rd column", "3rd row, 3rd column"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. Index 2 is the 3rd row (counting from 0), and index 0 is the 1st column.",
+        "incorrect": "When counting from 0, index 2 is the third row, and index 0 is the first column."
+      }
+    },
+    {
+      "id": "5.5-e5",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "To reach a single element in a two-dimensional array, you need ___ indexes.",
+      "options": ["two", "one", "three", "zero"],
+      "answer": "two"
+    },
+    {
+      "id": "5.5-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "How many loops are usually needed to walk through ALL the elements of a matrix?",
+      "options": ["1", "2 (nested)", "3", "None"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. One loop walks through the rows, and the inner loop walks through the columns of each row.",
+        "incorrect": "To walk through the whole matrix you need two nested loops: one for the rows and one for the columns."
+      }
+    }
+  ],
+  "summary": [
+    "A two-dimensional array (matrix) is an array where every element is itself an array.",
+    "To reach a single element you need a double index: matrix[row][column].",
+    "Two nested loops are used to walk through a whole matrix."
+  ]
+}

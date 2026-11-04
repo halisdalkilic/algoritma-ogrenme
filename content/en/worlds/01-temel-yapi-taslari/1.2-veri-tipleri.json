@@ -1,0 +1,103 @@
+{
+  "id": "1.2",
+  "worldId": "1",
+  "title": "Data Types",
+  "estimatedMinutes": 5,
+  "prerequisites": ["1.1"],
+  "objectives": [
+    "Tell integer, decimal, text, and boolean data types apart",
+    "Pick the right data type for a value"
+  ],
+  "hook": {
+    "text": "\"20\", \"20.5\", and \"twenty\": all three look like they are about numbers, but to a computer they are completely different things."
+  },
+  "concept": [
+    {
+      "heading": "Four basic types",
+      "body": "Integer (5, -3, 100): numbers with no decimal part. Decimal (3.14, 0.5): numbers with a fractional part. Text (\"Ali\", \"hello\"): sequences of characters, written inside quotes. Boolean (TRUE / FALSE): can only take two values.",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "5, -3", "sub": "Integer" }, { "label": "3.14", "sub": "Decimal" }, { "label": "\"Ali\"", "sub": "Text" }, { "label": "TRUE", "sub": "Boolean" }] } }
+    },
+    {
+      "heading": "Why does it matter?",
+      "body": "A variable's type decides what you can do with it. You cannot add two pieces of text, but you can add two integers. Choosing the wrong type makes your algorithm fail.",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "5 + 3 → 8", "sub": "number + number ✓", "tone": "good" }, { "label": "\"Ali\" + 3", "sub": "text + number ✗", "tone": "bad" }] } }
+    }
+  ],
+  "workedExamples": [],
+  "exercises": [
+    {
+      "id": "1.2-e1",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "What data type is the value \"17\"?",
+      "options": ["Text", "Integer", "Decimal", "Boolean"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. A number with no decimal part: an integer.",
+        "incorrect": "17 has no decimal part, so it is an integer."
+      }
+    },
+    {
+      "id": "1.2-e2",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "What data type is the value \"3.14\"?",
+      "options": ["Integer", "Decimal", "Text", "Boolean"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. A number with a fractional part: decimal.",
+        "incorrect": "3.14 has a fractional part, so its type is decimal."
+      }
+    },
+    {
+      "id": "1.2-e3",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "What data type is the value \"Hello world\"?",
+      "options": ["Text", "Integer", "Boolean", "Decimal"],
+      "correctIndex": 0,
+      "feedback": {
+        "correct": "Correct. A sequence of characters: text.",
+        "incorrect": "Expressions made of characters are text (string) values."
+      }
+    },
+    {
+      "id": "1.2-e4",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Which type is best for storing the answer to \"Did the student pass the exam?\"",
+      "options": ["Integer", "Text", "Boolean", "Decimal"],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Correct. The boolean type is ideal for information that can only be TRUE or FALSE.",
+        "incorrect": "This question has only two possible answers (yes or no), so the boolean type fits best."
+      }
+    },
+    {
+      "id": "1.2-e5",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "If the name \"Ahmet\" is stored in a variable, the variable's type must be ___.",
+      "options": ["text", "integer", "decimal", "boolean"],
+      "answer": "text"
+    },
+    {
+      "id": "1.2-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Which type is best for storing the number of students in a class?",
+      "options": ["Decimal", "Integer", "Text", "Boolean"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. A head count is always a whole number, so no decimal is needed.",
+        "incorrect": "A head count cannot have a fraction (there is no such thing as 12.5 students), so an integer is used."
+      }
+    }
+  ],
+  "summary": [
+    "Four basic types: integer, decimal, text, boolean.",
+    "A variable's type decides what operations you can do with it.",
+    "Use the boolean type for two-state information (yes or no)."
+  ]
+}

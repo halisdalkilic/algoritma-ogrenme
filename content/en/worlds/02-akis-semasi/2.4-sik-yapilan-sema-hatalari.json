@@ -1,0 +1,128 @@
+{
+  "id": "2.4",
+  "worldId": "2",
+  "title": "Common Flowchart Mistakes",
+  "estimatedMinutes": 4,
+  "prerequisites": ["2.3"],
+  "objectives": [
+    "Recognize common flowchart mistakes (open branches, a process with two exits)",
+    "Judge whether a flowchart is valid"
+  ],
+  "hook": {
+    "text": "A flowchart that merely \"looks nice\" is not enough. If it breaks the rules, it represents an algorithm that does not work at all."
+  },
+  "concept": [
+    {
+      "heading": "Open branches",
+      "body": "BOTH exits of a decision (IF) symbol (Yes/No) must lead somewhere. If a branch is left \"hanging in the air\" with no connection, what happens in that case stays unclear, and the flowchart is invalid.",
+      "visual": { "type": "animation", "component": "flow", "props": { "kind": "open-branch" } }
+    },
+    {
+      "heading": "A process with two exits",
+      "body": "A process (rectangle) symbol must have ONLY ONE exit. If two arrows leave a process, that is a design mistake: the only symbol that allows more than one exit is the decision (diamond).",
+      "visual": { "type": "animation", "component": "flow", "props": { "kind": "double-exit" } }
+    }
+  ],
+  "workedExamples": [],
+  "exercises": [
+    {
+      "id": "2.4-e1",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "What happens if the \"No\" exit of an IF symbol is not connected to anything?",
+      "options": [
+        "Nothing, the output is empty automatically",
+        "The flowchart is invalid because what happens in that case stays unclear",
+        "The program runs twice as fast",
+        "The \"No\" case never happens"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. Every decision branch must lead somewhere, otherwise the flow is unclear.",
+        "incorrect": "An unconnected branch leaves it unclear what happens when that case is reached, so the flowchart is invalid."
+      }
+    },
+    {
+      "id": "2.4-e2",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "What does it mean when two different arrows leave a process (rectangle) symbol?",
+      "options": [
+        "It is normal",
+        "The process symbol should really have been a decision symbol: a design mistake",
+        "Two operations are being done at the same time",
+        "The flowchart runs faster"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. Only the decision (diamond) symbol allows more than one exit.",
+        "incorrect": "A process symbol must have a single exit. If more than one exit is needed, there should be a decision symbol there."
+      }
+    },
+    {
+      "id": "2.4-e3",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "What happens if a flowchart has no \"End\" terminal at all?",
+      "options": [
+        "The flowchart is valid, no problem",
+        "It is unclear when the algorithm ends, so the finiteness property is violated",
+        "The flowchart is completed automatically",
+        "It is only a visual omission, there is no logical problem"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. Without an \"End\", there is no guarantee that the algorithm finishes.",
+        "incorrect": "Without an \"End\" terminal, the algorithm's finiteness property (that it ends at some point) cannot be met."
+      }
+    },
+    {
+      "id": "2.4-e4",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "Both branches (Yes and No) of a decision symbol must be ___ to something.",
+      "options": ["connected", "empty", "colored", "broken"],
+      "answer": "connected"
+    },
+    {
+      "id": "2.4-e5",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Two decision symbols are connected one after the other. Which statement is true?",
+      "options": [
+        "This is valid, nested decisions are normal",
+        "Decisions in a row are always forbidden",
+        "Only terminal symbols can come one after another",
+        "Process symbols can never come after a decision"
+      ],
+      "correctIndex": 0,
+      "feedback": {
+        "correct": "Correct. Nested (consecutive) decisions are completely valid. You will see this in detail in 3.3.",
+        "incorrect": "Consecutive or nested decisions are valid; the flowchart rules do not forbid them."
+      }
+    },
+    {
+      "id": "2.4-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Is it a mistake when more than one arrow ENTERS the same symbol in a flowchart (for example, the start of a loop)?",
+      "options": [
+        "Yes, it is always a mistake",
+        "No, this is normal in loops and where branches merge",
+        "It is a mistake only for terminal symbols",
+        "It is a mistake only for decision symbols"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. More than one arrow entering a symbol (e.g. the start of a loop) is completely normal.",
+        "incorrect": "More than one arrow can enter a symbol. This is normal in loops and where branches merge. The mistakes are in the EXIT arrows breaking the rule."
+      }
+    }
+  ],
+  "summary": [
+    "Every decision branch (Yes/No) must lead somewhere.",
+    "A process symbol can have only one exit. If more than one exit is needed, there must be a decision there.",
+    "Every flowchart must have exactly one Start and at least one End."
+  ]
+}

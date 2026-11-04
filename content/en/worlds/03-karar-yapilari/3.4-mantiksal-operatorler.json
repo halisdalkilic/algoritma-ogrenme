@@ -1,0 +1,117 @@
+{
+  "id": "3.4",
+  "worldId": "3",
+  "title": "Logical Operators",
+  "estimatedMinutes": 5,
+  "prerequisites": ["3.3"],
+  "objectives": [
+    "Use the AND, OR, and NOT operators",
+    "Read truth tables and build compound conditions"
+  ],
+  "hook": {
+    "text": "\"If you are a student AND older than 18, you can buy a discount ticket.\" How does the \"AND\" in this sentence combine the two conditions?"
+  },
+  "concept": [
+    {
+      "heading": "AND, OR, NOT",
+      "body": "AND: both conditions must be TRUE. OR: at least one condition must be TRUE. NOT: takes the exact opposite of a condition (it turns TRUE into FALSE). These operators let you combine several conditions in a single IF.",
+      "visual": { "type": "animation", "component": "logic", "props": { "view": "gates" } }
+    },
+    {
+      "heading": "Truth table",
+      "body": "A AND B: the result is TRUE only when A = TRUE and B = TRUE, and FALSE in every other case. A OR B: the result is TRUE if AT LEAST ONE of A and B is TRUE, and FALSE if both are FALSE.",
+      "visual": { "type": "animation", "component": "logic", "props": { "view": "table" } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "The condition for a ticket discount: a student AND older than 18.",
+      "pseudocode": [
+        "isStudent ← TRUE",
+        "age ← 20",
+        "IF isStudent AND age ≥ 18",
+        "  WRITE \"Discount ticket\"",
+        "ELSE",
+        "  WRITE \"Regular ticket\"",
+        "END"
+      ],
+      "runnerSource": "isStudent ← TRUE\nage ← 20\nIF isStudent AND age ≥ 18\n  WRITE \"Discount ticket\"\nELSE\n  WRITE \"Regular ticket\"\nEND",
+      "steps": [
+        { "line": 2, "explain": "Both conditions are TRUE, so the AND expression is TRUE." },
+        { "line": 3, "explain": "\"Discount ticket\" is written to the screen.", "output": ["Discount ticket"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "3.4-e1",
+      "type": "predict-output",
+      "difficulty": 1,
+      "question": "What does this code write to the screen?",
+      "pseudocode": ["WRITE TRUE AND FALSE"],
+      "correctOutput": ["FALSE"],
+      "hint": "For AND, BOTH sides must be TRUE."
+    },
+    {
+      "id": "3.4-e2",
+      "type": "predict-output",
+      "difficulty": 1,
+      "question": "What does this code write to the screen?",
+      "pseudocode": ["WRITE TRUE OR FALSE"],
+      "correctOutput": ["TRUE"],
+      "hint": "For OR, it is enough for just ONE side to be TRUE."
+    },
+    {
+      "id": "3.4-e3",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "What does this code write to the screen?",
+      "pseudocode": ["WRITE NOT TRUE"],
+      "correctOutput": ["FALSE"],
+      "hint": "NOT flips a boolean value."
+    },
+    {
+      "id": "3.4-e4",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "When age ← 15, what is the result of the expression \"age ≥ 18 OR age < 0\"?",
+      "options": ["TRUE", "FALSE", "15", "Error"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. 15 ≥ 18 is FALSE and 15 < 0 is FALSE; with OR, if both are FALSE the result is FALSE.",
+        "incorrect": "Both conditions are FALSE, so the result of the OR expression is FALSE too."
+      }
+    },
+    {
+      "id": "3.4-e5",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "When is the expression \"A AND B\" TRUE?",
+      "options": [
+        "Only if A is TRUE",
+        "Only if B is TRUE",
+        "If both A and B are TRUE",
+        "If one of A or B is TRUE"
+      ],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Correct. The AND operator requires BOTH conditions to be TRUE.",
+        "incorrect": "With the AND operator, both A and B must be TRUE for the result to be TRUE."
+      }
+    },
+    {
+      "id": "3.4-e6",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "If it is enough for at least one of two conditions to be TRUE, the ___ operator is used.",
+      "options": ["OR", "AND", "NOT", "IF"],
+      "answer": "OR"
+    }
+  ],
+  "summary": [
+    "AND: both conditions must be TRUE. OR: at least one must be TRUE. NOT: flips the result.",
+    "These operators let you combine several conditions in a single IF.",
+    "Instead of memorizing the truth table, just ask: \"all of them, or any one of them?\""
+  ]
+}

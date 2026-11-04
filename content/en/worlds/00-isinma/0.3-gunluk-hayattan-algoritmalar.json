@@ -1,0 +1,117 @@
+{
+  "id": "0.3",
+  "worldId": "0",
+  "title": "Algorithms in Everyday Life",
+  "estimatedMinutes": 5,
+  "prerequisites": ["0.2"],
+  "objectives": [
+    "Express everyday routines as algorithms",
+    "Spot missing or vague steps in an algorithm"
+  ],
+  "hook": {
+    "text": "Every morning when you brew tea, you are actually running an algorithm. You just don't notice it."
+  },
+  "concept": [
+    {
+      "heading": "Routines are algorithms",
+      "body": "Brewing tea, brushing your teeth, taking the bus: all of them are made of clear steps. When you write them down, you get an algorithm. The difference is that when you write for a computer, the steps must leave NO room for interpretation.",
+      "visual": { "type": "animation", "component": "steps", "props": { "steps": ["Boil the water", "Put tea in the pot", "Pour in the boiling water", "Steep for 10 min"] } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "The tea-brewing algorithm",
+      "pseudocode": [
+        "1. Heat water",
+        "2. When the water boils, pour it into the pot",
+        "3. Put the tea bag in the pot",
+        "4. Wait 3 minutes",
+        "5. Remove the bag, pour into a cup"
+      ],
+      "steps": [
+        { "line": 0, "explain": "Input: cold water. The process begins." },
+        { "line": 1, "explain": "When a certain condition is met (boiling), we move on to the next step." },
+        { "line": 3, "explain": "\"3 minutes\" is a precise time, so it follows the definiteness property. \"Wait a bit\" would not." },
+        { "line": 4, "explain": "Output: drinkable tea." }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "0.3-e1",
+      "type": "order-steps",
+      "difficulty": 1,
+      "question": "Put the tooth-brushing algorithm in the correct order.",
+      "steps": ["Squeeze toothpaste onto the brush", "Brush your teeth for 2 minutes", "Rinse your mouth with water", "Rinse the brush"],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "0.3-e2",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "In the \"withdraw cash from an ATM\" algorithm, which steps are missing: 1) Insert the card 2) Take the money?",
+      "options": [
+        "Nothing is missing",
+        "Entering the PIN and choosing the amount are missing",
+        "Inserting the card is unnecessary",
+        "Taking the money is unnecessary"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. The machine will not give out money without a PIN and an amount, so steps are missing.",
+        "incorrect": "After the card goes in, a PIN and an amount have to be entered. Those steps were skipped."
+      }
+    },
+    {
+      "id": "0.3-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "When does the algorithm \"open the door, go out, close the door\" fail?",
+      "options": [
+        "If the door is locked",
+        "If the weather is nice",
+        "If it is 12:00",
+        "It never fails"
+      ],
+      "correctIndex": 0,
+      "feedback": {
+        "correct": "Correct. If the door is locked, the \"open\" step cannot be carried out, so effectiveness is broken.",
+        "incorrect": "When the door is locked, the \"open\" step cannot be done, so the algorithm gets stuck there."
+      }
+    },
+    {
+      "id": "0.3-e4",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "\"Wait 3 minutes\" is better than \"wait a bit\" because it is more ___.",
+      "options": ["precise", "slow", "fun", "long"],
+      "answer": "precise"
+    },
+    {
+      "id": "0.3-e5",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Put the algorithm for running a washing machine in the correct order.",
+      "steps": ["Put the laundry in the machine", "Add the detergent", "Select the program", "Press the start button"],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "0.3-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "A recipe says \"add salt\" but gives no amount. Which algorithm property does this weaken?",
+      "options": ["Finiteness", "Definiteness", "Input/Output", "None of them"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. Leaving out the amount makes the step vague: definiteness is weakened.",
+        "incorrect": "An unclear amount keeps the step from being unambiguous: a definiteness problem."
+      }
+    }
+  ],
+  "summary": [
+    "Everyday routines are algorithms too; they just haven't been written down.",
+    "Phrases like \"a bit\", \"if possible\", and \"a while\" break definiteness.",
+    "A missing step in an algorithm leaves the process stuck."
+  ]
+}

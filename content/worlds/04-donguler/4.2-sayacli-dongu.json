@@ -1,0 +1,121 @@
+{
+  "id": "4.2",
+  "worldId": "4",
+  "title": "Sayaçlı Döngü (FOR)",
+  "estimatedMinutes": 5,
+  "prerequisites": ["4.1"],
+  "objectives": [
+    "Sayaçlı döngünün üç parçasını (başlangıç, koşul, artım) tanır",
+    "Verilen bir aralık için doğru döngü yazar"
+  ],
+  "hook": {
+    "text": "1'den 100'e kadar sayıları ekrana yazdırman gerekiyor. 100 satır YAZ komutu mu yazacaksın?",
+    "visual": { "type": "static-svg", "src": "/visuals/4.2-hook.svg" }
+  },
+  "concept": [
+    {
+      "heading": "Döngünün üç parçası",
+      "body": "Her sayaçlı döngüde üç bilgi vardır: nereden başlar, ne zamana kadar sürer, her turda ne kadar artar.",
+      "visual": { "type": "animation", "component": "loop", "props": { "variant": "for", "from": 1, "to": 5 } }
+    },
+    {
+      "heading": "Neden işe yarar?",
+      "body": "Bilgisayar aynı işi binlerce kez yapabilir, ama sen ona sadece bir kere ne yapacağını söylersin. Döngü, tekrarı senin yerine üstlenir.",
+      "visual": { "type": "animation", "component": "ipo", "props": { "items": ["1 kez yaz", "döngü", "1000 kez çalışır"], "icons": ["✍️", "🔁", "⚡"] } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "1'den 5'e kadar sayıları yazdır.",
+      "pseudocode": ["İÇİN i ← 1'DEN 5'E ADIM 1", "  YAZ i", "DÖNGÜ_BİTİR"],
+      "runnerSource": "İÇİN i ← 1'DEN 5'E ADIM 1\n  YAZ i\nDÖNGÜ_BİTİR",
+      "steps": [
+        { "line": 0, "explain": "i değişkeni 1 değerini alır.", "vars": { "i": 1 } },
+        { "line": 1, "explain": "Ekrana 1 yazılır.", "vars": { "i": 1 }, "output": ["1"] },
+        { "line": 0, "explain": "i, 2 olur (5'i geçmediği için döngü devam eder).", "vars": { "i": 2 } },
+        { "line": 1, "explain": "Ekrana 2 yazılır.", "vars": { "i": 2 }, "output": ["1", "2"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "4.2-e1",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "İÇİN i ← 3'TEN 7'YE ADIM 1 döngüsü kaç kez çalışır?",
+      "options": ["4", "5", "7", "3"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. 3,4,5,6,7 → 5 tur. Aralık iki uçtan da dahildir.",
+        "incorrect": "Uçları da say: 3'ten 7'ye kadar 3,4,5,6,7 vardır. (7-3)+1 = 5."
+      }
+    },
+    {
+      "id": "4.2-e2",
+      "type": "trace-table",
+      "difficulty": 2,
+      "pseudocode": ["toplam ← 0", "İÇİN i ← 1'DEN 3'E ADIM 1", "  toplam ← toplam + i", "DÖNGÜ_BİTİR", "YAZ toplam"],
+      "columns": ["i", "toplam"],
+      "expectedRows": [
+        { "i": 1, "toplam": 1 },
+        { "i": 2, "toplam": 3 },
+        { "i": 3, "toplam": 6 }
+      ],
+      "hint": "Her turda toplam'a i'yi ekle."
+    },
+    {
+      "id": "4.2-e3",
+      "type": "predict-output",
+      "difficulty": 1,
+      "question": "Bu algoritma ekrana ne yazdırır?",
+      "pseudocode": ["İÇİN i ← 2'DEN 6'YA ADIM 2", "  YAZ i", "DÖNGÜ_BİTİR"],
+      "correctOutput": ["2", "4", "6"],
+      "hint": "Adım 2 olduğu için sayaç her turda 2 artar."
+    },
+    {
+      "id": "4.2-e4",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "1'den 10'a kadar olan sayıları yazdıran döngüyü tamamla.",
+      "template": "İÇİN i ← 1'DEN ___'E ADIM 1",
+      "options": ["10", "9", "0", "100"],
+      "answer": "10"
+    },
+    {
+      "id": "4.2-e5",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "1'den 3'e kadar sayıları toplayan algoritmanın adımlarını doğru sıraya diz.",
+      "steps": [
+        "YAZ toplam",
+        "toplam ← 0",
+        "İÇİN i ← 1'DEN 3'E ADIM 1",
+        "  toplam ← toplam + i",
+        "DÖNGÜ_BİTİR"
+      ],
+      "correctOrder": [1, 2, 3, 4, 0]
+    },
+    {
+      "id": "4.2-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Bir sayaçlı döngüde sayaç değişkenini döngü gövdesi içinde elle değiştirirsen ne olur?",
+      "options": [
+        "Hiçbir şey değişmez",
+        "Döngü daha hızlı çalışır",
+        "Döngünün kaç kez çalışacağı öngörülemez hale gelir",
+        "Program hata verip durur"
+      ],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Doğru. Sayacı elle değiştirmek döngünün akışını bozar ve beklenmedik sonuçlara yol açar.",
+        "incorrect": "Sayaç döngünün kendi kontrolündedir; onu elle değiştirmek kaç tur döneceğini öngörülemez hale getirir."
+      }
+    }
+  ],
+  "summary": [
+    "Sayaçlı döngü: başlangıç, bitiş koşulu, artım.",
+    "Tur sayısı = (bitiş - başlangıç) / adım + 1",
+    "Sayaç değişkenini döngü içinde elle değiştirmek hataya yol açar."
+  ]
+}

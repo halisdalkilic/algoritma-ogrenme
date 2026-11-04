@@ -1,0 +1,112 @@
+{
+  "id": "1.5",
+  "worldId": "1",
+  "title": "Girdi ve Çıktı",
+  "estimatedMinutes": 4,
+  "prerequisites": ["1.4"],
+  "objectives": [
+    "OKU ve YAZ komutlarının işlevini kavrar",
+    "Kullanıcıdan alınan değerleri bir değişkende saklar"
+  ],
+  "hook": {
+    "text": "Bir algoritma, dışarıdan bir isim ya da yaş bilgisi almadan \"Merhaba Ahmet, 20 yaşındasın\" diyemez. Bu bilgiyi nereden alacak?"
+  },
+  "concept": [
+    {
+      "heading": "OKU: dışarıdan veri al",
+      "body": "OKU komutu, kullanıcıdan (ya da bir kaynaktan) bir değer alır ve bir değişkende saklar. \"OKU isim\" dediğinde, kullanıcının yazdığı değer isim kutusuna konur.",
+      "visual": { "type": "animation", "component": "ipo", "props": { "items": ["Kullanıcı: Ayşe", "OKU isim", "isim = \"Ayşe\""], "icons": ["⌨️", "📥", "📦"] } }
+    },
+    {
+      "heading": "YAZ: dışarıya sonuç ver",
+      "body": "YAZ komutu, bir değişkenin veya ifadenin değerini ekrana yazdırır. \"YAZ isim\" o an isim kutusunda ne varsa onu gösterir. OKU ve YAZ, algoritmanın dış dünyayla konuştuğu iki kapıdır.",
+      "visual": { "type": "animation", "component": "ipo", "props": { "items": ["isim = \"Ayşe\"", "YAZ isim", "Ekran: Ayşe"], "icons": ["📦", "📤", "🖥️"] } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "Kullanıcıdan isim al ve selamla.",
+      "pseudocode": ["OKU isim", "YAZ \"Merhaba \" + isim"],
+      "steps": [
+        { "line": 0, "explain": "Kullanıcı \"Ayşe\" yazdı, isim kutusuna \"Ayşe\" konur.", "vars": { "isim": "Ayşe" } },
+        { "line": 1, "explain": "\"Merhaba \" metni ile isim birleştirilip yazdırılır.", "output": ["Merhaba Ayşe"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "1.5-e1",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "OKU komutu ne işe yarar?",
+      "options": [
+        "Ekrana bir değer yazdırır",
+        "Kullanıcıdan bir değer alıp bir değişkende saklar",
+        "Bir değişkeni siler",
+        "İki değişkeni karşılaştırır"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. OKU, dışarıdan bir değer alıp değişkende saklar.",
+        "incorrect": "OKU, dışarıdan (kullanıcıdan) veri almak için kullanılır."
+      }
+    },
+    {
+      "id": "1.5-e2",
+      "type": "predict-output",
+      "difficulty": 1,
+      "question": "Kullanıcı \"12\" girerse bu kod ekrana ne yazar?",
+      "pseudocode": ["OKU yas", "YAZ yas"],
+      "correctOutput": ["12"],
+      "hint": "YAZ, o an değişkende ne varsa onu gösterir."
+    },
+    {
+      "id": "1.5-e3",
+      "type": "order-steps",
+      "difficulty": 1,
+      "question": "Kullanıcıdan iki sayı alıp toplamını yazdıran algoritmayı doğru sıraya diz.",
+      "steps": ["OKU a", "OKU b", "toplam ← a + b", "YAZ toplam"],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "1.5-e4",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "\"YAZ isim\" komutundan ÖNCE \"OKU isim\" çalıştırılmazsa ne olur?",
+      "options": [
+        "Hiçbir sorun olmaz",
+        "isim kutusu boş veya tanımsız olduğu için beklenmeyen sonuç çıkar",
+        "Program otomatik olarak bir isim üretir",
+        "YAZ komutu OKU'yu otomatik çağırır"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Değişken önce doldurulmalı (OKU), sonra kullanılmalıdır (YAZ).",
+        "incorrect": "Bir değişken kullanılmadan önce bir değere sahip olmalıdır; aksi halde sonuç tanımsızdır."
+      }
+    },
+    {
+      "id": "1.5-e5",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "Ekrana bir sonuç göstermek için ___ komutu kullanılır.",
+      "options": ["YAZ", "OKU", "EĞER", "DÖNGÜ"],
+      "answer": "YAZ"
+    },
+    {
+      "id": "1.5-e6",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "Kullanıcı sırayla \"3\" ve \"4\" girerse bu kod ekrana ne yazar?",
+      "pseudocode": ["OKU a", "OKU b", "carpim ← a * b", "YAZ carpim"],
+      "correctOutput": ["12"],
+      "hint": "İki girdi de sayı olarak okunur ve çarpılır."
+    }
+  ],
+  "summary": [
+    "OKU: dışarıdan bir değer alır ve bir değişkende saklar.",
+    "YAZ: bir değişkenin veya ifadenin değerini ekrana gösterir.",
+    "Bir değişken kullanılmadan önce bir değere sahip olmalıdır."
+  ]
+}

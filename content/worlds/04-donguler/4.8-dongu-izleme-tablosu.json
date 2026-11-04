@@ -1,0 +1,125 @@
+{
+  "id": "4.8",
+  "worldId": "4",
+  "title": "Döngü İzleme (Trace) Tablosu",
+  "estimatedMinutes": 5,
+  "prerequisites": ["4.7"],
+  "objectives": [
+    "Bir döngünün her turundaki değişken değerlerini adım adım bir tabloya çıkarır",
+    "İzleme tablosunu hata ayıklama (debug) aracı olarak kullanır"
+  ],
+  "hook": {
+    "text": "Bir döngü yanlış sonuç veriyor ama nerede hata yaptığını bulamıyorsun. Çözüm: her turdaki değişken değerlerini kağıda dök."
+  },
+  "concept": [
+    {
+      "heading": "İzleme tablosu nedir?",
+      "body": "İzleme (trace) tablosu, bir döngünün her turunda değişkenlerin aldığı değerleri satır satır gösteren bir tablodur. Bilgisayar gibi düşünüp, kodu ELLE çalıştırarak doldurulur. Sütunlar değişkenleri, satırlar turları temsil eder.",
+      "visual": { "type": "animation", "component": "trace", "props": { "columns": ["tur", "i", "toplam"], "rows": [[1, 1, 1], [2, 2, 3], [3, 3, 6], [4, 4, 10]] } }
+    },
+    {
+      "heading": "Neden kullanılır?",
+      "body": "İzleme tablosu, bir algoritmanın DOĞRU çalışıp çalışmadığını kodu bilgisayarda çalıştırmadan kontrol etmeni sağlar. Ayrıca bir hatayı bulmak için de kullanılır: beklenen değerlerle tablodaki değerler nerede ayrışıyorsa, hata oradadır.",
+      "visual": { "type": "animation", "component": "trace", "props": { "columns": ["i", "beklenen", "tablo"], "rows": [[1, 1, 1], [2, 3, 3], [3, 6, "5 ✗"]] } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "1'den 4'e kadar sayıların karesini topla.",
+      "pseudocode": ["toplam ← 0", "İÇİN i ← 1'DEN 4'E ADIM 1", "  toplam ← toplam + i * i", "DÖNGÜ_BİTİR"],
+      "runnerSource": "toplam ← 0\nİÇİN i ← 1'DEN 4'E ADIM 1\n  toplam ← toplam + i * i\nDÖNGÜ_BİTİR",
+      "steps": [
+        { "line": 0, "explain": "toplam, 0'dan başlar." },
+        { "line": 1, "explain": "i=1: toplam ← 0 + 1*1 = 1." },
+        { "line": 1, "explain": "i=2: toplam ← 1 + 2*2 = 5." },
+        { "line": 1, "explain": "i=3: toplam ← 5 + 3*3 = 14. i=4: toplam ← 14 + 4*4 = 30." }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "4.8-e1",
+      "type": "trace-table",
+      "difficulty": 2,
+      "pseudocode": ["toplam ← 0", "İÇİN i ← 1'DEN 4'E ADIM 1", "  toplam ← toplam + i * i", "DÖNGÜ_BİTİR"],
+      "columns": ["i", "toplam"],
+      "expectedRows": [
+        { "i": 1, "toplam": 1 },
+        { "i": 2, "toplam": 5 },
+        { "i": 3, "toplam": 14 },
+        { "i": 4, "toplam": 30 }
+      ],
+      "hint": "Her turda toplam'a i'nin karesini ekle."
+    },
+    {
+      "id": "4.8-e2",
+      "type": "trace-table",
+      "difficulty": 2,
+      "pseudocode": ["carpim ← 1", "İÇİN i ← 1'DEN 4'E ADIM 1", "  carpim ← carpim * i", "DÖNGÜ_BİTİR"],
+      "columns": ["i", "carpim"],
+      "expectedRows": [
+        { "i": 1, "carpim": 1 },
+        { "i": 2, "carpim": 2 },
+        { "i": 3, "carpim": 6 },
+        { "i": 4, "carpim": 24 }
+      ],
+      "hint": "Bu, 4! (4 faktöriyel) hesabıdır: 1*1*2*3*4."
+    },
+    {
+      "id": "4.8-e3",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "İzleme tablosundaki her satır neyi temsil eder?",
+      "options": ["Bir değişken ismini", "Bir döngü turunu", "Bir hata mesajını", "Bir yorumu"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Her satır, döngünün bir turundaki değişken durumunu gösterir.",
+        "incorrect": "İzleme tablosunda her satır, döngünün bir turuna karşılık gelir."
+      }
+    },
+    {
+      "id": "4.8-e4",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "İzleme tablosu en çok hangi amaçla kullanılır?",
+      "options": [
+        "Kodu güzelleştirmek için",
+        "Bir algoritmayı elle çalıştırıp doğruluğunu kontrol etmek / hata bulmak için",
+        "Değişken isimlerini değiştirmek için",
+        "Programı hızlandırmak için"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. İzleme tablosu, hata ayıklama ve doğrulama için kullanılır.",
+        "incorrect": "İzleme tablosunun temel amacı, algoritmayı elle çalıştırıp doğruluğunu kontrol etmektir."
+      }
+    },
+    {
+      "id": "4.8-e5",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Bir izleme tablosu doldurma sürecini doğru sıraya diz.",
+      "steps": [
+        "Değişkenleri sütun başlıklarına yaz",
+        "Başlangıç değerlerini ilk satıra yaz",
+        "Her turda değişen değerleri yeni bir satıra yaz",
+        "Son satırdaki değerleri programın sonucuyla karşılaştır"
+      ],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "4.8-e6",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "İzleme tablosunda sütunlar ___ , satırlar döngü turlarını temsil eder.",
+      "options": ["değişkenleri", "hataları", "yorumları", "sabitleri"],
+      "answer": "değişkenleri"
+    }
+  ],
+  "summary": [
+    "İzleme tablosu, bir döngünün her turundaki değişken değerlerini gösteren bir tablodur.",
+    "Sütunlar değişkenleri, satırlar döngü turlarını temsil eder.",
+    "Hata ayıklamak veya bir algoritmanın doğruluğunu kontrol etmek için kullanılır."
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "id": "2.3",
+  "worldId": "2",
+  "title": "From Flowchart to Pseudocode",
+  "estimatedMinutes": 5,
+  "prerequisites": ["2.2"],
+  "objectives": [
+    "Translate a flowchart into pseudocode (the reverse direction)",
+    "Write the command that matches each symbol in the flowchart"
+  ],
+  "hook": {
+    "text": "You see a flowchart a teacher drew on the board, but there is no pseudocode. Can you work backward from the chart and write the pseudocode yourself?"
+  },
+  "concept": [
+    {
+      "heading": "Translating in reverse",
+      "body": "In 2.2 we went from pseudocode to a flowchart. Now we do the opposite: we look at a flowchart and write the pseudocode again. The rule is the same: each symbol matches a line, and each arrow matches an order. The Start and End terminals are usually not written in pseudocode; they only mark the beginning and the end.",
+      "visual": { "type": "animation", "component": "flow", "props": { "kind": "linear" } }
+    }
+  ],
+  "workedExamples": [],
+  "exercises": [
+    {
+      "id": "2.3-e1",
+      "type": "flowchart-read",
+      "difficulty": 2,
+      "question": "Which one is the pseudocode for this flowchart?",
+      "nodes": [
+        { "id": "n1", "shape": "terminal", "label": "Start" },
+        { "id": "n2", "shape": "io", "label": "Read radius" },
+        { "id": "n3", "shape": "process", "label": "area ← radius * radius * 3.14" },
+        { "id": "n4", "shape": "io", "label": "Write area" },
+        { "id": "n5", "shape": "terminal", "label": "End" }
+      ],
+      "options": [
+        "READ radius / area ← radius * radius * 3.14 / WRITE area",
+        "WRITE radius / area ← radius * radius * 3.14 / READ area",
+        "READ area / radius ← area * 3.14 / WRITE radius",
+        "area ← radius * radius * 3.14 / READ radius / WRITE area"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "2.3-e2",
+      "type": "flowchart-read",
+      "difficulty": 2,
+      "question": "Which one is the pseudocode for this flowchart?",
+      "nodes": [
+        { "id": "n1", "shape": "terminal", "label": "Start" },
+        { "id": "n2", "shape": "io", "label": "Read name" },
+        { "id": "n3", "shape": "io", "label": "Write \"Hello \" + name" },
+        { "id": "n4", "shape": "terminal", "label": "End" }
+      ],
+      "options": [
+        "READ name / WRITE \"Hello \" + name",
+        "WRITE name / READ \"Hello \" + name",
+        "name ← \"Hello\" / WRITE name",
+        "READ \"Hello \" + name / WRITE name"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "2.3-e3",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "If the flowchart order is \"Start → read x → cube ← x*x*x → write cube → End\", put the pseudocode steps in the correct order.",
+      "steps": ["READ x", "cube ← x * x * x", "WRITE cube"],
+      "correctOrder": [0, 1, 2]
+    },
+    {
+      "id": "2.3-e4",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "Which of these commands can a parallelogram (input/output) symbol in a flowchart be turned into in pseudocode?",
+      "options": ["IF or ELSE", "READ or WRITE", "FOR or WHILE", "CONST"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. The input/output symbol matches the READ or WRITE command.",
+        "incorrect": "The parallelogram (input/output) symbol matches one of the READ or WRITE commands."
+      }
+    },
+    {
+      "id": "2.3-e5",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "In pseudocode, the rectangle (process) symbol in a flowchart usually corresponds to this kind of statement: ___.",
+      "options": ["assignment", "input", "output", "terminal"],
+      "answer": "assignment"
+    },
+    {
+      "id": "2.3-e6",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "When you turn a flowchart into pseudocode, how are the Terminal symbols (Start/End) usually written?",
+      "options": [
+        "With the READ command",
+        "They are not written on a separate line, they only mark the boundaries of the program",
+        "With the WRITE command",
+        "As a CONST"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. Terminal symbols show where the pseudocode begins and ends; they are not separate commands.",
+        "incorrect": "Terminal symbols do not match a command. They only show where the program begins and ends."
+      }
+    }
+  ],
+  "summary": [
+    "Translating from a flowchart to pseudocode is the reverse of translating from pseudocode to a flowchart.",
+    "Each symbol matches a line, and each arrow matches moving on to the next line.",
+    "Terminal symbols are not separate commands, they only mark the beginning and the end."
+  ]
+}

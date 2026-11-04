@@ -1,0 +1,121 @@
+{
+  "id": "4.3",
+  "worldId": "4",
+  "title": "The Conditional Loop (WHILE)",
+  "estimatedMinutes": 5,
+  "prerequisites": ["4.2"],
+  "objectives": [
+    "Know when to use a WHILE loop",
+    "Understand how a pre-test loop works"
+  ],
+  "hook": {
+    "text": "\"Ask again until the user enters the right password.\" Here you do NOT know in advance how many rounds it will take. A counting loop (FOR) will not work here."
+  },
+  "concept": [
+    {
+      "heading": "When is WHILE used?",
+      "body": "A FOR loop is used when you know the number of rounds IN ADVANCE (\"from 1 to 10\"). A WHILE loop is used when the number of rounds is not known and you just want to keep going as long as a CONDITION is true.",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "FOR (counting)", "sub": "number of rounds known" }, { "label": "WHILE (conditional)", "sub": "as long as the condition is true" }] } }
+    },
+    {
+      "heading": "Pre-test behavior",
+      "body": "The structure WHILE condition ... END_LOOP checks the condition BEFORE every round. If the condition is FALSE right from the start, the loop body does not run even once. That is what \"pre-test\" means.",
+      "visual": { "type": "animation", "component": "flow", "props": { "kind": "while" } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "Starting at 1 and going up by 2, print numbers until you pass 10.",
+      "pseudocode": ["number ← 1", "WHILE number ≤ 10", "  WRITE number", "  number ← number + 2", "END_LOOP"],
+      "runnerSource": "number ← 1\nWHILE number ≤ 10\n  WRITE number\n  number ← number + 2\nEND_LOOP",
+      "steps": [
+        { "line": 0, "explain": "1 is put into the number box.", "vars": { "number": 1 } },
+        { "line": 1, "explain": "1 ≤ 10 is TRUE, so the loop is entered." },
+        { "line": 2, "explain": "1 is written to the screen.", "output": ["1"] },
+        { "line": 3, "explain": "number becomes 3.", "vars": { "number": 3 } }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "4.3-e1",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "What does this code write to the screen?",
+      "pseudocode": ["i ← 0", "WHILE i < 4", "  WRITE i", "  i ← i + 1", "END_LOOP"],
+      "correctOutput": ["0", "1", "2", "3"],
+      "hint": "i starts at 0 and continues as long as it is less than 4."
+    },
+    {
+      "id": "4.3-e2",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "What happens if the WHILE condition is FALSE at the very start of the program?",
+      "options": [
+        "The loop runs forever",
+        "The loop body does not run even once",
+        "The loop runs exactly once",
+        "An error occurs"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. If the condition is FALSE right from the start, a pre-test loop never enters its body.",
+        "incorrect": "WHILE checks the condition BEFORE every round; if it is FALSE from the start, the body never runs."
+      }
+    },
+    {
+      "id": "4.3-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Which loop is better suited to a problem where you do not know in advance how many times it will repeat?",
+      "options": ["FOR", "WHILE", "Both are equally suitable", "Neither"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. When the number of rounds is not known, a WHILE (condition-based) loop is used.",
+        "incorrect": "When the number of rounds is unknown, a WHILE loop is used, which depends only on a condition."
+      }
+    },
+    {
+      "id": "4.3-e4",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Put the steps of the algorithm that keeps asking the user until they enter the right password in the correct order.",
+      "steps": ["READ password", "WHILE password ≠ \"1234\"", "  WRITE \"Wrong, try again\"", "  READ password", "END_LOOP"],
+      "correctOrder": [0, 1, 2, 3, 4]
+    },
+    {
+      "id": "4.3-e5",
+      "type": "trace-table",
+      "difficulty": 2,
+      "pseudocode": [
+        "counter ← 1",
+        "total ← 0",
+        "WHILE counter ≤ 3",
+        "  total ← total + counter",
+        "  counter ← counter + 1",
+        "END_LOOP"
+      ],
+      "columns": ["counter", "total"],
+      "expectedRows": [
+        { "counter": 2, "total": 1 },
+        { "counter": 3, "total": 3 },
+        { "counter": 4, "total": 6 }
+      ],
+      "hint": "In each round, total is updated first, then counter goes up by 1."
+    },
+    {
+      "id": "4.3-e6",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "A WHILE loop checks the condition ___ every round.",
+      "options": ["before", "after", "never", "at random"],
+      "answer": "before"
+    }
+  ],
+  "summary": [
+    "FOR: when the number of rounds is known. WHILE: when it depends only on a condition.",
+    "WHILE checks the condition BEFORE every round (pre-test).",
+    "If the condition is FALSE from the start, the WHILE body never runs."
+  ]
+}

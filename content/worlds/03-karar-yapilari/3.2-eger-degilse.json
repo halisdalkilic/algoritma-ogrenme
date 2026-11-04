@@ -1,0 +1,202 @@
+{
+  "id": "3.2",
+  "worldId": "3",
+  "title": "EĞER / DEĞİLSE",
+  "estimatedMinutes": 6,
+  "prerequisites": [
+    "3.1"
+  ],
+  "objectives": [
+    "EĞER komutuyla tek dallı karar yapısı kurar",
+    "EĞER / DEĞİLSE ile iki dallı karar yapısı kurar"
+  ],
+  "hook": {
+    "text": "Bir algoritmanın \"eğer yağmur yağıyorsa şemsiye al\" diyebilmesi gerekiyor. Bunu nasıl yazarız?"
+  },
+  "concept": [
+    {
+      "heading": "Tek dallı EĞER",
+      "body": "EĞER koşul ... BİTİR yapısı, koşul DOĞRU ise arasındaki adımları çalıştırır, YANLIŞ ise hiçbir şey yapmadan BİTİR'den devam eder. Koşul, 3.1'de öğrendiğin bir karşılaştırma veya mantıksal ifadedir.",
+      "visual": { "type": "animation", "component": "flow", "props": { "kind": "single" } }
+    },
+    {
+      "heading": "İki dallı EĞER / DEĞİLSE",
+      "body": "Bazen \"değilse ne olacak\" da önemlidir. EĞER koşul ... DEĞİLSE ... BİTİR yapısında, koşul DOĞRU ise ilk blok, YANLIŞ ise DEĞİLSE'den sonraki blok çalışır — ikisi asla aynı anda çalışmaz.",
+      "visual": { "type": "animation", "component": "flow", "props": { "kind": "decision" } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "Kullanıcının yaşına göre \"Yetişkin\" ya da \"Reşit değil\" yazdır.",
+      "pseudocode": [
+        "OKU yas",
+        "EĞER yas ≥ 18",
+        "  YAZ \"Yetişkin\"",
+        "DEĞİLSE",
+        "  YAZ \"Reşit değil\"",
+        "BİTİR"
+      ],
+      "runnerSource": "OKU yas\nEĞER yas ≥ 18\n  YAZ \"Yetişkin\"\nDEĞİLSE\n  YAZ \"Reşit değil\"\nBİTİR",
+      "runnerInputs": [
+        20
+      ],
+      "steps": [
+        {
+          "line": 0,
+          "explain": "Kullanıcı 20 girdi, yas kutusuna 20 konur.",
+          "vars": {
+            "yas": 20
+          }
+        },
+        {
+          "line": 1,
+          "explain": "20 ≥ 18 koşulu DOĞRU olduğu için EĞER bloğu çalışır, DEĞİLSE bloğu atlanır."
+        },
+        {
+          "line": 2,
+          "explain": "Ekrana \"Yetişkin\" yazılır.",
+          "output": [
+            "Yetişkin"
+          ]
+        }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "3.2-e1",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "not ← 45 iken, DEĞİLSE bloğu olmayan \"EĞER not ≥ 50 ise YAZ Geçti\" kodu çalıştırılırsa ekrana ne yazılır?",
+      "options": [
+        "\"Geçti\"",
+        "\"Kaldı\"",
+        "Hiçbir şey yazılmaz",
+        "Hata oluşur"
+      ],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Doğru. Koşul YANLIŞ ve DEĞİLSE bloğu yoksa, hiçbir şey yazılmadan program devam eder.",
+        "incorrect": "DEĞİLSE bloğu olmadığında ve koşul YANLIŞ olduğunda, ekrana hiçbir şey yazılmaz."
+      }
+    },
+    {
+      "id": "3.2-e2",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "Bu kod ekrana ne yazar?",
+      "pseudocode": [
+        "not ← 45",
+        "EĞER not ≥ 50",
+        "  YAZ \"Geçti\"",
+        "DEĞİLSE",
+        "  YAZ \"Kaldı\"",
+        "BİTİR"
+      ],
+      "correctOutput": [
+        "Kaldı"
+      ],
+      "hint": "45 ≥ 50 YANLIŞ olduğu için DEĞİLSE bloğu çalışır."
+    },
+    {
+      "id": "3.2-e3",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Bir sayının pozitif olup olmadığını kontrol eden algoritmanın adımlarını doğru sıraya diz.",
+      "steps": [
+        "OKU sayi",
+        "EĞER sayi > 0",
+        "  YAZ \"Pozitif\"",
+        "DEĞİLSE",
+        "  YAZ \"Pozitif değil\"",
+        "BİTİR"
+      ],
+      "correctOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "id": "3.2-e4",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "EĞER ... DEĞİLSE ... BİTİR yapısında, EĞER bloğu ile DEĞİLSE bloğu aynı anda çalışabilir mi?",
+      "options": [
+        "Evet, her zaman",
+        "Hayır, sadece biri çalışır",
+        "Sadece koşul DOĞRU ise ikisi de çalışır",
+        "Rastgele seçilir"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Koşulun DOĞRU/YANLIŞ olmasına göre sadece bir dal çalışır.",
+        "incorrect": "İki dal birbirini dışlar: koşul DOĞRU ise sadece EĞER bloğu, YANLIŞ ise sadece DEĞİLSE bloğu çalışır."
+      }
+    },
+    {
+      "id": "3.2-e5",
+      "type": "flowchart-build",
+      "difficulty": 2,
+      "question": "\"Bir sayı okuyup pozitif mi değil mi\" yazdıran algoritmanın şemasını kur.",
+      "expectedNodes": [
+        {
+          "id": "n1",
+          "shape": "terminal",
+          "label": "Başla"
+        },
+        {
+          "id": "n2",
+          "shape": "io",
+          "label": "sayi oku"
+        },
+        {
+          "id": "n3",
+          "shape": "decision",
+          "label": "sayi > 0 mı?"
+        },
+        {
+          "id": "n4",
+          "shape": "terminal",
+          "label": "Bitir"
+        }
+      ],
+      "expectedEdges": [
+        {
+          "from": "n1",
+          "to": "n2"
+        },
+        {
+          "from": "n2",
+          "to": "n3"
+        },
+        {
+          "from": "n3",
+          "to": "n4"
+        }
+      ]
+    },
+    {
+      "id": "3.2-e6",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "EĞER koşul YANLIŞ ise ve DEĞİLSE bloğu yoksa, program doğrudan ___ komutundan devam eder.",
+      "options": [
+        "BİTİR",
+        "OKU",
+        "YAZ",
+        "SABIT"
+      ],
+      "answer": "BİTİR"
+    }
+  ],
+  "summary": [
+    "EĞER koşul ... BİTİR: koşul DOĞRU ise blok çalışır, YANLIŞ ise atlanır.",
+    "EĞER ... DEĞİLSE ... BİTİR: iki dal birbirini dışlar, sadece biri çalışır.",
+    "Koşul her zaman bir karşılaştırma veya mantıksal ifadedir."
+  ]
+}

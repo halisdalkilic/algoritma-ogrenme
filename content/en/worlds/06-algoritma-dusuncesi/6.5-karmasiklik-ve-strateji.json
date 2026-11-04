@@ -1,0 +1,139 @@
+{
+  "id": "6.5",
+  "worldId": "6",
+  "title": "Complexity Intuition and Problem-Solving Strategies",
+  "estimatedMinutes": 8,
+  "prerequisites": ["6.4"],
+  "objectives": [
+    "Build a basic intuition for how much slower an algorithm gets as the input grows (O(1), O(n), O(n²), O(log n))",
+    "Know which strategies to use when facing a new problem"
+  ],
+  "hook": {
+    "text": "You tested a search algorithm on an array of 10 elements, and it ran fast. What if you ran it on an array of 10 million elements: would it still be fast? That depends on the algorithm's 'complexity'."
+  },
+  "concept": [
+    {
+      "heading": "A feel for growth rates",
+      "body": "O(1): finishes in constant time no matter the input size (e.g. reaching array[0]). O(n): needs as many steps as the input (e.g. linear search, summing an array). O(n²): needs steps equal to the square of the input because of a nested loop (e.g. bubble/selection sort). O(log n): the work is halved at each step (e.g. binary search), so it stays fast even for very large inputs.",
+      "visual": { "type": "animation", "component": "growth", "props": { "lines": ["1", "n", "n2"] } }
+    },
+    {
+      "heading": "Problem-solving strategies",
+      "body": "Approach a new problem with these questions: (1) What are the input, process, and output? (2) Is there a similar problem I have solved before (search, sort, counter/accumulator)? (3) Can I split the problem into smaller parts (functions, recursion)? (4) Can I start with a rough solution and improve it afterward?",
+      "visual": { "type": "animation", "component": "steps", "props": { "steps": ["What are the input / process / output?", "Have I solved a similar problem?", "Can I split it into smaller parts?", "Try it by hand: build a trace table"] } }
+    }
+  ],
+  "workedExamples": [],
+  "exercises": [
+    {
+      "id": "6.5-e1",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "What is the complexity of reaching the first element of an array (array[0])?",
+      "options": ["O(1)", "O(n)", "O(n²)", "O(log n)"],
+      "correctIndex": 0,
+      "feedback": {
+        "correct": "Correct. It is reached in a single step regardless of the array size: O(1).",
+        "incorrect": "Direct access to any index of an array takes constant time no matter the size: O(1)."
+      }
+    },
+    {
+      "id": "6.5-e2",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "What is the complexity of linear search?",
+      "options": ["O(1)", "O(n)", "O(n²)", "O(log n)"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. In the worst case the whole array (n elements) is checked.",
+        "incorrect": "In the worst case, linear search checks n elements one by one: O(n)."
+      }
+    },
+    {
+      "id": "6.5-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "What is the complexity of bubble sort (nested loops)?",
+      "options": ["O(1)", "O(n)", "O(n²)", "O(log n)"],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Correct. Two nested loops lead to n×n steps: O(n²).",
+        "incorrect": "Two nested loops need steps equal to the square of the input size: O(n²)."
+      }
+    },
+    {
+      "id": "6.5-e4",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "What is the complexity of binary search?",
+      "options": ["O(1)", "O(n)", "O(n²)", "O(log n)"],
+      "correctIndex": 3,
+      "feedback": {
+        "correct": "Correct. The search space is halved at each step, so it is O(log n).",
+        "incorrect": "Binary search has O(log n) complexity because it halves the search space at every step."
+      }
+    },
+    {
+      "id": "6.5-e5",
+      "type": "mcq",
+      "difficulty": 3,
+      "question": "In an array of 1 million elements, which algorithm gives the fastest result in practice?",
+      "options": [
+        "An O(n²) sorting algorithm",
+        "An O(n) linear search",
+        "An O(log n) binary search (if the array is sorted)",
+        "They all run at the same speed"
+      ],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Correct. For large inputs, O(log n) is dramatically faster than the others.",
+        "incorrect": "For large inputs, O(log n) algorithms (like binary search) are much faster than O(n) and especially O(n²)."
+      }
+    },
+    {
+      "id": "6.5-e6",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Put the thinking order to follow when you face a new problem in the correct order.",
+      "steps": [
+        "Identify the input/process/output",
+        "Think about whether there is a similar problem that has been solved before",
+        "Split the problem into smaller parts",
+        "Start with a rough solution, then improve it"
+      ],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "6.5-e7",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "What does \"complexity\" (O notation) measure?",
+      "options": [
+        "How many lines the code has",
+        "How much slower the algorithm gets as the input grows",
+        "The color of the program",
+        "How many variables are used"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. O notation expresses how the running time grows as the input size increases.",
+        "incorrect": "Complexity does not measure the number of lines, it measures the RATE at which an algorithm slows down as the input grows."
+      }
+    },
+    {
+      "id": "6.5-e8",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "Operations that always finish in constant time, regardless of the input size, have ___ complexity.",
+      "options": ["O(1)", "O(n)", "O(n²)", "O(log n)"],
+      "answer": "O(1)"
+    }
+  ],
+  "summary": [
+    "O(1): constant. O(n): as many steps as the input. O(n²): the square of the input. O(log n): halves at each step.",
+    "For large inputs, O(log n) and O(n) are much faster than O(n²).",
+    "With a new problem: identify the input/output, look for a similar problem, split it up, and start with a rough solution before improving it.",
+    "Congratulations, you have completed the core curriculum of Algorithm Learning! 🎉"
+  ]
+}

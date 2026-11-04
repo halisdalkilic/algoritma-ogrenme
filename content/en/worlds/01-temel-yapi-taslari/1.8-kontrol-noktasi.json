@@ -1,0 +1,111 @@
+{
+  "id": "1.8",
+  "worldId": "1",
+  "title": "Checkpoint: World 1",
+  "estimatedMinutes": 6,
+  "prerequisites": ["1.7"],
+  "objectives": [
+    "Apply everything learned in World 1 (variables, data types, assignment, operators, input/output, constants, swapping) together"
+  ],
+  "hook": {
+    "text": "You have reached the end of World 1. Now it is time to test everything you have learned with mixed questions."
+  },
+  "concept": [
+    {
+      "heading": "Checkpoint",
+      "body": "This lesson does not teach a new topic; it reinforces what you have learned. The questions below test variables, data types, assignment, operators, input/output, constants, and swapping in a mix.",
+      "visual": { "type": "animation", "component": "tokens", "props": { "items": [{ "label": "Variable" }, { "label": "Data type" }, { "label": "Assignment" }, { "label": "Operators" }, { "label": "READ / WRITE" }, { "label": "Constant" }, { "label": "Swap" }] } }
+    }
+  ],
+  "workedExamples": [],
+  "exercises": [
+    {
+      "id": "1.8-e1",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "What data type is the value \"25\"?",
+      "options": ["Text", "Integer", "Boolean", "Constant"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. A number with no decimal part: an integer.",
+        "incorrect": "25 has no decimal part, so it is an integer."
+      }
+    },
+    {
+      "id": "1.8-e2",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "What does this code write to the screen?",
+      "pseudocode": ["a ← 4", "b ← 6", "total ← a + b * 2", "WRITE total"],
+      "correctOutput": ["16"],
+      "hint": "Multiplication first: b * 2 = 12, then a + 12."
+    },
+    {
+      "id": "1.8-e3",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Put the setup steps (the READ and assignment part) in the correct order before printing the larger of two numbers entered by the user.",
+      "steps": ["READ a", "READ b", "CONST MESSAGE ← \"Comparing\"", "WRITE MESSAGE"],
+      "correctOrder": [0, 1, 2, 3]
+    },
+    {
+      "id": "1.8-e4",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "When a ← 5 and b ← 9, what should the first step be to swap their values?",
+      "options": ["a ← b", "b ← a", "temp ← a", "WRITE a"],
+      "correctIndex": 2,
+      "feedback": {
+        "correct": "Correct. The value of a must be saved into temp before it is lost.",
+        "incorrect": "The first step of a swap is to save the value of a into a temporary variable."
+      }
+    },
+    {
+      "id": "1.8-e5",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "The result of 17 MOD 4 is ___.",
+      "options": ["1", "4", "0", "17"],
+      "answer": "1"
+    },
+    {
+      "id": "1.8-e6",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "With CONST TAX ← 0.10, what does this code write to the screen?",
+      "pseudocode": ["CONST TAX ← 0.10", "price ← 200", "total ← price + price * TAX", "WRITE total"],
+      "correctOutput": ["220"],
+      "hint": "200 + 200 * 0.10 = 220."
+    },
+    {
+      "id": "1.8-e7",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "Which of these is NOT a valid variable name?",
+      "options": ["totalScore", "2number", "counter", "studentName"],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. A variable name cannot start with a digit.",
+        "incorrect": "\"2number\" is invalid because it starts with a digit; names must start with a letter."
+      }
+    },
+    {
+      "id": "1.8-e8",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Which data type is used to store whether a student passed the course (yes or no)?",
+      "options": ["Integer", "Decimal", "Text", "Boolean"],
+      "correctIndex": 3,
+      "feedback": {
+        "correct": "Correct. The boolean type is used for information with only two states.",
+        "incorrect": "Two-state information like yes or no is stored as a boolean (TRUE/FALSE)."
+      }
+    }
+  ],
+  "summary": [
+    "World 1 complete: variables, data types, assignment, operators, input/output, constants, and swapping.",
+    "These concepts form the foundation of decisions and loops from World 2 onward.",
+    "You will see the topics you struggled with again in your review queue."
+  ]
+}

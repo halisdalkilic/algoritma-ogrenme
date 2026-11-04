@@ -1,0 +1,153 @@
+{
+  "id": "3.5",
+  "worldId": "3",
+  "title": "Çoklu Seçim (DURUM/SWITCH)",
+  "estimatedMinutes": 5,
+  "prerequisites": [
+    "3.4"
+  ],
+  "objectives": [
+    "Çok sayıda sabit değeri karşılaştıran bir menü mantığını kurar",
+    "DURUM yapısının iç içe EĞER/DEĞİLSE zincirine eşdeğer olduğunu anlar"
+  ],
+  "hook": {
+    "text": "Bir menüde 5 seçenek var: \"1) Pizza 2) Burger 3) Salata ...\". Her seçenek için ayrı bir EĞER/DEĞİLSE yazmak çok uzun olurdu, değil mi?"
+  },
+  "concept": [
+    {
+      "heading": "DURUM (çoklu seçim) mantığı",
+      "body": "Bir değişkenin alabileceği birden çok SABİT değere göre dallanma gerektiğinde, art arda EĞER/DEĞİLSE EĞER yazmak yerine DURUM yapısı kullanılır: DURUM secim / 1: ... / 2: ... / VARSAYILAN: ... Her \"durum\", o değere eşitse çalışan bir bloktur.",
+      "visual": { "type": "animation", "component": "flow", "props": { "kind": "switch" } }
+    },
+    {
+      "heading": "DURUM = zincirleme EĞER",
+      "body": "DURUM yapısı aslında bir kısayoldur — arka planda \"EĞER secim=1 ... DEĞİLSE EĞER secim=2 ... DEĞİLSE EĞER secim=3 ... DEĞİLSE ...\" zincirine eşdeğerdir. Sadece çok sayıda sabit değer karşılaştırıldığında daha okunaklı bir yazım sağlar.",
+      "visual": { "type": "animation", "component": "steps", "props": { "steps": ["DURUM secim", "= EĞER secim = 1 …", "DEĞİLSE EĞER secim = 2 …", "DEĞİLSE … (VARSAYILAN)"] } }
+    }
+  ],
+  "workedExamples": [],
+  "exercises": [
+    {
+      "id": "3.5-e1",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "DURUM yapısı ne zaman EĞER/DEĞİLSE zincirine tercih edilir?",
+      "options": [
+        "Hiçbir zaman, DURUM her zaman kötüdür",
+        "Tek bir değişkenin çok sayıda sabit değerle karşılaştırıldığı durumlarda",
+        "Sadece sayılarla çalışırken",
+        "Sadece döngü içinde kullanılabilir"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. DURUM, aynı değişkeni çok sayıda sabit değerle karşılaştırırken okunabilirliği artırır.",
+        "incorrect": "DURUM, tek bir değişkenin birçok sabit değerle karşılaştırıldığı menü tarzı durumlarda kullanışlıdır."
+      }
+    },
+    {
+      "id": "3.5-e2",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "Aşağıdaki DURUM yapısı hangi EĞER zincirine eşdeğerdir? (gun = 1 ise \"Pazartesi\", gun = 2 ise \"Salı\", diğer durumda \"Bilinmeyen\" yazılıyor)",
+      "options": [
+        "EĞER gun=1 YAZ \"Pazartesi\" DEĞİLSE EĞER gun=2 YAZ \"Salı\" DEĞİLSE YAZ \"Bilinmeyen\" BİTİR BİTİR",
+        "EĞER gun>1 YAZ \"Pazartesi\" BİTİR",
+        "EĞER gun VE 2 YAZ \"Salı\" BİTİR",
+        "Hiçbiri, DURUM'un EĞER karşılığı yoktur"
+      ],
+      "correctIndex": 0,
+      "feedback": {
+        "correct": "Doğru. DURUM, arka planda ardışık eşitlik kontrolü yapan bir EĞER/DEĞİLSE zinciridir.",
+        "incorrect": "DURUM yapısı, her durumu sırayla eşitlik (=) ile karşılaştıran bir EĞER/DEĞİLSE zincirine eşdeğerdir."
+      }
+    },
+    {
+      "id": "3.5-e3",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Bir menü seçimini (1-3) kontrol eden EĞER zincirinin adımlarını doğru sıraya diz.",
+      "steps": [
+        "OKU secim",
+        "EĞER secim = 1",
+        "  YAZ \"Pizza\"",
+        "DEĞİLSE",
+        "  EĞER secim = 2",
+        "    YAZ \"Burger\"",
+        "  DEĞİLSE",
+        "    YAZ \"Geçersiz seçim\"",
+        "  BİTİR",
+        "BİTİR"
+      ],
+      "correctOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "3.5-e4",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "secim ← 2 iken bu kod ekrana ne yazar?",
+      "pseudocode": [
+        "secim ← 2",
+        "EĞER secim = 1",
+        "  YAZ \"Pizza\"",
+        "DEĞİLSE",
+        "  EĞER secim = 2",
+        "    YAZ \"Burger\"",
+        "  DEĞİLSE",
+        "    YAZ \"Geçersiz seçim\"",
+        "  BİTİR",
+        "BİTİR"
+      ],
+      "correctOutput": [
+        "Burger"
+      ],
+      "hint": "secim = 2 koşulu ikinci EĞER'de DOĞRU olur."
+    },
+    {
+      "id": "3.5-e5",
+      "type": "mcq",
+      "difficulty": 1,
+      "question": "DURUM yapısındaki VARSAYILAN (default) dalı ne işe yarar?",
+      "options": [
+        "Hiçbir zaman çalışmaz",
+        "Hiçbir durum eşleşmediğinde çalışır",
+        "Her zaman ilk çalışan daldır",
+        "Sadece hata durumunda çalışır"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. VARSAYILAN, diğer hiçbir durum eşleşmediğinde devreye giren \"yakalayıcı\" daldır.",
+        "incorrect": "VARSAYILAN dalı, tanımlı durumlardan hiçbiri eşleşmediğinde çalışır."
+      }
+    },
+    {
+      "id": "3.5-e6",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "DURUM yapısı, tek bir değişkeni birden çok ___ değerle karşılaştırmak için kullanılır.",
+      "options": [
+        "sabit",
+        "değişken",
+        "döngü",
+        "fonksiyon"
+      ],
+      "answer": "sabit"
+    }
+  ],
+  "summary": [
+    "DURUM, tek bir değişkeni çok sayıda sabit değerle karşılaştırırken EĞER zincirine göre daha okunaklıdır.",
+    "Arka planda DURUM, ardışık eşitlik (=) kontrolü yapan bir EĞER/DEĞİLSE zinciridir.",
+    "VARSAYILAN dalı, hiçbir durum eşleşmediğinde çalışan \"yakalayıcı\" bloktur."
+  ]
+}

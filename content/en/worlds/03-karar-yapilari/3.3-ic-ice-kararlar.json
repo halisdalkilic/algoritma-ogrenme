@@ -1,0 +1,162 @@
+{
+  "id": "3.3",
+  "worldId": "3",
+  "title": "Nested Decisions",
+  "estimatedMinutes": 6,
+  "prerequisites": ["3.2"],
+  "objectives": [
+    "Place one IF inside another IF block (a nested decision)",
+    "Do multi-level grade and tier calculations with nested decisions"
+  ],
+  "hook": {
+    "text": "To turn a score into letter grades like AA, BA, BB, and CC, a single IF is not enough. You need to put decisions inside decisions."
+  },
+  "concept": [
+    {
+      "heading": "An IF inside an IF",
+      "body": "You can write another IF inside an IF block (or an ELSE block). This is called a nested decision. When the outer condition is FALSE, the inner IF is entered, and it tests its own condition separately.",
+      "visual": { "type": "animation", "component": "steps", "props": { "steps": ["IF grade ≥ 50", "  → IF grade ≥ 85: Excellent", "  → ELSE: Passed", "ELSE: Failed"] } }
+    },
+    {
+      "heading": "Checking in tiers",
+      "body": "A chain of nested IF/ELSE lets you check several thresholds in order: first the highest threshold, otherwise the next one down, otherwise the next one down... This pattern is used a lot in problems like grade calculation and tax brackets.",
+      "visual": { "type": "animation", "component": "steps", "props": { "steps": ["grade ≥ 85? → AA", "otherwise grade ≥ 70? → BB", "otherwise grade ≥ 50? → CC", "otherwise → FF"] } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "Turn a score (0-100) into a letter grade: ≥90 AA, ≥80 BA, otherwise CC.",
+      "pseudocode": [
+        "grade ← 85",
+        "IF grade ≥ 90",
+        "  WRITE \"AA\"",
+        "ELSE",
+        "  IF grade ≥ 80",
+        "    WRITE \"BA\"",
+        "  ELSE",
+        "    WRITE \"CC\"",
+        "  END",
+        "END"
+      ],
+      "runnerSource": "grade ← 85\nIF grade ≥ 90\n  WRITE \"AA\"\nELSE\n  IF grade ≥ 80\n    WRITE \"BA\"\n  ELSE\n    WRITE \"CC\"\n  END\nEND",
+      "steps": [
+        { "line": 0, "explain": "85 is put into the grade box.", "vars": { "grade": 85 } },
+        { "line": 1, "explain": "85 ≥ 90 is FALSE, so the ELSE block is entered." },
+        { "line": 4, "explain": "The inner IF is checked: 85 ≥ 80 is TRUE." },
+        { "line": 5, "explain": "\"BA\" is written to the screen.", "output": ["BA"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "3.3-e1",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "When grade ← 95, what does this code write to the screen?",
+      "pseudocode": [
+        "grade ← 95",
+        "IF grade ≥ 90",
+        "  WRITE \"AA\"",
+        "ELSE",
+        "  IF grade ≥ 80",
+        "    WRITE \"BA\"",
+        "  ELSE",
+        "    WRITE \"CC\"",
+        "  END",
+        "END"
+      ],
+      "correctOutput": ["AA"],
+      "hint": "The outermost condition (≥90) is already TRUE."
+    },
+    {
+      "id": "3.3-e2",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "When grade ← 60, what does this code write to the screen?",
+      "pseudocode": [
+        "grade ← 60",
+        "IF grade ≥ 90",
+        "  WRITE \"AA\"",
+        "ELSE",
+        "  IF grade ≥ 80",
+        "    WRITE \"BA\"",
+        "  ELSE",
+        "    WRITE \"CC\"",
+        "  END",
+        "END"
+      ],
+      "correctOutput": ["CC"],
+      "hint": "Both conditions are FALSE, so the innermost ELSE block runs."
+    },
+    {
+      "id": "3.3-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "In a nested IF structure, what happens to the inner IF if the outer condition is TRUE?",
+      "options": [
+        "It is still checked",
+        "It is never checked, it is skipped",
+        "It is automatically treated as TRUE",
+        "It gives an error"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Correct. When the outer condition is TRUE, the inner IF inside the ELSE is never entered.",
+        "incorrect": "If the outer condition is TRUE, the inner IF inside the ELSE block is never run."
+      }
+    },
+    {
+      "id": "3.3-e4",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Put the steps of an algorithm that calculates a three-tier shipping fee (≥10 kg expensive, ≥5 kg medium, otherwise cheap) in the correct order.",
+      "steps": [
+        "READ weight",
+        "IF weight ≥ 10",
+        "  WRITE \"Expensive\"",
+        "ELSE",
+        "  IF weight ≥ 5",
+        "    WRITE \"Medium\"",
+        "  ELSE",
+        "    WRITE \"Cheap\"",
+        "  END",
+        "END"
+      ],
+      "correctOrder": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    },
+    {
+      "id": "3.3-e5",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "When grade ← 75, what does this code write to the screen?",
+      "pseudocode": [
+        "grade ← 75",
+        "IF grade ≥ 90",
+        "  WRITE \"AA\"",
+        "ELSE",
+        "  IF grade ≥ 80",
+        "    WRITE \"BA\"",
+        "  ELSE",
+        "    WRITE \"CC\"",
+        "  END",
+        "END"
+      ],
+      "correctOutput": ["CC"],
+      "hint": "75 reaches neither 90 nor 80."
+    },
+    {
+      "id": "3.3-e6",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Complete the sentence.",
+      "template": "Writing another IF inside an IF block is called a ___ decision.",
+      "options": ["nested", "sequential", "parallel", "constant"],
+      "answer": "nested"
+    }
+  ],
+  "summary": [
+    "You can write another IF inside an IF (or ELSE) block. This is called a nested decision.",
+    "If the outer condition is TRUE, the inner IF is never run.",
+    "A chain of nested IF/ELSE is used for multi-tier threshold checks (grades, tax brackets, and so on)."
+  ]
+}

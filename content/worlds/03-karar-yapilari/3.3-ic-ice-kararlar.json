@@ -1,0 +1,162 @@
+{
+  "id": "3.3",
+  "worldId": "3",
+  "title": "İç İçe Kararlar",
+  "estimatedMinutes": 6,
+  "prerequisites": ["3.2"],
+  "objectives": [
+    "Bir EĞER bloğunun içine başka bir EĞER yerleştirir (iç içe karar)",
+    "İç içe kararlarla çok seviyeli not/kademe hesaplamaları yapar"
+  ],
+  "hook": {
+    "text": "Bir notu AA, BA, BB, CC gibi harflere çevirmek için tek bir EĞER yetmez — kararların içine karar koyman gerekir."
+  },
+  "concept": [
+    {
+      "heading": "EĞER içinde EĞER",
+      "body": "Bir EĞER bloğunun (ya da DEĞİLSE bloğunun) içine başka bir EĞER yazılabilir. Buna iç içe (nested) karar denir. Dıştaki koşul YANLIŞ olduğunda içteki EĞER'e girilir ve o da kendi koşulunu ayrıca test eder.",
+      "visual": { "type": "animation", "component": "steps", "props": { "steps": ["EĞER not ≥ 50", "  → EĞER not ≥ 85: Pekiyi", "  → DEĞİLSE: Geçti", "DEĞİLSE: Kaldı"] } }
+    },
+    {
+      "heading": "Kademeli kontrol",
+      "body": "İç içe EĞER/DEĞİLSE zinciri, birden fazla eşiği sırayla kontrol etmeni sağlar: önce en yüksek eşik, değilse bir alt eşik, değilse bir alt eşik... Bu desen, not hesaplama ve vergi dilimi gibi problemlerde çok kullanılır.",
+      "visual": { "type": "animation", "component": "steps", "props": { "steps": ["not ≥ 85? → AA", "değilse not ≥ 70? → BB", "değilse not ≥ 50? → CC", "değilse → FF"] } }
+    }
+  ],
+  "workedExamples": [
+    {
+      "prompt": "Bir notu (0-100) harf notuna çevir: ≥90 AA, ≥80 BA, aksi CC.",
+      "pseudocode": [
+        "not ← 85",
+        "EĞER not ≥ 90",
+        "  YAZ \"AA\"",
+        "DEĞİLSE",
+        "  EĞER not ≥ 80",
+        "    YAZ \"BA\"",
+        "  DEĞİLSE",
+        "    YAZ \"CC\"",
+        "  BİTİR",
+        "BİTİR"
+      ],
+      "runnerSource": "not ← 85\nEĞER not ≥ 90\n  YAZ \"AA\"\nDEĞİLSE\n  EĞER not ≥ 80\n    YAZ \"BA\"\n  DEĞİLSE\n    YAZ \"CC\"\n  BİTİR\nBİTİR",
+      "steps": [
+        { "line": 0, "explain": "not kutusuna 85 konur.", "vars": { "not": 85 } },
+        { "line": 1, "explain": "85 ≥ 90 YANLIŞ olduğu için DEĞİLSE bloğuna girilir." },
+        { "line": 4, "explain": "İçteki EĞER kontrol edilir: 85 ≥ 80 DOĞRU." },
+        { "line": 5, "explain": "Ekrana \"BA\" yazılır.", "output": ["BA"] }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "3.3-e1",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "not ← 95 iken bu kod ekrana ne yazar?",
+      "pseudocode": [
+        "not ← 95",
+        "EĞER not ≥ 90",
+        "  YAZ \"AA\"",
+        "DEĞİLSE",
+        "  EĞER not ≥ 80",
+        "    YAZ \"BA\"",
+        "  DEĞİLSE",
+        "    YAZ \"CC\"",
+        "  BİTİR",
+        "BİTİR"
+      ],
+      "correctOutput": ["AA"],
+      "hint": "En dıştaki koşul (≥90) zaten DOĞRU."
+    },
+    {
+      "id": "3.3-e2",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "not ← 60 iken bu kod ekrana ne yazar?",
+      "pseudocode": [
+        "not ← 60",
+        "EĞER not ≥ 90",
+        "  YAZ \"AA\"",
+        "DEĞİLSE",
+        "  EĞER not ≥ 80",
+        "    YAZ \"BA\"",
+        "  DEĞİLSE",
+        "    YAZ \"CC\"",
+        "  BİTİR",
+        "BİTİR"
+      ],
+      "correctOutput": ["CC"],
+      "hint": "İki koşul da YANLIŞ, bu yüzden en içteki DEĞİLSE bloğu çalışır."
+    },
+    {
+      "id": "3.3-e3",
+      "type": "mcq",
+      "difficulty": 2,
+      "question": "İç içe EĞER yapısında dıştaki koşul DOĞRU ise içteki EĞER ne olur?",
+      "options": [
+        "Yine de kontrol edilir",
+        "Hiç kontrol edilmez, atlanır",
+        "Otomatik olarak DOĞRU kabul edilir",
+        "Hata verir"
+      ],
+      "correctIndex": 1,
+      "feedback": {
+        "correct": "Doğru. Dıştaki koşul DOĞRU olduğunda, DEĞİLSE içindeki iç EĞER'e hiç girilmez.",
+        "incorrect": "Dıştaki koşul DOĞRU ise, DEĞİLSE bloğunun içindeki (iç) EĞER hiç çalıştırılmaz."
+      }
+    },
+    {
+      "id": "3.3-e4",
+      "type": "order-steps",
+      "difficulty": 2,
+      "question": "Üç kademeli bir kargo ücreti hesaplayan (≥10kg pahalı, ≥5kg orta, aksi ucuz) algoritmanın adımlarını doğru sıraya diz.",
+      "steps": [
+        "OKU kilo",
+        "EĞER kilo ≥ 10",
+        "  YAZ \"Pahalı\"",
+        "DEĞİLSE",
+        "  EĞER kilo ≥ 5",
+        "    YAZ \"Orta\"",
+        "  DEĞİLSE",
+        "    YAZ \"Ucuz\"",
+        "  BİTİR",
+        "BİTİR"
+      ],
+      "correctOrder": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    },
+    {
+      "id": "3.3-e5",
+      "type": "predict-output",
+      "difficulty": 2,
+      "question": "not ← 75 iken bu kod ekrana ne yazar?",
+      "pseudocode": [
+        "not ← 75",
+        "EĞER not ≥ 90",
+        "  YAZ \"AA\"",
+        "DEĞİLSE",
+        "  EĞER not ≥ 80",
+        "    YAZ \"BA\"",
+        "  DEĞİLSE",
+        "    YAZ \"CC\"",
+        "  BİTİR",
+        "BİTİR"
+      ],
+      "correctOutput": ["CC"],
+      "hint": "75, ne 90'a ne de 80'e ulaşıyor."
+    },
+    {
+      "id": "3.3-e6",
+      "type": "fill-blank",
+      "difficulty": 1,
+      "question": "Cümleyi tamamla.",
+      "template": "Bir EĞER bloğunun içine başka bir EĞER yazılmasına ___ karar denir.",
+      "options": ["iç içe", "sıralı", "paralel", "sabit"],
+      "answer": "iç içe"
+    }
+  ],
+  "summary": [
+    "Bir EĞER (ya da DEĞİLSE) bloğunun içine başka bir EĞER yazılabilir — buna iç içe karar denir.",
+    "Dıştaki koşul DOĞRU ise içteki EĞER hiç çalıştırılmaz.",
+    "İç içe EĞER/DEĞİLSE zinciri, çok kademeli eşik kontrollerinde (not, vergi dilimi vb.) kullanılır."
+  ]
+}
