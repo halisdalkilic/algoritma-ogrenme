@@ -1,6 +1,7 @@
 "use client";
 
-import type { ComponentType } from "react";
+import { useState, type ComponentType } from "react";
+import { useT } from "@/lib/i18n/context";
 import { LazyMotion } from "framer-motion";
 import { playStyle, useOnScreen } from "@/components/ui/useOnScreen";
 import { VisibleContext } from "./kit";
@@ -44,20 +45,54 @@ export function ConceptVisual({ visual, accent, label }: { visual?: VisualSpec; 
   return <VisualHost visual={visual} accent={accent} label={label} />;
 }
 
+/** "Başka örnek" (S21): aynı görselin değerlerini deterministik olarak değiştirir; yalnızca sıralama ve arama görselleri. */
+function variantProps(component: string, props: Record<string, unknown> | undefined, n: number): Record<string, unknown> | undefined {
+  if (!props || n === 0) return props;
+  if (component === "sort" && Array.isArray(props.values)) {
+    const values = props.values as number[];
+    const shuffled = [...values].sort((a, b) => ((a * 31 + n * 17) % 11) - ((b * 31 + n * 17) % 11));
+    const sorted = shuffled.every((v, i) => i === 0 || shuffled[i - 1] <= v);
+    return { ...props, values: sorted ? [...shuffled].reverse() : shuffled };
+  }
+  if (component === "array" && props.target !== undefined && Array.isArray(props.values)) {
+    const values = props.values as unknown[];
+    return { ...props, target: values[(n * 3 + 2) % values.length] };
+  }
+  return props;
+}
+
+function hasVariants(component: string, props: Record<string, unknown> | undefined): boolean {
+  return component === "sort" || (component === "array" && props?.target !== undefined);
+}
+
 function VisualHost({ visual, accent, label }: { visual: VisualSpec; accent: string; label: string }) {
+  const t = useT();
   const [ref, visible] = useOnScreen<HTMLDivElement>("120px");
+  // Her tıklamada artar: key değişince görsel baştan kurulur (S19 yeniden oynat); variant S21 için değer seçer.
+  const [replay, setReplay] = useState(0);
+  const [variant, setVariant] = useState(0);
   const Comp = REGISTRY[visual.component as VisualName];
   if (!Comp) return null;
   // Görsellerde `layout` animasyonu var: bu, genel (küçük) pakete değil `domMax` paketine ihtiyaç duyar.
   // Paket ayrı parçadır ve LessonPlayer ders açılırken önceden yükler (görsel ilk "Devam"dan sonra görünür);
   // böylece ilk yükleme küçük kalır ve içerik yanıp sönmez. İç içe LazyMotion dış olanın üzerine yazar.
   return (
-    <div ref={ref} className="ambient" style={playStyle(visible)}>
+    <div ref={ref} className="ambient relative" style={playStyle(visible)}>
       <VisibleContext.Provider value={visible}>
         <LazyMotion features={loadVisualFeatures} strict>
-          <Comp accent={accent} label={label} {...visual.props} />
+          <Comp key={`${replay}-${variant}`} accent={accent} label={label} {...variantProps(visual.component ?? "", visual.props, variant)} />
         </LazyMotion>
       </VisibleContext.Provider>
+      <div className="absolute right-2 top-2 flex gap-1.5">
+        {hasVariants(visual.component ?? "", visual.props) && (
+          <button type="button" className="visual-tool" onClick={() => setVariant((v) => v + 1)} title={t.visuals.another} aria-label={t.visuals.another}>
+            🎲
+          </button>
+        )}
+        <button type="button" className="visual-tool" onClick={() => setReplay((r) => r + 1)} title={t.visuals.replay} aria-label={t.visuals.replay}>
+          ⟲
+        </button>
+      </div>
     </div>
   );
 }

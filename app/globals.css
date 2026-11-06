@@ -562,3 +562,29 @@ html[data-hidden] .bar-glow { animation-play-state: paused; }
 /* S11: boşta kalan maskot esner (yardımcı belirirken iki kez) */
 @keyframes idle-stretch { 0%, 100% { transform: scale(1, 1); } 30% { transform: scale(0.96, 1.1) translateY(-3px); } 60% { transform: scale(1.04, 0.95); } }
 .idle-stretch { transform-origin: 50% 100%; animation: idle-stretch 1.3s ease-in-out 0.25s 2; }
+
+/* ───────── Aşama 5: mikro etkileşimler ve öğretici animasyonlar ───────── */
+/* S15: düğmeye basınca ışık dalgası (saf CSS; merkezden genişler) */
+.btn { position: relative; overflow: hidden; }
+.btn::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 62%); opacity: 0; transform: scale(0.2); pointer-events: none; }
+.btn:active:not(:disabled)::after { animation: btn-ripple 0.55s ease-out; }
+@keyframes btn-ripple { 0% { opacity: 1; transform: scale(0.2); } 100% { opacity: 0; transform: scale(2.4); } }
+/* S16: seçenekler üzerine gelince hafif kalkar, seçilince yaylanır */
+.choice { transition: transform 0.12s ease, background 0.15s ease, border-color 0.15s ease; }
+@media (hover: hover) { .choice:hover:not(:disabled):not([data-state="correct"]):not([data-state="wrong"]) { transform: translateY(-2px); } }
+@keyframes choice-select { 0% { transform: scale(0.97); } 55% { transform: scale(1.025); } 100% { transform: scale(1); } }
+.choice[data-state="selected"] { animation: choice-select 0.3s cubic-bezier(0.2, 1.4, 0.4, 1); }
+/* S19: görsel araç düğmeleri (yeniden oynat / başka örnek) */
+.visual-tool { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 999px; background: var(--surface); border: 2px solid var(--line); font-size: 15px; line-height: 1; color: var(--muted); cursor: pointer; transition: transform 0.12s ease, color 0.15s ease; }
+.visual-tool:hover { color: var(--brand); transform: scale(1.08); }
+.visual-tool:active { transform: scale(0.94) rotate(-30deg); }
+/* S20: kod çalıştırıcıda değişen değişken kutusu parlar */
+@keyframes var-flash { 0% { transform: scale(1.06); box-shadow: 0 0 0 0 color-mix(in srgb, var(--brand) 55%, transparent); background: color-mix(in srgb, var(--brand) 30%, var(--brand-soft)); } 100% { transform: scale(1); box-shadow: 0 0 0 10px transparent; } }
+.var-flash { animation: var-flash 0.7s ease-out both; }
+/* S22: dünya başlığındaki süzülen parçacıklar */
+.world-particles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.world-particles > i { position: absolute; bottom: -24px; font-style: normal; font-size: 18px; opacity: 0; animation: world-float 8s ease-in infinite; }
+@keyframes world-float { 0% { transform: translateY(0) rotate(0); opacity: 0; } 15% { opacity: 0.28; } 85% { opacity: 0.2; } 100% { transform: translateY(-120px) rotate(24deg); opacity: 0; } }
+/* S23: seri alevi canlı titrer */
+@keyframes flame-flicker { 0%, 100% { transform: scale(1) rotate(0); filter: brightness(1); } 20% { transform: scale(1.1, 1.14) rotate(-4deg); filter: brightness(1.15); } 45% { transform: scale(0.96, 1.05) rotate(3deg); } 70% { transform: scale(1.08, 1.1) rotate(-2deg); filter: brightness(1.1); } }
+.stat-icon[data-tone="flame"][data-active] { animation: flame-flicker 1.6s ease-in-out infinite; transform-origin: 50% 90%; }

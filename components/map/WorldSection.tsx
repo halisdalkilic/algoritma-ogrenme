@@ -6,6 +6,7 @@ import { useT } from "@/lib/i18n/context";
 import { LessonNode, NODE_SIZE, type NodeState } from "./LessonNode";
 import { PathFit } from "./PathFit";
 import { useNewlyUnlocked } from "@/lib/useNewlyUnlocked";
+import { playStyle, useOnScreen } from "@/components/ui/useOnScreen";
 
 // Yol geometrisi (piksel). Konteyner sabit 360px: hem 375px'lik telefonlara
 // sığar hem de düğüm ↔ SVG yol koordinatları ölçeklemeden birebir örtüşür.
@@ -56,6 +57,7 @@ export function WorldSection({
     }
   }
 
+  const [sectionRef, sectionVisible] = useOnScreen<HTMLElement>("160px");
   const fresh = useNewlyUnlocked(lessons.filter((_, i) => states[i] !== "locked").map((l) => l.id));
   const completed = states.filter((s) => s === "completed").length;
   const pct = lessons.length === 0 ? 0 : Math.round((completed / lessons.length) * 100);
@@ -63,7 +65,7 @@ export function WorldSection({
   const height = TOP_PAD + (lessons.length - 1) * ROW_HEIGHT + NODE_SIZE / 2 + 74;
 
   return (
-    <section aria-labelledby={`dunya-${world.id}`} className="flex flex-col items-center">
+    <section ref={sectionRef} aria-labelledby={`dunya-${world.id}`} className="ambient flex flex-col items-center" style={playStyle(sectionVisible)}>
       {/* Dünya başlık bandı */}
       <div
         className="reveal relative w-full overflow-hidden rounded-3xl p-5 text-white sm:p-6"
@@ -87,6 +89,14 @@ export function WorldSection({
           <rect x="70" y="40" width="80" height="80" rx="16" transform="rotate(14 110 80)" />
         </svg>
 
+        {/* S22: dünyanın simgesi yavaşça süzülen çok hafif parçacıklar olarak (yalnızca görünürken çalışır) */}
+        <span aria-hidden className="world-particles">
+          {[0, 1, 2, 3, 4, 5].map((i) => (
+            <i key={i} style={{ left: `${8 + i * 16}%`, animationDelay: `${i * 1.1}s`, animationDuration: `${7 + (i % 3) * 2}s` }}>
+              {world.emoji}
+            </i>
+          ))}
+        </span>
         <div className="relative flex items-center gap-4">
           <div
             aria-hidden

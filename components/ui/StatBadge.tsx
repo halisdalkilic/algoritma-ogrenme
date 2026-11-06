@@ -34,7 +34,7 @@ export function StatBadge({
       aria-label={label ? `${label}: ${value}` : undefined}
     >
       {/* ikon çok hafif "nefes alır" (CSS: .stat-icon) */}
-      <span aria-hidden className="stat-icon inline-block text-base leading-none" data-tone={tone}>
+      <span aria-hidden className="stat-icon inline-block text-base leading-none" data-tone={tone} data-active={numeric && value > 0 ? "" : undefined}>
         {icon}
       </span>
       {/* value değiştiğinde küçük bir "pop" — XP/seri artışını fark ettirir */}

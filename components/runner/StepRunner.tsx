@@ -67,6 +67,10 @@ export function StepRunner({
   const atEnd = cursor >= steps.length - 1;
 
   const varEntries = current ? Object.entries(current.vars) : [];
+  // S20: bir önceki adıma göre değişen (ya da yeni doğan) değişkenler kutuda parlar
+  const prevStep = hasSteps && cursor > 0 ? steps[Math.min(cursor, steps.length - 1) - 1] : undefined;
+  const changed = (name: string, value: Value) =>
+    prevStep !== undefined && stringifyValue(prevStep.vars[name], language) !== stringifyValue(value, language);
 
   return (
     <div className="flex flex-col gap-3">
@@ -164,7 +168,10 @@ export function StepRunner({
           {varEntries.length > 0 ? (
             <ul className="flex flex-col gap-1.5">
               {varEntries.map(([name, value]) => (
-                <li key={name} className="flex items-center justify-between gap-3 rounded-xl bg-brand-soft px-3 py-1.5">
+                <li
+                  key={changed(name, value) ? `${name}-${cursor}` : name}
+                  className={`flex items-center justify-between gap-3 rounded-xl bg-brand-soft px-3 py-1.5${changed(name, value) ? " var-flash" : ""}`}
+                >
                   <span className="font-mono text-sm font-black text-brand">{name}</span>
                   <span className="min-w-0 truncate font-mono text-sm font-black text-ink">{stringifyValue(value, language)}</span>
                 </li>

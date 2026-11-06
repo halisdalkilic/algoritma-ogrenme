@@ -10,3 +10,15 @@
 Aşama 1 değişiklikleri: `LazyMotion` (animasyon motoru ertelenmiş parça), maskot/harita/rozet/akış oku sonsuz animasyonları CSS'e taşındı ve
 yalnızca görünürken çalışır (`useOnScreen`, `--play`), sekme gizliyken duraklar (`html[data-hidden]`), ilerleme çubukları
 `width` yerine `scaleX`, görseller `next/dynamic` ile yüklenir, "hareketi azalt" altında sonsuz döngüler tek tur olur.
+
+## Tüm animasyon çalışmasından sonra (Aşama 1-5)
+
+| | Ana sayfa | Ders 1.1 | /en | Profil |
+|---|---|---|---|---|
+| Başlangıç | 454,5 KB | 419,1 KB | 407,5 KB | 432,1 KB |
+| Sonra | 448,1 KB | 409,3 KB | 401,0 KB | 425,0 KB |
+
+Not: yeni özelliklerin (combo, XP uçuşu, kıyafetler, boşta yardımcısı, geçişler, görsel araçları) kodu da bu rakama dahil;
+yine de ilk yükleme başlangıçtan küçük. `LazyMotion` özellikleri eşzamanlı yüklenir (asenkron yükleme içeriği görünmez bırakıyordu);
+yalnızca ders görsellerinin `domMax` paketi ayrı ve ders açılırken önceden yüklenir.
+Ortam animasyonları CSS'te ve yalnızca görünürken çalışır; bu CPU/pil kazancı bayt olarak görünmez.

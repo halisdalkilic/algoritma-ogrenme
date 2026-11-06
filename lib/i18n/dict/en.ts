@@ -286,6 +286,8 @@ export const en: Dictionary = {
     },
   },
   visuals: {
+    replay: "Replay",
+    another: "Another example",
     basic: { wrongOrder: "✗ wrong order: cannot be carried out", rightOrder: "✓ correct order" },
     data: {
       arrayName: "array",

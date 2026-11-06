@@ -288,6 +288,8 @@ export const tr = {
     },
   },
   visuals: {
+    replay: "Yeniden oynat",
+    another: "Başka örnek",
     basic: { wrongOrder: "✗ sıra bozuk: uygulanamaz", rightOrder: "✓ doğru sıra" },
     data: {
       arrayName: "dizi",
