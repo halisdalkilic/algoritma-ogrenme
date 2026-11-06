@@ -12,7 +12,6 @@ export const tr = {
       brandAccent: "Öğrenme",
       streak: "Gün serisi",
       totalXp: "Toplam XP",
-      hearts: "Can",
       review: "Tekrar kuyruğu",
       profile: "Profil",
     },
@@ -404,8 +403,6 @@ export const tr = {
     soundHint: "Doğru, yanlış ve kutlama sesleri",
     haptics: "Titreşim",
     hapticsHint: "Destekleyen telefonlarda hafif titreşim",
-    hearts: "Can sistemi",
-    heartsHint: "Yanlış cevapta can kaybet (başlangıçta kapalı)",
     dataNote: "Hesap açmazsan verilerin sadece bu cihazda.",
   },
   summary: {

@@ -35,7 +35,6 @@ export function LessonPlayer({ lesson }: { lesson: Lesson }) {
   const locale = useLocale();
   const href = useHref();
   const gainXp = useProgressStore((s) => s.gainXp);
-  const loseOneHeart = useProgressStore((s) => s.loseOneHeart);
   const completeLesson = useProgressStore((s) => s.completeLesson);
   const reportWrongAnswer = useProgressStore((s) => s.reportWrongAnswer);
   const play = useProgressStore((s) => s.play);
@@ -130,14 +129,13 @@ export function LessonPlayer({ lesson }: { lesson: Lesson }) {
       goNext();
     } else {
       setCombo(0);
-      loseOneHeart();
       // İlk yanlış denemede alıştırmayı tekrar kuyruğuna ekle (1/3/7 gün
       // aralıklı tekrar — bkz. lib/srs.ts). Aynı alıştırmaya art arda yanlış
       // basılması kuyruğu bozmasın diye sadece ilk denemede kaydediyoruz.
       if (attempts === 1) reportWrongAnswer(lesson.exercises[exerciseIndex].id);
       // Yanlış cevapta aynı soru kalır; kullanıcı tekrar deneyebilsin diye
       // ExerciseRouter'ın kendi "Kontrol Et" akışı zaten tekrar denemeye izin verir.
-      // Burada sadece can kaybını işliyoruz, adımı ilerletmiyoruz.
+      // Adımı ilerletmiyoruz.
     }
   }
 

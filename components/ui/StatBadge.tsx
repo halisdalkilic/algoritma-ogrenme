@@ -6,7 +6,6 @@ import { flightDelay } from "@/lib/xpFlight";
 const TONES = {
   flame: "text-flame",
   xp: "text-xp",
-  heart: "text-bad",
 } as const;
 
 export function StatBadge({

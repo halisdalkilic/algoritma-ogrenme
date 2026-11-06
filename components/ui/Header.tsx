@@ -119,14 +119,9 @@ export function Header() {
               <m.div variants={item} className="max-[359px]:hidden">
                 <DailyGoalRing />
               </m.div>
-              <m.div variants={item} className={progress.settings.heartsEnabled ? "max-[359px]:hidden" : undefined}>
+              <m.div variants={item}>
                 <StatBadge icon="⭐" value={progress.xp} label={t.shell.header.totalXp} tone="xp" xpTarget />
               </m.div>
-              {progress.settings.heartsEnabled && (
-                <m.div variants={item}>
-                  <StatBadge icon="❤️" value={progress.hearts} label={t.shell.header.hearts} tone="heart" />
-                </m.div>
-              )}
               <m.span variants={item} aria-hidden className="mx-1 h-[18px] w-px bg-line" />
               <IconLink href={href({ name: "review" })} label={t.shell.header.review} badge={dueCount}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>

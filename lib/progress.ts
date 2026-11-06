@@ -13,6 +13,8 @@ export type DailyGoal = 1 | 2 | 3;
 export type Progress = {
   version: 1;
   xp: number;
+  /** KULLANILMIYOR: can sistemi kaldırıldı. Eski kayıtlarla ve bulut senkron şemasıyla (supabase/schema.sql 0-5 bekler)
+   *  uyum için sabit 5 olarak taşınır. */
   hearts: number;
   streak: { count: number; lastActiveDate: string };
   completedLessons: Record<string, { score: number; completedAt: string }>;
@@ -23,7 +25,6 @@ export type Progress = {
   settings: {
     /** 1 = Rahat, 2 = Normal, 3 = Yoğun (bkz. DAILY_GOAL_XP) */
     dailyGoal: DailyGoal;
-    heartsEnabled: boolean;
     theme: "light" | "dark";
     sound: boolean;
     haptics: boolean;
@@ -47,7 +48,7 @@ export const DEFAULT_PROGRESS: Progress = {
   reviewQueue: [],
   badges: [],
   activity: {},
-  settings: { dailyGoal: 1, heartsEnabled: false, theme: "light", sound: true, haptics: true },
+  settings: { dailyGoal: 1, theme: "light", sound: true, haptics: true },
 };
 
 // ── Tarih yardımcıları: YEREL gün (UTC değil — Türkiye'de 00:00-03:00 arası önceki güne yazılmasın) ──
@@ -72,11 +73,15 @@ function isBrowser(): boolean {
 
 /** Eksik alanları varsayılanla doldurur; iç içe `settings` de alan alan birleştirilir. */
 export function withDefaults(parsed: Partial<Progress>): Progress {
+  // Kaldırılan can sistemi: eski kayıttaki "heartsEnabled" ayarı atılır, "hearts" sabit 5'e çekilir.
+  const settings: Record<string, unknown> = { ...DEFAULT_PROGRESS.settings, ...(parsed.settings ?? {}) };
+  delete settings.heartsEnabled;
   return {
     ...DEFAULT_PROGRESS,
     ...parsed,
+    hearts: DEFAULT_PROGRESS.hearts,
     activity: parsed.activity ?? {},
-    settings: { ...DEFAULT_PROGRESS.settings, ...(parsed.settings ?? {}) },
+    settings: settings as Progress["settings"],
   };
 }
 
@@ -129,11 +134,6 @@ export function xpOnDate(progress: Progress, date: string = localDate()): number
 export function currentStreak(progress: Progress, today: string = localDate()): number {
   const last = progress.streak.lastActiveDate;
   return last === today || last === shiftDate(today, -1) ? progress.streak.count : 0;
-}
-
-export function loseHeart(progress: Progress): Progress {
-  if (!progress.settings.heartsEnabled) return progress;
-  return { ...progress, hearts: Math.max(0, progress.hearts - 1) };
 }
 
 export function markLessonCompleted(

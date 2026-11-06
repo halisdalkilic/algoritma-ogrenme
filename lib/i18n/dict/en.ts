@@ -10,7 +10,6 @@ export const en: Dictionary = {
       brandAccent: "Learning",
       streak: "Day streak",
       totalXp: "Total XP",
-      hearts: "Hearts",
       review: "Review queue",
       profile: "Profile",
     },
@@ -402,8 +401,6 @@ export const en: Dictionary = {
     soundHint: "Sounds for correct answers, mistakes and celebrations",
     haptics: "Vibration",
     hapticsHint: "Light vibration on supported phones",
-    hearts: "Hearts",
-    heartsHint: "Lose a heart on a wrong answer (off by default)",
     dataNote: "Without an account, your data stays on this device.",
   },
   summary: {

@@ -256,7 +256,6 @@ export function ProfilePage() {
           }}
         />
         <Toggle label={t.profile.haptics} hint={t.profile.hapticsHint} on={s.haptics} onChange={() => updateSettings({ haptics: !s.haptics })} />
-        <Toggle label={t.profile.hearts} hint={t.profile.heartsHint} on={s.heartsEnabled} onChange={() => updateSettings({ heartsEnabled: !s.heartsEnabled })} />
       </section>
 
       <AccountPanel />

@@ -7,7 +7,6 @@ import {
   addXp,
   applyReviewResult,
   loadProgress,
-  loseHeart,
   markLessonCompleted,
   saveProgress,
   scheduleReview,
@@ -38,7 +37,6 @@ type ProgressStore = {
   goalPulse: number;
   hydrate: () => void;
   gainXp: (amount: number) => void;
-  loseOneHeart: () => void;
   completeLesson: (lessonId: string, score: number) => void;
   reportWrongAnswer: (exerciseId: string) => void;
   reportReviewResult: (exerciseId: string, correct: boolean) => void;
@@ -90,7 +88,6 @@ export const useProgressStore = create<ProgressStore>((set, get) => {
       commit(next, found);
       if (goalReached) set((s) => ({ goalPulse: s.goalPulse + 1 }));
     },
-    loseOneHeart: () => commit(loseHeart(get().progress)),
     completeLesson: (lessonId, score) => {
       const prev = get().progress;
       const afterCompletion = markLessonCompleted(prev, lessonId, score);

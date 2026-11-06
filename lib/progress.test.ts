@@ -63,9 +63,11 @@ describe("addXp", () => {
 
 describe("withDefaults", () => {
   it("eski kayıtta olmayan yeni ayarları varsayılanla doldurur", () => {
-    const old = { version: 1, xp: 50, settings: { dailyGoal: 2, heartsEnabled: true, theme: "dark" } } as Partial<Progress>;
+    const old = { version: 1, xp: 50, settings: { dailyGoal: 2, heartsEnabled: true, theme: "dark" } } as unknown as Partial<Progress>;
     const p = withDefaults(old);
-    expect(p.settings).toEqual({ dailyGoal: 2, heartsEnabled: true, theme: "dark", sound: true, haptics: true });
+    // kaldırılan can ayarı eski kayıttan atılır
+    expect(p.settings).toEqual({ dailyGoal: 2, theme: "dark", sound: true, haptics: true });
+    expect(p.hearts).toBe(5);
     expect(p.activity).toEqual({});
     expect(p.xp).toBe(50);
   });

@@ -505,10 +505,8 @@ html[data-hidden] *::after {
 /* Üst çubuk rozetleri: ikon hafif "nefes alır"; değer değişince küçük pop */
 @keyframes stat-breathe-flame { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.07); } }
 @keyframes stat-breathe-xp { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-@keyframes stat-breathe-heart { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.09); } }
 .stat-icon[data-tone="flame"] { animation: stat-breathe-flame 3.6s ease-in-out infinite; }
 .stat-icon[data-tone="xp"] { animation: stat-breathe-xp 3.6s ease-in-out infinite; }
-.stat-icon[data-tone="heart"] { animation: stat-breathe-heart 3.6s ease-in-out infinite; }
 @keyframes stat-pop { 0% { transform: scale(1.2); } 100% { transform: scale(1); } }
 .stat-pop { animation: stat-pop 0.35s cubic-bezier(0.2, 1.4, 0.4, 1) both; }
 .a-look { transform: translate(calc(var(--lx, 0) * 1px), calc(var(--ly, 0) * 1px)); transition: transform 0.12s ease-out; }
