@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { Frame, useTicker } from "./kit";
 import { useT } from "@/lib/i18n/context";
 import type { Dictionary } from "@/lib/i18n/dict/tr";
@@ -12,7 +12,7 @@ type Base = { accent: string; label: string };
 function Lamp({ on, size = 30 }: { on: boolean; size?: number }) {
   const L = useT().visuals.logic;
   return (
-    <motion.span
+    <m.span
       animate={{ scale: on ? [1, 1.15, 1] : 1 }}
       transition={{ duration: 0.35 }}
       className="grid place-items-center rounded-full border-2 font-mono text-[10px] font-black"
@@ -26,7 +26,7 @@ function Lamp({ on, size = 30 }: { on: boolean; size?: number }) {
       }}
     >
       {on ? L.lampTrue : L.lampFalse}
-    </motion.span>
+    </m.span>
   );
 }
 
@@ -134,7 +134,7 @@ export function RecursionStack({ accent, label, n = 3, noBase = false }: Base & 
       <div className="flex min-h-[150px] flex-col-reverse items-center justify-start gap-1">
         <AnimatePresence initial={false}>
           {f.stack.map((item) => (
-            <motion.div
+            <m.div
               key={item.k}
               layout
               initial={{ opacity: 0, y: -16, scale: 0.9 }}
@@ -146,7 +146,7 @@ export function RecursionStack({ accent, label, n = 3, noBase = false }: Base & 
             >
               <span>{x.fn}({item.k})</span>
               <span className="text-muted">{item.note}</span>
-            </motion.div>
+            </m.div>
           ))}
         </AnimatePresence>
       </div>
@@ -191,7 +191,7 @@ export function GrowthChart({ accent, label, lines = ["1", "n", "n2"] }: Base & 
           <path d={`M0 0 V${H} H${W}`} fill="none" stroke="var(--muted)" strokeWidth="2" />
           <text x={W} y={H + 15} textAnchor="end" fontSize="10" fontWeight="800" fill="var(--muted)">{L.xAxis}</text>
           {lines.map((k, i) => (
-            <motion.path
+            <m.path
               key={k}
               d={toPath(defs[k].f)}
               fill="none"

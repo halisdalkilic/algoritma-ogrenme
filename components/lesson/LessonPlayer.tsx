@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import type { Lesson } from "@/content/schema";
 import { getWorldMeta } from "@/content/worlds";
 import { useProgressStore } from "@/lib/useProgressStore";
@@ -156,7 +156,7 @@ export function LessonPlayer({ lesson }: { lesson: Lesson }) {
       </div>
 
       <AnimatePresence mode="wait">
-        <motion.div
+        <m.div
           key={stageKey}
           initial={{ opacity: 0, x: 16 }}
           animate={{ opacity: 1, x: 0 }}
@@ -308,7 +308,7 @@ export function LessonPlayer({ lesson }: { lesson: Lesson }) {
               onFinish={() => router.push(href({ name: "home" }))}
             />
           )}
-        </motion.div>
+        </m.div>
       </AnimatePresence>
 
       {showContinue && (

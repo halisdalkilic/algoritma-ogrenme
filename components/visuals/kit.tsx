@@ -1,21 +1,27 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { createContext, useContext, useEffect, useState } from "react";
+import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 
 /**
  * Kavram görsellerinin ortak parçaları.
  * Her görsel "kare" (frame) mantığıyla çalışır: useTicker 0..count-1 arasında döner.
  * "Hareketi azalt" açıksa animasyon durur ve SON kare (en öğretici hâl) sabit gösterilir.
  */
+/** Görsel ekranda mı? ConceptVisual sağlar; görünmüyorken zamanlayıcı durur (P2). */
+export const VisibleContext = createContext(true);
+
 export function useTicker(count: number, ms = 1300): number {
   const reduce = useReducedMotion();
+  const visible = useContext(VisibleContext);
   const [tick, setTick] = useState(0);
   useEffect(() => {
-    if (reduce || count <= 1) return;
-    const id = setInterval(() => setTick((t) => (t + 1) % count), ms);
+    if (reduce || count <= 1 || !visible) return;
+    const id = setInterval(() => {
+      if (!document.hidden) setTick((t) => (t + 1) % count);
+    }, ms);
     return () => clearInterval(id);
-  }, [count, ms, reduce]);
+  }, [count, ms, reduce, visible]);
   return reduce ? Math.max(0, count - 1) : tick;
 }
 
@@ -52,7 +58,7 @@ export function Frame({
       {caption !== undefined && (
         <figcaption aria-hidden className="relative mt-3 flex min-h-6 justify-center">
           <AnimatePresence mode="wait">
-            <motion.span
+            <m.span
               key={String(caption)}
               initial={{ opacity: 0, y: 4 }}
               animate={{ opacity: 1, y: 0 }}
@@ -61,7 +67,7 @@ export function Frame({
               className="rounded-full bg-surface px-3 py-1 font-mono text-[13px] font-bold text-ink shadow-sm"
             >
               {caption}
-            </motion.span>
+            </m.span>
           </AnimatePresence>
         </figcaption>
       )}
@@ -73,7 +79,7 @@ export function Frame({
 export function Pop({ value, className }: { value: React.ReactNode; className?: string }) {
   return (
     <AnimatePresence mode="popLayout" initial={false}>
-      <motion.span
+      <m.span
         key={String(value)}
         initial={{ scale: 0.4, opacity: 0, y: -8 }}
         animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -82,7 +88,7 @@ export function Pop({ value, className }: { value: React.ReactNode; className?: 
         className={className}
       >
         {value}
-      </motion.span>
+      </m.span>
     </AnimatePresence>
   );
 }
@@ -91,7 +97,8 @@ export function Pop({ value, className }: { value: React.ReactNode; className?: 
 export function Arrow({ active = true }: { active?: boolean }) {
   return (
     <svg width="22" height="16" viewBox="0 0 28 16" className="flex-none" aria-hidden>
-      <motion.path
+      <path
+        className={active ? "arrow-dash" : undefined}
         d="M2 8 H22 M16 2 L23 8 L16 14"
         fill="none"
         stroke={active ? "var(--acc)" : "var(--line)"}
@@ -99,8 +106,6 @@ export function Arrow({ active = true }: { active?: boolean }) {
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeDasharray="4 4"
-        animate={active ? { strokeDashoffset: [16, 0] } : undefined}
-        transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
       />
     </svg>
   );

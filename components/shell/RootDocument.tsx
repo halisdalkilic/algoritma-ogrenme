@@ -5,6 +5,7 @@ import { ServiceWorkerRegister } from "@/components/ui/ServiceWorkerRegister";
 import { Footer } from "@/components/ui/Footer";
 import { CelebrationOverlay } from "@/components/ui/CelebrationOverlay";
 import { LanguageBanner } from "@/components/ui/LanguageBanner";
+import { MotionProvider } from "@/components/ui/MotionProvider";
 import { englishIsPublic } from "@/lib/seo";
 import { TrProvider } from "./TrProvider";
 import { EnProvider } from "./EnProvider";
@@ -49,6 +50,7 @@ export function RootDocument({
       </head>
       <body className="flex min-h-full flex-col">
         <Provider>
+          <MotionProvider>
           <a
             data-own-position
             href="#icerik"
@@ -65,6 +67,7 @@ export function RootDocument({
           <Footer />
           <CelebrationOverlay />
           <LanguageBanner offerEnglish={englishIsPublic()} />
+          </MotionProvider>
         </Provider>
       </body>
     </html>

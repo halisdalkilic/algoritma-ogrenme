@@ -1,7 +1,7 @@
 "use client";
 
 import { Fragment } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Arrow, Frame, Pop, TONE, useTicker, type Tone } from "./kit";
 import { useT } from "@/lib/i18n/context";
 
@@ -19,7 +19,7 @@ export function IpoFlow({ accent, label, items, icons }: Base & { items: string[
           return (
             <Fragment key={i}>
               {i > 0 && <Arrow active={on} />}
-              <motion.div
+              <m.div
                 animate={{ scale: tick === i + 1 ? 1.08 : 1, opacity: on ? 1 : 0.45 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 className="flex min-w-0 max-w-[120px] flex-1 flex-col items-center gap-1 rounded-2xl border-2 px-1.5 py-2.5 text-center"
@@ -27,7 +27,7 @@ export function IpoFlow({ accent, label, items, icons }: Base & { items: string[
               >
                 {icons?.[i] && <span className="text-2xl leading-none">{icons[i]}</span>}
                 <span className="text-[11.5px] font-black leading-tight [overflow-wrap:anywhere] sm:text-[13px]">{text}</span>
-              </motion.div>
+              </m.div>
             </Fragment>
           );
         })}
@@ -53,7 +53,7 @@ export function StepList({ accent, label, steps, wrongOrder }: Base & { steps: s
           const on = wrongOrder ? true : i < tick;
           const tone: Tone = wrongOrder ? (showWrong ? "bad" : "good") : on ? "accent" : "neutral";
           return (
-            <motion.li
+            <m.li
               key={s}
               layout
               transition={{ type: "spring", stiffness: 300, damping: 26 }}
@@ -67,7 +67,7 @@ export function StepList({ accent, label, steps, wrongOrder }: Base & { steps: s
                 {on && !wrongOrder && i < tick - 1 ? "✓" : i + 1}
               </span>
               {s}
-            </motion.li>
+            </m.li>
           );
         })}
       </ol>
@@ -87,7 +87,7 @@ export function TokenGrid({
         {items.map((it, i) => {
           const tone = TONE[it.tone ?? "accent"];
           return (
-            <motion.div
+            <m.div
               key={i}
               initial={{ opacity: 0, scale: 0.6, y: 10 }}
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
@@ -98,7 +98,7 @@ export function TokenGrid({
             >
               <span className="font-mono text-[15px] font-black leading-tight">{it.label}</span>
               {it.sub && <span className="mt-0.5 text-[11.5px] font-bold leading-tight opacity-80">{it.sub}</span>}
-            </motion.div>
+            </m.div>
           );
         })}
       </div>

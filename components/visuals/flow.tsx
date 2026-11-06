@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { useMemo } from "react";
 import { Frame, Pop, useTicker } from "./kit";
 import { useT } from "@/lib/i18n/context";
@@ -240,7 +240,7 @@ export function FlowMini({ accent, label, kind }: { kind: string } & Base) {
         ))}
         {/* akış noktası düğümlerin ALTINDA: oklarda görünür, düğüm yazılarını kapatmaz */}
         {path && !reduce && (
-          <motion.circle
+          <m.circle
             key={`${kind}-${tick}`}
             r="6.5"
             fill="var(--acc)"
@@ -253,20 +253,20 @@ export function FlowMini({ accent, label, kind }: { kind: string } & Base) {
           />
         )}
         {scene.nodes.map((n, i) => (
-          <motion.g
+          <m.g
             key={i}
             animate={{ scale: highlight === i ? 1.12 : 1, opacity: highlight === -1 || highlight === i ? 1 : 0.5 }}
             style={{ originX: `${n.x}px`, originY: `${n.y}px` }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
             <ShapeEl n={n} />
-          </motion.g>
+          </m.g>
         ))}
         {scene.nodes.some((n) => n.error) || scene.edges.some((e) => e.error) ? (
-          <motion.g animate={reduce ? undefined : { scale: [1, 1.15, 1] }} transition={{ duration: 1.2, repeat: Infinity }} style={{ originX: "270px", originY: "26px" }}>
+          <g className="err-pulse">
             <circle cx="270" cy="26" r="13" fill="var(--bad)" />
             <path d="M264 20 l12 12 M276 20 l-12 12" stroke="#fff" strokeWidth="3" strokeLinecap="round" />
-          </motion.g>
+          </g>
         ) : null}
       </svg>
     </Frame>
@@ -284,7 +284,6 @@ export function LoopCycle({
   cols = 3,
 }: Base & { variant?: "for" | "infinite" | "nested"; from?: number; to?: number; rows?: number; cols?: number }) {
   const L = useT().visuals.flow.loop;
-  const reduce = useReducedMotion();
   const total = variant === "nested" ? rows * cols + 1 : variant === "infinite" ? 12 : to - from + 2;
   const tick = useTicker(total, variant === "nested" ? 650 : 900);
 
@@ -305,7 +304,7 @@ export function LoopCycle({
               const idx = i * cols + j + 1;
               const on = idx <= done;
               return (
-                <motion.span
+                <m.span
                   key={`${i}-${j}`}
                   animate={{ scale: idx === done ? 1.15 : 1 }}
                   className="grid h-9 place-items-center rounded-lg border-2 font-mono text-xs font-black"
@@ -315,7 +314,7 @@ export function LoopCycle({
                   }}
                 >
                   {on ? (i + 1) * (j + 1) : ""}
-                </motion.span>
+                </m.span>
               );
             }),
           ])}
@@ -335,15 +334,14 @@ export function LoopCycle({
     >
       <div className="flex items-center gap-5">
         <div className="relative grid h-28 w-28 place-items-center">
-          <motion.svg
+          <svg
             viewBox="0 0 100 100"
-            className="absolute inset-0"
-            animate={reduce || finished ? undefined : { rotate: 360 }}
-            transition={{ duration: infinite ? 1.2 : 3.6, repeat: Infinity, ease: "linear" }}
+            className={`absolute inset-0${finished ? "" : " loop-spin"}`}
+            style={{ animationDuration: infinite ? "1.2s" : "3.6s" }}
           >
             <circle cx="50" cy="50" r="40" fill="none" stroke={infinite ? "var(--bad)" : "var(--acc)"} strokeWidth="7" strokeDasharray="200 52" strokeLinecap="round" />
             <path d="M84 30 l6 -12 l5 13" fill="none" stroke={infinite ? "var(--bad)" : "var(--acc)"} strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-          </motion.svg>
+          </svg>
           <div className="flex flex-col items-center">
             <span className="text-[10px] font-black uppercase tracking-wider text-muted">{L.counter}</span>
             <Pop value={finished ? "✓" : value} className="font-mono text-3xl font-black" />

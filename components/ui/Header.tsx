@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { MotionConfig, motion, useMotionValueEvent, useScroll, type Variants } from "framer-motion";
+import { m, useMotionValueEvent, useScroll, type Variants } from "framer-motion";
 import { useProgressStore } from "@/lib/useProgressStore";
 import { getDueEntries } from "@/lib/srs";
 import { StatBadge } from "./StatBadge";
@@ -40,7 +40,7 @@ function IconLink({
   badge?: number;
 }) {
   return (
-    <motion.div variants={item} whileHover={{ y: -1.5, transition: SOFT }} whileTap={{ scale: 0.95, transition: SOFT }}>
+    <m.div variants={item} whileHover={{ y: -1.5, transition: SOFT }} whileTap={{ scale: 0.95, transition: SOFT }}>
       <Link href={href} className={iconButton} title={label} aria-label={label}>
         {children}
         {badge ? (
@@ -49,7 +49,7 @@ function IconLink({
           </span>
         ) : null}
       </Link>
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -71,15 +71,15 @@ export function Header() {
   const dueCount = hydrated ? getDueEntries(progress.reviewQueue).length : 0;
 
   return (
-    <MotionConfig reducedMotion="user">
+    <>
       {/* Dış kabuk 64px kalır (LessonPlayer yüksekliği buna göre hesaplıyor); içindeki hap yüzer. */}
-      <motion.header
+      <m.header
         initial={{ y: -24, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: EASE }}
         className="sticky top-0 z-20 h-16 px-3 pt-2"
       >
-        <motion.div
+        <m.div
           animate={{
             scale: scrolled ? 0.99 : 1,
             boxShadow: scrolled
@@ -94,40 +94,40 @@ export function Header() {
             <span className="header-sweep" />
           </span>
 
-          <motion.div whileHover="hover" initial="rest" animate="rest" className="relative">
+          <m.div whileHover="hover" initial="rest" animate="rest" className="relative">
             <Link href={href({ name: "home" })} className="hit44 flex items-center gap-2.5" aria-label={t.shell.header.homeAria}>
-              <motion.span
+              <m.span
                 variants={{ rest: { rotate: 0, scale: 1 }, hover: { rotate: -6, scale: 1.06 } }}
                 transition={SOFT}
                 className="block"
               >
                 <LogoMark size={36} animated />
-              </motion.span>
+              </m.span>
               <span className="hidden whitespace-nowrap text-[1.05rem] leading-none tracking-tight sm:block">
                 <span className="font-black">{t.shell.header.brandMain}</span>
                 <span className="ml-1 font-extrabold text-brand">{t.shell.header.brandAccent}</span>
               </span>
             </Link>
-          </motion.div>
+          </m.div>
 
           {hydrated && (
-            <motion.div variants={group} initial="hidden" animate="show" className="relative flex items-center gap-0.5 rounded-full bg-surface-2 p-0.5">
-              <motion.div variants={item}>
+            <m.div variants={group} initial="hidden" animate="show" className="relative flex items-center gap-0.5 rounded-full bg-surface-2 p-0.5">
+              <m.div variants={item}>
                 <StatBadge icon="🔥" value={currentStreak(progress)} label={t.shell.header.streak} tone="flame" />
-              </motion.div>
+              </m.div>
               {/* 360px altında yer kalmaz; günlük hedef Profil ayarlarında da var */}
-              <motion.div variants={item} className="max-[359px]:hidden">
+              <m.div variants={item} className="max-[359px]:hidden">
                 <DailyGoalRing />
-              </motion.div>
-              <motion.div variants={item} className={progress.settings.heartsEnabled ? "max-[359px]:hidden" : undefined}>
+              </m.div>
+              <m.div variants={item} className={progress.settings.heartsEnabled ? "max-[359px]:hidden" : undefined}>
                 <StatBadge icon="⭐" value={progress.xp} label={t.shell.header.totalXp} tone="xp" />
-              </motion.div>
+              </m.div>
               {progress.settings.heartsEnabled && (
-                <motion.div variants={item}>
+                <m.div variants={item}>
                   <StatBadge icon="❤️" value={progress.hearts} label={t.shell.header.hearts} tone="heart" />
-                </motion.div>
+                </m.div>
               )}
-              <motion.span variants={item} aria-hidden className="mx-1 h-[18px] w-px bg-line" />
+              <m.span variants={item} aria-hidden className="mx-1 h-[18px] w-px bg-line" />
               <IconLink href={href({ name: "review" })} label={t.shell.header.review} badge={dueCount}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                   <path d="M17 2l4 4-4 4" />
@@ -142,16 +142,16 @@ export function Header() {
                   <path d="M4 21a8 8 0 0 1 16 0" />
                 </svg>
               </IconLink>
-              <motion.div variants={item} whileHover={{ y: -1.5, transition: SOFT }} whileTap={{ scale: 0.95, transition: SOFT }}>
+              <m.div variants={item} whileHover={{ y: -1.5, transition: SOFT }} whileTap={{ scale: 0.95, transition: SOFT }}>
                 <LanguageSwitch />
-              </motion.div>
-              <motion.div variants={item} whileHover={{ y: -1.5, transition: SOFT }} whileTap={{ scale: 0.95, transition: SOFT }}>
+              </m.div>
+              <m.div variants={item} whileHover={{ y: -1.5, transition: SOFT }} whileTap={{ scale: 0.95, transition: SOFT }}>
                 <ThemeToggle />
-              </motion.div>
-            </motion.div>
+              </m.div>
+            </m.div>
           )}
-        </motion.div>
-      </motion.header>
-    </MotionConfig>
+        </m.div>
+      </m.header>
+    </>
   );
 }

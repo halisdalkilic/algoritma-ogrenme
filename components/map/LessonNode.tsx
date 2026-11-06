@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import type { Lesson } from "@/content/schema";
 import { useHref, useT } from "@/lib/i18n/context";
+import { playStyle, useOnScreen } from "@/components/ui/useOnScreen";
 
 export type NodeState = "completed" | "current" | "unlocked" | "locked";
 
@@ -81,6 +82,8 @@ export function LessonNode({
   const checkpoint = lesson.title.startsWith(t.map.checkpointPrefix);
   const locked = state === "locked";
   const active = state === "current";
+  // Nabız halkası ve "BAŞLA" balonu sonsuz döner: düğüm ekranda değilken duraklar.
+  const [ambientRef, onScreen] = useOnScreen<HTMLDivElement>();
 
   const bg = locked ? "var(--disabled)" : color;
   const shadow = locked ? "color-mix(in srgb, var(--disabled) 70%, black)" : colorDark;
@@ -89,7 +92,7 @@ export function LessonNode({
   const label = t.map.lessonLabel(lesson.id, lesson.title, t.map.nodeState[state]);
 
   const circle = (
-    <motion.span
+    <m.span
       whileHover={!locked ? { scale: 1.07 } : undefined}
       whileTap={!locked ? { scale: 0.94, y: 5 } : undefined}
       className="relative grid place-items-center rounded-full"
@@ -104,16 +107,10 @@ export function LessonNode({
       }}
     >
       {active && (
-        <motion.span
-          aria-hidden
-          className="absolute inset-0 rounded-full"
-          style={{ border: `4px solid ${color}` }}
-          animate={{ scale: [1, 1.38], opacity: [0.7, 0] }}
-          transition={{ duration: 1.6, repeat: Infinity, ease: "easeOut" }}
-        />
+        <span aria-hidden className="node-ring absolute inset-0 rounded-full" style={{ border: `4px solid ${color}` }} />
       )}
       <Icon state={state} checkpoint={checkpoint} />
-    </motion.span>
+    </m.span>
   );
 
   const labelLeft = side === "right" ? x + NODE_SIZE / 2 + LABEL_GAP : x - NODE_SIZE / 2 - LABEL_GAP - labelWidth;
@@ -121,21 +118,19 @@ export function LessonNode({
   return (
     <>
       {/* düğüm */}
-      <div className="absolute" style={{ left: x - NODE_SIZE / 2, top: y - NODE_SIZE / 2 }}>
+      <div ref={ambientRef} className="ambient absolute" style={{ left: x - NODE_SIZE / 2, top: y - NODE_SIZE / 2, ...playStyle(onScreen) }}>
         {active && (
-          <motion.span
+          <span
             aria-hidden
-            className="absolute left-1/2 -top-10 -translate-x-1/2 whitespace-nowrap rounded-xl bg-surface px-3 py-1 text-xs font-black uppercase tracking-widest shadow-md"
+            className="node-bob absolute left-1/2 -top-10 whitespace-nowrap rounded-xl bg-surface px-3 py-1 text-xs font-black uppercase tracking-widest shadow-md"
             style={{ color, border: `2px solid ${color}` }}
-            animate={{ y: [0, -5, 0] }}
-            transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
           >
             {t.map.start}
             <span
               className="absolute left-1/2 top-full -mt-[5px] h-2.5 w-2.5 -translate-x-1/2 rotate-45 bg-surface"
               style={{ borderRight: `2px solid ${color}`, borderBottom: `2px solid ${color}` }}
             />
-          </motion.span>
+          </span>
         )}
 
         {locked ? (

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Frame, Pop, useTicker } from "./kit";
 import { useT } from "@/lib/i18n/context";
 import type { Dictionary } from "@/lib/i18n/dict/tr";
@@ -132,14 +132,14 @@ export function ArrayCells({
     const st = f.states[i] ?? "idle";
     return (
       <div key={i} className="flex flex-col items-center gap-1">
-        <motion.div
+        <m.div
           animate={{ scale: st === "active" || st === "found" || st === "error" ? 1.1 : 1, opacity: st === "dim" ? 0.35 : 1 }}
           transition={{ type: "spring", stiffness: 340, damping: 22 }}
           className={`grid place-items-center border-2 font-mono font-black ${size}`}
           style={{ background: CELL[st].bg, borderColor: CELL[st].border, borderStyle: v === undefined ? "dashed" : "solid" }}
         >
           {v ?? "?"}
-        </motion.div>
+        </m.div>
         {mode !== "matrix" && <span className="font-mono text-[10.5px] font-black text-muted">{i}</span>}
       </div>
     );
@@ -204,7 +204,7 @@ export function SortBars({ accent, label, values, algo = "bubble" }: Base & { va
           const sorted = algo === "bubble" ? i >= f.sortedFrom : i < f.sortedTo;
           const cmp = f.cmp.includes(i);
           return (
-            <motion.div
+            <m.div
               key={item.id}
               layout
               transition={{ type: "spring", stiffness: 300, damping: 26 }}
@@ -215,7 +215,7 @@ export function SortBars({ accent, label, values, algo = "bubble" }: Base & { va
               }}
             >
               {item.v}
-            </motion.div>
+            </m.div>
           );
         })}
       </div>
@@ -239,7 +239,7 @@ export function TraceTable({ accent, label, columns, rows }: Base & { columns: s
         </thead>
         <tbody>
           {rows.map((r, i) => (
-            <motion.tr
+            <m.tr
               key={i}
               animate={{ opacity: i <= tick ? 1 : 0.12 }}
               className="border-t-2 border-line"
@@ -248,7 +248,7 @@ export function TraceTable({ accent, label, columns, rows }: Base & { columns: s
               {r.map((v, j) => (
                 <td key={j} className="px-4 py-1 font-bold">{v}</td>
               ))}
-            </motion.tr>
+            </m.tr>
           ))}
         </tbody>
       </table>

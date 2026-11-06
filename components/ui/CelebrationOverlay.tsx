@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { useProgressStore, type Celebration } from "@/lib/useProgressStore";
 import { RANKS } from "@/lib/ranks";
 import { Mascot } from "@/components/mascot/Mascot";
@@ -101,7 +101,7 @@ export function CelebrationOverlay() {
     <div data-own-position>
       <AnimatePresence>
         {current && d && (
-          <motion.div
+          <m.div
             key={JSON.stringify(current)}
             className="fixed inset-0 z-50 grid place-items-center bg-black/55 p-4 backdrop-blur-sm"
             initial={{ opacity: 0 }}
@@ -109,7 +109,7 @@ export function CelebrationOverlay() {
             exit={{ opacity: 0 }}
             onClick={(e) => e.target === e.currentTarget && dismiss()}
           >
-            <motion.div
+            <m.div
               role="dialog"
               aria-modal="true"
               aria-labelledby="celebration-title"
@@ -123,7 +123,7 @@ export function CelebrationOverlay() {
                 <Burst count={34} radius={150} gravity={110} size={9} duration={1.6} />
               </div>
               <div className="relative">
-                <motion.div
+                <m.div
                   aria-hidden
                   initial={{ scale: 0, rotate: -30 }}
                   animate={{ scale: [0, 1.25, 1], rotate: 0 }}
@@ -131,7 +131,7 @@ export function CelebrationOverlay() {
                   className="text-7xl"
                 >
                   {d.icon}
-                </motion.div>
+                </m.div>
                 <Mascot
                   mood="cheer"
                   size={70}
@@ -157,8 +157,8 @@ export function CelebrationOverlay() {
                 </button>
                 <ShareButton card={d.card} text={d.text} />
               </div>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         )}
       </AnimatePresence>
     </div>

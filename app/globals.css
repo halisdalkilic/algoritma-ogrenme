@@ -453,12 +453,70 @@ a, button, [role="button"], [role="switch"], [role="radio"], [role="tab"], input
   will-change: transform, opacity;
 }
 
+/* Sekme gizliyken (MotionProvider işaretler) CSS animasyonları boşuna çalışmasın */
+html[data-hidden] *,
+html[data-hidden] *::before,
+html[data-hidden] *::after {
+  animation-play-state: paused !important;
+}
+
 /* Hareket tercihine saygı */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ───────── Ortam animasyonları (CSS; yalnızca ekranda görünürken çalışır) ─────────
+   Sahibi bileşen `--play: running|paused` değişkenini IntersectionObserver ile ayarlar (useOnScreen);
+   iç elemanlar değişkeni miras alır. Hepsi transform/opacity: düzen (layout) tetiklemez. */
+.ambient, .ambient * { animation-play-state: var(--play, running); }
+
+/* Maskot */
+.algo { transform-box: fill-box; --play: running; }
+.algo .a-box { transform-box: view-box; }
+@keyframes algo-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+@keyframes algo-float-cheer { 0%, 100% { transform: translateY(0) rotate(0); } 25% { transform: translateY(-10px) rotate(-4deg); } 75% { transform: translateY(-10px) rotate(4deg); } }
+@keyframes algo-float-sad { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(2px) rotate(-3deg); } }
+.algo[data-mood="idle"], .algo[data-mood="wave"], .algo[data-mood="happy"], .algo[data-mood="think"] { animation: algo-float 3s ease-in-out infinite; }
+.algo[data-mood="cheer"] { animation: algo-float-cheer 0.9s ease-in-out infinite; }
+.algo[data-mood="sad"] { animation: algo-float-sad 3s ease-in-out infinite; }
+@keyframes algo-blink { 0%, 90%, 100% { transform: scaleY(1); } 93% { transform: scaleY(0.1); } 96% { transform: scaleY(1); } }
+.a-eyes { transform-box: view-box; transform-origin: 0 55px; animation: algo-blink 4.2s linear infinite; }
+@keyframes algo-wave { 0%, 100% { transform: rotate(0); } 15% { transform: rotate(18deg); } 30% { transform: rotate(-6deg); } 45% { transform: rotate(18deg); } 60% { transform: rotate(0); } }
+.a-arm { transform-box: view-box; transform-origin: 82px 96px; }
+.algo[data-mood="wave"] .a-arm { animation: algo-wave 2s ease-in-out infinite; }
+@keyframes algo-antenna { 0%, 100% { transform: rotate(-6deg); } 50% { transform: rotate(6deg); } }
+.a-antenna { transform-box: view-box; transform-origin: 60px 26px; animation: algo-antenna 2.4s ease-in-out infinite; }
+.algo[data-mood="sad"] .a-antenna { animation: none; transform: rotate(22deg); }
+@keyframes algo-dot { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
+.a-dot { animation: algo-dot 1.2s ease-in-out infinite; }
+
+/* Harita: aktif düğümün nabız halkası ve "BAŞLA" balonunun sallanması */
+@keyframes node-ring { 0% { transform: scale(1); opacity: 0.7; } 100% { transform: scale(1.38); opacity: 0; } }
+@keyframes node-bob { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, -5px); } }
+.node-ring { animation: node-ring 1.6s ease-out infinite; }
+.node-bob { animation: node-bob 1.4s ease-in-out infinite; }
+
+/* Üst çubuk rozetleri: ikon hafif "nefes alır"; değer değişince küçük pop */
+@keyframes stat-breathe-flame { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.07); } }
+@keyframes stat-breathe-xp { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+@keyframes stat-breathe-heart { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.09); } }
+.stat-icon[data-tone="flame"] { animation: stat-breathe-flame 3.6s ease-in-out infinite; }
+.stat-icon[data-tone="xp"] { animation: stat-breathe-xp 3.6s ease-in-out infinite; }
+.stat-icon[data-tone="heart"] { animation: stat-breathe-heart 3.6s ease-in-out infinite; }
+@keyframes stat-pop { 0% { transform: scale(1.2); } 100% { transform: scale(1); } }
+.stat-pop { animation: stat-pop 0.35s cubic-bezier(0.2, 1.4, 0.4, 1) both; }
+.a-look { transform: translate(calc(var(--lx, 0) * 1px), calc(var(--ly, 0) * 1px)); transition: transform 0.12s ease-out; }
+
+/* Kavram görselleri: akış oku, hata işareti ve döngü halkası */
+@keyframes arrow-dash { from { stroke-dashoffset: 16; } to { stroke-dashoffset: 0; } }
+.arrow-dash { animation: arrow-dash 0.8s linear infinite; }
+@keyframes err-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+.err-pulse { transform-box: fill-box; transform-origin: center; animation: err-pulse 1.2s ease-in-out infinite; }
+@keyframes loop-spin { to { transform: rotate(360deg); } }
+.loop-spin { animation: loop-spin 3.6s linear infinite; }

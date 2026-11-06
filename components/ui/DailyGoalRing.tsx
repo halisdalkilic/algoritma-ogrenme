@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { DAILY_GOAL_XP, xpOnDate } from "@/lib/progress";
 import { useProgressStore } from "@/lib/useProgressStore";
 import { useHref, useT } from "@/lib/i18n/context";
@@ -27,7 +27,7 @@ export function DailyGoalRing() {
     >
       <svg width="34" height="34" viewBox="0 0 34 34" className="absolute -rotate-90" aria-hidden>
         <circle cx="17" cy="17" r={r} fill="none" stroke="var(--line)" strokeWidth="3.5" />
-        <motion.circle
+        <m.circle
           cx="17"
           cy="17"
           r={r}
@@ -41,7 +41,7 @@ export function DailyGoalRing() {
           transition={{ type: "spring", stiffness: 120, damping: 20 }}
         />
       </svg>
-      <motion.span
+      <m.span
         aria-hidden
         key={done ? "done" : "todo"}
         initial={{ scale: done ? 0.4 : 1 }}
@@ -50,7 +50,7 @@ export function DailyGoalRing() {
         className="text-[13px] leading-none"
       >
         {done ? "✅" : "🎯"}
-      </motion.span>
+      </m.span>
     </Link>
   );
 }

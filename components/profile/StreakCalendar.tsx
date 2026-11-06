@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useT } from "@/lib/i18n/context";
 import { DAILY_GOAL_XP, currentStreak, localDate, shiftDate, type Progress } from "@/lib/progress";
 
@@ -11,8 +11,8 @@ export function StreakCalendar({ progress }: { progress: Progress }) {
   const t = useT();
   const c = t.calendar;
   const today = localDate();
-  const [y, m, d] = today.split("-").map(Number);
-  const weekday = (new Date(y, m - 1, d).getDay() + 6) % 7; // Pazartesi = 0
+  const [y, mo, d] = today.split("-").map(Number);
+  const weekday = (new Date(y, mo - 1, d).getDay() + 6) % 7; // Pazartesi = 0
   const start = shiftDate(today, -(weekday + 7 * (WEEKS - 1)));
   const goal = DAILY_GOAL_XP[progress.settings.dailyGoal];
   const streak = currentStreak(progress);
@@ -40,7 +40,7 @@ export function StreakCalendar({ progress }: { progress: Progress }) {
           const level = xp === 0 ? 0 : xp >= goal ? 3 : xp >= goal / 2 ? 2 : 1;
           const bg = ["var(--surface-2)", "color-mix(in srgb, var(--flame) 35%, var(--surface))", "color-mix(in srgb, var(--flame) 65%, var(--surface))", "var(--flame)"][level];
           return (
-            <motion.div
+            <m.div
               key={date}
               role="gridcell"
               aria-label={`${date}: ${future ? c.cellFuture : xp ? `${xp} XP` : c.cellNone}`}
@@ -57,7 +57,7 @@ export function StreakCalendar({ progress }: { progress: Progress }) {
               }}
             >
               {level === 3 ? "✓" : Number(date.slice(8))}
-            </motion.div>
+            </m.div>
           );
         })}
       </div>

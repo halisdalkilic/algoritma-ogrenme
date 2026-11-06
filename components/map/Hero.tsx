@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useHref, useT } from "@/lib/i18n/context";
 
 function Ring({ pct }: { pct: number }) {
@@ -12,7 +12,7 @@ function Ring({ pct }: { pct: number }) {
     <div className="relative grid h-36 w-36 flex-none place-items-center" role="img" aria-label={t.map.hero.ringAria(pct)}>
       <svg width="144" height="144" viewBox="0 0 144 144" className="-rotate-90">
         <circle cx="72" cy="72" r={r} fill="none" stroke="rgba(255,255,255,0.22)" strokeWidth="13" />
-        <motion.circle
+        <m.circle
           cx="72"
           cy="72"
           r={r}

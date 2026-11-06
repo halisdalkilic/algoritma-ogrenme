@@ -1,7 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { useT } from "@/lib/i18n/context";
 
 const STORAGE_KEY = "algoritma-app:theme";
@@ -44,7 +44,7 @@ export function ThemeToggle() {
     >
       {/* tema değişince ikon dönerek yer değiştirir */}
       <AnimatePresence mode="wait" initial={false}>
-        <motion.span
+        <m.span
           key={theme}
           initial={{ rotate: -90, scale: 0.4, opacity: 0 }}
           animate={{ rotate: 0, scale: 1, opacity: 1 }}
@@ -62,7 +62,7 @@ export function ThemeToggle() {
               <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
             </svg>
           )}
-        </motion.span>
+        </m.span>
       </AnimatePresence>
     </button>
   );

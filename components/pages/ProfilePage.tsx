@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useProgressStore } from "@/lib/useProgressStore";
 import { DAILY_GOAL_XP, currentStreak, type DailyGoal } from "@/lib/progress";
 import { RANKS, rankProgress } from "@/lib/ranks";
@@ -100,10 +100,11 @@ export function ProfilePage() {
               {rank.icon} {rankTitle}
             </h1>
             <div className="mt-3 h-3 overflow-hidden rounded-full bg-black/25">
-              <motion.div
+              <m.div
                 className="h-full rounded-full bg-white"
-                initial={{ width: 0 }}
-                animate={{ width: `${pct}%` }}
+                style={{ transformOrigin: "left center" }}
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: pct / 100 }}
                 transition={{ duration: 0.9, ease: "easeOut" }}
               />
             </div>

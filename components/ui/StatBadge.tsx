@@ -1,19 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
-
 const TONES = {
   flame: "text-flame",
   xp: "text-xp",
   heart: "text-bad",
 } as const;
-
-/** İkonlar çok hafif "nefes alır". */
-const ICON_MOTION = {
-  flame: { scale: [1, 1.07, 1] },
-  xp: { scale: [1, 1.05, 1] },
-  heart: { scale: [1, 1.09, 1] },
-};
 
 export function StatBadge({
   icon,
@@ -32,24 +23,14 @@ export function StatBadge({
       title={label}
       aria-label={label ? `${label}: ${value}` : undefined}
     >
-      <motion.span
-        aria-hidden
-        className="inline-block text-base leading-none"
-        animate={ICON_MOTION[tone]}
-        transition={{ duration: 3.6, repeat: Infinity, ease: "easeInOut" }}
-      >
+      {/* ikon çok hafif "nefes alır" (CSS: .stat-icon) */}
+      <span aria-hidden className="stat-icon inline-block text-base leading-none" data-tone={tone}>
         {icon}
-      </motion.span>
+      </span>
       {/* value değiştiğinde küçük bir "pop" — XP/seri artışını fark ettirir */}
-      <motion.span
-        key={value}
-        initial={{ scale: 1.2 }}
-        animate={{ scale: 1 }}
-        transition={{ type: "spring", stiffness: 260, damping: 18 }}
-        className={`tabular-nums ${TONES[tone]}`}
-      >
+      <span key={value} className={`stat-pop inline-block tabular-nums ${TONES[tone]}`}>
         {value}
-      </motion.span>
+      </span>
     </div>
   );
 }

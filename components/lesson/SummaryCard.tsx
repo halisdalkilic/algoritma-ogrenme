@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Mascot } from "@/components/mascot/Mascot";
 import { ShareButton } from "@/components/ui/ShareButton";
 import { useProgressStore } from "@/lib/useProgressStore";
@@ -65,7 +65,7 @@ export function SummaryCard({
 
       <div className="relative">
         <Mascot mood="cheer" size={132} />
-        <motion.div
+        <m.div
           aria-hidden
           initial={{ scale: 0, rotate: -20 }}
           animate={{ scale: 1, rotate: 0 }}
@@ -77,7 +77,7 @@ export function SummaryCard({
           }}
         >
           🏆
-        </motion.div>
+        </m.div>
       </div>
 
       <div>
@@ -85,7 +85,7 @@ export function SummaryCard({
         <h2 className="mt-2 text-3xl font-black leading-tight">{title}</h2>
       </div>
 
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
@@ -93,9 +93,9 @@ export function SummaryCard({
       >
         <Stat icon="⭐" value={`+${xpEarned}`} label={t.summary.xpEarned} color="var(--xp)" />
         <Stat icon="🎯" value={`%${accuracy}`} label={t.summary.accuracy} color="var(--good)" />
-      </motion.div>
+      </m.div>
 
-      <motion.ul
+      <m.ul
         initial="hidden"
         animate="show"
         variants={listVariants}
@@ -103,15 +103,15 @@ export function SummaryCard({
       >
         <li className="text-xs font-black uppercase tracking-[0.16em] text-muted">{t.summary.summaryCard}</li>
         {points.map((p, i) => (
-          <motion.li key={i} variants={itemVariants} className="flex items-start gap-3 text-[15px] font-bold leading-snug">
+          <m.li key={i} variants={itemVariants} className="flex items-start gap-3 text-[15px] font-bold leading-snug">
             <span aria-hidden className="mt-1 h-2.5 w-2.5 flex-none rounded-full bg-brand" />
             {p}
-          </motion.li>
+          </m.li>
         ))}
-      </motion.ul>
+      </m.ul>
 
       {/* rütbe ilerlemesi */}
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
@@ -124,16 +124,16 @@ export function SummaryCard({
             <span className="text-xs font-bold text-muted">{next ? t.summary.nextRank(next.icon, t.ranks.titles[next.id], pct) : t.summary.topRank}</span>
           </div>
           <div className="mt-1.5 h-2.5 overflow-hidden rounded-full bg-surface-2">
-            <motion.div
+            <m.div
               className="h-full rounded-full"
-              style={{ background: `linear-gradient(90deg, ${rank.colors[0]}, ${rank.colors[1]})` }}
-              initial={{ width: 0 }}
-              animate={{ width: `${pct}%` }}
+              style={{ background: `linear-gradient(90deg, ${rank.colors[0]}, ${rank.colors[1]})`, transformOrigin: "left center" }}
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: pct / 100 }}
               transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
             />
           </div>
         </div>
-      </motion.div>
+      </m.div>
 
       <div className="flex w-full max-w-md flex-col gap-2">
         <button type="button" onClick={onFinish} className="btn btn-good btn-block">
