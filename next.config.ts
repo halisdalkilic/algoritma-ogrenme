@@ -9,7 +9,9 @@ const nextConfig: NextConfig = {
   output: "export",
   basePath,
   // /ders/2.5 → ders/2.5/index.html. Noktalı ders adresleri GitHub Pages'te de açılsın diye.
-  trailingSlash: true,
+  // NO_TRAILING_SLASH=1 ile derlenirse (sayfa dosyası ders/2.5.html, adres /ders/2.5) eğik çizgisiz çıkar; canonical,
+  // sitemap ve hreflang adresleri de lib/seo.ts'teki `withSlash` ile aynı anahtara uyar. GitHub Pages derlemesi anahtarı kurmaz.
+  trailingSlash: process.env.NO_TRAILING_SLASH !== "1",
   // Elle yazılan yollar (service worker, manifest) için istemci tarafına da aktarılır.
   env: { NEXT_PUBLIC_BASE_PATH: basePath },
   // İki kök layout (tr/en) olduğu için 404 sayfası app/global-not-found.tsx'ten gelir (Next.js dokümanı: not-found.md).

@@ -29,6 +29,15 @@ export function englishIsPublic(): boolean {
 
 const OG_IMAGE_PATH: Record<Locale, string> = { tr: "/og.png", en: "/en/og.png" };
 
+/**
+ * Sayfanın gerçek adresi: trailingSlash açıkken "/" ile biter (GitHub Pages derlemesi), NO_TRAILING_SLASH=1 ile
+ * derlenen sürümde (kendi sunucumuz) bitmez. next.config.ts aynı anahtarı okur.
+ */
+export function withSlash(p: string): string {
+  if (process.env.NO_TRAILING_SLASH === "1") return p.length > 1 ? p.replace(/\/+$/, "") : p;
+  return p.endsWith("/") ? p : `${p}/`;
+}
+
 export function og(
   page: { title: string; description: string; path: string },
   locale: Locale = "tr",
@@ -41,8 +50,7 @@ export function og(
     parsed && englishIsPublic()
       ? { tr: href("tr", parsed.route), en: href("en", parsed.route), "x-default": href("tr", parsed.route) }
       : undefined;
-  // trailingSlash açık olduğu için sayfaların gerçek adresi "/" ile biter.
-  const slash = (p: string) => (p.endsWith("/") ? p : `${p}/`);
+  const slash = withSlash;
   const canonical = slash(page.path);
   return {
     alternates: { canonical, ...(languages ? { languages: Object.fromEntries(Object.entries(languages).map(([k, v]) => [k, slash(v)])) } : {}) },
