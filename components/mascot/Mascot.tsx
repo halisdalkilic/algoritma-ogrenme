@@ -4,7 +4,9 @@ import { useEffect, useId } from "react";
 import { m } from "framer-motion";
 import { useT } from "@/lib/i18n/context";
 import { playStyle, useOnScreen } from "@/components/ui/useOnScreen";
-import type { Outfit } from "@/lib/mascotOutfit";
+import { outfitForStreak, type Outfit } from "@/lib/mascotOutfit";
+import { useProgressStore } from "@/lib/useProgressStore";
+import { currentStreak } from "@/lib/progress";
 
 export type Mood = "idle" | "wave" | "happy" | "think" | "sad" | "cheer";
 
@@ -126,19 +128,24 @@ export function Mascot({
   mood = "idle",
   size = 96,
   className,
-  outfit = "none",
-  look = false,
+  outfit,
+  look,
 }: {
   mood?: Mood;
   size?: number;
   className?: string;
+  /** Verilmezse seri gününe göre otomatik (S13); "none" ile kapatılır. */
   outfit?: Outfit;
+  /** Verilmezse büyük maskotlarda (≥ 88px) imleci gözle takip eder (S14). */
   look?: boolean;
 }) {
   const t = useT();
+  const streakDays = useProgressStore((s) => currentStreak(s.progress));
+  const wears: Outfit = outfit ?? outfitForStreak(streakDays);
+  const follow = look ?? size >= 88;
   const uid = useId().replace(/:/g, "");
   const [ref, visible, el] = useOnScreen<SVGSVGElement>();
-  useLook(look, el, visible);
+  useLook(follow, el, visible);
   const armUp = mood === "cheer";
 
   return (
@@ -187,16 +194,16 @@ export function Mascot({
       {/* gövde */}
       <rect x="38" y="86" width="44" height="24" rx="11" fill={C.body} />
       <circle cx="60" cy="98" r="4" fill={C.bulb} opacity="0.9" />
-      <OutfitFront outfit={outfit === "scarf" ? "scarf" : "none"} />
+      <OutfitFront outfit={wears === "scarf" ? "scarf" : "none"} />
 
       {/* anten (taç varken gizlenir) */}
-      {outfit !== "crown" && (
+      {wears !== "crown" && (
         <g className="a-antenna">
           <line x1="60" y1="26" x2="60" y2="12" stroke={C.body} strokeWidth="4" strokeLinecap="round" />
           <circle cx="60" cy="9" r="6" fill={`url(#algo-bulb-${uid})`} />
         </g>
       )}
-      <OutfitBack outfit={outfit} />
+      <OutfitBack outfit={wears} />
 
       {/* kafa + ekran */}
       <rect x="18" y="24" width="84" height="66" rx="26" fill={`url(#algo-head-${uid})`} />
@@ -210,7 +217,7 @@ export function Mascot({
           <ellipse cx="83" cy="68" rx="4" ry="2.6" />
         </g>
       )}
-      <OutfitFront outfit={outfit === "cap" ? "cap" : "none"} />
+      <OutfitFront outfit={wears === "cap" ? "cap" : "none"} />
 
       {/* düşünce noktaları */}
       {mood === "think" &&

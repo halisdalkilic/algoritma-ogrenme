@@ -180,6 +180,8 @@ export const tr = {
     workedExample: "🔍 Çözümlü örnek",
     lineLabel: (n: number) => `satır ${n}`,
     exerciseChip: (i: number, n: number) => `✏️ Alıştırma ${i}/${n}`,
+    idleHint: (hint: string) => `Takıldın mı? İpucu: ${hint}`,
+    idlePlain: "Takıldın mı? Acele yok: soruyu bir kez daha, yavaşça oku.",
   },
   runner: {
     codeTitle: "sözde kod",
@@ -377,6 +379,7 @@ export const tr = {
   profile: {
     rankLabel: (n: number, total: number) => `Rütbe ${n}/${total}`,
     rankProgress: (into: number, need: number, icon: string, title: string) => `${into} / ${need} XP · ${icon} ${title} için ${need - into} XP`,
+    nextOutfit: (days: number, outfit: string) => `${days} gün sonra Algo yeni bir ${outfit} takacak`,
     rankMax: "En yüksek rütbedesin 👑",
     shareProgress: "İlerlememi paylaş",
     cardKicker: "İlerlemem",
@@ -415,6 +418,7 @@ export const tr = {
     cardDays: (days: number) => `${days} gün`,
     shareText: (title: string) => `"${title}" dersini bitirdim! 🎉 Sen de algoritma öğren:`,
   },
+  outfits: { scarf: "eşarp", cap: "şapka", crown: "taç" },
   celebration: {
     continue: "Devam",
     streak: {
@@ -422,6 +426,7 @@ export const tr = {
       title: (days: number) => `${days} gün üst üste!`,
       bodyHabit: "Bu artık bir alışkanlık. Efsanesin!",
       bodyShort: "Her gün biraz: en güçlü öğrenme yöntemi.",
+      outfitUnlocked: (outfit: string) => `Algo yeni bir ${outfit} taktı!`,
       cardKicker: "Seri",
       cardTitle: (days: number) => `${days} gün üst üste çalıştım`,
       shareText: (days: number) => `${days} gündür her gün algoritma çalışıyorum 🔥`,

@@ -5,6 +5,7 @@ import { AnimatePresence, m } from "framer-motion";
 import { useProgressStore, type Celebration } from "@/lib/useProgressStore";
 import { RANKS } from "@/lib/ranks";
 import { getBadgeDef } from "@/lib/badges";
+import { OUTFIT_STEPS } from "@/lib/mascotOutfit";
 import { Mascot } from "@/components/mascot/Mascot";
 import { Burst } from "./Burst";
 import { ShareButton } from "./ShareButton";
@@ -30,7 +31,13 @@ function describe(
       icon: "🔥",
       kicker: cel.streak.kicker,
       title: cel.streak.title(c.days),
-      body: c.days >= 30 ? cel.streak.bodyHabit : cel.streak.bodyShort,
+      body: [
+        c.days >= 30 ? cel.streak.bodyHabit : cel.streak.bodyShort,
+        // Bu seri günü yeni bir kıyafet açıyorsa belirt (S13)
+        OUTFIT_STEPS.find((s) => s.days === c.days) ? cel.streak.outfitUnlocked(t.outfits[OUTFIT_STEPS.find((s) => s.days === c.days)!.outfit]) : "",
+      ]
+        .filter(Boolean)
+        .join(" "),
       card: {
         kicker: cel.streak.cardKicker,
         title: cel.streak.cardTitle(c.days),

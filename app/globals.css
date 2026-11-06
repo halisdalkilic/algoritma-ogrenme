@@ -557,3 +557,8 @@ html[data-hidden] .bar-glow { animation-play-state: paused; }
 .node-unlock { animation: unlock-pop 1.1s cubic-bezier(0.2, 1.2, 0.4, 1) 0.4s both; }
 @keyframes unlock-lock { 0% { transform: translate(0, 0) rotate(0); opacity: 1; } 10% { transform: rotate(-14deg); } 20% { transform: rotate(14deg); } 30% { transform: rotate(-10deg); } 40% { transform: rotate(8deg) scale(1.1); opacity: 1; } 100% { transform: translate(14px, -46px) rotate(38deg) scale(0.6); opacity: 0; } }
 .unlock-lock { position: absolute; inset: 0; display: grid; place-items: center; font-size: 26px; pointer-events: none; animation: unlock-lock 1s ease-out 0.35s both; }
+
+/* ───────── Aşama 4: maskot ───────── */
+/* S11: boşta kalan maskot esner (yardımcı belirirken iki kez) */
+@keyframes idle-stretch { 0%, 100% { transform: scale(1, 1); } 30% { transform: scale(0.96, 1.1) translateY(-3px); } 60% { transform: scale(1.04, 0.95); } }
+.idle-stretch { transform-origin: 50% 100%; animation: idle-stretch 1.3s ease-in-out 0.25s 2; }

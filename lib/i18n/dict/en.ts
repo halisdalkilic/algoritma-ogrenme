@@ -179,6 +179,8 @@ export const en: Dictionary = {
     workedExample: "🔍 Worked example",
     lineLabel: (n: number) => `line ${n}`,
     exerciseChip: (i: number, n: number) => `✏️ Exercise ${i}/${n}`,
+    idleHint: (hint: string) => `Stuck? Hint: ${hint}`,
+    idlePlain: "Stuck? No rush: read the question once more, slowly.",
   },
   runner: {
     codeTitle: "pseudocode",
@@ -375,6 +377,7 @@ export const en: Dictionary = {
   profile: {
     rankLabel: (n: number, total: number) => `Rank ${n}/${total}`,
     rankProgress: (into: number, need: number, icon: string, title: string) => `${into} / ${need} XP · ${need - into} XP to ${icon} ${title}`,
+    nextOutfit: (days: number, outfit: string) => `In ${days} days Algo will wear a new ${outfit}`,
     rankMax: "You're at the highest rank 👑",
     shareProgress: "Share my progress",
     cardKicker: "My progress",
@@ -413,6 +416,7 @@ export const en: Dictionary = {
     cardDays: (days: number) => `${days} ${days === 1 ? "day" : "days"}`,
     shareText: (title: string) => `I finished the "${title}" lesson! 🎉 Learn algorithms too:`,
   },
+  outfits: { scarf: "scarf", cap: "cap", crown: "crown" },
   celebration: {
     continue: "Continue",
     streak: {
@@ -420,6 +424,7 @@ export const en: Dictionary = {
       title: (days: number) => `${days} days in a row!`,
       bodyHabit: "This is a habit now. You're a legend!",
       bodyShort: "A little every day: the most powerful way to learn.",
+      outfitUnlocked: (outfit: string) => `Algo is wearing a new ${outfit}!`,
       cardKicker: "Streak",
       cardTitle: (days: number) => `I practiced ${days} days in a row`,
       shareText: (days: number) => `I've been practicing algorithms every day for ${days} days 🔥`,

@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { LessonFxContext } from "@/lib/lessonFx";
+import { IdleHelper } from "./IdleHelper";
 import { launchXpFlight } from "@/lib/xpFlight";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -308,6 +309,10 @@ export function LessonPlayer({ lesson }: { lesson: Lesson }) {
                 onResult={(correct) => handleExerciseResult(stage.index, correct)}
               />
               </LessonFxContext.Provider>
+              <IdleHelper
+                hint={lesson.exercises[stage.index].hint}
+                resetKey={`${stage.index}-${exerciseAttempts[stage.index] ?? 0}`}
+              />
             </div>
           )}
 

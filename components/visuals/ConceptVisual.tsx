@@ -14,9 +14,9 @@ import type { VisualName } from "./names";
  */
 // Record<VisualName, …>: names.ts'e eklenen her ad burada da karşılık bulmak ZORUNDA (tip hatası verir).
 // Her görsel ayrı yüklenir (P7): ders yalnızca kullandığı görselin kodunu indirir. SSR açık kalır: HTML hazır gelir.
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const loadVisualFeatures = () => import("./visualFeatures").then((mod) => mod.default);
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const REGISTRY: Record<VisualName, ComponentType<any>> = {
   ipo: dynamic(() => import("./basic").then((mod) => mod.IpoFlow)),
   steps: dynamic(() => import("./basic").then((mod) => mod.StepList)),

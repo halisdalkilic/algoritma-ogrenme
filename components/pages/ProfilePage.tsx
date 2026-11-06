@@ -5,6 +5,7 @@ import Link from "next/link";
 import { m } from "framer-motion";
 import { useProgressStore } from "@/lib/useProgressStore";
 import { DAILY_GOAL_XP, currentStreak, type DailyGoal } from "@/lib/progress";
+import { nextOutfit } from "@/lib/mascotOutfit";
 import { RANKS, rankProgress } from "@/lib/ranks";
 import { BADGES } from "@/lib/badges";
 import { lessons } from "@/content";
@@ -73,6 +74,7 @@ export function ProfilePage() {
 
   const completedCount = Object.keys(progress.completedLessons).length;
   const streak = currentStreak(progress);
+  const upcomingOutfit = nextOutfit(streak);
   const { rank, next, into, need, pct } = rankProgress(progress.xp);
   const rankTitle = t.ranks.titles[rank.id];
   const s = progress.settings;
@@ -111,6 +113,11 @@ export function ProfilePage() {
             <p className="mt-1.5 text-xs font-bold text-white/85">
               {next ? t.profile.rankProgress(into, need, next.icon, t.ranks.titles[next.id]) : t.profile.rankMax}
             </p>
+            {upcomingOutfit && (
+              <p className="mt-1 text-xs font-bold text-white/85">
+                👕 {t.profile.nextOutfit(upcomingOutfit.days, t.outfits[upcomingOutfit.outfit])}
+              </p>
+            )}
           </div>
         </div>
         <div className="relative mt-4">
