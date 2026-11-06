@@ -67,6 +67,7 @@ export function LessonNode({
   labelWidth,
   color,
   colorDark,
+  fresh = false,
 }: {
   lesson: Lesson;
   state: NodeState;
@@ -76,6 +77,8 @@ export function LessonNode({
   labelWidth: number;
   color: string;
   colorDark: string;
+  /** Bu ziyarette yeni açıldı: kilit kırılma animasyonu oynar (S10). */
+  fresh?: boolean;
 }) {
   const t = useT();
   const href = useHref();
@@ -95,7 +98,7 @@ export function LessonNode({
     <m.span
       whileHover={!locked ? { scale: 1.07 } : undefined}
       whileTap={!locked ? { scale: 0.94, y: 5 } : undefined}
-      className="relative grid place-items-center rounded-full"
+      className={`relative grid place-items-center rounded-full${fresh ? " node-unlock" : ""}`}
       style={{
         width: NODE_SIZE,
         height: NODE_SIZE,
@@ -110,6 +113,11 @@ export function LessonNode({
         <span aria-hidden className="node-ring absolute inset-0 rounded-full" style={{ border: `4px solid ${color}` }} />
       )}
       <Icon state={state} checkpoint={checkpoint} />
+      {fresh && (
+        <span aria-hidden className="unlock-lock">
+          🔒
+        </span>
+      )}
     </m.span>
   );
 
@@ -118,7 +126,7 @@ export function LessonNode({
   return (
     <>
       {/* düğüm */}
-      <div ref={ambientRef} className="ambient absolute" style={{ left: x - NODE_SIZE / 2, top: y - NODE_SIZE / 2, ...playStyle(onScreen) }}>
+      <div ref={ambientRef} className="ambient reveal absolute" style={{ left: x - NODE_SIZE / 2, top: y - NODE_SIZE / 2, ...playStyle(onScreen) }}>
         {active && (
           <span
             aria-hidden
@@ -147,7 +155,7 @@ export function LessonNode({
       {/* başlık */}
       <div
         aria-hidden
-        className={`pointer-events-none absolute flex items-center ${side === "right" ? "justify-start text-left" : "justify-end text-right"}`}
+        className={`reveal pointer-events-none absolute flex items-center ${side === "right" ? "justify-start text-left" : "justify-end text-right"}`}
         style={{ left: labelLeft, top: y - 32, width: labelWidth, height: 64 }}
       >
         <span className={`block text-[13px] font-extrabold leading-tight ${locked ? "text-muted/70" : "text-ink"}`}>

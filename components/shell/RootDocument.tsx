@@ -1,3 +1,4 @@
+import { ViewTransition } from "react";
 import "../../app/globals.css";
 import { Header } from "@/components/ui/Header";
 import { SyncProvider } from "@/components/ui/SyncProvider";
@@ -64,7 +65,11 @@ export function RootDocument({
           <TapFeedback />
           <Header />
           <main id="icerik" className="flex flex-1 flex-col">
-            {children}
+            {/* S7: sayfa geçişlerinde yumuşak solma ve hafif yükselme (View Transitions; desteklenmeyen tarayıcıda
+                geçiş animasyonsuz, uygulama aynı çalışır). Stiller globals.css'te ".page-in/.page-out". */}
+            <ViewTransition enter="page-in" exit="page-out" default="none">
+              {children}
+            </ViewTransition>
           </main>
           <Footer />
           <CelebrationOverlay />

@@ -1,7 +1,7 @@
 "use client";
 
 import type { ComponentType } from "react";
-import { LazyMotion, domMax } from "framer-motion";
+import { LazyMotion } from "framer-motion";
 import { playStyle, useOnScreen } from "@/components/ui/useOnScreen";
 import { VisibleContext } from "./kit";
 import dynamic from "next/dynamic";
@@ -15,6 +15,8 @@ import type { VisualName } from "./names";
 // Record<VisualName, …>: names.ts'e eklenen her ad burada da karşılık bulmak ZORUNDA (tip hatası verir).
 // Her görsel ayrı yüklenir (P7): ders yalnızca kullandığı görselin kodunu indirir. SSR açık kalır: HTML hazır gelir.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
+const loadVisualFeatures = () => import("./visualFeatures").then((mod) => mod.default);
+
 const REGISTRY: Record<VisualName, ComponentType<any>> = {
   ipo: dynamic(() => import("./basic").then((mod) => mod.IpoFlow)),
   steps: dynamic(() => import("./basic").then((mod) => mod.StepList)),
@@ -47,11 +49,12 @@ function VisualHost({ visual, accent, label }: { visual: VisualSpec; accent: str
   const Comp = REGISTRY[visual.component as VisualName];
   if (!Comp) return null;
   // Görsellerde `layout` animasyonu var: bu, genel (küçük) pakete değil `domMax` paketine ihtiyaç duyar.
-  // Yalnızca ders sayfasının paketine girer. İç içe LazyMotion dış olanın üzerine yazar.
+  // Paket ayrı parçadır ve LessonPlayer ders açılırken önceden yükler (görsel ilk "Devam"dan sonra görünür);
+  // böylece ilk yükleme küçük kalır ve içerik yanıp sönmez. İç içe LazyMotion dış olanın üzerine yazar.
   return (
     <div ref={ref} className="ambient" style={playStyle(visible)}>
       <VisibleContext.Provider value={visible}>
-        <LazyMotion features={domMax} strict>
+        <LazyMotion features={loadVisualFeatures} strict>
           <Comp accent={accent} label={label} {...visual.props} />
         </LazyMotion>
       </VisibleContext.Provider>

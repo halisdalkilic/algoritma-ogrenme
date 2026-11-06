@@ -5,6 +5,7 @@ import { isLessonUnlocked } from "@/lib/progress";
 import { useT } from "@/lib/i18n/context";
 import { LessonNode, NODE_SIZE, type NodeState } from "./LessonNode";
 import { PathFit } from "./PathFit";
+import { useNewlyUnlocked } from "@/lib/useNewlyUnlocked";
 
 // Yol geometrisi (piksel). Konteyner sabit 360px: hem 375px'lik telefonlara
 // sığar hem de düğüm ↔ SVG yol koordinatları ölçeklemeden birebir örtüşür.
@@ -55,6 +56,7 @@ export function WorldSection({
     }
   }
 
+  const fresh = useNewlyUnlocked(lessons.filter((_, i) => states[i] !== "locked").map((l) => l.id));
   const completed = states.filter((s) => s === "completed").length;
   const pct = lessons.length === 0 ? 0 : Math.round((completed / lessons.length) * 100);
   const allDone = lessons.length > 0 && completed === lessons.length;
@@ -64,7 +66,7 @@ export function WorldSection({
     <section aria-labelledby={`dunya-${world.id}`} className="flex flex-col items-center">
       {/* Dünya başlık bandı */}
       <div
-        className="relative w-full overflow-hidden rounded-3xl p-5 text-white sm:p-6"
+        className="reveal relative w-full overflow-hidden rounded-3xl p-5 text-white sm:p-6"
         style={{
           background: `linear-gradient(135deg, ${world.color}, ${world.colorDark})`,
           boxShadow: `0 6px 0 ${world.colorDark}, 0 18px 36px -14px ${world.color}`,
@@ -169,6 +171,7 @@ export function WorldSection({
               labelWidth={OFFSETS[i % OFFSETS.length] === 0 ? 120 : 170}
               color={world.color}
               colorDark={world.colorDark}
+              fresh={fresh.has(lesson.id)}
             />
           );
         })}

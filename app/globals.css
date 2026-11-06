@@ -534,3 +534,26 @@ html[data-hidden] *::after {
 .bar-glow { position: absolute; inset: -2px; border-radius: 999px; background: radial-gradient(closest-side, rgba(255, 255, 255, 0.45), transparent); animation: bar-glow 1.4s ease-in-out infinite; pointer-events: none; }
 @keyframes bar-glow { 0%, 100% { opacity: 0.15; } 50% { opacity: 0.7; } }
 html[data-hidden] .bar-glow { animation-play-state: paused; }
+
+/* ───────── Aşama 3: gezinme ───────── */
+/* S7: sayfa geçişi (React <ViewTransition enter="page-in" exit="page-out">). Başlık sticky olduğundan yalnızca içerik geçer. */
+@keyframes page-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes page-out { from { opacity: 1; } to { opacity: 0; transform: translateY(-6px); } }
+::view-transition-old(.page-out) { animation: page-out 0.16s ease-in both; }
+::view-transition-new(.page-in) { animation: page-in 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) 0.08s both; }
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
+}
+
+/* S9: harita öğeleri kaydırdıkça ekrana girerken belirir (saf CSS, kaydırma zaman çizelgesi). Desteklemeyen tarayıcıda
+   (Firefox) animasyon yok, içerik normal görünür. */
+@supports (animation-timeline: view()) {
+  .reveal { animation: reveal-up linear both; animation-timeline: view(); animation-range: entry 4% entry 42%; animation-play-state: running !important; }
+  @keyframes reveal-up { from { opacity: 0; transform: translateY(20px) scale(0.95); } to { opacity: 1; transform: none; } }
+}
+
+/* S10: yeni açılan dersin kilidi sarsılır, kırılıp yukarı uçar ve düğüm yaylanarak uyanır */
+@keyframes unlock-pop { 0%, 30% { transform: scale(0.92); filter: grayscale(1); } 55% { transform: scale(1.14); filter: none; } 100% { transform: scale(1); filter: none; } }
+.node-unlock { animation: unlock-pop 1.1s cubic-bezier(0.2, 1.2, 0.4, 1) 0.4s both; }
+@keyframes unlock-lock { 0% { transform: translate(0, 0) rotate(0); opacity: 1; } 10% { transform: rotate(-14deg); } 20% { transform: rotate(14deg); } 30% { transform: rotate(-10deg); } 40% { transform: rotate(8deg) scale(1.1); opacity: 1; } 100% { transform: translate(14px, -46px) rotate(38deg) scale(0.6); opacity: 0; } }
+.unlock-lock { position: absolute; inset: 0; display: grid; place-items: center; font-size: 26px; pointer-events: none; animation: unlock-lock 1s ease-out 0.35s both; }

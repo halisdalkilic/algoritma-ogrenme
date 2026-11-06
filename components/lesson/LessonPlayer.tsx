@@ -46,6 +46,11 @@ export function LessonPlayer({ lesson }: { lesson: Lesson }) {
   const [xpEarned, setXpEarned] = useState(0);
   const [exerciseAttempts, setExerciseAttempts] = useState<Record<number, number>>({});
 
+  // Kavram görselleri `layout` animasyonu için ayrı bir paket kullanır: ders açılır açılmaz arka planda indir.
+  useEffect(() => {
+    void import("@/components/visuals/visualFeatures");
+  }, []);
+
   // Ders sürerken kutlama penceresi (seviye/hedef/seri) araya girmesin; özet ekranında gösterilir.
   const inProgress = stage.kind !== "summary";
   useEffect(() => {
@@ -165,10 +170,10 @@ export function LessonPlayer({ lesson }: { lesson: Lesson }) {
       <AnimatePresence mode="wait">
         <m.div
           key={stageKey}
-          initial={{ opacity: 0, x: 16 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -16 }}
-          transition={{ duration: 0.2, ease: "easeOut" }}
+          initial={{ opacity: 0, x: 56, scale: 0.98 }}
+          animate={{ opacity: 1, x: 0, scale: 1 }}
+          exit={{ opacity: 0, x: -56, scale: 0.98 }}
+          transition={{ duration: 0.26, ease: "easeOut" }}
           className="flex-1 py-8"
         >
           {stage.kind === "hook" && (
