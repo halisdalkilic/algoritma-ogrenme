@@ -6,6 +6,7 @@ import { Footer } from "@/components/ui/Footer";
 import { CelebrationOverlay } from "@/components/ui/CelebrationOverlay";
 import { LanguageBanner } from "@/components/ui/LanguageBanner";
 import { MotionProvider } from "@/components/ui/MotionProvider";
+import { TapFeedback } from "@/components/ui/TapFeedback";
 import { englishIsPublic } from "@/lib/seo";
 import { TrProvider } from "./TrProvider";
 import { EnProvider } from "./EnProvider";
@@ -60,6 +61,7 @@ export function RootDocument({
           </a>
           <ServiceWorkerRegister />
           <SyncProvider />
+          <TapFeedback />
           <Header />
           <main id="icerik" className="flex flex-1 flex-col">
             {children}

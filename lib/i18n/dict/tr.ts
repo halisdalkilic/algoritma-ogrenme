@@ -205,6 +205,8 @@ export const tr = {
       `${letter}: ${option}${state === "correct" ? " (doğru cevap)" : state === "wrong" ? " (yanlış seçim)" : ""}`,
     cheers: ["Harika, doğru!", "Süpersin!", "Tam isabet!", "Aynen böyle!", "Mükemmel!"],
     comforts: ["Neredeyse!", "Olsun, devam!", "Az kaldı!", "Hatalar öğretir!"],
+    comboCheers: ["Durdurulamıyorsun!", "Ateş gibisin!", "Böyle devam!", "Üst üste doğru!"],
+    combo: (n: number) => `${n} üst üste`,
     flowRead: { correct: "Doğru! Şemayı doğru okudun.", wrong: "Şemayı adım adım tekrar takip et." },
     predict: { placeholder: "Çıktıyı virgül veya boşlukla ayırarak yaz (örn: 1, 2, 3)" },
     pseudo: {
@@ -438,6 +440,11 @@ export const tr = {
       cardKicker: "Günlük hedef",
       cardTitle: "Bugünün hedefini tamamladım",
       shareText: "Bugünkü algoritma hedefimi tamamladım 🎯",
+    },
+    badge: {
+      kicker: "Yeni rozet",
+      cardKicker: "Yeni rozet",
+      shareText: (title: string, icon: string) => `Algoritma Öğrenme'de "${title}" rozetini kazandım ${icon}`,
     },
   },
 };

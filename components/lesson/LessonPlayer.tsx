@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { LessonFxContext } from "@/lib/lessonFx";
+import { launchXpFlight } from "@/lib/xpFlight";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, m } from "framer-motion";
@@ -39,6 +41,8 @@ export function LessonPlayer({ lesson }: { lesson: Lesson }) {
 
   const [stage, setStage] = useState<Stage>({ kind: "hook" });
   const [correctCount, setCorrectCount] = useState(0);
+  /** Üst üste doğru cevap sayısı (S1). Yanlışta sıfırlanır. */
+  const [combo, setCombo] = useState(0);
   const [xpEarned, setXpEarned] = useState(0);
   const [exerciseAttempts, setExerciseAttempts] = useState<Record<number, number>>({});
 
@@ -112,11 +116,14 @@ export function LessonPlayer({ lesson }: { lesson: Lesson }) {
     if (correct) {
       clearDraft(lesson.exercises[exerciseIndex].id);
       const earned = attempts === 1 ? XP_PER_CORRECT + XP_FIRST_TRY_BONUS : XP_PER_CORRECT;
+      launchXpFlight(earned);
       gainXp(earned);
+      setCombo((c) => c + 1);
       setXpEarned((x) => x + earned);
       setCorrectCount((c) => c + 1);
       goNext();
     } else {
+      setCombo(0);
       loseOneHeart();
       // İlk yanlış denemede alıştırmayı tekrar kuyruğuna ekle (1/3/7 gün
       // aralıklı tekrar — bkz. lib/srs.ts). Aynı alıştırmaya art arda yanlış
@@ -286,6 +293,7 @@ export function LessonPlayer({ lesson }: { lesson: Lesson }) {
               <span className="chip self-start">
                 {t.lesson.exerciseChip(stage.index + 1, lesson.exercises.length)}
               </span>
+              <LessonFxContext.Provider value={{ combo }}>
               <ExerciseRouter
                 // Yanlış cevapta deneme sayısı artar; key değişince bileşen yeniden
                 // mount edilir ve iç durumu (checked/selected) sıfırlanır — böylece
@@ -294,6 +302,7 @@ export function LessonPlayer({ lesson }: { lesson: Lesson }) {
                 exercise={lesson.exercises[stage.index]}
                 onResult={(correct) => handleExerciseResult(stage.index, correct)}
               />
+              </LessonFxContext.Provider>
             </div>
           )}
 

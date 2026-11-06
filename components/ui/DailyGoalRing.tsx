@@ -5,12 +5,14 @@ import { m } from "framer-motion";
 import { DAILY_GOAL_XP, xpOnDate } from "@/lib/progress";
 import { useProgressStore } from "@/lib/useProgressStore";
 import { useHref, useT } from "@/lib/i18n/context";
+import { Burst } from "./Burst";
 
 /** Başlıktaki günlük hedef halkası: bugün kazanılan XP / hedef. Tıklayınca profildeki hedef ayarı açılır. */
 export function DailyGoalRing() {
   const t = useT();
   const href = useHref();
   const progress = useProgressStore((s) => s.progress);
+  const goalPulse = useProgressStore((s) => s.goalPulse);
   const goal = DAILY_GOAL_XP[progress.settings.dailyGoal];
   const today = xpOnDate(progress);
   const pct = Math.min(1, today / goal);
@@ -41,6 +43,12 @@ export function DailyGoalRing() {
           transition={{ type: "spring", stiffness: 120, damping: 20 }}
         />
       </svg>
+      {/* hedef tamamlanınca halkanın etrafında kısa konfeti (S6); goalPulse her tamamlanışta artar */}
+      {goalPulse > 0 && (
+        <span key={goalPulse} aria-hidden className="pointer-events-none absolute left-1/2 top-1/2">
+          <Burst count={18} radius={46} size={6} duration={0.9} />
+        </span>
+      )}
       <m.span
         aria-hidden
         key={done ? "done" : "todo"}

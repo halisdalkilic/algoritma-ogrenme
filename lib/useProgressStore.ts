@@ -24,7 +24,8 @@ export const STREAK_MILESTONES = [3, 7, 14, 30, 50, 100, 200, 365];
 export type Celebration =
   | { kind: "streak"; days: number }
   | { kind: "rank"; rank: Rank }
-  | { kind: "goal"; xp: number };
+  | { kind: "goal"; xp: number }
+  | { kind: "badge"; id: string };
 
 type ProgressStore = {
   progress: Progress;
@@ -33,6 +34,8 @@ type ProgressStore = {
   celebrations: Celebration[];
   /** Ders sürerken true: kutlamalar kuyrukta bekler, araya girmez. */
   holdCelebrations: boolean;
+  /** Günlük hedef her tamamlandığında artar; başlıktaki halka bunu izleyip patlama gösterir (S6). */
+  goalPulse: number;
   hydrate: () => void;
   gainXp: (amount: number) => void;
   loseOneHeart: () => void;
@@ -58,11 +61,17 @@ export const useProgressStore = create<ProgressStore>((set, get) => {
     return changed && STREAK_MILESTONES.includes(next.streak.count) ? [{ kind: "streak", days: next.streak.count }] : [];
   }
 
+  /** Bu işlemle yeni kazanılan rozetler için kutlama döndürür (S5). */
+  function newBadges(prev: Progress, next: Progress): Celebration[] {
+    return next.badges.filter((id) => !prev.badges.includes(id)).map((id) => ({ kind: "badge" as const, id }));
+  }
+
   return {
     progress: DEFAULT_PROGRESS,
     hydrated: false,
     celebrations: [],
     holdCelebrations: false,
+    goalPulse: 0,
     hydrate: () => {
       if (get().hydrated) return;
       set({ progress: loadProgress(), hydrated: true });
@@ -71,20 +80,22 @@ export const useProgressStore = create<ProgressStore>((set, get) => {
       const prev = get().progress;
       const added = addXp(prev, amount);
       const next = { ...added, badges: computeEarnedBadgeIds(added) };
-      const found: Celebration[] = streakMilestone(prev, next);
+      const found: Celebration[] = [...streakMilestone(prev, next), ...newBadges(prev, next)];
       const before = rankFor(prev.xp);
       const after = rankFor(next.xp);
       if (after.id > before.id) found.push({ kind: "rank", rank: after });
       const goal = DAILY_GOAL_XP[next.settings.dailyGoal];
-      if (xpOnDate(prev) < goal && xpOnDate(next) >= goal) found.push({ kind: "goal", xp: goal });
+      const goalReached = xpOnDate(prev) < goal && xpOnDate(next) >= goal;
+      if (goalReached) found.push({ kind: "goal", xp: goal });
       commit(next, found);
+      if (goalReached) set((s) => ({ goalPulse: s.goalPulse + 1 }));
     },
     loseOneHeart: () => commit(loseHeart(get().progress)),
     completeLesson: (lessonId, score) => {
       const prev = get().progress;
       const afterCompletion = markLessonCompleted(prev, lessonId, score);
       const next = { ...afterCompletion, badges: computeEarnedBadgeIds(afterCompletion) };
-      commit(next, streakMilestone(prev, next));
+      commit(next, [...streakMilestone(prev, next), ...newBadges(prev, next)]);
     },
     reportWrongAnswer: (exerciseId) => commit(scheduleReview(get().progress, exerciseId)),
     reportReviewResult: (exerciseId, correct) => commit(applyReviewResult(get().progress, exerciseId, correct)),

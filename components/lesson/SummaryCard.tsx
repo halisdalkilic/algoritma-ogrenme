@@ -8,6 +8,7 @@ import { currentStreak } from "@/lib/progress";
 import { rankProgress } from "@/lib/ranks";
 import { useT } from "@/lib/i18n/context";
 import { Burst } from "@/components/ui/Burst";
+import { useCountUp } from "@/lib/useCountUp";
 
 const listVariants = {
   hidden: {},
@@ -53,6 +54,9 @@ export function SummaryCard({
   onFinish: () => void;
 }) {
   const t = useT();
+  // Sayılar 0'dan akarak yükselir (S17)
+  const { shown: xpShown } = useCountUp(xpEarned, { initial: 0, delay: () => 500 });
+  const { shown: accShown } = useCountUp(accuracy, { initial: 0, delay: () => 600 });
   const progress = useProgressStore((s) => s.progress);
   const { rank, next, pct } = rankProgress(progress.xp);
   const streak = currentStreak(progress);
@@ -91,8 +95,8 @@ export function SummaryCard({
         transition={{ delay: 0.2 }}
         className="flex w-full max-w-sm gap-3"
       >
-        <Stat icon="⭐" value={`+${xpEarned}`} label={t.summary.xpEarned} color="var(--xp)" />
-        <Stat icon="🎯" value={`%${accuracy}`} label={t.summary.accuracy} color="var(--good)" />
+        <Stat icon="⭐" value={`+${xpShown}`} label={t.summary.xpEarned} color="var(--xp)" />
+        <Stat icon="🎯" value={`%${accShown}`} label={t.summary.accuracy} color="var(--good)" />
       </m.div>
 
       <m.ul

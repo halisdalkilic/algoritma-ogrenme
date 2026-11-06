@@ -1,7 +1,7 @@
 "use client";
 
 import type { ComponentType } from "react";
-import { LazyMotion } from "framer-motion";
+import { LazyMotion, domMax } from "framer-motion";
 import { playStyle, useOnScreen } from "@/components/ui/useOnScreen";
 import { VisibleContext } from "./kit";
 import dynamic from "next/dynamic";
@@ -13,8 +13,8 @@ import type { VisualName } from "./names";
  * Tanınmayan bileşen ya da eksik görsel → hiçbir şey çizilmez (kart sadece metinle kalır).
  */
 // Record<VisualName, …>: names.ts'e eklenen her ad burada da karşılık bulmak ZORUNDA (tip hatası verir).
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 // Her görsel ayrı yüklenir (P7): ders yalnızca kullandığı görselin kodunu indirir. SSR açık kalır: HTML hazır gelir.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const REGISTRY: Record<VisualName, ComponentType<any>> = {
   ipo: dynamic(() => import("./basic").then((mod) => mod.IpoFlow)),
   steps: dynamic(() => import("./basic").then((mod) => mod.StepList)),
@@ -29,8 +29,6 @@ const REGISTRY: Record<VisualName, ComponentType<any>> = {
   recursion: dynamic(() => import("./logic").then((mod) => mod.RecursionStack)),
   growth: dynamic(() => import("./logic").then((mod) => mod.GrowthChart)),
 };
-
-const loadVisualFeatures = () => import("./visualFeatures").then((mod) => mod.default);
 
 export type VisualSpec = {
   type: "static-svg" | "animation";
@@ -48,12 +46,12 @@ function VisualHost({ visual, accent, label }: { visual: VisualSpec; accent: str
   const [ref, visible] = useOnScreen<HTMLDivElement>("120px");
   const Comp = REGISTRY[visual.component as VisualName];
   if (!Comp) return null;
-  // Görsellerde `layout` animasyonu var: bu, genel (küçük) pakete değil, yalnızca görsel gösterilirken
-  // yüklenen `domMax` paketine ihtiyaç duyar. İç içe LazyMotion dış olanın üzerine yazar.
+  // Görsellerde `layout` animasyonu var: bu, genel (küçük) pakete değil `domMax` paketine ihtiyaç duyar.
+  // Yalnızca ders sayfasının paketine girer. İç içe LazyMotion dış olanın üzerine yazar.
   return (
     <div ref={ref} className="ambient" style={playStyle(visible)}>
       <VisibleContext.Provider value={visible}>
-        <LazyMotion features={loadVisualFeatures} strict>
+        <LazyMotion features={domMax} strict>
           <Comp accent={accent} label={label} {...visual.props} />
         </LazyMotion>
       </VisibleContext.Provider>

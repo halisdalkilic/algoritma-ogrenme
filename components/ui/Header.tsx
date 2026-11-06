@@ -120,7 +120,7 @@ export function Header() {
                 <DailyGoalRing />
               </m.div>
               <m.div variants={item} className={progress.settings.heartsEnabled ? "max-[359px]:hidden" : undefined}>
-                <StatBadge icon="⭐" value={progress.xp} label={t.shell.header.totalXp} tone="xp" />
+                <StatBadge icon="⭐" value={progress.xp} label={t.shell.header.totalXp} tone="xp" xpTarget />
               </m.div>
               {progress.settings.heartsEnabled && (
                 <m.div variants={item}>

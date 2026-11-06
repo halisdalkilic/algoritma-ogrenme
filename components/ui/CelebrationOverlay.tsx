@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { AnimatePresence, m } from "framer-motion";
 import { useProgressStore, type Celebration } from "@/lib/useProgressStore";
 import { RANKS } from "@/lib/ranks";
+import { getBadgeDef } from "@/lib/badges";
 import { Mascot } from "@/components/mascot/Mascot";
 import { Burst } from "./Burst";
 import { ShareButton } from "./ShareButton";
@@ -56,6 +57,24 @@ function describe(
         colors: c.rank.colors,
       },
       text: cel.rank.shareText(title, c.rank.icon),
+    };
+  }
+  if (c.kind === "badge") {
+    const icon = getBadgeDef(c.id)?.icon ?? "🏅";
+    const info = t.badges[c.id as keyof typeof t.badges];
+    return {
+      icon,
+      kicker: cel.badge.kicker,
+      title: info.title,
+      body: info.description,
+      card: {
+        kicker: cel.badge.cardKicker,
+        title: info.title,
+        icon,
+        stats: [["⭐", `${xp} XP`]],
+        colors: ["#8b6dff", "#4b32c4"],
+      },
+      text: cel.badge.shareText(info.title, icon),
     };
   }
   return {
@@ -123,15 +142,30 @@ export function CelebrationOverlay() {
                 <Burst count={34} radius={150} gravity={110} size={9} duration={1.6} />
               </div>
               <div className="relative">
-                <m.div
-                  aria-hidden
-                  initial={{ scale: 0, rotate: -30 }}
-                  animate={{ scale: [0, 1.25, 1], rotate: 0 }}
-                  transition={{ duration: 0.7, ease: "easeOut" }}
-                  className="text-7xl"
-                >
-                  {d.icon}
-                </m.div>
+                {/* Rütbe ve rozet 3B çevrilerek açılır (S5); diğerleri büyüyerek */}
+                <div style={{ perspective: 600 }}>
+                  {current.kind === "rank" || current.kind === "badge" ? (
+                    <m.div
+                      aria-hidden
+                      initial={{ rotateY: 90, scale: 0.6 }}
+                      animate={{ rotateY: [90, -14, 0], scale: [0.6, 1.2, 1] }}
+                      transition={{ duration: 0.9, ease: "easeOut" }}
+                      className="text-7xl"
+                    >
+                      {d.icon}
+                    </m.div>
+                  ) : (
+                    <m.div
+                      aria-hidden
+                      initial={{ scale: 0, rotate: -30 }}
+                      animate={{ scale: [0, 1.25, 1], rotate: 0 }}
+                      transition={{ duration: 0.7, ease: "easeOut" }}
+                      className="text-7xl"
+                    >
+                      {d.icon}
+                    </m.div>
+                  )}
+                </div>
                 <Mascot
                   mood="cheer"
                   size={70}

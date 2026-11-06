@@ -520,3 +520,17 @@ html[data-hidden] *::after {
 .err-pulse { transform-box: fill-box; transform-origin: center; animation: err-pulse 1.2s ease-in-out infinite; }
 @keyframes loop-spin { to { transform: rotate(360deg); } }
 .loop-spin { animation: loop-spin 3.6s linear infinite; }
+
+/* ───────── Aşama 2: geri bildirim ve oyunlaştırma ───────── */
+/* S3: yanlışta maskot kafasını sallar (tek seferlik) */
+@keyframes fx-wobble { 0%, 100% { transform: rotate(0); } 20% { transform: rotate(-10deg); } 45% { transform: rotate(8deg); } 70% { transform: rotate(-5deg); } }
+.fx-wobble { animation: fx-wobble 0.6s ease-in-out 0.1s both; transform-origin: 50% 85%; }
+/* S1: "N üst üste" rozeti yaylanarak belirir */
+@keyframes fx-combo { 0% { transform: scale(0.3) rotate(-12deg); opacity: 0; } 60% { transform: scale(1.25) rotate(4deg); opacity: 1; } 100% { transform: scale(1) rotate(0); } }
+.fx-combo { animation: fx-combo 0.5s cubic-bezier(0.2, 1.4, 0.4, 1) 0.15s both; }
+/* S4: ilerleme çubuğu — her adımda içinden geçen ışık ve %80'den sonra parıltı */
+.bar-shine { position: absolute; inset: 0 auto 0 0; width: 40%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent); transform: translateX(-100%); animation: bar-shine 0.9s ease-out 0.15s both; pointer-events: none; }
+@keyframes bar-shine { 0% { transform: translateX(-100%); opacity: 1; } 100% { transform: translateX(320%); opacity: 0; } }
+.bar-glow { position: absolute; inset: -2px; border-radius: 999px; background: radial-gradient(closest-side, rgba(255, 255, 255, 0.45), transparent); animation: bar-glow 1.4s ease-in-out infinite; pointer-events: none; }
+@keyframes bar-glow { 0%, 100% { opacity: 0.15; } 50% { opacity: 0.7; } }
+html[data-hidden] .bar-glow { animation-play-state: paused; }

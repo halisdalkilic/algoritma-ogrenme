@@ -1,17 +1,16 @@
 "use client";
 
 import { useEffect } from "react";
-import { LazyMotion, MotionConfig } from "framer-motion";
+import { LazyMotion, MotionConfig, domAnimation } from "framer-motion";
 
 /**
  * Animasyonlar için tek merkez:
- *  - LazyMotion (P1): animasyon motoru ilk JS paketinde değil, sayfa etkileşime girerken ayrı parça olarak
- *    yüklenir. Bu yüzden tüm bileşenler `motion.*` yerine hafif `m.*` kullanır; `strict` bunu zorunlu kılar.
+ *  - LazyMotion (P1): bileşenler `motion.*` yerine hafif `m.*` kullanır (`strict` bunu zorunlu kılar); yalnızca
+ *    gereken özellikler (domAnimation) pakete girer. Özellikler EŞZAMANLI yüklenir: asenkron yüklenince
+ *    `initial` durumundaki öğeler (opacity 0) paket gelene kadar görünmez kalıp içerik yanıp sönüyordu.
  *  - MotionConfig (P4): işletim sisteminde "hareketi azalt" açıksa tüm transform animasyonları kapanır.
  *  - Sekme gizliyken (P3) `<html data-hidden>` işaretlenir; globals.css tüm CSS animasyonlarını duraklatır.
  */
-const loadFeatures = () => import("./motionFeatures").then((mod) => mod.default);
-
 export function MotionProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const root = document.documentElement;
@@ -25,7 +24,7 @@ export function MotionProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <LazyMotion features={loadFeatures} strict>
+    <LazyMotion features={domAnimation} strict>
       <MotionConfig reducedMotion="user">{children}</MotionConfig>
     </LazyMotion>
   );

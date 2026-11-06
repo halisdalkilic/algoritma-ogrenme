@@ -204,6 +204,8 @@ export const en: Dictionary = {
       `${letter}: ${option}${state === "correct" ? " (correct answer)" : state === "wrong" ? " (wrong choice)" : ""}`,
     cheers: ["Great, that's correct!", "You're awesome!", "Spot on!", "Exactly!", "Perfect!"],
     comforts: ["Almost!", "That's okay, keep going!", "Almost there!", "Mistakes help you learn!"],
+    comboCheers: ["Unstoppable!", "You're on fire!", "Keep it rolling!", "Right again!"],
+    combo: (n: number) => `${n} in a row`,
     flowRead: { correct: "Correct! You read the flowchart correctly.", wrong: "Follow the flowchart again, step by step." },
     predict: { placeholder: "Write the output separated by commas or spaces (e.g. 1, 2, 3)" },
     pseudo: {
@@ -436,6 +438,11 @@ export const en: Dictionary = {
       cardKicker: "Daily goal",
       cardTitle: "I completed today's goal",
       shareText: "I completed my algorithm goal for today 🎯",
+    },
+    badge: {
+      kicker: "New badge",
+      cardKicker: "New badge",
+      shareText: (title: string, icon: string) => `I earned the "${title}" badge on Algorithm Learning ${icon}`,
     },
   },
 };
